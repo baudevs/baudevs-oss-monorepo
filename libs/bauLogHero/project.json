@@ -1,0 +1,69 @@
+{
+  "name": "@baudevs/bau-log-hero",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/bauLogHero/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "test": {
+      "cache": true,
+      "executor": "@nx/jest:jest",
+      "dependsOn": ["^build"],
+      "inputs": ["default", "production", "^production"],
+      "outputs": [],
+      "options": {
+        "jestConfig": "libs/bauLogHero/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "build": {
+      "cache": true,
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "project": "@baudevs/bau-log-hero",
+        "outputPath": "dist/libs/{projectName}",
+        "main": "libs/{projectName}/src/index.ts",
+        "tsConfig": "libs/{projectName}/tsconfig.lib.json"
+      }
+    },
+    "release": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "project": "@baudevs/bau-log-hero",
+        "packageRoot": "dist/libs/{projectName}",
+        "buildTarget": "build",
+        "publish": false,
+        "firstRelease": true,
+        "verbose": true,
+        "access": "public",
+        "registry": "https://registry.npmjs.org/",
+        "npmToken": "${{ env.NPM_ACCESS_TOKEN }}",
+        "npmConfig": {
+          "provenance": true
+        },
+        "gitHubToken": "${{ env.GITHUB_TOKEN }}",
+        "gitHubRepository": "baudevs/baudevs-monorepo"
+      },
+      "changelog": {
+        "projectChangelogs": {
+          "file": "CHANGELOG.md",
+          "createRelease": "github"
+        }
+      }
+    },
+    "publish": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "project": "@baudevs/bau-log-hero",
+        "packageRoot": "dist/libs/{projectName}"
+      }
+    }
+  }
+}
