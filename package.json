@@ -17,7 +17,8 @@
     "logger",
     "logging",
     "log-hero",
-    "log-hero-logger","baudevs",
+    "log-hero-logger",
+    "baudevs",
     "presentamator",
     "rhythmalytics",
     "baudevs-types",
@@ -26,7 +27,6 @@
     "magicusprime"
   ],
   "devDependencies": {
-    "@eslint/compat": "^1.1.1",
     "@eslint/js": "^9.8.0",
     "@nx/devkit": "20.2.2",
     "@nx/eslint": "20.2.2",
