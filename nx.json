@@ -73,36 +73,20 @@
   },
   "release": {
     "projectsRelationship": "independent",
+    "projects": ["@baudevs/bau-log-hero"],
     "releaseTagPattern": "release/{projectName}/{version}",
     "changelog": {
-      "projectChangelogs": true
+      "projectChangelogs": {
+        "createRelease": "github"
+      }
     },
     "git": {
       "commitMessage": "chore(release): v{version}",
-      "tagMessage": "chore(release): v{version}",
+      "tagMessage": "v{version}",
       "push": true
     },
     "version": {
       "conventionalCommits": true
-    },
-    "projects": ["@baudevs/bau-log-hero"]
-  },
-  "build": {
-    "dependsOn": ["^build"],
-    "inputs": ["default", "production", "^production"],
-    "outputs": ["{options.outputPath}"],
-    "options": {
-      "outputPath": "dist/apps/baudevs-monorepo",
-      "cache": true
-    },
-    "projects": ["@baudevs/bau-log-hero"],
-    "targets": {
-      "build": {
-        "project": "@baudevs/bau-log-hero",
-        "options": {
-          "outputPath": "dist/apps/bau-log-hero"
-        }
-      }
     }
   }
 }

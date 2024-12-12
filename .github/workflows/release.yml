@@ -1,0 +1,65 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+  actions: read
+  id-token: write # needed for npm provenance
+env:
+  NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+  NPM_ACCESS_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  NODE_VERSION: 23
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set Up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: |
+          npm install --legacy-peer-deps
+          npm ci --legacy-peer-deps
+
+      - name: Set SHAs for Affected Commands
+        uses: nrwl/nx-set-shas@v4
+
+      - name: Run Linting
+        run: |
+          npx nx affected -t lint
+
+      - name: Run Tests
+        run: |
+          npx nx affected -t test
+
+      - name: Build Affected Projects
+        run: |
+          npx nx affected -t build
+
+      - name: Execute Release
+        run: |
+          npx nx release
+        env:
+          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+
+      - name: Publish Packages
+        run: |
+          npx nx release publish
+        env:
+          NPM_TOKEN: ${{ env.NPM_ACCESS_TOKEN }}
