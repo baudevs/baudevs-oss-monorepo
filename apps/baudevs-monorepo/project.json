@@ -1,0 +1,9 @@
+{
+  "name": "baudevs-monorepo",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/baudevs-monorepo",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project baudevs-monorepo --web",
+  "targets": {}
+}
