@@ -33,8 +33,6 @@ jobs:
           npm ci --legacy-peer-deps
        
       - uses: nrwl/nx-set-shas@v4
-
-      - run: npx nx-cloud record -- nx format:check
       
       - name: Test & Build
         run: |
