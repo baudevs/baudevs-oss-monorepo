@@ -52,6 +52,11 @@ jobs:
         run: |
           npx nx affected -t build
 
+      - name: Configure Git credentials
+        run: |
+          git config --global user.name "baudevs"
+          git config --global user.email "tech@baudevs.com"
+
       - name: Execute Release
         run: |
           npx nx release
