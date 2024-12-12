@@ -25,12 +25,11 @@
     "build": {
       "cache": false,
       "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
       "options": {
-        "project": "@baudevs/bau-log-hero",
-        "outputPath": "dist/libs/{projectName}",
+        "outputPath": "dist/libs/@baudevs/bau-log-hero",
         "main": "{projectRoot}/src/index.ts",
-        "tsConfig": "{projectRoot}/tsconfig.lib.json"
+        "tsConfig": "{projectRoot}/tsconfig.lib.json",
+        "assets": ["{projectRoot}//**/*.md", "{projectRoot}//**/*.json"]
       }
     },
     "release": {
@@ -38,18 +37,8 @@
       "executor": "@nx/js:tsc",
       "options": {
         "project": "@baudevs/bau-log-hero",
-        "packageRoot": "dist/libs/{projectName}",
-        "publish": false,
-        "firstRelease": true,
-        "verbose": true,
-        "access": "public",
-        "registry": "https://registry.npmjs.org/",
-        "npmToken": "${{ env.NPM_ACCESS_TOKEN }}",
-        "npmConfig": {
-          "provenance": true
-        },
-        "gitHubToken": "${{ env.GITHUB_TOKEN }}",
-        "gitHubRepository": "baudevs/baudevs-monorepo"
+        "packageRoot": "dist/{projectRoot}",
+        "publish": false
       },
       "changelog": {
         "projectChangelogs": {
@@ -62,7 +51,7 @@
       "executor": "@nx/js:tsc",
       "options": {
         "project": "@baudevs/bau-log-hero",
-        "packageRoot": "dist/libs/{projectName}"
+        "packageRoot": "dist/{projectRoot}"
       }
     }
   }
