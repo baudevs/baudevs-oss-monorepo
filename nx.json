@@ -15,7 +15,10 @@
     "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
   "nxCloudId": "675ab18bc22dae793a178f56",
-  
+  "workspaceLayout": {
+    "appsDir": "apps",
+    "libsDir": "libs"
+  },
   "plugins": [
     {
       "plugin": "@nx/next/plugin",
@@ -53,6 +56,11 @@
       "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"],
+      "cache": true
     }
   },
   "generators": {
@@ -65,15 +73,19 @@
   },
   "release": {
     "projectsRelationship": "independent",
+    "releaseTagPattern": "release/{projectName}/{version}",
+    "changelog": {
+      "projectChangelogs": true
+    },
+    "git": {
+      "commitMessage": "chore(release): v{version}",
+      "tagMessage": "chore(release): v{version}",
+      "push": true
+    },
     "version": {
       "conventionalCommits": true
     },
-    "projects": ["bauLogHero"],
-    "changelog": {
-      "projectChangelogs": {
-        "file": "CHANGELOG.md",
-        "createRelease": "github"
-      }
-    }
+    "projects": ["@baudevs/bau-log-hero"]
   }
+
 }
