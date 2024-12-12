@@ -1,3 +1,13 @@
+## 1.2.0 (2024-12-12)
+
+### 🚀 Features
+
+- remove github npm repository from npmrc and remove ci.yml workflow ([939a4ee](https://github.com/baudevs/baudevs-oss-monorepo/commit/939a4ee))
+
+### ❤️ Thank You
+
+- Juan Arroyave
+
 ## 1.1.0 (2024-12-12)
 
 ### 🚀 Features
