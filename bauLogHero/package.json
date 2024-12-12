@@ -2,7 +2,7 @@
   "name": "@baudevs/bau-log-hero",
   "version": "0.0.0",
   "dependencies": {
-    "tslib": "^2.3.0"
+
   },
   "repository": {
     "type": "git",

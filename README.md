@@ -1,82 +1,118 @@
-# BaudevsMonorepo
+# BauDevs Monorepo 🏗️✨
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+Welcome to BauDevs (MagicusPrime LDA) - Where Technology Meets Real Estate & Entertainment Innovation
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+## About Us 🌟
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/next?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+BauDevs, a proud subsidiary of [Targetivo GmbH](https://targetivo.com) (Austria), is a dynamic Portuguese technology company that brings playful innovation to the intersection of real estate, tourism, hospitality, and entertainment. Based in Portugal, we're building the future of property and entertainment technology, one block at a time.
 
-## Finish your CI setup
+## What We Do 🚀
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/UDNNUg3GoB)
+We create innovative solutions across multiple industries:
 
+### 🏠 PropTech Solutions
 
-## Run tasks
+- Custom property management platforms
+- Smart real estate analytics
+- Digital transformation for real estate
+- IoT integration for buildings
 
-To run the dev server for your app, use:
+### 💻 Entertainment & Analytics
 
-```sh
-npx nx dev baudevs-monorepo
+- Music analytics platforms ([Rhythmalytics.com](https://rhythmalytics.com))
+- Entertainment venue solutions
+- Event management systems
+- Audience engagement tools
+
+### 🏨 Tourism & Hospitality
+
+- Smart hospitality solutions
+- Guest experience platforms
+- Digital concierge services
+- Tourism analytics
+- Entertainment venue management
+- Full-stack development
+- Cloud-native solutions
+- Mobile applications
+- System architecture & integration
+
+### 📊 Digital Innovation
+
+- Digital strategy consulting
+- Technical project management
+- Product development
+- Innovation workshops
+
+## Our Approach 🎯
+
+Like building blocks, we combine different elements to create something greater than the sum of its parts. Our playful yet professional approach ensures we deliver solutions that are:
+
+- Innovative
+- Scalable
+- User-friendly
+- Results-driven
+
+## Development Setup
+
+This workspace is powered by [Nx](https://nx.dev), offering powerful tools for monorepo management.
+
+### Quick Start 🏃‍♂️
+
+```typescript
+// Start development server
+nx dev baudevs-monorepo
+
+// Create production build
+nx build baudevs-monorepo
+
+// View available project commands
+nx show project baudevs-monorepo
 ```
 
-To create a production bundle:
+### Creating New Projects 🆕
 
-```sh
-npx nx build baudevs-monorepo
+```typescript
+// Generate a new Next.js application
+nx g @nx/next:app new-app
+
+// Generate a new React library
+nx g @nx/react:lib new-lib
 ```
 
-To see all available targets to run for a project, run:
+### Code Quality 🛠️
 
-```sh
-npx nx show project baudevs-monorepo
+```typescript
+// Run linting
+nx lint
+
+// Run tests
+nx test
+
+// Run type checking
+nx type-check
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+## Project Structure
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-Use the plugin's generator to create new projects.
-
-To generate a new application, use:
-
-```sh
-npx nx g @nx/next:app demo
+```plaintext
+baudevs-monorepo/
+├── apps/                  # Application projects
+├── libs/                  # Shared libraries
+├── tools/                # Build and development tools
+└── nx.json               # Nx configuration
 ```
 
-To generate a new library, use:
+## Connect With Us 🤝
 
-```sh
-npx nx g @nx/react:lib mylib
-```
+- 🌐 Website: [baudevs.com](https://baudevs.com)
+- 📧 Email: [contact@baudevs.com](mailto:contact@baudevs.com)
+- 🏢 Parent Company: [Targetivo GmbH](https://targetivo.com)
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+## Our Vision 🔮
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+At BauDevs, we envision a future where technology seamlessly enhances real estate and tourism experiences. We're not just building software; we're creating experiences that transform how people interact with properties and travel.
 
+---
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/nx-api/next?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Built with ❤️ by BauDevs Team  
+A MagicusPrime LDA Company | Part of the Targetivo GmbH Family
