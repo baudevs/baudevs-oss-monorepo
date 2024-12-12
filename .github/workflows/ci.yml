@@ -61,7 +61,7 @@ jobs:
           NPM_CONFIG_PROVENANCE: true
         run: |
           # Create versions and tags
-          npx nx release version --verbose
+          npx nx release --first-release --verbose
           
           # Build all affected projects
           npx nx affected --target=build --verbose
