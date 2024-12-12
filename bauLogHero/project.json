@@ -10,8 +10,8 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/bauLogHero",
-        "main": "libs/bauLogHero/src/index.ts",
-        "tsConfig": "libs/bauLogHero/tsconfig.lib.json"
+        "main": "bauLogHero/src/index.ts",
+        "tsConfig": "bauLogHero/tsconfig.lib.json"
       }
     },
     "release": {
