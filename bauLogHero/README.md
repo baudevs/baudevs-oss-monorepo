@@ -3,8 +3,9 @@
 
 ![BauLogHero Logo](../assets/bauLogHero/BauLogHero.png)
 
-[![npm version](https://img.shields.io/npm/v/@baudevs-monorepo/bauLogHero.svg?style=flat-square)](https://www.npmjs.com/package/@baudevs-monorepo/bauLogHero)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/YOUR_GITHUB_USERNAME/baudevs-monorepo/ci.yml?branch=main&style=flat-square)](https://github.com/YOUR_GITHUB_USERNAME/baudevs-monorepo/actions)
+[![npm version](https://img.shields.io/npm/v/@baudevs-monorepo/bauLogHero.svg?style=flat-square)](https://www.npmjs.com/package/@baudevs/bau-log-hero)
+![NPM Downloads](https://img.shields.io/npm/d18m/%40baudevs%2Fbau-log-hero)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/baudevs/baudevs-oss-monorepo/ci.yml)
 [![License](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey.svg?style=flat-square)](./LICENSE)
 [![Monorepo: Nx](https://img.shields.io/badge/monorepo-nx-brightgreen?style=flat-square)](https://nx.dev)
 
