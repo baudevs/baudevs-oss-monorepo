@@ -27,6 +27,7 @@
     "magicusprime"
   ],
   "devDependencies": {
+    "@eslint/compat": "^1.2.4",
     "@eslint/js": "^9.8.0",
     "@nx/devkit": "20.2.2",
     "@nx/eslint": "20.2.2",
