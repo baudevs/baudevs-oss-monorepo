@@ -14,7 +14,13 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@bauLogHero": ["bauLogHero/src/index.ts"]
+    },
+    "typeRoots": [
+      "node_modules/@types",
+      "./types.d.ts"
+    ]
   },
   "exclude": ["node_modules", "tmp"]
 }

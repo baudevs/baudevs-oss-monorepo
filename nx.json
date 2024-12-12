@@ -15,6 +15,7 @@
     "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
   "nxCloudId": "675ab18bc22dae793a178f56",
+  
   "plugins": [
     {
       "plugin": "@nx/next/plugin",
@@ -47,6 +48,11 @@
   "targetDefaults": {
     "e2e-ci--**/*": {
       "dependsOn": ["^build"]
+    },
+    "@nx/js:tsc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     }
   },
   "generators": {
@@ -54,6 +60,19 @@
       "application": {
         "style": "tailwind",
         "linter": "eslint"
+      }
+    }
+  },
+  "release": {
+    "projectsRelationship": "independent",
+    "version": {
+      "conventionalCommits": true
+    },
+    "projects": ["bauLogHero"],
+    "changelog": {
+      "projectChangelogs": {
+        "file": "CHANGELOG.md",
+        "createRelease": "github"
       }
     }
   }

@@ -1,0 +1,30 @@
+{
+  "name": "@baudevs/bau-log-hero",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "bauLogHero/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/bauLogHero",
+        "main": "libs/bauLogHero/src/index.ts",
+        "tsConfig": "libs/bauLogHero/tsconfig.lib.json"
+      }
+    },
+    "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    }
+  },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    }
+  }
+}
