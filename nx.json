@@ -59,7 +59,7 @@
     },
     "build": {
       "dependsOn": ["^build"],
-      "inputs": ["production", "^production"],
+      "inputs": ["default", "production", "^production"],
       "cache": true
     }
   },
@@ -86,6 +86,23 @@
       "conventionalCommits": true
     },
     "projects": ["@baudevs/bau-log-hero"]
+  },
+  "build": {
+    "dependsOn": ["^build"],
+    "inputs": ["default", "production", "^production"],
+    "outputs": ["{options.outputPath}"],
+    "options": {
+      "outputPath": "dist/apps/baudevs-monorepo",
+      "cache": true
+    },
+    "projects": ["@baudevs/bau-log-hero"],
+    "targets": {
+      "build": {
+        "project": "@baudevs/bau-log-hero",
+        "options": {
+          "outputPath": "dist/apps/bau-log-hero"
+        }
+      }
+    }
   }
-
 }

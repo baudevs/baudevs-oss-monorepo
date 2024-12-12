@@ -43,7 +43,7 @@ class BaudevsLogger {
       if (existsSync(configFilePath)) {
         const rawConfig = readFileSync(configFilePath, 'utf8');
         try {
-          this.config = parseJson5Like(rawConfig);
+          this.config = parseJson5Like(rawConfig) as unknown as { level?: LogLevel };
         } catch {
           // Ignore config parse errors
         }

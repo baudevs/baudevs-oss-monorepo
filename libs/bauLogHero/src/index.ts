@@ -1,2 +1,2 @@
 // libs/logger/src/index.ts
-export { createBaudevsLogger } from '@/logger';
+export { createBaudevsLogger } from '@/src/logger';

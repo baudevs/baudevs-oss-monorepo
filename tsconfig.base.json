@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@bauLogHero": ["libs/bauLogHero/src/index.ts"]
+      "@/libs/*": ["libs/*"],
+      "@/bauLogHero/*": ["libs/bauLogHero/*"]
     },
     "typeRoots": ["node_modules/@types", "./types.d.ts"]
   },

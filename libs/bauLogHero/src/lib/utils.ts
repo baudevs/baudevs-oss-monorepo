@@ -41,7 +41,7 @@ export function fileHasEnabledComment(filePath: string): boolean {
  * NOTE: This is a heuristic-based parser. It transforms the input into valid JSON
  * and then uses JSON.parse. It won’t handle all JSON5 features perfectly, but covers common cases.
  */
-export function parseJson5Like(input: string): any {
+export function parseJson5Like(input: string): unknown {
   // Remove single-line comments
   let withoutComments = input.replace(/\/\/[^\n]*\n/g, '\n');
 

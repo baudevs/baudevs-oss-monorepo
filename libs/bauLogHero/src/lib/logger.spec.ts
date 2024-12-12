@@ -1,5 +1,5 @@
 // libs/bauLogHero/src/lib/logger.spec.ts
-import { createBaudevsLogger } from '@/index';
+import { createBaudevsLogger } from '@/src/index';
 
 jest.mock('@/lib/utils', () => ({
   ...jest.requireActual('@/lib/utils'),
@@ -14,6 +14,8 @@ describe('BaudevsLogger', () => {
   let originalError: typeof console.error;
   let originalDebug: typeof console.debug;
   let originalInfo: typeof console.info;
+  let originalNodeEnv: string | undefined;
+
   beforeEach(() => {
     originalLog = console.log;
     originalWarn = console.warn;
@@ -25,9 +27,10 @@ describe('BaudevsLogger', () => {
     console.error = jest.fn();
     console.debug = jest.fn();
     console.info = jest.fn();
+    originalNodeEnv = process.env['NODE_ENV'];
+    process.env['NODE_ENV'] = 'test';
 
     (fileHasEnabledComment as jest.Mock).mockReturnValue(true);
-    process.env['NODE_ENV'] = 'test'; // Using bracket notation for tests
   });
 
   afterEach(() => {
@@ -36,6 +39,8 @@ describe('BaudevsLogger', () => {
     console.error = originalError;
     console.debug = originalDebug;
     console.info = originalInfo;
+
+    process.env['NODE_ENV'] = originalNodeEnv;
   });
 
   it('should create a logger instance', () => {
@@ -65,5 +70,4 @@ describe('BaudevsLogger', () => {
     );
   });
 
-  // ... other tests unchanged ...
 });

@@ -1,9 +1,6 @@
 {
   "name": "@baudevs/bau-log-hero",
   "version": "0.0.0",
-  "dependencies": {
-
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/baudevs/baudevs-monorepo.git/bauLogHero"
@@ -13,5 +10,8 @@
   },
   "type": "commonjs",
   "main": "./src/index.js",
-  "typings": "./src/index.d.ts"
+  "typings": "./src/index.d.ts",
+  "dependencies": {
+    "tslib": "^2.8.1"
+  }
 }

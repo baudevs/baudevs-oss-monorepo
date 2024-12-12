@@ -6,7 +6,7 @@
   "tags": [],
   "targets": {
     "test": {
-      "cache": true,
+      "cache": false,
       "executor": "@nx/jest:jest",
       "dependsOn": ["^build"],
       "inputs": ["default", "production", "^production"],
@@ -23,22 +23,22 @@
       }
     },
     "build": {
-      "cache": true,
+      "cache": false,
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
         "project": "@baudevs/bau-log-hero",
         "outputPath": "dist/libs/{projectName}",
-        "main": "libs/{projectName}/src/index.ts",
-        "tsConfig": "libs/{projectName}/tsconfig.lib.json"
+        "main": "{projectRoot}/src/index.ts",
+        "tsConfig": "{projectRoot}/tsconfig.lib.json"
       }
     },
     "release": {
+      "cache": false,
       "executor": "@nx/js:tsc",
       "options": {
         "project": "@baudevs/bau-log-hero",
         "packageRoot": "dist/libs/{projectName}",
-        "buildTarget": "build",
         "publish": false,
         "firstRelease": true,
         "verbose": true,
