@@ -17,10 +17,7 @@
     "paths": {
       "@bauLogHero": ["bauLogHero/src/index.ts"]
     },
-    "typeRoots": [
-      "node_modules/@types",
-      "./types.d.ts"
-    ]
+    "typeRoots": ["node_modules/@types", "./types.d.ts"]
   },
   "exclude": ["node_modules", "tmp"]
 }
