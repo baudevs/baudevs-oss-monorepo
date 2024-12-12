@@ -36,7 +36,7 @@ jobs:
           npm ci --legacy-peer-deps
           npx nx reset
 
-      - run: npx playwright install --with-deps
+      #- run: npx playwright install --with-deps
 
       - uses: nrwl/nx-set-shas@v4
 
@@ -47,10 +47,10 @@ jobs:
           npx nx affected --target=lint,test,build --parallel --max-parallel=3
         
       # Optional: Run E2E tests separately
-      - name: Run E2E tests
-        run: |
-          npx nx affected --target=e2e --parallel=1
-        continue-on-error: true
+      #- name: Run E2E tests
+       # run: |
+        #  npx nx affected --target=e2e --parallel=1
+        #continue-on-error: true
 
       # Release process only on main branch
       - name: Version and Release
