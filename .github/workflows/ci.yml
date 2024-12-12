@@ -44,7 +44,7 @@ jobs:
       - name: Run affected targets
         run: |
           npx nx reset
-          npx nx affected --target=lint,test,build --parallel --max-parallel=3
+          npx nx affected --target=lint,test,build --parallel --max-parallel=3 --verbose
         
       # Optional: Run E2E tests separately
       #- name: Run E2E tests
@@ -61,10 +61,10 @@ jobs:
           NPM_CONFIG_PROVENANCE: true
         run: |
           # Create versions and tags
-          npx nx release version
+          npx nx release version --verbose
           
           # Build all affected projects
-          npx nx affected --target=build
+          npx nx affected --target=build --verbose
           
           # Publish the packages
-          npx nx release publish
+          npx nx release publish --verbose
