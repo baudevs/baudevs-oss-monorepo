@@ -1,5 +1,5 @@
 // libs/bauLogHero/src/lib/logger.spec.ts
-import { createBaudevsLogger } from '@/src/index';
+import {  createLogger } from '@/src/index';
 
 jest.mock('@/lib/utils', () => ({
   ...jest.requireActual('@/lib/utils'),
@@ -44,12 +44,12 @@ describe('BaudevsLogger', () => {
   });
 
   it('should create a logger instance', () => {
-    const logger = createBaudevsLogger(__filename);
+    const logger = createLogger(__filename);
     expect(logger).toBeDefined();
   });
 
   it('should log info messages when enabled', () => {
-    const logger = createBaudevsLogger(__filename);
+    const logger = createLogger(__filename);
     logger.info('Test info message');
     // Now we expect only one console.log call because init is skipped in test env
     expect(console.info).toHaveBeenCalledTimes(2);
@@ -61,7 +61,7 @@ describe('BaudevsLogger', () => {
   });
 
   it('should log debug messages when enabled', () => {
-    const logger = createBaudevsLogger(__filename);
+    const logger = createLogger(__filename);
     logger.debug('Test debug message');
     expect(console.debug).toHaveBeenCalledWith(
       expect.stringContaining('🔍'),
