@@ -17,3 +17,10 @@ if ! git diff --exit-code; then
 fi
 
 npx nx release plan --base=origin/main --head=HEAD --only-touched=false
+
+echo "Do you want to commit the plan? (y/n)"
+read -r answer
+if [ "$answer" = "y" ]; then
+  git add .
+  git commit -m "chore: automated commit before release"
+fi
