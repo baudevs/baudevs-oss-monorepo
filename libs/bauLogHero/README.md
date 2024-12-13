@@ -1,7 +1,7 @@
 
 # BauLogHero
 
-![BauLogHero Logo](../assets/bauLogHero/BauLogHero.png)
+![BauLogHero Logo](../../assets/bauLogHero/BauLogHero.png)
 
 [![npm version](https://img.shields.io/npm/v/@baudevs-monorepo/bauLogHero.svg?style=flat-square)](https://www.npmjs.com/package/@baudevs/bau-log-hero)
 ![NPM Downloads](https://img.shields.io/npm/d18m/%40baudevs%2Fbau-log-hero)
