@@ -1,3 +1,13 @@
+## 1.2.2 (2024-12-13)
+
+### 🩹 Fixes
+
+- chore: fix pre-release script and make it sizzle ([cd255db](https://github.com/baudevs/baudevs-oss-monorepo/commit/cd255db))
+
+### ❤️ Thank You
+
+- Juan Arroyave
+
 ## 1.2.1 (2024-12-13)
 
 ### 🩹 Fixes
