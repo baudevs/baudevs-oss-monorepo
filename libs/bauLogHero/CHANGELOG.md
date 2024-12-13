@@ -1,3 +1,13 @@
+## 1.2.1 (2024-12-13)
+
+### 🩹 Fixes
+
+- chore: Removed tsconfig from project built assets ([2710628](https://github.com/baudevs/baudevs-oss-monorepo/commit/2710628))
+
+### ❤️ Thank You
+
+- Juan Arroyave
+
 ## 1.2.0 (2024-12-12)
 
 ### 🚀 Features
