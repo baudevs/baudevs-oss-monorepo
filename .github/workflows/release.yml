@@ -11,6 +11,7 @@ permissions:
   contents: write
   actions: read
   id-token: write # needed for npm provenance
+
 env:
   NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_TOKEN }}
   NPM_ACCESS_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -26,31 +27,30 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set Up Node.js
-        uses: actions/setup-node@v3
+      - name: Set Up Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          bun-version: 'latest' # Specify the Bun version or use 'latest'
 
       - name: Install Dependencies
         run: |
-          npm install --legacy-peer-deps
-          npm ci --legacy-peer-deps
+          bun install
 
       - name: Set SHAs for Affected Commands
-        uses: nrwl/nx-set-shas@v4
+        run: |
+          bunx nx set-shas
 
       - name: Run Linting
         run: |
-          npx nx affected -t lint
+          bunx nx affected -t lint
 
       - name: Run Tests
         run: |
-          npx nx affected -t test
+          bunx nx affected -t test
 
       - name: Build Affected Projects
         run: |
-          npx nx affected -t build
+          bunx nx affected -t build
 
       - name: Configure Git credentials
         run: |
@@ -59,12 +59,12 @@ jobs:
 
       - name: Execute Release
         run: |
-          npx nx release
+          bunx nx release
         env:
           GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
 
       - name: Publish Packages
         run: |
-          npx nx release publish
+          bunx nx release publish
         env:
           NPM_TOKEN: ${{ env.NPM_ACCESS_TOKEN }}
