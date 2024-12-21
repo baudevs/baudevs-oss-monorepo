@@ -1,0 +1,60 @@
+{
+	"folders": [
+		{
+			"path": "..",
+			"name": "baudevs-monorepo",
+		}
+	],
+	"settings": {
+		"cSpell.caseSensitive": false,
+		"cSpell.customDictionaries": {
+			"project-words": {
+				"name": "project-words",
+				"path": "./.vscode/project-words.txt",
+				"addWords": true,
+				"scope": "workspace"
+			}
+		},
+		"cSpell.useLocallyInstalledCSpellDictionaries": true,
+		"cSpell.language": "en,es,de,pt",
+		"cSpell.enabled": true,
+		"cSpell.enabledFileTypes": {
+			"*": true,
+			"markdown": true,
+			"package.json": false,
+			"package-lock.json": false,
+			"yarn.lock": false,
+			"pnpm-lock.yaml": false,
+			"nx-cloud-client-bundle": false,
+			".bunfile": false,
+			"bun.lockb": false,
+			".code-workspace": false,
+			"extensions.json": false,
+			"settings.json": false,
+			"baudevs-monorepo.code-workspace": false,
+			"project-words.txt": false,
+			"GIT_WORKTREES.md": false,
+			"README.md": false,
+			"LICENSE": false,
+			"CHANGELOG.md": false,
+			"CONTRIBUTING.md": false,
+			"CODE_OF_CONDUCT.md": false,
+			"SECURITY.md": false,
+			".gitignore": false
+		},
+		"cSpell.ignorePaths": [
+			"/.nx",
+			"/.vscode",
+			"/.git",
+			"/.husky",
+			"/.env",
+			"/.env.local",
+			"/.env.development",
+			"/.env.production",
+			"/.env.test",
+			"/.env.staging",
+			"/*WORKTREES*/"
+		],
+		"cSpell.languageSettings": [],
+	}
+}
