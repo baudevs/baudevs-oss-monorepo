@@ -1,19 +1,24 @@
 {
   "name": "bau-cms-cli",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/bau-cms-cli/src",
+  "sourceRoot": "packages/bau-cms-cli/src",
   "projectType": "library",
-  "tags": [],
   "targets": {
     "build": {
-      "executor": "@nx/js:swc",
+      "executor": "nx:run-commands",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/bau-cms-cli",
-        "main": "libs/bau-cms-cli/src/index.ts",
-        "tsConfig": "libs/bau-cms-cli/tsconfig.lib.json",
-        "assets": ["libs/bau-cms-cli/*.md"]
+        "command": "bun build ./src/index.ts --outdir=../../dist/packages/bau-cms-cli --target=node",
+        "cwd": "packages/bau-cms-cli"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/bau-cms-cli/**/*.ts"]
       }
     }
-  }
+  },
+  "tags": []
 }

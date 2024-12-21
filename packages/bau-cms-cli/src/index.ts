@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
-import chalk from 'chalk';
 import { initCommand } from './lib/commands/init';
 import { migrateCommand } from './lib/commands/migrate';
-
 const program = new Command();
 
 program
@@ -16,9 +14,10 @@ program
   .description('Initialize BauCMS in your Next.js project')
   .action(initCommand);
 
-program
+  program
   .command('migrate')
   .description('Run database migrations')
   .action(migrateCommand);
+
 
 program.parse();
