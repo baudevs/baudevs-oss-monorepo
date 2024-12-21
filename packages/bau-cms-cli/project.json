@@ -5,11 +5,18 @@
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "nx:run-commands",
+      "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "command": "bun build ./src/index.ts --outdir=../../dist/packages/bau-cms-cli --target=node",
-        "cwd": "packages/bau-cms-cli"
+        "outputPath": "dist/packages/bau-cms-cli",
+        "main": "packages/bau-cms-cli/src/index.ts",
+        "tsConfig": "packages/bau-cms-cli/tsconfig.json",
+        "assets": ["packages/bau-cms-cli/*.md"],
+        "platform": "node",
+        "format": ["cjs"],
+        "bundle": true,
+        "thirdParty": true,
+        "generatePackageJson": true
       }
     },
     "lint": {
