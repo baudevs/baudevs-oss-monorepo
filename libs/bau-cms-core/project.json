@@ -1,0 +1,19 @@
+{
+  "name": "bau-cms-core",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/bau-cms-core/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/bau-cms-core",
+        "main": "libs/bau-cms-core/src/index.ts",
+        "tsConfig": "libs/bau-cms-core/tsconfig.lib.json",
+        "assets": ["libs/bau-cms-core/*.md"]
+      }
+    }
+  }
+}

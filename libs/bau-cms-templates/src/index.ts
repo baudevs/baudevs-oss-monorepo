@@ -1,0 +1,1 @@
+export { BlogPost } from './lib/templates/BlogPost'; 

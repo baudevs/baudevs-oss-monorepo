@@ -1,0 +1,19 @@
+{
+  "name": "bau-cms-admin",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/bau-cms-admin/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/bau-cms-admin",
+        "main": "libs/bau-cms-admin/src/index.ts",
+        "tsConfig": "libs/bau-cms-admin/tsconfig.lib.json",
+        "assets": ["libs/bau-cms-admin/*.md"]
+      }
+    }
+  }
+}

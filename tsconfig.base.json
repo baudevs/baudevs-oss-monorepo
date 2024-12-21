@@ -19,7 +19,7 @@
       "@/libs/*": ["libs/*"],
       "@baudevs/bau-cms-admin": ["libs/bau-cms-admin/src/index.ts"],
       "@baudevs/bau-cms-cli": ["libs/bau-cms-cli/src/index.ts"],
-      "@baudevs/bau-cms-core": ["libs/bau-cms-core/src/index.ts"]
+      "@baudevs/bau-cms-core": ["libs/bau-cms-core/src/index.ts"],
     },
     "typeRoots": ["node_modules/@types", "./types.d.ts"]
   },
