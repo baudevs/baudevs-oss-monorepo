@@ -50,12 +50,80 @@ git worktree add ../baudevs-monorepo.worktrees/develop develop
 3. Add worktrees for each feature/library:
 
 ```bash
-git worktree add ../baudevs-monorepo.worktrees/bau-cms-core develop
+cd ../baudevs-monorepo.worktrees/develop
+git checkout develop
+git branch feature/bau-cms-core
+git worktree add ../baudevs-monorepo.worktrees/bau-cms-core feature/bau-cms-core
 cd ../baudevs-monorepo.worktrees/bau-cms-core
 git checkout -b feature/bau-cms-core
 ```
 
-Repeat for all required libraries and apps.
+4. cd into the worktree and start working on the feature/library
+
+```bash
+cd ../baudevs-monorepo.worktrees/bau-cms-core
+```
+
+5. Work on the feature/library
+
+```bash
+# make changes
+nano src/index.ts   
+# add the changes
+git add .
+# commit the changes
+git commit -m "Implement feature X for bau-cms-core"
+
+#Test the changes or build the library
+nx build bau-cms-core
+```
+
+6. Push the feature/library to the remote branch
+
+```bash
+git push origin feature/bau-cms-core
+```
+
+7. Switch between worktrees with Example commands
+
+---
+
+### **7.1 Example: Switch to the develop worktree and merge the feature/library into develop**
+
+```bash
+cd ../baudevs-monorepo
+git checkout develop    
+git merge feature/bau-cms-core
+```
+
+### **7.2 Example: Switch to the feature/bau-cms-core worktree and merge the develop into feature/bau-cms-core**
+
+```bash
+cd ../baudevs-monorepo.worktrees/bau-cms-core
+git checkout feature/bau-cms-core
+git merge develop
+```
+
+### **7.3 Example: Switch top bau-cms-database develop a new feature and then test it in the bau-cms-example app**
+
+```bash
+cd ../baudevs-monorepo
+git checkout develop
+git branch feature/bau-cms-database
+git worktree add ../baudevs-monorepo.worktrees/bau-cms-database feature/bau-cms-database
+cd ../baudevs-monorepo.worktrees/bau-cms-database
+git checkout -b feature/bau-cms-database
+```
+
+### **7.4 Example: Switch to the bau-cms-example app worktree and test the changes in the bau-cms-example app**
+
+```bash
+cd ../baudevs-monorepo
+git checkout develop
+git merge feature/bau-cms-database
+```
+
+---
 
 ## **Worktree Structure**
 
