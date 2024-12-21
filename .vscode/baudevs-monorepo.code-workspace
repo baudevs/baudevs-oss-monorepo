@@ -2,7 +2,10 @@
 	"folders": [
 		{
 			"path": "..",
-			"name": "baudevs-monorepo",
+			"name": "baudevs-monorepo"
+		},
+		{
+			"path": "../../baudevs-monorepo.worktrees"
 		}
 	],
 	"settings": {
