@@ -23,7 +23,8 @@ node_modules
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-
+!.vscode/project-words.txt
+!.vscode/*.code-workspace
 # misc
 /.sass-cache
 /connect.lock
