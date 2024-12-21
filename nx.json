@@ -1,5 +1,18 @@
 {
+  "extends": "nx/presets/npm.json",
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "affected": {
+    "defaultBase": "main"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "parallel": 3
+      }
+    }
+  },
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
@@ -60,12 +73,40 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["default", "production", "^production"],
-      "cache": true
+      "cache": true,
+      "options": {
+        "verbose": true,
+        "logFile": "logs/{projectName}/build.log"
+      }
     },
     "@nx/js:swc": {
       "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
+    },
+    "serve": {
+      "options": {
+        "verbose": true,
+        "logFile": "logs/{projectName}/serve.log"
+      }
+    },
+    "lint": {
+      "options": {
+        "verbose": true,
+        "logFile": "logs/{projectName}/lint.log"
+      }
+    },
+    "test": {
+      "options": {
+        "verbose": true,
+        "logFile": "logs/{projectName}/test.log"
+      }
+    },
+    "e2e": {
+      "options": {
+        "verbose": true,
+        "logFile": "logs/{projectName}/e2e.log"
+      }
     }
   },
   "generators": {
