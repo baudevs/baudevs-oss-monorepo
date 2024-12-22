@@ -1,0 +1,47 @@
+name: "Deploy Dashboard"
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - feature/*
+  pull_request: {}
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 'latest'
+
+      - name: Install Dependencies
+        run: bun install
+
+      - name: Install System Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+
+      - name: Generate Repo Metadata
+        run: |
+          bun scripts/generate-repo-metadata.ts
+          cp repoMetadata.json apps/baudevs-dashboard/public/
+
+      - name: Build Dashboard
+        run: bun nx build baudevs-dashboard
+
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist/apps/baudevs-dashboard
