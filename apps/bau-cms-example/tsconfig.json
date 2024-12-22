@@ -23,6 +23,7 @@
       "@baudevs/bau-cms-core": ["../../libs/bau-cms-core/src/lib/types"],
       "@baudevs/bau-cms-editor": ["../../libs/bau-cms-editor/src/lib/components"],
       "@baudevs/bau-cms-admin": ["../../libs/bau-cms-admin/src/lib/components"],
+      "@baudevs/bau-cms-cli": ["../../packages/bau-cms-cli/src/lib/types"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

@@ -1,0 +1,45 @@
+{
+  "name": "bau-cms-example",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/bau-cms-example",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/bau-cms-example"
+      },
+      "configurations": {
+        "development": {
+          "outputPath": "apps/bau-cms-example"
+        },
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "bau-cms-example:build",
+        "dev": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "bau-cms-example:build:development",
+          "dev": true
+        },
+        "production": {
+          "buildTarget": "bau-cms-example:build:production",
+          "dev": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": []
+} 
