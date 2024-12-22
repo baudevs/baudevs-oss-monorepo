@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import { bauCmsCli } from './bau-cms-cli';
 
 describe('bauCmsCli', () => {

@@ -16,7 +16,7 @@
         "format": ["cjs"],
         "bundle": true,
         "thirdParty": true,
-        "generatePackageJson": true,
+        "generatePackageJson": false,
         "esbuildOptions": {
           "outExtension": {
             ".js": ".js"
