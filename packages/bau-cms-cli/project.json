@@ -1,8 +1,8 @@
 {
   "name": "bau-cms-cli",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/bau-cms-cli/src",
-  "projectType": "library",
+  "projectType": "application",
   "targets": {
     "build": {
       "executor": "@nx/esbuild:esbuild",
@@ -16,7 +16,12 @@
         "format": ["cjs"],
         "bundle": true,
         "thirdParty": true,
-        "generatePackageJson": true
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
       }
     },
     "lint": {
