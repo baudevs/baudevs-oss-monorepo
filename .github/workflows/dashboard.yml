@@ -14,9 +14,9 @@ permissions:
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# Allow deployments per branch
 concurrency:
-  group: "pages"
+  group: "pages-${{ github.ref }}"
   cancel-in-progress: true
 
 jobs:
@@ -61,15 +61,17 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist/apps/baudevs-dashboard
+          name: github-pages-${{ github.ref_name }}
 
   deploy:
     environment:
-      name: github-pages
+      name: ${{ github.ref_name == 'main' && 'github-pages' || format('preview-{0}', github.ref_name) }}
       url: ${{ steps.deployment.outputs.page_url }}
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages-${{ github.ref_name }}
