@@ -22,6 +22,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      deployment_name: ${{ steps.deployment-name.outputs.name }}
+      environment_name: ${{ steps.deployment-name.outputs.env }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -46,6 +49,22 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y jq
 
+      - name: Set deployment name
+        id: deployment-name
+        run: |
+          BRANCH_NAME="${{ github.ref_name }}"
+          SANITIZED_NAME=$(echo "$BRANCH_NAME" | sed 's/\//-/g')
+          if [ "$BRANCH_NAME" = "main" ]; then
+            echo "name=production" >> $GITHUB_OUTPUT
+            echo "env=github-pages" >> $GITHUB_OUTPUT
+          elif [ "$BRANCH_NAME" = "develop" ]; then
+            echo "name=staging" >> $GITHUB_OUTPUT
+            echo "env=preview-staging" >> $GITHUB_OUTPUT
+          else
+            echo "name=preview-$SANITIZED_NAME" >> $GITHUB_OUTPUT
+            echo "env=preview-$SANITIZED_NAME" >> $GITHUB_OUTPUT
+          fi
+
       - name: Generate Repo Metadata
         run: |
           bun scripts/generate-repo-metadata.ts
@@ -61,11 +80,11 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist/apps/baudevs-dashboard
-          name: github-pages-${{ github.ref_name }}
+          name: github-pages-${{ steps.deployment-name.outputs.name }}
 
   deploy:
     environment:
-      name: ${{ github.ref_name == 'main' && 'github-pages' || format('preview-{0}', github.ref_name) }}
+      name: ${{ needs.build.outputs.environment_name }}
       url: ${{ steps.deployment.outputs.page_url }}
     needs: build
     runs-on: ubuntu-latest
@@ -74,4 +93,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          artifact_name: github-pages-${{ github.ref_name }}
+          artifact_name: github-pages-${{ needs.build.outputs.deployment_name }}
