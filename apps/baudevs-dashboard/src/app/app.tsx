@@ -1,18 +1,8 @@
-import { Box, Button, Typography } from '@mui/material';
+// apps/baudevs-dashboard/src/app/app.tsx
+import { Dashboard } from './dashboard';
 
-
-  export function App() {
-    return (
-      <div className="flex items-center justify-center h-screen bg-gray-50">
-        <Box>
-          <Typography variant="h4">Baudevs Dashboard</Typography>
-          <Button variant="contained" color="primary" className="mt-4">
-            Hello from MUI
-          </Button>
-        </Box>
-      </div>
-    );
-  }
-
+export function App() {
+  return <Dashboard />;
+}
 
 export default App;
