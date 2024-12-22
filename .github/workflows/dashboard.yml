@@ -18,6 +18,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
@@ -37,7 +42,7 @@ jobs:
           cp repoMetadata.json apps/baudevs-dashboard/public/
 
       - name: Build Dashboard
-        run: bun nx build baudevs-dashboard
+        run: bunx nx build baudevs-dashboard --verbose
 
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'

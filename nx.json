@@ -13,8 +13,7 @@
       "inputs": ["default", "production", "^production"],
       "cache": true,
       "options": {
-        "verbose": true,
-        "logFile": "logs/{projectName}/build.log"
+        "verbose": true
       }
     },
     "@nx/js:swc": {
@@ -24,29 +23,16 @@
     },
     "serve": {
       "options": {
-        "verbose": true,
-        "logFile": "logs/{projectName}/serve.log"
+        "verbose": true
       }
     },
     "lint": {
-      "options": {
-        "verbose": true,
-        "logFile": "logs/{projectName}/lint.log"
-      },
       "cache": true
     },
     "test": {
-      "options": {
-        "verbose": true,
-        "logFile": "logs/{projectName}/test.log"
-      },
       "cache": true
     },
     "e2e": {
-      "options": {
-        "verbose": true,
-        "logFile": "logs/{projectName}/e2e.log"
-      },
       "cache": true
     }
   },

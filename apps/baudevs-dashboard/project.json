@@ -5,22 +5,5 @@
   "projectType": "application",
   "tags": [],
   "targets": {
-        "serve": {
-            "executor": "@nx/vite:dev-server",
-            "defaultConfiguration": "development",
-            "options": {
-                "cwd": "apps/baudevs-dashboard",
-                "verbose": true,
-                "port": 4200,
-                "buildTarget": "baudevs-dashboard:build",
-                "buildOptions": {
-                    "outputPath": "../../dist/apps/@baudevs/dashboard"
-                },
-                "buildLibsFromSource": true
-            },
-            "configurations": {
-
-            }
-        },
     }
 }
