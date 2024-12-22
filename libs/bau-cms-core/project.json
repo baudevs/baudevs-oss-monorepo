@@ -1,5 +1,5 @@
 {
-  "name": "bau-cms-core",
+  "name": "@baudevs/cmsCore",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/bau-cms-core/src",
   "projectType": "library",

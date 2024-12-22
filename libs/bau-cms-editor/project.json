@@ -1,0 +1,8 @@
+{
+    "name": "@baudevs/cmsEditor",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "libs/bau-cms-editor/src",
+    "projectType": "library",
+    "tags": [],
+    "targets": {}
+}

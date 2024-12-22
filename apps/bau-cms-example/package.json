@@ -1,5 +1,5 @@
 {
-  "name": "bau-cms-example",
+  "name": "@baudevs/bau-cms-example",
   "version": "0.1.0",
   "private": true,
   "scripts": {
