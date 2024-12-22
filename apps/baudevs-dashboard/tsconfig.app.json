@@ -7,7 +7,16 @@
       "@nx/react/typings/cssmodule.d.ts",
       "@nx/react/typings/image.d.ts",
       "vite/client"
-    ]
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/src/*": ["src/*"],
+      "@/components/*": ["src/components/*"],
+      "@/lib/utils/*": ["src/lib/utils/*"],
+      "@/components/ui/*": ["src/components/ui/*"],
+      "@/lib/*": ["src/lib/*"],
+      "@/hooks/*": ["src/hooks/*"]
+    }
   },
   "exclude": [
     "src/**/*.spec.ts",
