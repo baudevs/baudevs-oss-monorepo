@@ -11,9 +11,9 @@
     "libs/*",
     "packages/*"
   ],
-  "packageManager": "bun@1.1.1",
+  "packageManager": "bun@1.1.40",
   "dependencies": {
-    "@nx/esbuild": "^20.3.0",
+    "@nx/esbuild": "20.3.0",
     "@radix-ui/react-slot": "^1.1.1",
     "next": "15.1.2",
     "react": "19.0.0",
@@ -37,8 +37,12 @@
     "magicusprime"
   ],
   "devDependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
     "@eslint/compat": "^1.2.4",
     "@eslint/js": "^9.17.0",
+    "@mui/icons-material": "^6.2.1",
+    "@mui/material": "^6.2.1",
     "@nx/devkit": "20.3.0",
     "@nx/eslint": "20.3.0",
     "@nx/eslint-plugin": "20.3.0",
@@ -94,6 +98,10 @@
   "trustedDependencies": [
     "@clerk/shared",
     "@parcel/watcher",
-    "@swc/core"
+    "@swc/core",
+    "better-sqlite3",
+    "esbuild",
+    "nx",
+    "sharp"
   ]
 }

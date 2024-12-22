@@ -32,35 +32,25 @@
       "options": {
         "verbose": true,
         "logFile": "logs/{projectName}/lint.log"
-      }
+      },
+      "cache": true
     },
     "test": {
       "options": {
         "verbose": true,
         "logFile": "logs/{projectName}/test.log"
-      }
+      },
+      "cache": true
     },
     "e2e": {
       "options": {
         "verbose": true,
         "logFile": "logs/{projectName}/e2e.log"
-      }
+      },
+      "cache": true
     }
   },
   "extends": "@nx/workspace/presets/npm.json",
-  "affected": {
-    "defaultBase": "main"
-  },
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "nx/tasks-runners/default",
-      "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"],
-        "cacheDirectory": ".nx-cache",
-        "useDaemonProcess": false
-      }
-    }
-  },
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
@@ -159,5 +149,8 @@
     "version": {
       "conventionalCommits": true
     }
-  }
+  },
+  "useDaemonProcess": false,
+  "cacheDirectory": ".nx-cache",
+  "defaultBase": "main"
 }
