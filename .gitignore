@@ -47,3 +47,5 @@ Thumbs.db
 out
 resources/baudevs-landinpage-project/code-snippets/
 /.nx-cache
+vite.config.*.timestamp*
+

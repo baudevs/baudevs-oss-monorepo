@@ -1,0 +1,9 @@
+{
+  "name": "baudevs-dashboard",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/baudevs-dashboard/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project baudevs-dashboard --web",
+  "targets": {}
+}
