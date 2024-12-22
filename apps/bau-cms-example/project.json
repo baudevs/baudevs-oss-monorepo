@@ -1,0 +1,8 @@
+{
+    "name": "@baudevs/bauCmsNextExample",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "apps/bau-cms-example/src",
+    "projectType": "application",
+    "tags": [],
+    "targets": {}
+}

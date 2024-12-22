@@ -1,6 +1,6 @@
 {
-  "name": "bau-cms-admin",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "@baudevs/cmsAdmin",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/bau-cms-admin/src",
   "projectType": "library",
   "tags": [],
