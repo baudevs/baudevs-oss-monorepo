@@ -15,14 +15,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@baudevs/libs/bau-cms-admin": ["libs/bau-cms-admin/src/index.ts"],
-      "@baudevs/packages/bau-cms-cli": ["packages/bau-cms-cli/src/index.ts"],
-      "@baudevs/libs/bau-cms-core": ["libs/bau-cms-core/src/index.ts"],
-      "@baudevs/libs/bau-cms-editor": ["libs/bau-cms-editor/src/index.ts"],
-      "@baudevs/libs/bau-cms-templates": ["libs/bau-cms-templates/src/index.ts"],
-      "@baudevs/libs/bauLogHero": ["libs/bauLogHero/src/index.ts"],
-      "@baudevs/apps/baudevs-dashboard": ["apps/baudevs-dashboard/src/index.ts"],
-      "@baudevs/apps/bau-cms-example": ["apps/bau-cms-example/src/index.ts"]
+      "@baudevs/cli": ["packages/bau-cms-cli/src/index.ts"],
+      "@baudevs/cms/admin": ["libs/bau-cms-admin/src/index.ts"],
+      "@baudevs/cms/core": ["libs/bau-cms-core/src/index.ts"],
+      "@baudevs/cms/editor": ["libs/bau-cms-editor/src/index.ts"],
+      "@baudevs/cms/templates": ["libs/bau-cms-templates/src/index.ts"],
+      "@baudevs/logHero": ["libs/bauLogHero/src/index.ts"]
     },
     "typeRoots": ["node_modules/@types", "./types.d.ts"]
   },

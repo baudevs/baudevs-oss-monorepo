@@ -1,6 +1,6 @@
 {
-  "name": "bau-cms-cli",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "@baudevs/cli",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/bau-cms-cli/src",
   "projectType": "application",
   "targets": {
