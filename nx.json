@@ -150,7 +150,7 @@
       "conventionalCommits": true
     }
   },
-  "useDaemonProcess": false,
+  "useDaemonProcess": true,
   "cacheDirectory": ".nx-cache",
   "defaultBase": "main"
 }
