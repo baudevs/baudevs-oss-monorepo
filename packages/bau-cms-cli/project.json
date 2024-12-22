@@ -8,7 +8,7 @@
       "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/bau-cms-cli",
+        "outputPath": "../../dist/packages/bau-cms-cli",
         "main": "packages/bau-cms-cli/src/index.ts",
         "tsConfig": "packages/bau-cms-cli/tsconfig.json",
         "assets": ["packages/bau-cms-cli/*.md"],
