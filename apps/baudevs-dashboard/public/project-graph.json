@@ -28,8 +28,7 @@
               "executor": "nx:run-script",
               "options": {
                 "script": "build",
-                "verbose": true,
-                "logFile": "logs/@baudevs/cmsTemplates/build.log"
+                "verbose": true
               },
               "metadata": {
                 "scriptContent": "tsc",
@@ -85,8 +84,7 @@
               "options": {
                 "cwd": "apps/baudevs-dashboard",
                 "command": "vite build",
-                "verbose": true,
-                "logFile": "logs/baudevs-dashboard/build.log"
+                "verbose": true
               },
               "cache": true,
               "dependsOn": [
@@ -120,19 +118,26 @@
               "parallelism": true
             },
             "serve": {
-              "executor": "@nx/vite:dev-server",
-              "defaultConfiguration": "development",
               "options": {
                 "cwd": "apps/baudevs-dashboard",
-                "verbose": true,
-                "port": 4200,
-                "buildTarget": "baudevs-dashboard:build",
-                "buildOptions": {
-                  "outputPath": "../../dist/apps/@baudevs/dashboard"
-                },
-                "buildLibsFromSource": true,
-                "logFile": "logs/baudevs-dashboard/serve.log"
+                "command": "vite serve",
+                "verbose": true
               },
+              "metadata": {
+                "technologies": [
+                  "vite"
+                ],
+                "description": "Starts Vite dev server",
+                "help": {
+                  "command": "bun vite --help",
+                  "example": {
+                    "options": {
+                      "port": 3000
+                    }
+                  }
+                }
+              },
+              "executor": "nx:run-commands",
               "configurations": {},
               "parallelism": true
             },
@@ -219,8 +224,7 @@
               "executor": "nx:run-script",
               "options": {
                 "script": "build",
-                "verbose": true,
-                "logFile": "logs/@baudevs/bauCmsNextExample/build.log"
+                "verbose": true
               },
               "metadata": {
                 "scriptContent": "next build",
@@ -276,9 +280,7 @@
             "lint": {
               "executor": "nx:run-script",
               "options": {
-                "script": "lint",
-                "verbose": true,
-                "logFile": "logs/@baudevs/bauCmsNextExample/lint.log"
+                "script": "lint"
               },
               "metadata": {
                 "scriptContent": "next lint",
@@ -324,9 +326,7 @@
                 "env": {
                   "TS_NODE_COMPILER_OPTIONS": "{\"moduleResolution\":\"node10\"}"
                 },
-                "command": "jest",
-                "verbose": true,
-                "logFile": "logs/@baudevs/cli/test.log"
+                "command": "jest"
               },
               "metadata": {
                 "technologies": [
@@ -405,8 +405,7 @@
                     ".js": ".js"
                   }
                 },
-                "verbose": true,
-                "logFile": "logs/@baudevs/cli/build.log"
+                "verbose": true
               },
               "configurations": {},
               "parallelism": true,
@@ -428,9 +427,7 @@
               "options": {
                 "lintFilePatterns": [
                   "packages/bau-cms-cli/**/*.ts"
-                ],
-                "verbose": true,
-                "logFile": "logs/@baudevs/cli/lint.log"
+                ]
               },
               "configurations": {},
               "parallelism": true,
@@ -484,8 +481,7 @@
               "executor": "nx:run-script",
               "options": {
                 "script": "build",
-                "verbose": true,
-                "logFile": "logs/@baudevs/cmsEditor/build.log"
+                "verbose": true
               },
               "metadata": {
                 "scriptContent": "tsc",
@@ -541,9 +537,7 @@
                 "env": {
                   "TS_NODE_COMPILER_OPTIONS": "{\"moduleResolution\":\"node10\"}"
                 },
-                "command": "jest",
-                "verbose": true,
-                "logFile": "logs/@baudevs/cmsAdmin/test.log"
+                "command": "jest"
               },
               "metadata": {
                 "technologies": [
@@ -655,9 +649,7 @@
                 "env": {
                   "TS_NODE_COMPILER_OPTIONS": "{\"moduleResolution\":\"node10\"}"
                 },
-                "command": "jest",
-                "verbose": true,
-                "logFile": "logs/@baudevs/cmsCore/test.log"
+                "command": "jest"
               },
               "metadata": {
                 "technologies": [
@@ -777,9 +769,7 @@
               "outputs": [],
               "options": {
                 "jestConfig": "libs/bauLogHero/jest.config.ts",
-                "passWithNoTests": true,
-                "verbose": true,
-                "logFile": "logs/@baudevs/bau-log-hero/test.log"
+                "passWithNoTests": true
               },
               "configurations": {
                 "ci": {
