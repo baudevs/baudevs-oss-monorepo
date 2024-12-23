@@ -43,7 +43,13 @@
 			"CONTRIBUTING.md": false,
 			"CODE_OF_CONDUCT.md": false,
 			"SECURITY.md": false,
-			".gitignore": false
+			".gitignore": false,
+      "typescript": true,
+      "typescriptreact": true,
+      "json": true,
+      "plaintext": true,
+      "text": true,
+      "yml": true,
 		},
 		"cSpell.ignorePaths": [
 			"/.nx",
@@ -56,7 +62,22 @@
 			"/.env.production",
 			"/.env.test",
 			"/.env.staging",
-			"/*WORKTREES*/"
+			"/*WORKTREES*/",
+      "apps/baudevs-dashboard/public/versions/*",
+    "apps/baudevs-dashboard/public/repoMetadata.json",
+    "apps/baudevs-dashboard/public/local-metadata.json",
+    "apps/baudevs-dashboard/public/metadata-history.json",
+    "**/*/repoMetadata.json",
+    "**/*/node_modules",
+    "**/*/.gitignore",
+    "**/*/.gitkeep",
+    "**/*/.env",
+    "**/*/.env.example",
+    "**/*/.env.local",
+    "**/*/.env.development",
+    "**/*/.env.production",
+    "**/*/.env.test",
+    ".vscode"
 		],
 		"cSpell.languageSettings": [],
 	}

@@ -3,6 +3,12 @@
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
     "ms-playwright.playwright",
-    "firsttris.vscode-jest-runner"
+    "firsttris.vscode-jest-runner",
+    "eamodio.gitlens",
+    "anysphere.cursor-shadow-workspace",
+    "nickdemayo.vscode-json-editor",
+    "github.copilot-chat",
+    "github.vscode-github-actions",
+    "nrwl.angular-console"
   ]
 }
