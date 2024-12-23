@@ -19,7 +19,7 @@
 			}
 		},
 		"cSpell.useLocallyInstalledCSpellDictionaries": true,
-		"cSpell.language": "en,es,de,pt",
+		"cSpell.language": "en,es,de, de_DE, de_AT, pt, pt_PT",
 		"cSpell.enabled": true,
 		"cSpell.enabledFileTypes": {
 			"*": true,
@@ -79,6 +79,15 @@
     "**/*/.env.test",
     ".vscode"
 		],
-		"cSpell.languageSettings": [],
+		"cSpell.languageSettings": [
+      {
+        "languageId": "typescript",
+        "enabled": true,
+      },
+      {
+        "languageId": "typescriptreact",
+        "enabled": true,
+      }
+    ],
 	}
 }

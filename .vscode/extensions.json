@@ -9,6 +9,9 @@
     "nickdemayo.vscode-json-editor",
     "github.copilot-chat",
     "github.vscode-github-actions",
-    "nrwl.angular-console"
+    "nrwl.angular-console",
+    "streetsidesoftware.code-spell-checker-spanish",
+    "streetsidesoftware.code-spell-checker-german",
+    "streetsidesoftware.code-spell-checker-austrian-german"
   ]
 }
