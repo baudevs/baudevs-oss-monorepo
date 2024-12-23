@@ -2,6 +2,8 @@
 import { Command } from 'commander';
 import { initCommand } from './lib/commands/init';
 import { migrateCommand } from './lib/commands/migrate';
+import { restoreCommand } from './lib/commands/restore';
+
 const program = new Command();
 
 program
@@ -14,10 +16,14 @@ program
   .description('Initialize BauCMS in your Next.js project')
   .action(initCommand);
 
-  program
+program
   .command('migrate')
   .description('Run database migrations')
   .action(migrateCommand);
 
+program
+  .command('restore')
+  .description('Restore your project to its state before BauCMS installation')
+  .action(restoreCommand);
 
 program.parse();

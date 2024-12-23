@@ -3,8 +3,8 @@ import chalk from 'chalk';
 import ora from 'ora';
 import { mkdir, writeFile } from 'fs/promises';
 import { join } from 'path';
-
-type Template = 'page' | 'blog-post' | 'service' | 'product';
+import { analyzeProject, type ProjectStructure } from '../utils/project-analyzer';
+import { BackupManager } from '../utils/backup-manager';
 
 interface SetupAnswers {
   databaseType: 'local' | 'turso';
@@ -13,76 +13,120 @@ interface SetupAnswers {
   tursoAuthToken?: string;
   setupAuth: boolean;
   setupAdminUI: boolean;
-  selectedTemplates: Template[];
+  selectedTemplates: ('page' | 'blog-post' | 'service' | 'product')[];
+  i18n: boolean;
+  i18nLibrary?: 'next-intl' | 'next-i18next';
 }
 
 export async function initCommand() {
-  console.log(chalk.blue('Welcome to BauCMS setup!'));
-
-  const answers: SetupAnswers = await inquirer.prompt([
-    {
-      type: 'list',
-      name: 'databaseType',
-      message: 'Which type of database would you like to use?',
-      choices: [
-        { name: 'Local SQLite', value: 'local' },
-        { name: 'Turso (Remote SQLite)', value: 'turso' }
-      ]
-    },
-    {
-      type: 'input',
-      name: 'databasePath',
-      message: 'Where would you like to store your database file?',
-      default: './content.db',
-      when: (answers) => answers.databaseType === 'local'
-    },
-    {
-      type: 'input',
-      name: 'tursoUrl',
-      message: 'Enter your Turso database URL:',
-      when: (answers) => answers.databaseType === 'turso',
-      validate: (input) => input.length > 0 || 'Database URL is required'
-    },
-    {
-      type: 'input',
-      name: 'tursoAuthToken',
-      message: 'Enter your Turso authentication token:',
-      when: (answers) => answers.databaseType === 'turso',
-      validate: (input) => input.length > 0 || 'Auth token is required'
-    },
-    {
-      type: 'confirm',
-      name: 'setupAuth',
-      message: 'Would you like to set up authentication with Clerk?',
-      default: true,
-    },
-    {
-      type: 'confirm',
-      name: 'setupAdminUI',
-      message: 'Would you like to set up the admin UI? (accessible at /admin)',
-      default: true,
-    },
-    {
-      type: 'checkbox',
-      name: 'selectedTemplates',
-      message: 'Which content templates would you like to use?',
-      choices: [
-        { name: 'Page (Basic page)', value: 'page' },
-        { name: 'Blog Post (with /blog routing)', value: 'blog-post' },
-        { name: 'Service (with /services routing)', value: 'service' },
-        { name: 'Product (with /products routing)', value: 'product' }
-      ],
-      validate: (input) => input.length > 0 || 'Please select at least one template'
-    }
-  ]);
-
-  const spinner = ora('Setting up BauCMS...').start();
-
+  const spinner = ora('Analyzing your Next.js project...').start();
+  
   try {
-    // Create necessary directories
-    await mkdir('app/api/baucms', { recursive: true });
+    // Analyze project structure
+    const projectStructure = await analyzeProject();
+    spinner.succeed('Project analysis complete');
+
+    // Initialize backup manager
+    const backupManager = new BackupManager();
+    await backupManager.initialize();
+
+    // Start interactive setup
+    console.log(chalk.blue('\nWelcome to BauCMS setup!'));
+    console.log('\nProject details detected:');
+    console.log(`- Using ${projectStructure.usesSrcDirectory ? 'src/' : 'root'} directory`);
+    console.log(`- Using ${projectStructure.usesAppRouter ? 'App Router' : 'Pages Router'}`);
+    console.log(`- Package manager: ${projectStructure.packageManager}`);
+    if (projectStructure.usesI18n.enabled) {
+      console.log(`- i18n: ${projectStructure.usesI18n.library || 'configured'}`);
+    }
+    if (projectStructure.existingMiddleware.exists) {
+      console.log('- Existing middleware detected');
+    }
+
+    const answers: SetupAnswers = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'databaseType',
+        message: 'Which type of database would you like to use?',
+        choices: [
+          { name: 'Local SQLite', value: 'local' },
+          { name: 'Turso (Remote SQLite)', value: 'turso' }
+        ]
+      },
+      {
+        type: 'input',
+        name: 'databasePath',
+        message: 'Where would you like to store your database file?',
+        default: './content.db',
+        when: (answers) => answers.databaseType === 'local'
+      },
+      {
+        type: 'input',
+        name: 'tursoUrl',
+        message: 'Enter your Turso database URL:',
+        when: (answers) => answers.databaseType === 'turso',
+        validate: (input) => input.length > 0 || 'Database URL is required'
+      },
+      {
+        type: 'input',
+        name: 'tursoAuthToken',
+        message: 'Enter your Turso authentication token:',
+        when: (answers) => answers.databaseType === 'turso',
+        validate: (input) => input.length > 0 || 'Auth token is required'
+      },
+      {
+        type: 'confirm',
+        name: 'setupAuth',
+        message: 'Would you like to set up authentication with Clerk?',
+        default: true,
+      },
+      {
+        type: 'confirm',
+        name: 'setupAdminUI',
+        message: 'Would you like to set up the admin UI? (accessible at /admin)',
+        default: true,
+      },
+      {
+        type: 'checkbox',
+        name: 'selectedTemplates',
+        message: 'Which content templates would you like to use?',
+        choices: [
+          { name: 'Page (Basic page)', value: 'page' },
+          { name: 'Blog Post (with /blog routing)', value: 'blog-post' },
+          { name: 'Service (with /services routing)', value: 'service' },
+          { name: 'Product (with /products routing)', value: 'product' }
+        ],
+        validate: (input) => input.length > 0 || 'Please select at least one template'
+      },
+      {
+        type: 'confirm',
+        name: 'i18n',
+        message: 'Would you like to enable internationalization (i18n)?',
+        default: projectStructure.usesI18n.enabled,
+        when: !projectStructure.usesI18n.enabled
+      },
+      {
+        type: 'list',
+        name: 'i18nLibrary',
+        message: 'Which i18n library would you like to use?',
+        choices: [
+          { name: 'next-intl (Recommended)', value: 'next-intl' },
+          { name: 'next-i18next', value: 'next-i18next' }
+        ],
+        when: (answers) => answers.i18n && !projectStructure.usesI18n.enabled
+      }
+    ]);
+
+    spinner.start('Setting up BauCMS...');
+
+    // Create necessary directories based on project structure
+    const baseDir = projectStructure.usesSrcDirectory ? 'src' : '';
+    const apiDir = join(baseDir, 'app', 'api', 'baucms');
+    const adminDir = join(baseDir, 'app', 'admin');
+
+    await mkdir(apiDir, { recursive: true });
     if (answers.setupAdminUI) {
-      await mkdir('app/admin', { recursive: true });
+      await mkdir(adminDir, { recursive: true });
     }
 
     // Create API route with configuration
@@ -106,7 +150,8 @@ export const { GET, POST, PUT, DELETE } = initBauCMS({
 });
 `;
 
-    await writeFile('app/api/baucms/route.ts', apiRoute);
+    await writeFile(join(apiDir, 'route.ts'), apiRoute);
+    await backupManager.trackChange(join(apiDir, 'route.ts'), apiRoute, 'create');
 
     // Create admin page if requested
     if (answers.setupAdminUI) {
@@ -122,12 +167,24 @@ export default function AdminPage() {
   );
 }
 `;
-      await writeFile('app/admin/page.tsx', adminPage);
+      await writeFile(join(adminDir, 'page.tsx'), adminPage);
+      await backupManager.trackChange(join(adminDir, 'page.tsx'), adminPage, 'create');
     }
 
-    // Create middleware for Clerk if auth is enabled
+    // Handle middleware setup
     if (answers.setupAuth) {
-      const middleware = `
+      const middlewarePath = join(baseDir, 'middleware.ts');
+      let middlewareContent: string;
+
+      if (projectStructure.existingMiddleware.exists && projectStructure.existingMiddleware.content) {
+        // Integrate with existing middleware
+        middlewareContent = await integrateWithExistingMiddleware(
+          projectStructure.existingMiddleware.content,
+          projectStructure.existingMiddleware.path || middlewarePath
+        );
+      } else {
+        // Create new middleware
+        middlewareContent = `
 import { authMiddleware } from '@clerk/nextjs/server';
  
 export default authMiddleware({
@@ -138,13 +195,20 @@ export const config = {
   matcher: ['/(api|admin)(.*)'],
 };
 `;
-      await writeFile('middleware.ts', middleware);
+      }
+
+      await writeFile(middlewarePath, middlewareContent);
+      await backupManager.trackChange(middlewarePath, middlewareContent, projectStructure.existingMiddleware.exists ? 'modify' : 'create');
     }
+
+    // Save changes summary
+    const summary = await backupManager.getChangeSummary();
+    await writeFile('.baucms-changes.md', summary);
 
     spinner.succeed('BauCMS has been set up successfully!');
     
     console.log('\nNext steps:');
-    console.log('1. Run ' + chalk.cyan('npx baucms migrate') + ' to set up your database');
+    console.log('1. Run ' + chalk.cyan('baucms migrate') + ' to set up your database');
     if (answers.setupAuth) {
       console.log('2. Add your Clerk environment variables to .env.local:');
       console.log('   ' + chalk.cyan('NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key'));
@@ -154,9 +218,46 @@ export const config = {
       console.log(`${answers.setupAuth ? '3' : '2'}. Visit ` + chalk.cyan('/admin') + ' to start managing your content');
     }
     
+    console.log('\nA backup of all changes has been created in ' + chalk.cyan('.baucms-backup'));
+    console.log('To restore your project to its previous state, run: ' + chalk.cyan('baucms restore'));
+    
   } catch (error) {
     spinner.fail('Failed to set up BauCMS');
-    console.error(error);
+    if (error instanceof Error) {
+      console.error(chalk.red(error.message));
+      if (error.stack) {
+        console.error(chalk.gray(error.stack));
+      }
+    } else {
+      console.error(error);
+    }
     process.exit(1);
   }
+}
+
+async function integrateWithExistingMiddleware(existingContent: string, path: string): Promise<string> {
+  // Simple integration strategy - add Clerk's matcher to existing matchers
+  if (existingContent.includes('export const config')) {
+    return existingContent.replace(
+      /export const config\s*=\s*{([^}]*)}/,
+      (match, group) => {
+        const existingMatchers = group.includes('matcher') 
+          ? group.replace(/matcher:\s*\[(.*)\]/, '$1')
+          : '';
+        return `export const config = {
+  matcher: [
+    ${existingMatchers ? existingMatchers + ',' : ''}
+    '/(api|admin)(.*)'
+  ]
+}`;
+      }
+    );
+  }
+
+  // If no existing config, append it
+  return `${existingContent}
+
+export const config = {
+  matcher: ['/(api|admin)(.*)'],
+};`;
 } 
