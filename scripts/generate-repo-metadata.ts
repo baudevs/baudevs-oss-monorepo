@@ -126,6 +126,8 @@ interface VersionMetadata {
   gitCommit: string;
   branch: string;
   author: string;
+  authorEmail: string;
+  isRemote: boolean;
   data: RepoMetadata;
 }
 
@@ -149,17 +151,17 @@ function execCommand(command: string): string {
 function getGitWorktrees(): GitWorktree[] {
   const output = execCommand('git worktree list --porcelain');
   const worktrees: GitWorktree[] = [];
-  
+
   output.split('\n\n').forEach(wt => {
     const lines = wt.split('\n');
     const worktree: Partial<GitWorktree> = {};
-    
+
     lines.forEach(line => {
       if (line.startsWith('worktree ')) worktree.path = line.substring(9);
       if (line.startsWith('branch ')) worktree.branch = line.substring(7).replace('refs/heads/', '');
       if (line.startsWith('HEAD ')) worktree.commit = line.substring(5);
     });
-    
+
     if (worktree.path) {
       const lastActivity = execCommand(`cd "${worktree.path}" && git log -1 --format=%cd`);
       worktrees.push({
@@ -170,7 +172,7 @@ function getGitWorktrees(): GitWorktree[] {
       });
     }
   });
-  
+
   return worktrees;
 }
 
@@ -179,11 +181,11 @@ function getNxProjects(): NxProject[] {
   const projectsOutput = execCommand('bun nx show projects --json');
   const projectNames = JSON.parse(projectsOutput) as string[];
   const projects: NxProject[] = [];
-  
+
   // Generate project graph once
   execCommand(`bun nx graph --file=${dashboardPublicPath}/project-graph.json`);
   const projectGraph = JSON.parse(readFileSync(dashboardPublicPath + '/project-graph.json', 'utf-8')) as ProjectGraph;
-  
+
   for (const name of projectNames) {
     const projectNode = projectGraph.graph.nodes[name];
     console.log(projectNode);
@@ -191,10 +193,10 @@ function getNxProjects(): NxProject[] {
 
     const projectData = projectNode.data;
     const projectPath = projectData.root;
-    
+
     // Get project dependencies from graph
     const deps = (projectGraph.graph.dependencies[name] || []).map(dep => dep.target);
-    
+
     // Get project commits
     const commits = execCommand(`git log --format="%H|%an|%ad|%s" -- ${projectPath}`).split('\n')
       .filter(Boolean)
@@ -205,7 +207,7 @@ function getNxProjects(): NxProject[] {
           .map(file => Object.entries(projectGraph.graph.nodes)
             .find(([_, node]) => file.startsWith(node.data.root))?.[0])
           .filter((p): p is string => p !== undefined);
-        
+
         return {
           hash,
           author,
@@ -216,7 +218,7 @@ function getNxProjects(): NxProject[] {
           nxProjects
         };
       });
-    
+
     // Get project contributors
     const contributors = execCommand(`git shortlog -sne --no-merges -- ${projectPath}`)
       .split('\n')
@@ -229,7 +231,7 @@ function getNxProjects(): NxProject[] {
         return { name, email, commits: parseInt(commits), lastActivity };
       })
       .filter((c): c is NonNullable<typeof c> => c !== null);
-    
+
     projects.push({
       name,
       type: projectNode.type === 'app' ? 'application' : projectNode.type === 'lib' ? 'library' : 'package',
@@ -246,33 +248,33 @@ function getNxProjects(): NxProject[] {
       }
     });
   }
-  
+
   return projects;
 }
 
 function getBranchRelationships(): BranchRelationship[] {
   const branches = execCommand('git branch --format="%(refname:short)"').split('\n').filter(Boolean);
   const relationships: BranchRelationship[] = [];
-  
+
   for (const b1 of branches) {
     for (const b2 of branches) {
       if (b1 === b2) continue;
-      
+
       try {
         const mergeBase = execCommand(`git merge-base "${b1}" "${b2}"`);
         if (!mergeBase) continue;
-        
+
         const divergedCommits = parseInt(execCommand(`git rev-list --count "${b1}"..."${b2}"`) || '0');
         const lastSync = execCommand(`git log -1 --format=%cd "${mergeBase}"`);
-        
+
         let type: 'merge' | 'rebase' = 'merge';
         const b1Hash = execCommand(`git rev-parse "${b1}"`);
         const b2Log = execCommand(`git log "${b2}" --format=%H`);
-        
+
         if (b2Log.includes(b1Hash)) {
           type = 'rebase';
         }
-        
+
         relationships.push({
           from: b1,
           to: b2,
@@ -287,7 +289,7 @@ function getBranchRelationships(): BranchRelationship[] {
       }
     }
   }
-  
+
   return relationships;
 }
 
@@ -320,7 +322,29 @@ function getProjectStats(projects: NxProject[]) {
 }
 
 function generateVersionId(): string {
-  return `${Date.now()}-${execCommand('git rev-parse --short HEAD')}`;
+  const timestamp = Date.now();
+  const commitHash = execCommand('git rev-parse --short HEAD');
+  const branchName = execCommand('git rev-parse --abbrev-ref HEAD').replace(/[^a-zA-Z0-9]/g, '-');
+  const authorEmail = execCommand('git config user.email').replace(/[^a-zA-Z0-9]/g, '-');
+
+  // Format: timestamp-branch-author-commit
+  return `${timestamp}-${branchName}-${authorEmail}-${commitHash}`;
+}
+
+function loadAllVersions(): MetadataHistory {
+  const versionPath = join(dashboardPublicPath, 'versions');
+  const historyPath = join(dashboardPublicPath, 'metadata-history.json');
+
+  // Create directories if they don't exist
+  execCommand(`mkdir -p ${versionPath}`);
+
+  try {
+    // Try to load existing history
+    const history = JSON.parse(readFileSync(historyPath, 'utf-8')) as MetadataHistory;
+    return history;
+  } catch {
+    return { versions: [], latestId: '' };
+  }
 }
 
 function saveVersionedMetadata(metadata: RepoMetadata): void {
@@ -328,41 +352,33 @@ function saveVersionedMetadata(metadata: RepoMetadata): void {
   const currentBranch = execCommand('git rev-parse --abbrev-ref HEAD');
   const currentCommit = execCommand('git rev-parse HEAD');
   const author = execCommand('git config user.name');
-  
+  const authorEmail = execCommand('git config user.email');
+
   const versionMetadata: VersionMetadata = {
     id: versionId,
     timestamp: new Date().toISOString(),
     gitCommit: currentCommit,
     branch: currentBranch,
     author,
+    authorEmail,
+    isRemote: process.env.GITHUB_ACTIONS === 'true',
     data: metadata
   };
 
   // Save the current version
   const versionPath = join(dashboardPublicPath, 'versions');
-  const graphPath = join(versionPath, 'graphs');
-  
-  // Create directories if they don't exist
-  execCommand(`mkdir -p ${versionPath} ${graphPath}`);
 
-  // Save metadata and graph for this version
+  // Create directories if they don't exist
+  execCommand(`mkdir -p ${versionPath}`);
+
+  // Save metadata for this version
   writeFileSync(
     join(versionPath, `${versionId}.json`),
     JSON.stringify(versionMetadata, null, 2)
   );
-  
-  // Copy the current graph to versioned storage
-  execCommand(`cp ${join(dashboardPublicPath, 'project-graph.json')} ${join(graphPath, `${versionId}.json`)}`);
 
-  // Update history file
-  const historyPath = join(dashboardPublicPath, 'metadata-history.json');
-  let history: MetadataHistory;
-  
-  try {
-    history = JSON.parse(readFileSync(historyPath, 'utf-8'));
-  } catch {
-    history = { versions: [], latestId: '' };
-  }
+  // Load and update history
+  const history = loadAllVersions();
 
   // Add new version to history
   history.versions.push({
@@ -371,33 +387,49 @@ function saveVersionedMetadata(metadata: RepoMetadata): void {
     gitCommit: versionMetadata.gitCommit,
     branch: versionMetadata.branch,
     author: versionMetadata.author,
+    authorEmail: versionMetadata.authorEmail,
+    isRemote: versionMetadata.isRemote,
     data: metadata
   });
 
-  // Keep only last 50 versions
-  if (history.versions.length > 50) {
-    const removedVersions = history.versions.splice(0, history.versions.length - 50);
-    // Clean up old version files
-    removedVersions.forEach(version => {
-      try {
-        execCommand(`rm ${join(versionPath, `${version.id}.json`)}`);
-        execCommand(`rm ${join(graphPath, `${version.id}.json`)}`);
-      } catch (error) {
-        console.error(`Failed to remove old version ${version.id}:`, error);
-      }
-    });
-  }
+  // Sort versions by timestamp
+  history.versions.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
 
+  // Keep only last 100 versions per author
+  const versionsByAuthor = new Map<string, VersionMetadata[]>();
+  history.versions.forEach(version => {
+    const versions = versionsByAuthor.get(version.authorEmail) || [];
+    versions.push(version);
+    versionsByAuthor.set(version.authorEmail, versions);
+  });
+
+  const keptVersions: VersionMetadata[] = [];
+  versionsByAuthor.forEach(versions => {
+    keptVersions.push(...versions.slice(0, 100));
+  });
+
+  // Sort final versions by timestamp
+  keptVersions.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+
+  history.versions = keptVersions;
   history.latestId = versionId;
-  writeFileSync(historyPath, JSON.stringify(history, null, 2));
 
-  // Also save as latest for backward compatibility
-  writeFileSync(join(dashboardPublicPath, 'repoMetadata.json'), JSON.stringify(metadata, null, 2));
+  // Save updated history
+  writeFileSync(join(dashboardPublicPath, 'metadata-history.json'), JSON.stringify(history, null, 2));
+
+  // Generate latest metadata based on environment
+  if (process.env.GITHUB_ACTIONS === 'true') {
+    // In GitHub Actions, this becomes the new root metadata
+    writeFileSync(join(dashboardPublicPath, 'repoMetadata.json'), JSON.stringify(metadata, null, 2));
+  } else {
+    // Locally, generate a local-metadata.json instead
+    writeFileSync(join(dashboardPublicPath, 'local-metadata.json'), JSON.stringify(metadata, null, 2));
+  }
 }
 
 async function generateRepoMetadata() {
   const nxProjects = getNxProjects();
-  
+
   const metadata: RepoMetadata = {
     repoPath: process.cwd(),
     defaultBranch: execCommand('git symbolic-ref --short HEAD') || 'main',
@@ -412,9 +444,9 @@ async function generateRepoMetadata() {
     recentActivity: getRecentActivity(),
     projectStats: getProjectStats(nxProjects)
   };
-  
+
   saveVersionedMetadata(metadata);
   console.log('✅ Generated versioned repoMetadata.json successfully!');
 }
 
-generateRepoMetadata().catch(console.error); 
+generateRepoMetadata().catch(console.error);

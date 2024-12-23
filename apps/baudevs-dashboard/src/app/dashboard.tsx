@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Typography, Box, Chip, Grid, Paper, Divider, List, ListItem, ListItemText, Avatar, Select, MenuItem } from '@mui/material';
+import { Typography, Box, Chip, Grid, Paper, Divider, List, ListItem, ListItemText, Avatar, Select, MenuItem, ToggleButtonGroup, ToggleButton } from '@mui/material';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
 interface GitCommit {
@@ -101,6 +101,8 @@ interface VersionMetadata {
   gitCommit: string;
   branch: string;
   author: string;
+  authorEmail: string;
+  isRemote: boolean;
   data: RepoMetadata;
 }
 
@@ -147,6 +149,7 @@ function VersionComparison() {
   const [history, setHistory] = useState<MetadataHistory | null>(null);
   const [selectedVersions, setSelectedVersions] = useState<[string, string]>(['', '']);
   const [comparisonData, setComparisonData] = useState<ComparisonData | null>(null);
+  const [filter, setFilter] = useState<'all' | 'local' | 'remote'>('all');
 
   useEffect(() => {
     fetch('/metadata-history.json')
@@ -154,32 +157,53 @@ function VersionComparison() {
       .then((data: MetadataHistory) => {
         setHistory(data);
         if (data.versions.length >= 2) {
-          setSelectedVersions([
-            data.versions[data.versions.length - 1].id,
-            data.versions[data.versions.length - 2].id
-          ]);
+          const versions: [string, string] = [data.versions[0].id, data.versions[1].id];
+          setSelectedVersions(versions);
+          compareSelectedVersions(versions, data.versions);
         }
       });
   }, []);
 
   useEffect(() => {
-    if (!selectedVersions[0] || !selectedVersions[1]) return;
+    if (!selectedVersions[0] || !selectedVersions[1] || !history) return;
+    compareSelectedVersions(selectedVersions, history.versions);
+  }, [selectedVersions, history]);
 
-    Promise.all([
-      fetch(`/versions/${selectedVersions[0]}.json`).then(res => res.json()),
-      fetch(`/versions/${selectedVersions[1]}.json`).then(res => res.json())
-    ]).then(([version1, version2]: [VersionMetadata, VersionMetadata]) => {
+  const compareSelectedVersions = (versions: [string, string], allVersions: VersionMetadata[]) => {
+    const version1 = allVersions.find(v => v.id === versions[0]);
+    const version2 = allVersions.find(v => v.id === versions[1]);
+
+    if (version1 && version2) {
       const comparison = compareVersions(version1.data, version2.data);
       setComparisonData(comparison);
-    });
-  }, [selectedVersions]);
+    }
+  };
+
+  const filteredVersions = history?.versions.filter(v => {
+    if (filter === 'all') return true;
+    return filter === 'local' ? !v.isRemote : v.isRemote;
+  }) || [];
 
   if (!history) return null;
 
   return (
     <Paper elevation={1} sx={{ p: 2, mb: 3 }}>
-      <Typography variant="h6" gutterBottom>Version History</Typography>
-      
+      <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+        <Typography variant="h6">Version History</Typography>
+        <Box>
+          <ToggleButtonGroup
+            size="small"
+            value={filter}
+            exclusive
+            onChange={(_, value) => value && setFilter(value)}
+          >
+            <ToggleButton value="all">All</ToggleButton>
+            <ToggleButton value="local">Local</ToggleButton>
+            <ToggleButton value="remote">Remote</ToggleButton>
+          </ToggleButtonGroup>
+        </Box>
+      </Box>
+
       <Grid container spacing={2} sx={{ mb: 2 }}>
         <Grid item xs={12} md={6}>
           <Typography variant="subtitle2" color="text.secondary">Version 1</Typography>
@@ -188,9 +212,10 @@ function VersionComparison() {
             value={selectedVersions[0]}
             onChange={(e) => setSelectedVersions([e.target.value as string, selectedVersions[1]])}
           >
-            {history.versions.map(v => (
+            {filteredVersions.map(v => (
               <MenuItem key={v.id} value={v.id}>
                 {new Date(v.timestamp).toLocaleString()} - {v.author} ({v.branch})
+                {v.isRemote ? ' 🌐' : ' 💻'}
               </MenuItem>
             ))}
           </Select>
@@ -202,9 +227,10 @@ function VersionComparison() {
             value={selectedVersions[1]}
             onChange={(e) => setSelectedVersions([selectedVersions[0], e.target.value as string])}
           >
-            {history.versions.map(v => (
+            {filteredVersions.map(v => (
               <MenuItem key={v.id} value={v.id}>
                 {new Date(v.timestamp).toLocaleString()} - {v.author} ({v.branch})
+                {v.isRemote ? ' 🌐' : ' 💻'}
               </MenuItem>
             ))}
           </Select>
@@ -214,7 +240,7 @@ function VersionComparison() {
       {comparisonData && (
         <Box>
           <Typography variant="subtitle1" gutterBottom>Changes</Typography>
-          
+
           {/* Project Changes */}
           {comparisonData.projectChanges.length > 0 && (
             <Box mb={2}>
@@ -227,8 +253,8 @@ function VersionComparison() {
                       secondary={change.type}
                       sx={{
                         '& .MuiListItemText-primary': {
-                          color: change.type === 'added' ? 'success.main' : 
-                                 change.type === 'removed' ? 'error.main' : 
+                          color: change.type === 'added' ? 'success.main' :
+                                 change.type === 'removed' ? 'error.main' :
                                  change.type === 'modified' ? 'warning.main' : 'text.primary'
                         }
                       }}
@@ -271,7 +297,7 @@ function VersionComparison() {
                     <Typography
                       variant="h6"
                       sx={{
-                        color: change.diff > 0 ? 'success.main' : 
+                        color: change.diff > 0 ? 'success.main' :
                                change.diff < 0 ? 'error.main' : 'text.primary'
                       }}
                     >
@@ -358,14 +384,26 @@ function compareVersions(version1: RepoMetadata, version2: RepoMetadata): Compar
 function DashboardContent() {
   const [data, setData] = useState<RepoMetadata | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isLocalData, setIsLocalData] = useState(false);
 
   useEffect(() => {
-    fetch('/repoMetadata.json')
+    // Try to load local metadata first
+    fetch('/local-metadata.json')
       .then((res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP ${res.status} - ${res.statusText}`);
-        }
+        if (!res.ok) throw new Error('No local metadata');
+        setIsLocalData(true);
         return res.json();
+      })
+      .catch(() => {
+        // Fall back to remote metadata
+        return fetch('/repoMetadata.json')
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error(`HTTP ${res.status} - ${res.statusText}`);
+            }
+            setIsLocalData(false);
+            return res.json();
+          });
       })
       .then((json: RepoMetadata) => setData(json))
       .catch((err) => setError(err.message));
@@ -380,8 +418,16 @@ function DashboardContent() {
 
   return (
     <Box p={3}>
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
         Monorepo Dashboard
+        {isLocalData && (
+          <Chip
+            size="small"
+            color="warning"
+            label="Local Data"
+            title="You're viewing local metadata. Changes from other developers might not be reflected."
+          />
+        )}
       </Typography>
 
       {/* Version Comparison */}
@@ -520,7 +566,7 @@ function DashboardContent() {
                     <Chip key={tag} label={tag} size="small" sx={{ mr: 0.5, mb: 0.5 }} />
                   ))}
                 </Box>
-                
+
                 {/* Target Groups */}
                 {Object.entries(project.metadata.targetGroups).map(([groupName, scripts]) => (
                   <Box key={groupName} mb={1}>
@@ -599,10 +645,10 @@ function DashboardContent() {
               <ListItemText
                 primary={
                   <Box component="span" sx={{ fontFamily: 'monospace' }}>
-                    {rel.from} 
+                    {rel.from}
                     <Box component="span" sx={{ mx: 1, color: 'text.secondary' }}>
                       -[{rel.type}]-{`>`}
-                    </Box> 
+                    </Box>
                     {rel.to}
                   </Box>
                 }
