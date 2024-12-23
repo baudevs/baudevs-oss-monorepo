@@ -1,9 +1,12 @@
-
 bau
 baudevs
 baudevs-monorepo
 baudevs-types
+cicd
 committerdate
+elif
+github
+GITHUB
 hero
 lockb
 log
@@ -12,6 +15,7 @@ log-hero-logger
 logger
 logging
 magicusprime
+openai
 playlistswap
 presentamator
 reflog
