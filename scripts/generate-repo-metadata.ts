@@ -1,6 +1,7 @@
-import { execSync } from 'child_process';
-import { writeFileSync, readFileSync } from 'fs';
-import { join } from 'path';
+import { execSync } from "child_process";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
+import { join } from "path";
+import { parseArgs } from "util";
 
 interface GitCommit {
   hash: string;
@@ -120,24 +121,27 @@ interface ProjectGraph {
   };
 }
 
-interface VersionMetadata {
-  id: string;
-  timestamp: string;
-  gitCommit: string;
-  branch: string;
-  author: string;
-  authorEmail: string;
-  isRemote: boolean;
-  data: RepoMetadata;
+// Parse command line arguments
+const { values } = parseArgs({
+  args: process.argv.slice(2),
+  options: {
+    author: { type: "string" },
+    email: { type: "string" },
+    branch: { type: "string" },
+    commit: { type: "string" },
+    local: { type: "boolean" },
+  },
+});
+
+// Ensure required arguments are provided
+if (!values.author || !values.email || !values.branch || !values.commit) {
+  console.error("❌ Missing required arguments");
+  process.exit(1);
 }
 
-interface MetadataHistory {
-  versions: VersionMetadata[];
-  latestId: string;
-}
-
-const dashboardPublicPath = join(__dirname, '..', 'apps', 'baudevs-dashboard', 'public');
-
+// Get the root directory of the repository
+const rootDir = execSync("git rev-parse --show-toplevel").toString().trim();
+console.log(`📂 Repository root: ${rootDir}`);
 
 function execCommand(command: string): string {
   try {
@@ -149,6 +153,7 @@ function execCommand(command: string): string {
 }
 
 function getGitWorktrees(): GitWorktree[] {
+  console.log('🌳 Getting git worktrees...');
   const output = execCommand('git worktree list --porcelain');
   const worktrees: GitWorktree[] = [];
 
@@ -177,18 +182,19 @@ function getGitWorktrees(): GitWorktree[] {
 }
 
 function getNxProjects(): NxProject[] {
+  console.log('📦 Getting NX projects...');
   // Get all projects using nx show projects
   const projectsOutput = execCommand('bun nx show projects --json');
   const projectNames = JSON.parse(projectsOutput) as string[];
   const projects: NxProject[] = [];
 
   // Generate project graph once
-  execCommand(`bun nx graph --file=${dashboardPublicPath}/project-graph.json`);
-  const projectGraph = JSON.parse(readFileSync(dashboardPublicPath + '/project-graph.json', 'utf-8')) as ProjectGraph;
+  const dashboardPublicDir = join(rootDir, 'apps/baudevs-dashboard/public');
+  execCommand(`bun nx graph --file=${dashboardPublicDir}/project-graph.json`);
+  const projectGraph = JSON.parse(readFileSync(dashboardPublicDir + '/project-graph.json', 'utf-8')) as ProjectGraph;
 
   for (const name of projectNames) {
     const projectNode = projectGraph.graph.nodes[name];
-    console.log(projectNode);
     if (!projectNode) continue;
 
     const projectData = projectNode.data;
@@ -253,6 +259,7 @@ function getNxProjects(): NxProject[] {
 }
 
 function getBranchRelationships(): BranchRelationship[] {
+  console.log('🔄 Getting branch relationships...');
   const branches = execCommand('git branch --format="%(refname:short)"').split('\n').filter(Boolean);
   const relationships: BranchRelationship[] = [];
 
@@ -294,6 +301,7 @@ function getBranchRelationships(): BranchRelationship[] {
 }
 
 function getRecentActivity() {
+  console.log('📅 Getting recent activity...');
   return {
     lastPush: execCommand('git reflog show --format=%cd origin/HEAD -n 1') || new Date().toISOString(),
     lastPull: execCommand('git reflog show --format=%cd FETCH_HEAD -n 1') || new Date().toISOString(),
@@ -311,6 +319,7 @@ function getRecentActivity() {
 }
 
 function getProjectStats(projects: NxProject[]) {
+  console.log('📊 Getting project statistics...');
   return {
     totalApps: projects.filter(p => p.type === 'application').length,
     totalLibraries: projects.filter(p => p.type === 'library').length,
@@ -321,132 +330,79 @@ function getProjectStats(projects: NxProject[]) {
   };
 }
 
-function generateVersionId(): string {
-  const timestamp = Date.now();
-  const commitHash = execCommand('git rev-parse --short HEAD');
-  const branchName = execCommand('git rev-parse --abbrev-ref HEAD').replace(/[^a-zA-Z0-9]/g, '-');
-  const authorEmail = execCommand('git config user.email').replace(/[^a-zA-Z0-9]/g, '-');
-
-  // Format: timestamp-branch-author-commit
-  return `${timestamp}-${branchName}-${authorEmail}-${commitHash}`;
+// Create versions directory if it doesn't exist
+const versionsDir = join(rootDir, "versions");
+if (!existsSync(versionsDir)) {
+  console.log(`📁 Creating versions directory: ${versionsDir}`);
+  mkdirSync(versionsDir, { recursive: true });
 }
 
-function loadAllVersions(): MetadataHistory {
-  const versionPath = join(dashboardPublicPath, 'versions');
-  const historyPath = join(dashboardPublicPath, 'metadata-history.json');
+// Read existing metadata history or create new one
+const historyPath = join(rootDir, "metadata-history.json");
+let history: any[] = [];
+if (existsSync(historyPath)) {
+  console.log(`📖 Reading existing metadata history: ${historyPath}`);
+  history = JSON.parse(readFileSync(historyPath, "utf-8"));
+} else {
+  console.log(`📝 Creating new metadata history file: ${historyPath}`);
+}
 
-  // Create directories if they don't exist
-  execCommand(`mkdir -p ${versionPath}`);
+// Generate new metadata
+console.log("🔍 Generating new metadata...");
+const nxProjects = getNxProjects();
 
-  try {
-    // Try to load existing history
-    const history = JSON.parse(readFileSync(historyPath, 'utf-8')) as MetadataHistory;
-    return history;
-  } catch {
-    return { versions: [], latestId: '' };
+const metadata: RepoMetadata = {
+  repoPath: rootDir,
+  defaultBranch: execCommand('git symbolic-ref --short HEAD') || 'main',
+  generatedAt: new Date().toISOString(),
+  gitVersion: execCommand('git --version'),
+  nxVersion: JSON.parse(readFileSync('package.json', 'utf-8')).devDependencies['nx'] || '',
+  nodeVersion: process.version,
+  bunVersion: execCommand('bun --version'),
+  worktrees: getGitWorktrees(),
+  nxProjects,
+  branchRelationships: getBranchRelationships(),
+  recentActivity: getRecentActivity(),
+  projectStats: getProjectStats(nxProjects)
+};
+
+// Save latest version
+const latestPath = join(versionsDir, "latest.json");
+console.log(`💾 Saving latest version: ${latestPath}`);
+writeFileSync(latestPath, JSON.stringify(metadata, null, 2));
+
+// Update history
+history.push({
+  timestamp: new Date().toISOString(),
+  author: values.author,
+  email: values.email,
+  branch: values.branch,
+  commit: values.commit,
+  data: metadata
+});
+console.log(`💾 Saving metadata history: ${historyPath}`);
+writeFileSync(historyPath, JSON.stringify(history, null, 2));
+
+// Copy to dashboard if local flag is set
+if (values.local) {
+  const dashboardPublicDir = join(rootDir, "apps/baudevs-dashboard/public");
+  const dashboardVersionsDir = join(dashboardPublicDir, "versions");
+
+  // Create dashboard versions directory if it doesn't exist
+  if (!existsSync(dashboardVersionsDir)) {
+    console.log(`📁 Creating dashboard versions directory: ${dashboardVersionsDir}`);
+    mkdirSync(dashboardVersionsDir, { recursive: true });
   }
+
+  // Copy latest version to dashboard
+  const dashboardLatestPath = join(dashboardPublicDir, "local-metadata.json");
+  console.log(`📋 Copying latest version to dashboard: ${dashboardLatestPath}`);
+  writeFileSync(dashboardLatestPath, JSON.stringify(metadata, null, 2));
+
+  // Copy history to dashboard
+  const dashboardHistoryPath = join(dashboardPublicDir, "metadata-history.json");
+  console.log(`📋 Copying metadata history to dashboard: ${dashboardHistoryPath}`);
+  writeFileSync(dashboardHistoryPath, JSON.stringify(history, null, 2));
 }
 
-function saveVersionedMetadata(metadata: RepoMetadata): void {
-  const versionId = generateVersionId();
-  const currentBranch = execCommand('git rev-parse --abbrev-ref HEAD');
-  const currentCommit = execCommand('git rev-parse HEAD');
-  const author = execCommand('git config user.name');
-  const authorEmail = execCommand('git config user.email');
-
-  const versionMetadata: VersionMetadata = {
-    id: versionId,
-    timestamp: new Date().toISOString(),
-    gitCommit: currentCommit,
-    branch: currentBranch,
-    author,
-    authorEmail,
-    isRemote: process.env.GITHUB_ACTIONS === 'true',
-    data: metadata
-  };
-
-  // Save the current version
-  const versionPath = join(dashboardPublicPath, 'versions');
-
-  // Create directories if they don't exist
-  execCommand(`mkdir -p ${versionPath}`);
-
-  // Save metadata for this version
-  writeFileSync(
-    join(versionPath, `${versionId}.json`),
-    JSON.stringify(versionMetadata, null, 2)
-  );
-
-  // Load and update history
-  const history = loadAllVersions();
-
-  // Add new version to history
-  history.versions.push({
-    id: versionId,
-    timestamp: versionMetadata.timestamp,
-    gitCommit: versionMetadata.gitCommit,
-    branch: versionMetadata.branch,
-    author: versionMetadata.author,
-    authorEmail: versionMetadata.authorEmail,
-    isRemote: versionMetadata.isRemote,
-    data: metadata
-  });
-
-  // Sort versions by timestamp
-  history.versions.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-
-  // Keep only last 100 versions per author
-  const versionsByAuthor = new Map<string, VersionMetadata[]>();
-  history.versions.forEach(version => {
-    const versions = versionsByAuthor.get(version.authorEmail) || [];
-    versions.push(version);
-    versionsByAuthor.set(version.authorEmail, versions);
-  });
-
-  const keptVersions: VersionMetadata[] = [];
-  versionsByAuthor.forEach(versions => {
-    keptVersions.push(...versions.slice(0, 100));
-  });
-
-  // Sort final versions by timestamp
-  keptVersions.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-
-  history.versions = keptVersions;
-  history.latestId = versionId;
-
-  // Save updated history
-  writeFileSync(join(dashboardPublicPath, 'metadata-history.json'), JSON.stringify(history, null, 2));
-
-  // Generate latest metadata based on environment
-  if (process.env.GITHUB_ACTIONS === 'true') {
-    // In GitHub Actions, this becomes the new root metadata
-    writeFileSync(join(dashboardPublicPath, 'repoMetadata.json'), JSON.stringify(metadata, null, 2));
-  } else {
-    // Locally, generate a local-metadata.json instead
-    writeFileSync(join(dashboardPublicPath, 'local-metadata.json'), JSON.stringify(metadata, null, 2));
-  }
-}
-
-async function generateRepoMetadata() {
-  const nxProjects = getNxProjects();
-
-  const metadata: RepoMetadata = {
-    repoPath: process.cwd(),
-    defaultBranch: execCommand('git symbolic-ref --short HEAD') || 'main',
-    generatedAt: new Date().toISOString(),
-    gitVersion: execCommand('git --version'),
-    nxVersion: JSON.parse(readFileSync('package.json', 'utf-8')).devDependencies['nx'] || '',
-    nodeVersion: process.version,
-    bunVersion: execCommand('bun --version'),
-    worktrees: getGitWorktrees(),
-    nxProjects,
-    branchRelationships: getBranchRelationships(),
-    recentActivity: getRecentActivity(),
-    projectStats: getProjectStats(nxProjects)
-  };
-
-  saveVersionedMetadata(metadata);
-  console.log('✅ Generated versioned repoMetadata.json successfully!');
-}
-
-generateRepoMetadata().catch(console.error);
+console.log("✅ Metadata generation completed successfully");
