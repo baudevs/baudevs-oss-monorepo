@@ -5,13 +5,18 @@ if [ -n "$SKIP_POST_COMMIT" ]; then
   exit 0
 fi
 
-# Check if this commit only contains version files
+# Get list of changed files in the last commit
 CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r HEAD)
-VERSION_FILES_PATTERN="apps/baudevs-dashboard/public/(local-metadata\.json|metadata-history\.json|versions/.*\.json)$"
+
+# Count total files changed
+TOTAL_FILES=$(echo "$CHANGED_FILES" | wc -l)
+
+# Count version files changed
+VERSION_FILES=$(echo "$CHANGED_FILES" | grep -E "apps/baudevs-dashboard/public/(local-metadata\.json|metadata-history\.json|versions/)" | wc -l)
 
 # If all changed files are version files, skip
-if [ $(echo "$CHANGED_FILES" | grep -v -E "$VERSION_FILES_PATTERN" | wc -l) -eq 0 ]; then
-  echo "✨ Only version files changed, skipping metadata generation"
+if [ "$TOTAL_FILES" -eq "$VERSION_FILES" ]; then
+  echo "✨ Only version files changed ($VERSION_FILES files), skipping metadata generation"
   exit 0
 fi
 
