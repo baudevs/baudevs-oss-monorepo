@@ -1,17 +1,17 @@
 {
   "repoPath": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
   "defaultBranch": "staging",
-  "generatedAt": "2024-12-24T07:51:09.777Z",
+  "generatedAt": "2024-12-24T08:28:27.291Z",
   "gitVersion": "git version 2.39.5 (Apple Git-154)",
   "nxVersion": "20.3.0",
   "nodeVersion": "v22.6.0",
-  "bunVersion": "1.1.40",
+  "bunVersion": "1.1.42",
   "worktrees": [
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
       "branch": "staging",
-      "commit": "d7904cd50c358782098af3536883670cb1ed175e",
-      "lastActivity": "Tue Dec 24 08:51:01 2024 +0100"
+      "commit": "d0fb686e4955ac21a6b1f7b4f615e5eb6fa422e6",
+      "lastActivity": "Tue Dec 24 09:28:23 2024 +0100"
     },
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo.worktrees/bau-cms-cli",
@@ -343,11 +343,11 @@
       "dependencies": [],
       "lastCommits": [
         {
-          "hash": "d7904cd50c358782098af3536883670cb1ed175e",
+          "hash": "bc77537b698b6d43e3ade3c3d88bb04a0b726885",
           "author": "Juan Arroyave",
           "date": "Tue Dec 24 08:47:44 2024 +0100",
           "message": "refactor: improve post-commit hook logic for version file detection",
-          "branch": "staging",
+          "branch": "staging~10",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -363,7 +363,7 @@
           "author": "Juan Arroyave",
           "date": "Tue Dec 24 08:44:34 2024 +0100",
           "message": "refactor: update post-commit hook and tsconfig.json for improved metadata handling",
-          "branch": "staging~1",
+          "branch": "staging~11",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -381,7 +381,7 @@
           "author": "Juan Arroyave",
           "date": "Tue Dec 24 08:34:49 2024 +0100",
           "message": "feat: enhance version comparison and install hooks functionality",
-          "branch": "staging~2",
+          "branch": "staging~12",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -2496,7 +2496,7 @@
       "type": "rebase",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 14
+      "divergedCommits": 24
     },
     {
       "from": "feature/bau-cms-cli",
@@ -2544,7 +2544,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 70
+      "divergedCommits": 80
     },
     {
       "from": "feature/bau-cms-core",
@@ -2592,7 +2592,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 44
+      "divergedCommits": 54
     },
     {
       "from": "feature/bau-cms-example",
@@ -2640,7 +2640,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 55
+      "divergedCommits": 65
     },
     {
       "from": "feature/dashboard-app",
@@ -2688,7 +2688,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 69
+      "divergedCommits": 79
     },
     {
       "from": "main",
@@ -2736,7 +2736,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
       "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
-      "divergedCommits": 46
+      "divergedCommits": 56
     },
     {
       "from": "staging",
@@ -2744,7 +2744,7 @@
       "type": "merge",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 14
+      "divergedCommits": 24
     },
     {
       "from": "staging",
@@ -2752,7 +2752,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 70
+      "divergedCommits": 80
     },
     {
       "from": "staging",
@@ -2760,7 +2760,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 44
+      "divergedCommits": 54
     },
     {
       "from": "staging",
@@ -2768,7 +2768,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 55
+      "divergedCommits": 65
     },
     {
       "from": "staging",
@@ -2776,7 +2776,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 69
+      "divergedCommits": 79
     },
     {
       "from": "staging",
@@ -2784,19 +2784,19 @@
       "type": "merge",
       "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
       "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
-      "divergedCommits": 46
+      "divergedCommits": 56
     }
   ],
   "recentActivity": {
     "lastPush": "Sun Dec 22 09:53:48 2024 +0100",
-    "lastPull": "2024-12-24T07:51:13.502Z",
-    "lastMerge": "2024-12-24T07:51:13.529Z",
+    "lastPull": "2024-12-24T08:28:28.789Z",
+    "lastMerge": "2024-12-24T08:28:28.803Z",
     "activeBranches": [
       {
         "name": "staging",
-        "lastCommit": "d7904cd50c358782098af3536883670cb1ed175e",
+        "lastCommit": "d0fb686e4955ac21a6b1f7b4f615e5eb6fa422e6",
         "author": "Juan Arroyave",
-        "commitCount": 84
+        "commitCount": 94
       },
       {
         "name": "develop",
@@ -2841,7 +2841,7 @@
     "totalLibraries": 5,
     "totalPackages": 0,
     "totalFiles": 166,
-    "totalCommits": 84,
+    "totalCommits": 94,
     "totalContributors": 0
   }
 }
