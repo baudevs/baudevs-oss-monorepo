@@ -1,5 +1,20 @@
 #!/bin/sh
 
+# Guard against recursive execution
+if [ -n "$SKIP_POST_COMMIT" ]; then
+  exit 0
+fi
+
+# Check if this commit only contains version files
+CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r HEAD)
+VERSION_FILES_PATTERN="apps/baudevs-dashboard/public/(local-metadata\.json|metadata-history\.json|versions/.*\.json)$"
+
+# If all changed files are version files, skip
+if [ $(echo "$CHANGED_FILES" | grep -v -E "$VERSION_FILES_PATTERN" | wc -l) -eq 0 ]; then
+  echo "✨ Only version files changed, skipping metadata generation"
+  exit 0
+fi
+
 # Get the current git user info
 AUTHOR_NAME=$(git config user.name)
 AUTHOR_EMAIL=$(git config user.email)
@@ -17,6 +32,7 @@ bun run scripts/generate-repo-metadata.ts \
 
 # Copy to dashboard public directory
 echo "📋 Updating dashboard metadata..."
+mkdir -p apps/baudevs-dashboard/public/versions
 cp versions/latest.json apps/baudevs-dashboard/public/local-metadata.json
 cp metadata-history.json apps/baudevs-dashboard/public/metadata-history.json
 
@@ -25,8 +41,10 @@ if git diff --quiet apps/baudevs-dashboard/public/local-metadata.json apps/baude
   echo "✨ No metadata changes detected"
 else
   echo "📝 Committing metadata changes..."
+  export SKIP_POST_COMMIT=1
   git add apps/baudevs-dashboard/public/local-metadata.json apps/baudevs-dashboard/public/metadata-history.json
   git commit --amend --no-edit
+  unset SKIP_POST_COMMIT
 fi
 
 echo "✅ Post-commit hook completed"
