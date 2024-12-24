@@ -2,23 +2,27 @@
 
 # Guard against recursive execution
 if [ -n "$SKIP_POST_COMMIT" ]; then
+  echo "🛑 Skipping post-commit hook (SKIP_POST_COMMIT is set)"
   exit 0
 fi
 
 # Get list of changed files in the last commit
+echo "📋 Getting changed files..."
 CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r HEAD)
+echo "Changed files:"
+echo "$CHANGED_FILES"
 
-# Count total files changed
-TOTAL_FILES=$(echo "$CHANGED_FILES" | wc -l)
+# Check if only version files were changed
+VERSION_PATTERN="apps/baudevs-dashboard/public/(local-metadata\.json|metadata-history\.json|versions/.*\.json)$"
+NON_VERSION_FILES=$(echo "$CHANGED_FILES" | grep -v -E "$VERSION_PATTERN")
 
-# Count version files changed
-VERSION_FILES=$(echo "$CHANGED_FILES" | grep -E "apps/baudevs-dashboard/public/(local-metadata\.json|metadata-history\.json|versions/)" | wc -l)
-
-# If all changed files are version files, skip
-if [ "$TOTAL_FILES" -eq "$VERSION_FILES" ]; then
-  echo "✨ Only version files changed ($VERSION_FILES files), skipping metadata generation"
+if [ -z "$NON_VERSION_FILES" ]; then
+  echo "✨ Only version files were changed, skipping metadata generation"
   exit 0
 fi
+
+echo "📦 Non-version files changed:"
+echo "$NON_VERSION_FILES"
 
 # Get the current git user info
 AUTHOR_NAME=$(git config user.name)
@@ -26,14 +30,25 @@ AUTHOR_EMAIL=$(git config user.email)
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 COMMIT=$(git rev-parse HEAD)
 
-# Generate metadata
+# Generate metadata with a timeout
 echo "🔍 Generating repository metadata..."
-bun run scripts/generate-repo-metadata.ts \
+timeout 30s bun run scripts/generate-repo-metadata.ts \
   --author "$AUTHOR_NAME" \
   --email "$AUTHOR_EMAIL" \
   --branch "$BRANCH" \
   --commit "$COMMIT" \
   --local
+
+if [ $? -eq 124 ]; then
+  echo "❌ Metadata generation timed out after 30 seconds"
+  exit 1
+fi
+
+# Check if metadata files exist before trying to copy them
+if [ ! -f "versions/latest.json" ] || [ ! -f "metadata-history.json" ]; then
+  echo "❌ Metadata files not found, skipping copy"
+  exit 1
+fi
 
 # Copy to dashboard public directory
 echo "📋 Updating dashboard metadata..."
@@ -41,7 +56,8 @@ mkdir -p apps/baudevs-dashboard/public/versions
 cp versions/latest.json apps/baudevs-dashboard/public/local-metadata.json
 cp metadata-history.json apps/baudevs-dashboard/public/metadata-history.json
 
-# Add metadata files to the current commit if they changed
+# Check if metadata files changed
+echo "🔍 Checking for metadata changes..."
 if git diff --quiet apps/baudevs-dashboard/public/local-metadata.json apps/baudevs-dashboard/public/metadata-history.json; then
   echo "✨ No metadata changes detected"
 else
