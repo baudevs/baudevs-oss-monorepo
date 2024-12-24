@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Typography, Box, Chip, Grid, Paper, Divider, List, ListItem, ListItemText, Avatar, Select, MenuItem, ToggleButtonGroup, ToggleButton, CircularProgress, Alert } from '@mui/material';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
@@ -151,37 +151,111 @@ function getInitials(name: string) {
 }
 
 function generateAISummaryPrompt(version1: VersionMetadata, version2: VersionMetadata, changes: ComparisonData): string {
+  // Get key commits from both versions
+  const getKeyChanges = (v1: VersionMetadata, v2: VersionMetadata): string[] => {
+    const allCommits = new Set<string>();
+    const keyChanges: string[] = [];
+
+    // Collect all commits from both versions' projects
+    v1.data.nxProjects.forEach(project =>
+      project.lastCommits.forEach(commit => allCommits.add(commit.hash))
+    );
+    v2.data.nxProjects.forEach(project =>
+      project.lastCommits.forEach(commit => allCommits.add(commit.hash))
+    );
+
+    // Get unique commits and their details
+    allCommits.forEach(hash => {
+      const commit = v2.data.nxProjects
+        .flatMap(p => p.lastCommits)
+        .find(c => c.hash === hash);
+
+      if (commit) {
+        keyChanges.push(`- ${commit.message} (affects: ${commit.nxProjects.join(', ')})`);
+      }
+    });
+
+    return keyChanges;
+  };
+
+  // Get project-specific changes
+  const getProjectDetails = (changes: ComparisonData, v1: VersionMetadata, v2: VersionMetadata): string[] => {
+    return changes.projectChanges.map(change => {
+      const project1 = v1.data.nxProjects.find(p => p.name === change.project);
+      const project2 = v2.data.nxProjects.find(p => p.name === change.project);
+
+      if (change.type === 'added' && project2) {
+        return `- ${change.project} (Added): ${project2.metadata.packageName || project2.name}
+          • Type: ${project2.type}
+          • Tags: ${project2.tags.join(', ')}
+          • Dependencies: ${project2.dependencies.join(', ')}`;
+      }
+
+      if (change.type === 'removed' && project1) {
+        return `- ${change.project} (Removed): ${project1.metadata.packageName || project1.name}`;
+      }
+
+      if (change.type === 'modified' && project1 && project2) {
+        const modifiedChanges: string[] = [];
+        if (project1.type !== project2.type) modifiedChanges.push(`Type changed: ${project1.type} -> ${project2.type}`);
+        if (project1.metadata.packageName !== project2.metadata.packageName)
+          modifiedChanges.push(`Package name changed: ${project1.metadata.packageName} -> ${project2.metadata.packageName}`);
+
+        const addedTags = project2.tags.filter(t => !project1.tags.includes(t));
+        const removedTags = project1.tags.filter(t => !project2.tags.includes(t));
+        if (addedTags.length) modifiedChanges.push(`Added tags: ${addedTags.join(', ')}`);
+        if (removedTags.length) modifiedChanges.push(`Removed tags: ${removedTags.join(', ')}`);
+
+        return `- ${change.project} (Modified):
+          ${modifiedChanges.map(c => `  • ${c}`).join('\n')}`;
+      }
+
+      return `- ${change.project} (${change.type})`;
+    });
+  };
+
+  const keyChanges = getKeyChanges(version1, version2);
+  const projectDetails = getProjectDetails(changes, version1, version2);
+
+  const dependencyChangesText = changes.dependencyChanges.map(c => {
+    const affectedProject = version2.data.nxProjects.find(p => p.name === c.project);
+    return `- ${c.project} (${affectedProject?.type || 'unknown'}): ${c.type === 'added' ? 'added' : 'removed'} dependency on ${c.dependency}`;
+  }).join('\n');
+
+  const statsChangesText = Object.entries(changes.statsChanges)
+    .map(([stat, change]) => {
+      const direction = change.diff > 0 ? 'increased' : 'decreased';
+      return `- ${stat}: ${direction} by ${Math.abs(change.diff)} (${change.percentage}% change)`;
+    })
+    .join('\n');
+
   return `As a monorepo analysis expert, analyze the following changes between two versions of our monorepo:
 
-Version 1: ${version1.branch} (${version1.gitCommit.slice(0, 7)}) by ${version1.author} at ${version1.timestamp}
-Version 2: ${version2.branch} (${version2.gitCommit.slice(0, 7)}) by ${version2.author} at ${version2.timestamp}
+Version Information:
+- From: ${version1.branch} (${version1.gitCommit.slice(0, 7)}) by ${version1.author} at ${version1.timestamp}
+- To: ${version2.branch} (${version2.gitCommit.slice(0, 7)}) by ${version2.author} at ${version2.timestamp}
+- Environment: ${version2.isRemote ? 'Remote CI/CD' : 'Local Development'}
 
-Repository Structure Context:
-- This is a monorepo using NX for project management
-- Projects can be applications, libraries, or packages
-- Each project can have dependencies on other projects
-- Projects are organized in directories: apps/, libs/, packages/
-- Git worktrees allow multiple branches to be checked out simultaneously
+Key Git Commits:
+${keyChanges.join('\n')}
 
-Changes Overview:
-1. Project Changes:
-${changes.projectChanges.map(c => `- ${c.project}: ${c.type}`).join('\n')}
+Project Changes:
+${projectDetails.join('\n')}
 
-2. Dependency Changes:
-${changes.dependencyChanges.map(c => `- ${c.project}: ${c.type === 'added' ? 'added' : 'removed'} dependency on ${c.dependency}`).join('\n')}
+Dependency Changes:
+${dependencyChangesText}
 
-3. Statistical Changes:
-${Object.entries(changes.statsChanges)
-  .map(([stat, change]) => `- ${stat}: ${change.diff > 0 ? '+' : ''}${change.diff} (${change.percentage}% change)`)
-  .join('\n')}
+Statistical Changes:
+${statsChangesText}
 
-Please provide a concise summary of these changes, focusing on:
-1. The most significant changes and their potential impact
-2. Any patterns or trends in the changes
-3. Potential areas that might need attention
-4. Recommendations for the team
+Please provide a detailed analysis focusing on:
+1. Impact of the changes on the monorepo structure and dependencies
+2. Key architectural changes and their implications
+3. Potential risks or areas needing attention
+4. Specific recommendations for the team based on these changes
+5. Any patterns in the development workflow revealed by these changes
 
-Keep the summary clear and actionable, highlighting what developers should pay attention to.`;
+Keep the analysis technical but actionable, highlighting what developers should focus on.`;
 }
 
 async function getAISummary(version1: VersionMetadata, version2: VersionMetadata, changes: ComparisonData): Promise<string> {
@@ -273,6 +347,13 @@ function VersionComparison() {
     error?: string;
   }>({ text: '', loading: false });
 
+  // Cache for AI summaries
+  const summaryCache = useRef<Map<string, string>>(new Map());
+  const lastComparisonKey = useRef<string>('');
+
+  const getCacheKey = (v1: string, v2: string) => `${v1}_${v2}`;
+
+  // Load history only once
   useEffect(() => {
     fetch('/metadata-history.json')
       .then(res => res.json())
@@ -281,28 +362,43 @@ function VersionComparison() {
         if (data.versions.length >= 2) {
           const versions: [string, string] = [data.versions[0].id, data.versions[1].id];
           setSelectedVersions(versions);
-          compareSelectedVersions(versions, data.versions);
         }
       });
   }, []);
 
+  // Handle version comparison and AI summary separately
   useEffect(() => {
     if (!selectedVersions[0] || !selectedVersions[1] || !history) return;
-    compareSelectedVersions(selectedVersions, history.versions);
-  }, [selectedVersions, history]);
 
-  const compareSelectedVersions = async (versions: [string, string], allVersions: VersionMetadata[]) => {
-    const version1 = allVersions.find(v => v.id === versions[0]);
-    const version2 = allVersions.find(v => v.id === versions[1]);
+    const version1 = history.versions.find(v => v.id === selectedVersions[0]);
+    const version2 = history.versions.find(v => v.id === selectedVersions[1]);
 
-    if (version1 && version2) {
-      const comparison = compareVersions(version1.data, version2.data);
-      setComparisonData(comparison);
+    if (!version1 || !version2) return;
 
-      // Generate AI summary
+    const comparison = compareVersions(version1.data, version2.data);
+    setComparisonData(comparison);
+
+    // Generate cache key for this comparison
+    const cacheKey = getCacheKey(version1.id, version2.id);
+
+    // If this is the same comparison as before, don't fetch again
+    if (cacheKey === lastComparisonKey.current) return;
+
+    // Check cache before making API call
+    const cachedSummary = summaryCache.current.get(cacheKey);
+    if (cachedSummary) {
+      setAiSummary({ text: cachedSummary, loading: false });
+      lastComparisonKey.current = cacheKey;
+      return;
+    }
+
+    // Only fetch if we don't have a cached result
+    const fetchSummary = async () => {
       setAiSummary({ text: '', loading: true });
       try {
         const summary = await getAISummary(version1, version2, comparison);
+        summaryCache.current.set(cacheKey, summary);
+        lastComparisonKey.current = cacheKey;
         setAiSummary({ text: summary, loading: false });
       } catch (error) {
         setAiSummary({
@@ -311,7 +407,17 @@ function VersionComparison() {
           error: (error as Error).message
         });
       }
-    }
+    };
+
+    fetchSummary();
+  }, [selectedVersions, history]);
+
+  const handleVersionChange = (index: 0 | 1, value: string) => {
+    setSelectedVersions(prev => {
+      const newVersions: [string, string] = [...prev] as [string, string];
+      newVersions[index] = value;
+      return newVersions;
+    });
   };
 
   const filteredVersions = history?.versions.filter(v => {
@@ -345,7 +451,7 @@ function VersionComparison() {
           <Select
             fullWidth
             value={selectedVersions[0]}
-            onChange={(e) => setSelectedVersions([e.target.value as string, selectedVersions[1]])}
+            onChange={(e) => handleVersionChange(0, e.target.value as string)}
           >
             {filteredVersions.map(v => (
               <MenuItem key={v.id} value={v.id}>
@@ -360,7 +466,7 @@ function VersionComparison() {
           <Select
             fullWidth
             value={selectedVersions[1]}
-            onChange={(e) => setSelectedVersions([selectedVersions[0], e.target.value as string])}
+            onChange={(e) => handleVersionChange(1, e.target.value as string)}
           >
             {filteredVersions.map(v => (
               <MenuItem key={v.id} value={v.id}>

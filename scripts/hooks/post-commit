@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# Get the current git user info
+AUTHOR_NAME=$(git config user.name)
+AUTHOR_EMAIL=$(git config user.email)
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+COMMIT=$(git rev-parse HEAD)
+
+# Generate metadata
+echo "🔍 Generating repository metadata..."
+bun run scripts/generate-repo-metadata.ts \
+  --author "$AUTHOR_NAME" \
+  --email "$AUTHOR_EMAIL" \
+  --branch "$BRANCH" \
+  --commit "$COMMIT" \
+  --local
+
+# Copy to dashboard public directory
+echo "📋 Updating dashboard metadata..."
+cp versions/latest.json apps/baudevs-dashboard/public/local-metadata.json
+cp metadata-history.json apps/baudevs-dashboard/public/metadata-history.json
+
+# Add metadata files to the current commit if they changed
+if git diff --quiet apps/baudevs-dashboard/public/local-metadata.json apps/baudevs-dashboard/public/metadata-history.json; then
+  echo "✨ No metadata changes detected"
+else
+  echo "📝 Committing metadata changes..."
+  git add apps/baudevs-dashboard/public/local-metadata.json apps/baudevs-dashboard/public/metadata-history.json
+  git commit --amend --no-edit
+fi
+
+echo "✅ Post-commit hook completed"

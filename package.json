@@ -2,7 +2,9 @@
   "name": "@baudevs/monorepo",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "prepare": "bun scripts/install-hooks.ts"
+  },
   "private": true,
   "workspaces": [
     "apps/*",

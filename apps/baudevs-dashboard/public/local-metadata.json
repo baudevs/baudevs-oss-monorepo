@@ -1,7 +1,7 @@
 {
   "repoPath": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
   "defaultBranch": "staging",
-  "generatedAt": "2024-12-23T10:06:49.281Z",
+  "generatedAt": "2024-12-24T07:38:59.638Z",
   "gitVersion": "git version 2.39.5 (Apple Git-154)",
   "nxVersion": "20.3.0",
   "nodeVersion": "v22.6.0",
@@ -10,8 +10,8 @@
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
       "branch": "staging",
-      "commit": "310be255205726dcb0f89d27e56e3d5f12be2ba9",
-      "lastActivity": "Mon Dec 23 11:06:30 2024 +0100"
+      "commit": "74ece0ae75141bcdf7c9ba3d9c7a3e98db1b1055",
+      "lastActivity": "Tue Dec 24 08:38:53 2024 +0100"
     },
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo.worktrees/bau-cms-cli",
@@ -62,7 +62,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Dec 22 18:46:40 2024 +0100",
           "message": "breaking: remove @baudevs/dashboard update project configuration and dependencies",
-          "branch": "develop~9",
+          "branch": "remotes/origin/develop~9",
           "files": [
             ".gitignore",
             "apps/bau-cms-example/package.json",
@@ -136,7 +136,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 21 09:53:19 2024 +0100",
           "message": "WIP: Working chanches acrross bau-cms libraries and example APP. Nothing functional [ci-skip]",
-          "branch": "develop~23",
+          "branch": "remotes/origin/develop~23",
           "files": [
             ".gitignore",
             "apps/bau-cms-example/.gitignore",
@@ -343,11 +343,115 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "74ece0ae75141bcdf7c9ba3d9c7a3e98db1b1055",
+          "author": "Juan Arroyave",
+          "date": "Tue Dec 24 08:34:49 2024 +0100",
+          "message": "feat: enhance version comparison and install hooks functionality",
+          "branch": "staging",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "apps/baudevs-dashboard/src/app/dashboard.tsx",
+            "package.json",
+            "scripts/hooks/post-commit",
+            "scripts/install-hooks.ts"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
+          "hash": "3fa36b5ef5b98d63280f83fb9d8574e051664daa",
+          "author": "Juan Arroyave",
+          "date": "Tue Dec 24 08:22:38 2024 +0100",
+          "message": "feat: enhance baudevs-dashboard with SPA support and 404 page",
+          "branch": "remotes/origin/staging",
+          "files": [
+            "apps/baudevs-dashboard/index.html",
+            "apps/baudevs-dashboard/public/404.html",
+            "apps/baudevs-dashboard/vite.config.ts"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
+          "hash": "62038a582a583cad9047c77369ca583387cfc916",
+          "author": "Juan Arroyave",
+          "date": "Tue Dec 24 08:09:46 2024 +0100",
+          "message": "feat: implement AI summary API for enhanced version analysis in dashboard",
+          "branch": "remotes/origin/staging~3",
+          "files": [
+            "apps/baudevs-dashboard/src/api/ai-summary.ts",
+            "apps/baudevs-dashboard/vite.config.ts"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
+          "hash": "58105e0486a0dcc2722eb430da8c9d1fd0bc1803",
+          "author": "Juan Arroyave",
+          "date": "Tue Dec 24 08:09:29 2024 +0100",
+          "message": "feat: integrate AI summary generation for version comparisons in dashboard",
+          "branch": "remotes/origin/staging~4",
+          "files": [
+            "apps/baudevs-dashboard/src/app/api/ai-summary/route.ts",
+            "apps/baudevs-dashboard/src/app/dashboard.tsx",
+            "bun.lockb",
+            "package.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
+          "hash": "2c189da83bcca76b2a657625d7278b6fc3cf4b6c",
+          "author": "Juan Arroyave",
+          "date": "Mon Dec 23 11:41:27 2024 +0100",
+          "message": "chore: update .gitignore and tsconfig.json for improved project configuration",
+          "branch": "remotes/origin/staging~5",
+          "files": [
+            ".gitignore",
+            "apps/baudevs-dashboard/tsconfig.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard"
+          ]
+        },
+        {
+          "hash": "e73be4dd72967d8d88a34596b363241751c4d7ed",
+          "author": "Juan Arroyave",
+          "date": "Mon Dec 23 11:09:52 2024 +0100",
+          "message": "feat: add metadata files and enhance dashboard version comparison functionality",
+          "branch": "remotes/origin/staging~7",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "apps/baudevs-dashboard/public/versions/1734948411946-staging-juan-scalista-com-310be25.json",
+            "apps/baudevs-dashboard/src/app/dashboard.tsx",
+            "cspell.json",
+            "scripts/generate-repo-metadata.ts"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "e718e0f10eb42076676955c21a7e9be2b9583462",
           "author": "Juan Arroyave",
           "date": "Mon Dec 23 10:21:47 2024 +0100",
           "message": "refactor: update project configuration and enhance metadata handling for baudevs-dashboard",
-          "branch": "staging~2",
+          "branch": "remotes/origin/staging~10",
           "files": [
             ".vscode/project-words.txt",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -376,7 +480,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Dec 22 20:38:14 2024 +0100",
           "message": "refactor: streamline nx.json and project configuration for baudevs-dashboard",
-          "branch": "develop~3",
+          "branch": "remotes/origin/develop~3",
           "files": [
             ".github/workflows/dashboard.yml",
             "apps/baudevs-dashboard/project.json",
@@ -391,7 +495,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Dec 22 20:31:03 2024 +0100",
           "message": "feat: add project graph and repo metadata for baudevs-dashboard",
-          "branch": "develop~4",
+          "branch": "remotes/origin/develop~4",
           "files": [
             ".github/workflows/dashboard.yml",
             "apps/baudevs-dashboard/public/project-graph.json",
@@ -417,7 +521,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Dec 22 19:49:54 2024 +0100",
           "message": "feat: update nx.json and project configuration for baudevs-dashboard",
-          "branch": "develop~5",
+          "branch": "remotes/origin/develop~5",
           "files": [
             "apps/baudevs-dashboard/project.json",
             "apps/baudevs-dashboard/src/app/nx-welcome.tsx",
@@ -425,210 +529,6 @@
             "package.json"
           ],
           "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "0f8e8e314ecba7c3e81b58148fc0ee605f34e2c3",
-          "author": "Juan Arroyave",
-          "date": "Sun Dec 22 19:22:53 2024 +0100",
-          "message": "feat: update App component to use MUI for enhanced UI",
-          "branch": "develop~6",
-          "files": [
-            "apps/baudevs-dashboard/src/app/app.tsx"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "f8531b5e45fe9c19029e2aa16bcc7ecddcd38580",
-          "author": "Juan Arroyave",
-          "date": "Sun Dec 22 19:20:12 2024 +0100",
-          "message": "feat: add Tailwind CSS and PostCSS configuration for baudevs-dashboard",
-          "branch": "develop~7",
-          "files": [
-            "apps/baudevs-dashboard/postcss.config.js",
-            "apps/baudevs-dashboard/src/styles.css",
-            "apps/baudevs-dashboard/tailwind.config.js"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "797446eb622f30034522aa73ffbc0cb0395bd6ea",
-          "author": "Juan Arroyave",
-          "date": "Sun Dec 22 19:18:55 2024 +0100",
-          "message": "feat: add baudevs-dashboard application with initial setup and configuration.",
-          "branch": "develop~8",
-          "files": [
-            "apps/baudevs-dashboard/index.html",
-            "apps/baudevs-dashboard/project.json",
-            "apps/baudevs-dashboard/public/favicon.ico",
-            "apps/baudevs-dashboard/src/app/app.module.css",
-            "apps/baudevs-dashboard/src/app/app.tsx",
-            "apps/baudevs-dashboard/src/app/nx-welcome.tsx",
-            "apps/baudevs-dashboard/src/assets/.gitkeep",
-            "apps/baudevs-dashboard/src/main.tsx",
-            "apps/baudevs-dashboard/src/styles.css",
-            "apps/baudevs-dashboard/tsconfig.app.json",
-            "apps/baudevs-dashboard/tsconfig.json",
-            "apps/baudevs-dashboard/vite.config.ts",
-            "bun.lockb",
-            "nx.json",
-            "package.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "869ea1e0eb63e802527524c3a3f53215d85d34e5",
-          "author": "Juan Arroyave",
-          "date": "Sun Dec 22 18:46:40 2024 +0100",
-          "message": "breaking: remove @baudevs/dashboard update project configuration and dependencies",
-          "branch": "develop~9",
-          "files": [
-            ".gitignore",
-            "apps/bau-cms-example/package.json",
-            "apps/bau-cms-example/project.json",
-            "apps/baudevs-dashboard-e2e/playwright.config.ts",
-            "apps/baudevs-dashboard-e2e/project.json",
-            "apps/baudevs-dashboard-e2e/src/example.spec.ts",
-            "apps/baudevs-dashboard-e2e/tsconfig.json",
-            "apps/baudevs-dashboard/.gitignore",
-            "apps/baudevs-dashboard/README.md",
-            "apps/baudevs-dashboard/index.html",
-            "apps/baudevs-dashboard/index.ts",
-            "apps/baudevs-dashboard/package.json",
-            "apps/baudevs-dashboard/postcss.config.js",
-            "apps/baudevs-dashboard/project.json",
-            "apps/baudevs-dashboard/public/favicon.ico",
-            "apps/baudevs-dashboard/src/app/app.module.css",
-            "apps/baudevs-dashboard/src/app/app.tsx",
-            "apps/baudevs-dashboard/src/app/nx-welcome.tsx",
-            "apps/baudevs-dashboard/src/assets/.gitkeep",
-            "apps/baudevs-dashboard/src/main.tsx",
-            "apps/baudevs-dashboard/src/styles.css",
-            "apps/baudevs-dashboard/tailwind.config.js",
-            "apps/baudevs-dashboard/tsconfig.app.json",
-            "apps/baudevs-dashboard/tsconfig.json",
-            "apps/baudevs-dashboard/vite.config.ts",
-            "bun.lockb",
-            "libs/bau-cms-admin/project.json",
-            "libs/bau-cms-core/project.json",
-            "libs/bau-cms-editor/project.json",
-            "libs/bau-cms-templates/project.json",
-            "nx.json",
-            "package.json",
-            "packages/bau-cms-cli/project.json",
-            "tsconfig.base.json"
-          ],
-          "nxProjects": [
-            "@baudevs/bauCmsNextExample",
-            "@baudevs/bauCmsNextExample",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "@baudevs/cmsAdmin",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsEditor",
-            "@baudevs/cmsTemplates",
-            "@baudevs/cli"
-          ]
-        },
-        {
-          "hash": "1cf7873a19f6be2b56c2f4a828a51c8aa659ac18",
-          "author": "Juan Arroyave",
-          "date": "Sun Dec 22 16:19:15 2024 +0100",
-          "message": "feat: add baudevs-dashboard application and update workspace configuration",
-          "branch": "develop~11",
-          "files": [
-            "apps/baudevs-dashboard/.gitignore",
-            "apps/baudevs-dashboard/README.md",
-            "apps/baudevs-dashboard/index.ts",
-            "apps/baudevs-dashboard/package.json",
-            "apps/baudevs-dashboard/tsconfig.app.json",
-            "apps/baudevs-monorepo-e2e/eslint.config.mjs",
-            "apps/baudevs-monorepo-e2e/playwright.config.ts",
-            "apps/baudevs-monorepo-e2e/project.json",
-            "apps/baudevs-monorepo-e2e/src/example.spec.ts",
-            "apps/baudevs-monorepo-e2e/tsconfig.json",
-            "apps/baudevs-monorepo/eslint.config.mjs",
-            "apps/baudevs-monorepo/index.d.ts",
-            "apps/baudevs-monorepo/jest.config.ts",
-            "apps/baudevs-monorepo/next-env.d.ts",
-            "apps/baudevs-monorepo/next.config.js",
-            "apps/baudevs-monorepo/postcss.config.js",
-            "apps/baudevs-monorepo/project.json",
-            "apps/baudevs-monorepo/public/.gitkeep",
-            "apps/baudevs-monorepo/public/favicon.ico",
-            "apps/baudevs-monorepo/specs/index.spec.tsx",
-            "apps/baudevs-monorepo/src/app/api/hello/route.ts",
-            "apps/baudevs-monorepo/src/app/global.css",
-            "apps/baudevs-monorepo/src/app/layout.tsx",
-            "apps/baudevs-monorepo/src/app/page.tsx",
-            "apps/baudevs-monorepo/tailwind.config.js",
-            "apps/baudevs-monorepo/tsconfig.json",
-            "apps/baudevs-monorepo/tsconfig.spec.json",
-            "package.json",
-            "tsconfig.base.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "1eb9e6fdc89c351ea2eff38ca6f544cb96241b91",
-          "author": "Juan Arroyave",
-          "date": "Sun Dec 22 11:56:13 2024 +0100",
-          "message": "feat: add Tailwind CSS and PostCSS configuration for baudevs-dashboard",
-          "branch": "develop~12",
-          "files": [
-            "apps/baudevs-dashboard/postcss.config.js",
-            "apps/baudevs-dashboard/src/styles.css",
-            "apps/baudevs-dashboard/tailwind.config.js"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
             "baudevs-dashboard",
             "baudevs-dashboard"
           ]
@@ -787,7 +687,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Dec 22 18:46:40 2024 +0100",
           "message": "breaking: remove @baudevs/dashboard update project configuration and dependencies",
-          "branch": "develop~9",
+          "branch": "remotes/origin/develop~9",
           "files": [
             ".gitignore",
             "apps/bau-cms-example/package.json",
@@ -861,7 +761,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 21 09:53:19 2024 +0100",
           "message": "WIP: Working chanches acrross bau-cms libraries and example APP. Nothing functional [ci-skip]",
-          "branch": "develop~23",
+          "branch": "remotes/origin/develop~23",
           "files": [
             ".gitignore",
             "apps/bau-cms-example/.gitignore",
@@ -1103,7 +1003,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Dec 22 18:46:40 2024 +0100",
           "message": "breaking: remove @baudevs/dashboard update project configuration and dependencies",
-          "branch": "develop~9",
+          "branch": "remotes/origin/develop~9",
           "files": [
             ".gitignore",
             "apps/bau-cms-example/package.json",
@@ -1177,7 +1077,7 @@
           "author": "Juan Arroyave",
           "date": "Mon Dec 23 09:18:55 2024 +0100",
           "message": "feat: enhance bau-cms-cli with restore functionality and project analysis",
-          "branch": "develop~14",
+          "branch": "remotes/origin/develop~14",
           "files": [
             "packages/bau-cms-cli/src/index.ts",
             "packages/bau-cms-cli/src/lib/commands/init.ts",
@@ -1200,7 +1100,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Dec 22 08:54:03 2024 +0100",
           "message": "fix: update output path in bau-cms-cli project.json for correct build directory",
-          "branch": "develop~15",
+          "branch": "remotes/origin/develop~15",
           "files": [
             "packages/bau-cms-cli/project.json"
           ],
@@ -1213,7 +1113,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Dec 22 08:36:00 2024 +0100",
           "message": "chore: update dependencies and configuration for bau-cms-cli and project structure",
-          "branch": "develop~16",
+          "branch": "remotes/origin/develop~16",
           "files": [
             ".gitignore",
             "bun.lockb",
@@ -1233,7 +1133,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Dec 22 08:16:28 2024 +0100",
           "message": "refactor: update nx.json and bau-cms-cli configuration for improved build process",
-          "branch": "develop~17",
+          "branch": "remotes/origin/develop~17",
           "files": [
             "nx.json",
             "packages/bau-cms-cli/package.json",
@@ -1249,7 +1149,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 21 13:20:56 2024 +0100",
           "message": "chore: update bau-cms-cli build configuration and add esbuild support for nx 21 compatibility",
-          "branch": "develop~18",
+          "branch": "remotes/origin/develop~18",
           "files": [
             "packages/bau-cms-cli/package.json",
             "packages/bau-cms-cli/project.json"
@@ -1264,7 +1164,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 21 13:15:34 2024 +0100",
           "message": "refactor: update bau-cms-cli project configuration and command structure",
-          "branch": "develop~19",
+          "branch": "remotes/origin/develop~19",
           "files": [
             "packages/bau-cms-cli/project.json",
             "packages/bau-cms-cli/src/index.ts"
@@ -1279,7 +1179,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 21 12:54:06 2024 +0100",
           "message": "feat: introduce bau-cms-cli package with initialization and migration commands",
-          "branch": "develop~20",
+          "branch": "remotes/origin/develop~20",
           "files": [
             "libs/bau-cms-cli/src/lib/commands/init.ts",
             "nx.json",
@@ -1458,7 +1358,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Dec 22 18:46:40 2024 +0100",
           "message": "breaking: remove @baudevs/dashboard update project configuration and dependencies",
-          "branch": "develop~9",
+          "branch": "remotes/origin/develop~9",
           "files": [
             ".gitignore",
             "apps/bau-cms-example/package.json",
@@ -1532,7 +1432,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 21 09:52:41 2024 +0100",
           "message": "WIP: Working chanches acrross bau-cms libraries and example APP. Nothing functional [ci-skip]",
-          "branch": "develop~24",
+          "branch": "remotes/origin/develop~24",
           "files": [
             "libs/bau-cms-editor/package.json",
             "libs/bau-cms-editor/src/index.ts",
@@ -1622,7 +1522,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Dec 22 18:46:40 2024 +0100",
           "message": "breaking: remove @baudevs/dashboard update project configuration and dependencies",
-          "branch": "develop~9",
+          "branch": "remotes/origin/develop~9",
           "files": [
             ".gitignore",
             "apps/bau-cms-example/package.json",
@@ -1696,7 +1596,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 21 09:53:19 2024 +0100",
           "message": "WIP: Working chanches acrross bau-cms libraries and example APP. Nothing functional [ci-skip]",
-          "branch": "develop~23",
+          "branch": "remotes/origin/develop~23",
           "files": [
             ".gitignore",
             "apps/bau-cms-example/.gitignore",
@@ -1950,7 +1850,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Dec 22 18:46:40 2024 +0100",
           "message": "breaking: remove @baudevs/dashboard update project configuration and dependencies",
-          "branch": "develop~9",
+          "branch": "remotes/origin/develop~9",
           "files": [
             ".gitignore",
             "apps/bau-cms-example/package.json",
@@ -2024,7 +1924,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 21 09:53:19 2024 +0100",
           "message": "WIP: Working chanches acrross bau-cms libraries and example APP. Nothing functional [ci-skip]",
-          "branch": "develop~23",
+          "branch": "remotes/origin/develop~23",
           "files": [
             ".gitignore",
             "apps/bau-cms-example/.gitignore",
@@ -2278,7 +2178,7 @@
           "author": "Juan Arroyave",
           "date": "Fri Dec 20 12:57:18 2024 +0100",
           "message": "breaking: migrate project to Bun, update dependencies, and add workspaces",
-          "branch": "remotes/origin/feature/bau-cms-core~2",
+          "branch": "feature/bau-cms-core~2",
           "files": [
             ".github/workflows/release.yml",
             ".gitignore",
@@ -2605,7 +2505,7 @@
       "type": "rebase",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 3
+      "divergedCommits": 12
     },
     {
       "from": "feature/bau-cms-cli",
@@ -2653,7 +2553,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 59
+      "divergedCommits": 68
     },
     {
       "from": "feature/bau-cms-core",
@@ -2701,7 +2601,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 33
+      "divergedCommits": 42
     },
     {
       "from": "feature/bau-cms-example",
@@ -2749,7 +2649,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 44
+      "divergedCommits": 53
     },
     {
       "from": "feature/dashboard-app",
@@ -2797,7 +2697,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 58
+      "divergedCommits": 67
     },
     {
       "from": "main",
@@ -2845,7 +2745,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
       "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
-      "divergedCommits": 35
+      "divergedCommits": 44
     },
     {
       "from": "staging",
@@ -2853,7 +2753,7 @@
       "type": "merge",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 3
+      "divergedCommits": 12
     },
     {
       "from": "staging",
@@ -2861,7 +2761,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 59
+      "divergedCommits": 68
     },
     {
       "from": "staging",
@@ -2869,7 +2769,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 33
+      "divergedCommits": 42
     },
     {
       "from": "staging",
@@ -2877,7 +2777,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 44
+      "divergedCommits": 53
     },
     {
       "from": "staging",
@@ -2885,7 +2785,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 58
+      "divergedCommits": 67
     },
     {
       "from": "staging",
@@ -2893,19 +2793,19 @@
       "type": "merge",
       "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
       "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
-      "divergedCommits": 35
+      "divergedCommits": 44
     }
   ],
   "recentActivity": {
     "lastPush": "Sun Dec 22 09:53:48 2024 +0100",
-    "lastPull": "2024-12-23T10:06:51.692Z",
-    "lastMerge": "2024-12-23T10:06:51.703Z",
+    "lastPull": "2024-12-24T07:39:01.342Z",
+    "lastMerge": "2024-12-24T07:39:01.350Z",
     "activeBranches": [
       {
         "name": "staging",
-        "lastCommit": "310be255205726dcb0f89d27e56e3d5f12be2ba9",
+        "lastCommit": "74ece0ae75141bcdf7c9ba3d9c7a3e98db1b1055",
         "author": "Juan Arroyave",
-        "commitCount": 73
+        "commitCount": 82
       },
       {
         "name": "develop",
@@ -2949,8 +2849,8 @@
     "totalApps": 3,
     "totalLibraries": 5,
     "totalPackages": 0,
-    "totalFiles": 158,
-    "totalCommits": 73,
+    "totalFiles": 166,
+    "totalCommits": 82,
     "totalContributors": 0
   }
 }
