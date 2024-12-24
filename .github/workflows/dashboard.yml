@@ -76,7 +76,20 @@ jobs:
 
       - name: Generate Repo Metadata
         run: |
-          bun scripts/generate-repo-metadata.ts
+          # Get git info
+          AUTHOR_NAME=$(git log -1 --format='%an')
+          AUTHOR_EMAIL=$(git log -1 --format='%ae')
+          BRANCH_NAME="${{ github.ref_name }}"
+          COMMIT_HASH="${{ github.sha }}"
+
+          # Generate metadata
+          bun scripts/generate-repo-metadata.ts \
+            --author="$AUTHOR_NAME" \
+            --email="$AUTHOR_EMAIL" \
+            --branch="$BRANCH_NAME" \
+            --commit="$COMMIT_HASH"
+
+          # Copy to dashboard public directory
           cp repoMetadata.json apps/baudevs-dashboard/public/
 
       - name: Build Dashboard
