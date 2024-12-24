@@ -2,4 +2,4 @@
 
 This is a monorepo for Baudevs projects.
 
-Test line to trigger post-commit hook.
+Testing the post-commit hook with nvm integration.
