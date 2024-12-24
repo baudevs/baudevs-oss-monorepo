@@ -38,7 +38,7 @@ jobs:
           export-env: true
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN || '' }}
-          SECRET: op://app-cicd/hello-world/secret
+          VITE_OPENAI_API_KEY: op://BauDevs/OpenAI/credential
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
