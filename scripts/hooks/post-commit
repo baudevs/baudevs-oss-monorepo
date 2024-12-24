@@ -13,7 +13,7 @@ echo "Changed files:"
 echo "$CHANGED_FILES"
 
 # Check if only version files were changed
-VERSION_PATTERN="apps/baudevs-dashboard/public/(local-metadata\.json|metadata-history\.json|versions/.*\.json)$"
+VERSION_PATTERN="(versions/.*\.json|metadata-history\.json|apps/baudevs-dashboard/public/(local-metadata\.json|metadata-history\.json|versions/.*\.json))$"
 NON_VERSION_FILES=$(echo "$CHANGED_FILES" | grep -v -E "$VERSION_PATTERN")
 
 if [ -z "$NON_VERSION_FILES" ]; then
@@ -30,31 +30,60 @@ AUTHOR_EMAIL=$(git config user.email)
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 COMMIT=$(git rev-parse HEAD)
 
-# Generate metadata with a timeout
-echo "🔍 Generating repository metadata..."
-timeout 30s bun run scripts/generate-repo-metadata.ts \
-  --author "$AUTHOR_NAME" \
-  --email "$AUTHOR_EMAIL" \
-  --branch "$BRANCH" \
-  --commit "$COMMIT" \
-  --local
-
-if [ $? -eq 124 ]; then
-  echo "❌ Metadata generation timed out after 30 seconds"
-  exit 1
+# Check if gtimeout (from coreutils) or timeout is available
+if command -v gtimeout >/dev/null 2>&1; then
+  TIMEOUT_CMD="gtimeout"
+elif command -v timeout >/dev/null 2>&1; then
+  TIMEOUT_CMD="timeout"
+else
+  TIMEOUT_CMD=""
 fi
 
-# Check if metadata files exist before trying to copy them
+# Generate metadata with a timeout if available
+echo "🔍 Generating repository metadata..."
+if [ -n "$TIMEOUT_CMD" ]; then
+  $TIMEOUT_CMD 30s bun run scripts/generate-repo-metadata.ts \
+    --author "$AUTHOR_NAME" \
+    --email "$AUTHOR_EMAIL" \
+    --branch "$BRANCH" \
+    --commit "$COMMIT" \
+    --local
+
+  if [ $? -eq 124 ]; then
+    echo "❌ Metadata generation timed out after 30 seconds"
+    exit 1
+  fi
+else
+  bun run scripts/generate-repo-metadata.ts \
+    --author "$AUTHOR_NAME" \
+    --email "$AUTHOR_EMAIL" \
+    --branch "$BRANCH" \
+    --commit "$COMMIT" \
+    --local
+fi
+
+# Check if metadata files exist in root directory
 if [ ! -f "versions/latest.json" ] || [ ! -f "metadata-history.json" ]; then
-  echo "❌ Metadata files not found, skipping copy"
+  echo "❌ Root metadata files not found"
   exit 1
 fi
 
 # Copy to dashboard public directory
 echo "📋 Updating dashboard metadata..."
 mkdir -p apps/baudevs-dashboard/public/versions
-cp versions/latest.json apps/baudevs-dashboard/public/local-metadata.json
-cp metadata-history.json apps/baudevs-dashboard/public/metadata-history.json
+
+# Copy files and check for errors
+if ! cp versions/latest.json apps/baudevs-dashboard/public/local-metadata.json; then
+  echo "❌ Failed to copy latest.json to local-metadata.json"
+  exit 1
+fi
+
+if ! cp metadata-history.json apps/baudevs-dashboard/public/metadata-history.json; then
+  echo "❌ Failed to copy metadata-history.json"
+  exit 1
+fi
+
+echo "✅ Successfully copied metadata files"
 
 # Check if metadata files changed
 echo "🔍 Checking for metadata changes..."
@@ -68,4 +97,4 @@ else
   unset SKIP_POST_COMMIT
 fi
 
-echo "✅ Post-commit hook completed"
+echo "✅ Post-commit hook completed successfully"
