@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Typography, Box, Chip, Grid, Paper, Divider, List, ListItem, ListItemText, Avatar, Select, MenuItem, ToggleButtonGroup, ToggleButton } from '@mui/material';
+import { Typography, Box, Chip, Grid, Paper, Divider, List, ListItem, ListItemText, Avatar, Select, MenuItem, ToggleButtonGroup, ToggleButton, CircularProgress, Alert } from '@mui/material';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
 interface GitCommit {
@@ -131,6 +131,11 @@ interface ComparisonData {
   projectChanges: ProjectChange[];
   dependencyChanges: DependencyChange[];
   statsChanges: Record<string, StatChange>;
+  summary?: {
+    text: string;
+    loading: boolean;
+    error?: string;
+  };
 }
 
 function formatDate(dateStr: string) {
@@ -145,11 +150,128 @@ function getInitials(name: string) {
     .toUpperCase();
 }
 
+function generateAISummaryPrompt(version1: VersionMetadata, version2: VersionMetadata, changes: ComparisonData): string {
+  return `As a monorepo analysis expert, analyze the following changes between two versions of our monorepo:
+
+Version 1: ${version1.branch} (${version1.gitCommit.slice(0, 7)}) by ${version1.author} at ${version1.timestamp}
+Version 2: ${version2.branch} (${version2.gitCommit.slice(0, 7)}) by ${version2.author} at ${version2.timestamp}
+
+Repository Structure Context:
+- This is a monorepo using NX for project management
+- Projects can be applications, libraries, or packages
+- Each project can have dependencies on other projects
+- Projects are organized in directories: apps/, libs/, packages/
+- Git worktrees allow multiple branches to be checked out simultaneously
+
+Changes Overview:
+1. Project Changes:
+${changes.projectChanges.map(c => `- ${c.project}: ${c.type}`).join('\n')}
+
+2. Dependency Changes:
+${changes.dependencyChanges.map(c => `- ${c.project}: ${c.type === 'added' ? 'added' : 'removed'} dependency on ${c.dependency}`).join('\n')}
+
+3. Statistical Changes:
+${Object.entries(changes.statsChanges)
+  .map(([stat, change]) => `- ${stat}: ${change.diff > 0 ? '+' : ''}${change.diff} (${change.percentage}% change)`)
+  .join('\n')}
+
+Please provide a concise summary of these changes, focusing on:
+1. The most significant changes and their potential impact
+2. Any patterns or trends in the changes
+3. Potential areas that might need attention
+4. Recommendations for the team
+
+Keep the summary clear and actionable, highlighting what developers should pay attention to.`;
+}
+
+async function getAISummary(version1: VersionMetadata, version2: VersionMetadata, changes: ComparisonData): Promise<string> {
+  const prompt = generateAISummaryPrompt(version1, version2, changes);
+
+  try {
+    const response = await fetch('/api/ai-summary', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ prompt })
+    });
+
+    if (!response.ok) throw new Error('Failed to generate summary');
+    const data = await response.json();
+    return data.summary;
+  } catch (error) {
+    throw new Error('Failed to generate AI summary: ' + (error as Error).message);
+  }
+}
+
+function StatsChangeCard({ stat, change }: { stat: string; change: StatChange }) {
+  const formatStat = (stat: string) => {
+    return stat
+      .replace(/([A-Z])/g, ' $1')
+      .replace(/^./, str => str.toUpperCase())
+      .replace('Apps', 'Applications');
+  };
+
+  const getIcon = () => {
+    if (change.diff > 0) return '📈';
+    if (change.diff < 0) return '📉';
+    return '📊';
+  };
+
+  const getDescription = () => {
+    const direction = change.diff > 0 ? 'increased' : change.diff < 0 ? 'decreased' : 'unchanged';
+    const amount = Math.abs(change.diff);
+    return `${direction} by ${amount} (${change.percentage}% change)`;
+  };
+
+  return (
+    <Grid item xs={12} sm={6} md={4}>
+      <Paper
+        elevation={0}
+        sx={{
+          p: 2,
+          bgcolor: 'background.default',
+          border: '1px solid',
+          borderColor: change.diff > 0 ? 'success.light' :
+                      change.diff < 0 ? 'error.light' :
+                      'divider'
+        }}
+      >
+        <Box display="flex" alignItems="center" gap={1} mb={1}>
+          <Typography variant="h4" sx={{ lineHeight: 1 }}>{getIcon()}</Typography>
+          <Typography variant="body1" fontWeight="medium">
+            {formatStat(stat)}
+          </Typography>
+        </Box>
+        <Typography
+          variant="h5"
+          sx={{
+            color: change.diff > 0 ? 'success.main' :
+                   change.diff < 0 ? 'error.main' :
+                   'text.primary',
+            fontWeight: 'medium'
+          }}
+        >
+          {change.diff > 0 ? '+' : ''}{change.diff}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {getDescription()}
+        </Typography>
+      </Paper>
+    </Grid>
+  );
+}
+
 function VersionComparison() {
   const [history, setHistory] = useState<MetadataHistory | null>(null);
   const [selectedVersions, setSelectedVersions] = useState<[string, string]>(['', '']);
   const [comparisonData, setComparisonData] = useState<ComparisonData | null>(null);
   const [filter, setFilter] = useState<'all' | 'local' | 'remote'>('all');
+  const [aiSummary, setAiSummary] = useState<{
+    text: string;
+    loading: boolean;
+    error?: string;
+  }>({ text: '', loading: false });
 
   useEffect(() => {
     fetch('/metadata-history.json')
@@ -169,13 +291,26 @@ function VersionComparison() {
     compareSelectedVersions(selectedVersions, history.versions);
   }, [selectedVersions, history]);
 
-  const compareSelectedVersions = (versions: [string, string], allVersions: VersionMetadata[]) => {
+  const compareSelectedVersions = async (versions: [string, string], allVersions: VersionMetadata[]) => {
     const version1 = allVersions.find(v => v.id === versions[0]);
     const version2 = allVersions.find(v => v.id === versions[1]);
 
     if (version1 && version2) {
       const comparison = compareVersions(version1.data, version2.data);
       setComparisonData(comparison);
+
+      // Generate AI summary
+      setAiSummary({ text: '', loading: true });
+      try {
+        const summary = await getAISummary(version1, version2, comparison);
+        setAiSummary({ text: summary, loading: false });
+      } catch (error) {
+        setAiSummary({
+          text: '',
+          loading: false,
+          error: (error as Error).message
+        });
+      }
     }
   };
 
@@ -288,25 +423,42 @@ function VersionComparison() {
 
           {/* Stats Changes */}
           <Box>
-            <Typography variant="subtitle2" color="text.secondary">Statistics Changes</Typography>
-            <Grid container spacing={2}>
+            <Typography variant="subtitle2" color="text.secondary" gutterBottom>
+              Statistical Changes
+            </Typography>
+            <Grid container spacing={2} sx={{ mb: 3 }}>
               {Object.entries(comparisonData.statsChanges).map(([stat, change]) => (
-                <Grid item xs={12} sm={6} md={4} key={stat}>
-                  <Paper elevation={0} sx={{ p: 1, bgcolor: 'background.default' }}>
-                    <Typography variant="body2">{stat}</Typography>
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        color: change.diff > 0 ? 'success.main' :
-                               change.diff < 0 ? 'error.main' : 'text.primary'
-                      }}
-                    >
-                      {change.diff > 0 ? '+' : ''}{change.diff} ({change.percentage}%)
-                    </Typography>
-                  </Paper>
-                </Grid>
+                <StatsChangeCard key={stat} stat={stat} change={change} />
               ))}
             </Grid>
+
+            {/* AI Summary */}
+            <Paper sx={{ p: 2, bgcolor: 'grey.50' }}>
+              <Box display="flex" alignItems="center" gap={1} mb={2}>
+                <Typography variant="h6">AI Analysis</Typography>
+                {aiSummary?.loading && (
+                  <CircularProgress size={20} />
+                )}
+              </Box>
+              {aiSummary?.error ? (
+                <Alert severity="error">{aiSummary.error}</Alert>
+              ) : aiSummary?.text ? (
+                <Typography
+                  variant="body1"
+                  component="div"
+                  sx={{
+                    whiteSpace: 'pre-wrap',
+                    '& p': { mb: 1 }
+                  }}
+                >
+                  {aiSummary.text}
+                </Typography>
+              ) : !aiSummary?.loading && (
+                <Typography color="text.secondary">
+                  Select two versions to compare and get an AI-powered analysis.
+                </Typography>
+              )}
+            </Paper>
           </Box>
         </Box>
       )}
