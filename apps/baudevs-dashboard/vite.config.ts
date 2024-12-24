@@ -16,6 +16,7 @@ interface ExtendedRequest extends IncomingMessage {
 export default defineConfig({
   root: __dirname,
   cacheDir: '../../node_modules/.vite/baudevs-dashboard',
+  base: process.env.GITHUB_ACTIONS ? '/baudevs-monorepo/' : '/',
   server: {
     port: 4200,
     host: 'localhost',
