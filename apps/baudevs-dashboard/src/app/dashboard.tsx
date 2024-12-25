@@ -356,13 +356,49 @@ function VersionComparison() {
   // Load history only once
   useEffect(() => {
     fetch('/metadata-history.json')
-      .then(res => res.json())
-      .then((data: MetadataHistory) => {
-        setHistory(data);
-        if (data.versions.length >= 2) {
-          const versions: [string, string] = [data.versions[0].id, data.versions[1].id];
-          setSelectedVersions(versions);
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`Failed to load metadata: ${res.status} ${res.statusText}`);
         }
+        return res.json();
+      })
+      .then((historyArray: Array<{
+        timestamp: string;
+        author: string;
+        email: string;
+        branch: string;
+        commit: string;
+        data: RepoMetadata;
+      }>) => {
+        // Transform the array into our expected format
+        const versions = historyArray.map(entry => ({
+          id: `${entry.commit}-${entry.branch}-${entry.author}`,
+          timestamp: entry.timestamp,
+          gitCommit: entry.commit,
+          branch: entry.branch,
+          author: entry.author,
+          authorEmail: entry.email,
+          isRemote: entry.branch === 'main' || entry.branch === 'staging',
+          data: entry.data
+        }));
+
+        const history: MetadataHistory = {
+          versions,
+          latestId: versions[0]?.id || ''
+        };
+
+        setHistory(history);
+        if (history.versions.length >= 2) {
+          const selectedVersions: [string, string] = [
+            history.versions[0].id,
+            history.versions[1].id
+          ];
+          setSelectedVersions(selectedVersions);
+        }
+      })
+      .catch(err => {
+        console.error('Error loading metadata:', err);
+        setError(err.message);
       });
   }, []);
 

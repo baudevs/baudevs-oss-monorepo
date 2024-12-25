@@ -1,7 +1,7 @@
 {
   "repoPath": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
   "defaultBranch": "staging",
-  "generatedAt": "2024-12-24T10:27:09.587Z",
+  "generatedAt": "2024-12-24T10:37:51.937Z",
   "gitVersion": "git version 2.39.5 (Apple Git-154)",
   "nxVersion": "20.3.0",
   "nodeVersion": "v22.6.0",
@@ -10,8 +10,8 @@
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
       "branch": "staging",
-      "commit": "cbb6511afa80de3af4a92fce16b50be35c1d6806",
-      "lastActivity": "Tue Dec 24 11:27:05 2024 +0100"
+      "commit": "34b6207ad6af02b00d2f7062793b8dee2a08d467",
+      "lastActivity": "Tue Dec 24 11:37:46 2024 +0100"
     },
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo.worktrees/bau-cms-cli",
@@ -343,17 +343,19 @@
       "dependencies": [],
       "lastCommits": [
         {
-          "hash": "cbb6511afa80de3af4a92fce16b50be35c1d6806",
+          "hash": "02c2183df2f749dbe9f136827b4c858c693add8c",
           "author": "Juan Arroyave",
           "date": "Tue Dec 24 11:27:05 2024 +0100",
           "message": "feat: enhance post-commit hook for improved metadata generation",
-          "branch": "staging",
+          "branch": "remotes/origin/staging~1",
           "files": [
             ".gitignore",
             "LICENSE.md",
             "PRIVACY_POLICY.md",
             "README.md",
             "TERMS_AND_CONDITIONS.md",
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
             "apps/baudevs-dashboard/public/versions/1735027087697-staging-juan-scalista-com-028a88d.json",
             "apps/baudevs-dashboard/tsconfig.json",
             "metadata-history.json",
@@ -361,6 +363,8 @@
             "versions/latest.json"
           ],
           "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard",
             "baudevs-dashboard",
             "baudevs-dashboard"
           ]
@@ -370,7 +374,7 @@
           "author": "Juan Arroyave",
           "date": "Tue Dec 24 09:28:23 2024 +0100",
           "message": "test: update README to test post-commit hook with bun path",
-          "branch": "staging~1",
+          "branch": "remotes/origin/staging~2",
           "files": [
             "README.md",
             "apps/baudevs-dashboard/public/local-metadata.json",
@@ -386,7 +390,7 @@
           "author": "Juan Arroyave",
           "date": "Tue Dec 24 08:47:44 2024 +0100",
           "message": "refactor: improve post-commit hook logic for version file detection",
-          "branch": "staging~11",
+          "branch": "remotes/origin/staging~12",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -402,7 +406,7 @@
           "author": "Juan Arroyave",
           "date": "Tue Dec 24 08:44:34 2024 +0100",
           "message": "refactor: update post-commit hook and tsconfig.json for improved metadata handling",
-          "branch": "staging~12",
+          "branch": "remotes/origin/staging~13",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -420,7 +424,7 @@
           "author": "Juan Arroyave",
           "date": "Tue Dec 24 08:34:49 2024 +0100",
           "message": "feat: enhance version comparison and install hooks functionality",
-          "branch": "staging~13",
+          "branch": "remotes/origin/staging~14",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -440,7 +444,7 @@
           "author": "Juan Arroyave",
           "date": "Tue Dec 24 08:22:38 2024 +0100",
           "message": "feat: enhance baudevs-dashboard with SPA support and 404 page",
-          "branch": "remotes/origin/staging",
+          "branch": "remotes/origin/staging~15",
           "files": [
             "apps/baudevs-dashboard/index.html",
             "apps/baudevs-dashboard/public/404.html",
@@ -457,7 +461,7 @@
           "author": "Juan Arroyave",
           "date": "Tue Dec 24 08:09:46 2024 +0100",
           "message": "feat: implement AI summary API for enhanced version analysis in dashboard",
-          "branch": "remotes/origin/staging~3",
+          "branch": "remotes/origin/staging~18",
           "files": [
             "apps/baudevs-dashboard/src/api/ai-summary.ts",
             "apps/baudevs-dashboard/vite.config.ts"
@@ -472,7 +476,7 @@
           "author": "Juan Arroyave",
           "date": "Tue Dec 24 08:09:29 2024 +0100",
           "message": "feat: integrate AI summary generation for version comparisons in dashboard",
-          "branch": "remotes/origin/staging~4",
+          "branch": "remotes/origin/staging~19",
           "files": [
             "apps/baudevs-dashboard/src/app/api/ai-summary/route.ts",
             "apps/baudevs-dashboard/src/app/dashboard.tsx",
@@ -489,7 +493,7 @@
           "author": "Juan Arroyave",
           "date": "Mon Dec 23 11:41:27 2024 +0100",
           "message": "chore: update .gitignore and tsconfig.json for improved project configuration",
-          "branch": "remotes/origin/staging~5",
+          "branch": "remotes/origin/staging~20",
           "files": [
             ".gitignore",
             "apps/baudevs-dashboard/tsconfig.json"
@@ -503,7 +507,7 @@
           "author": "Juan Arroyave",
           "date": "Mon Dec 23 11:09:52 2024 +0100",
           "message": "feat: add metadata files and enhance dashboard version comparison functionality",
-          "branch": "remotes/origin/staging~7",
+          "branch": "remotes/origin/staging~22",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -2491,7 +2495,7 @@
       "type": "rebase",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 25
+      "divergedCommits": 27
     },
     {
       "from": "feature/bau-cms-cli",
@@ -2539,7 +2543,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 81
+      "divergedCommits": 83
     },
     {
       "from": "feature/bau-cms-core",
@@ -2587,7 +2591,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 55
+      "divergedCommits": 57
     },
     {
       "from": "feature/bau-cms-example",
@@ -2635,7 +2639,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 66
+      "divergedCommits": 68
     },
     {
       "from": "feature/dashboard-app",
@@ -2683,7 +2687,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 80
+      "divergedCommits": 82
     },
     {
       "from": "main",
@@ -2731,7 +2735,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
       "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
-      "divergedCommits": 57
+      "divergedCommits": 59
     },
     {
       "from": "staging",
@@ -2739,7 +2743,7 @@
       "type": "merge",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 25
+      "divergedCommits": 27
     },
     {
       "from": "staging",
@@ -2747,7 +2751,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 81
+      "divergedCommits": 83
     },
     {
       "from": "staging",
@@ -2755,7 +2759,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 55
+      "divergedCommits": 57
     },
     {
       "from": "staging",
@@ -2763,7 +2767,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 66
+      "divergedCommits": 68
     },
     {
       "from": "staging",
@@ -2771,7 +2775,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 80
+      "divergedCommits": 82
     },
     {
       "from": "staging",
@@ -2779,19 +2783,19 @@
       "type": "merge",
       "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
       "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
-      "divergedCommits": 57
+      "divergedCommits": 59
     }
   ],
   "recentActivity": {
     "lastPush": "Sun Dec 22 09:53:48 2024 +0100",
-    "lastPull": "2024-12-24T10:27:11.836Z",
-    "lastMerge": "2024-12-24T10:27:11.844Z",
+    "lastPull": "2024-12-24T10:37:53.590Z",
+    "lastMerge": "2024-12-24T10:37:53.597Z",
     "activeBranches": [
       {
         "name": "staging",
-        "lastCommit": "cbb6511afa80de3af4a92fce16b50be35c1d6806",
+        "lastCommit": "34b6207ad6af02b00d2f7062793b8dee2a08d467",
         "author": "Juan Arroyave",
-        "commitCount": 95
+        "commitCount": 97
       },
       {
         "name": "develop",
@@ -2836,7 +2840,7 @@
     "totalLibraries": 5,
     "totalPackages": 0,
     "totalFiles": 172,
-    "totalCommits": 95,
+    "totalCommits": 97,
     "totalContributors": 0
   }
 }

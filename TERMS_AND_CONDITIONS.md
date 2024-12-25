@@ -212,11 +212,11 @@ If any provision is found unenforceable:
 
 * Legal Entity: MagicusPrime LDA
 * NIPC/VAT: 518300714
-* Email: legal@baudevs.com
-* Website: baudevs.com
+* Email: <compliance@baudevs.com> or <compliance@magicusprime.com>
+* Website: baudevs.com - magicusprime.com - magicusprime.pt - baudevs.pt
 * Address: MagicusPrime LDA, Portugal
 
 ---
 
 By using our Services, you acknowledge that you have read, understood, and agree
-to be bound by these Terms and Conditions. 
+to be bound by these Terms and Conditions.
