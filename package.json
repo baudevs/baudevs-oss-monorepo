@@ -11,10 +11,12 @@
     "libs/*",
     "packages/*"
   ],
-  "packageManager": "bun@1.1.40",
+  "packageManager": "bun@1.1.42",
   "dependencies": {
     "@nx/esbuild": "20.3.0",
     "@radix-ui/react-slot": "^1.1.1",
+    "bun": "1.1.42",
+    "bun-types": "^1.1.42",
     "next": "15.1.2",
     "openai": "^4.77.0",
     "react": "19.0.0",
@@ -48,7 +50,7 @@
     "@nx/eslint": "20.3.0",
     "@nx/eslint-plugin": "20.3.0",
     "@nx/jest": "20.3.0",
-    "@nx/js": "20.3.0",
+    "@nx/js": "^20.3.0",
     "@nx/next": "20.3.0",
     "@nx/playwright": "20.3.0",
     "@nx/react": "20.3.0",
