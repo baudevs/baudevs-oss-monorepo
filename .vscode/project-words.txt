@@ -2,9 +2,12 @@ bau
 baudevs
 baudevs-monorepo
 baudevs-types
+ccpa
+CCPA
 cicd
 committerdate
 elif
+esnext
 github
 GITHUB
 hero
@@ -15,6 +18,8 @@ log-hero-logger
 logger
 logging
 magicusprime
+nipc
+NIPC
 openai
 playlistswap
 presentamator
@@ -42,7 +47,3 @@ worktree-remote-url
 worktrees
 Worktrees
 WORKTREES
-NIPC
-nipc
-CCPA
-ccpa
