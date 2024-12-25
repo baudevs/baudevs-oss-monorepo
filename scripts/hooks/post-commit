@@ -1,46 +1,89 @@
 #!/bin/sh
 
+# ANSI color codes that work across platforms
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+MAGENTA='\033[0;35m'
+CYAN='\033[0;36m'
+BOLD='\033[1m'
+NC='\033[0m' # No Color
+
+# Function to print the BauDevs logo
+print_logo() {
+  printf "${BLUE}${BOLD}"
+  printf "\n"
+  printf " ____                 ____                 \n"
+  printf "|  _ \              |  __ \                \n"
+  printf "| |_) | __ _ _   _ | |  | | _____   _____ \n"
+  printf "|  _ < / _\` | | | || |  | |/ _ \ \ / / __|\n"
+  printf "| |_) | (_| | |_| || |__| |  __/\ V /\__ \\\n"
+  printf "|____/ \__,_|\__,_||_____/ \___| \_/ |___/\n"
+  printf "\n"
+  printf "${NC}"
+}
+
+# Function to print a header box
+print_header() {
+  printf "\n${BLUE}${BOLD}╔═══════════════════════ 🎯 Post-Commit Hook ═══════════════════════╗${NC}\n"
+}
+
+# Function to print a section header
+print_section() {
+  printf "\n${CYAN}${BOLD}▶ %s${NC}\n" "$1"
+  printf "${CYAN}${BOLD}──────────────────────────────────────────────────────────────${NC}\n"
+}
+
+# Print the logo and main header
+print_logo
+print_header
+
 # Check if we're in a worktree
 GIT_DIR=$(git rev-parse --git-dir)
 if [ "$GIT_DIR" != ".git" ]; then
-  printf "\n🌳 \033[1;36mWorktree detected\033[0m - Skipping post-commit hook\n\n"
+  printf "${YELLOW}${BOLD}🌳 Status${NC}: ${RED}Skipping${NC} (Worktree detected)\n\n"
   exit 0
 fi
 
 # Skip if SKIP_POST_COMMIT is set
 if [ -n "$SKIP_POST_COMMIT" ]; then
-  printf "\n⏭️  \033[1;33mSKIP_POST_COMMIT\033[0m is set - Skipping post-commit hook\n\n"
+  printf "${YELLOW}${BOLD}⏭️  Status${NC}: ${RED}Skipping${NC} (SKIP_POST_COMMIT is set)\n\n"
   exit 0
 fi
 
-# Initialize nvm
+# Initialize nvm and set up environment
+print_section "🔧 Environment"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # Use the project's Node.js version
 if [ -f ".nvmrc" ]; then
-  printf "\n🔄 Loading Node version from .nvmrc\n"
-  nvm use
+  nvm use > /dev/null 2>&1
+  NODE_VERSION=$(node -v)
+  printf "📦 Node Version │ ${GREEN}%s${NC} (from .nvmrc)\n" "$NODE_VERSION"
 else
-  printf "\n⚠️  No .nvmrc found - Using default Node version\n"
-  nvm use default
+  nvm use default > /dev/null 2>&1
+  NODE_VERSION=$(node -v)
+  printf "📦 Node Version │ ${YELLOW}%s${NC} (default)\n" "$NODE_VERSION"
 fi
 
-# Get commit info
+# Get commit info and display in a table
+print_section "📊 Commit Details"
 COMMIT=$(git rev-parse HEAD)
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 AUTHOR=$(git log -1 --pretty=format:'%an')
 EMAIL=$(git log -1 --pretty=format:'%ae')
 
-printf "\n📊 \033[1;34mCommit Details\033[0m\n"
-printf "┌─────────────┬────────────────────────────────────────────┐\n"
-printf "│ Branch      │ %-44s │\n" "$BRANCH"
-printf "│ Commit      │ %-44s │\n" "$COMMIT"
-printf "│ Author      │ %-44s │\n" "$AUTHOR"
-printf "│ Email       │ %-44s │\n" "$EMAIL"
-printf "└─────────────┴────────────────────────────────────────────┘\n"
+printf "┌─────────────┬─────────────────────���──────────────────────────┐\n"
+printf "│ 🔖 Branch   │ %-48s │\n" "$BRANCH"
+printf "│ 🔨 Commit   │ %-48s │\n" "$COMMIT"
+printf "│ 👤 Author   │ %-48s │\n" "$AUTHOR"
+printf "│ 📧 Email    │ %-48s │\n" "$EMAIL"
+printf "└─────────────┴────────────────────────────────────────────────┘\n"
 
 # Check if this commit only contains version files
+print_section "🔍 Change Analysis"
 CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r HEAD)
 VERSION_FILES_ONLY=true
 for file in $CHANGED_FILES; do
@@ -51,7 +94,7 @@ for file in $CHANGED_FILES; do
 done
 
 if [ "$VERSION_FILES_ONLY" = true ]; then
-  printf "\n🔄 \033[1;33mOnly version files changed\033[0m - Skipping metadata generation\n\n"
+  printf "${YELLOW}${BOLD}ℹ️  Status${NC}: Skipping (Only version files changed)\n\n"
   exit 0
 fi
 
@@ -59,12 +102,27 @@ fi
 export SKIP_POST_COMMIT=1
 
 # Generate metadata
-printf "\n📝 \033[1;32mGenerating metadata\033[0m for commit \033[1;36m$COMMIT\033[0m\n"
+print_section "📝 Metadata Generation"
+printf "🚀 Processing │ Commit ${CYAN}${BOLD}%s${NC}\n" "$COMMIT"
+
 bun scripts/generate-repo-metadata.ts --author="$AUTHOR" --email="$EMAIL" --branch="$BRANCH" --commit="$COMMIT"
 
 # Add metadata files to git if they exist
 if [ -f "metadata-history.json" ] || [ -f "local-metadata.json" ]; then
-  printf "\n📦 \033[1;32mUpdating\033[0m metadata files in git\n"
+  print_section "📦 Git Update"
+  printf "┌─────────────┬────────────────────────────────────────────────┐\n"
+  printf "│ 📎 Status   │ Adding metadata files to staging               │\n"
   git add metadata-history.json local-metadata.json 2>/dev/null || true
-  git commit --amend --no-edit
+
+  # Create a conventional commit message for metadata update
+  COMMIT_MSG="chore(metadata): update repository metadata"
+  if [ -n "$CI" ]; then
+    COMMIT_MSG="$COMMIT_MSG [skip ci]"
+    printf "│ 🤖 CI Flag   │ Adding [skip ci] to commit message            │\n"
+  fi
+  printf "└─────────────┴────────────────────────────────────────────────┘\n"
+
+  # Use a new commit instead of amending to avoid triggering hooks again
+  SKIP_POST_COMMIT=1 git commit -m "$COMMIT_MSG"
+  printf "\n${GREEN}✅ Success${NC}: Metadata committed with message: ${BOLD}%s${NC}\n\n" "$COMMIT_MSG"
 fi
