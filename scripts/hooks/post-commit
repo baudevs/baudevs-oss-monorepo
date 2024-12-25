@@ -1,114 +1,70 @@
 #!/bin/sh
 
+# Check if we're in a worktree
+GIT_DIR=$(git rev-parse --git-dir)
+if [ "$GIT_DIR" != ".git" ]; then
+  printf "\n🌳 \033[1;36mWorktree detected\033[0m - Skipping post-commit hook\n\n"
+  exit 0
+fi
+
+# Skip if SKIP_POST_COMMIT is set
+if [ -n "$SKIP_POST_COMMIT" ]; then
+  printf "\n⏭️  \033[1;33mSKIP_POST_COMMIT\033[0m is set - Skipping post-commit hook\n\n"
+  exit 0
+fi
+
 # Initialize nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # Use the project's Node.js version
 if [ -f ".nvmrc" ]; then
+  printf "\n🔄 Loading Node version from .nvmrc\n"
   nvm use
 else
+  printf "\n⚠️  No .nvmrc found - Using default Node version\n"
   nvm use default
 fi
 
-# Add bun to PATH
-export PATH="$HOME/.bun/bin:$PATH"
-
-# Guard against recursive execution
-if [ -n "$SKIP_POST_COMMIT" ]; then
-  echo "🛑 Skipping post-commit hook (SKIP_POST_COMMIT is set)"
-  exit 0
-fi
-
-# Get list of changed files in the last commit
-echo "📋 Getting changed files..."
-CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r HEAD)
-echo "Changed files:"
-echo "$CHANGED_FILES"
-
-# Check if only version files were changed
-VERSION_PATTERN="(versions/.*\.json|metadata-history\.json|apps/baudevs-dashboard/public/(local-metadata\.json|metadata-history\.json|versions/.*\.json))$"
-NON_VERSION_FILES=$(echo "$CHANGED_FILES" | grep -v -E "$VERSION_PATTERN")
-
-if [ -z "$NON_VERSION_FILES" ]; then
-  echo "✨ Only version files were changed, skipping metadata generation"
-  exit 0
-fi
-
-echo "📦 Non-version files changed:"
-echo "$NON_VERSION_FILES"
-
-# Get the current git user info
-AUTHOR_NAME=$(git config user.name)
-AUTHOR_EMAIL=$(git config user.email)
-BRANCH=$(git rev-parse --abbrev-ref HEAD)
+# Get commit info
 COMMIT=$(git rev-parse HEAD)
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+AUTHOR=$(git log -1 --pretty=format:'%an')
+EMAIL=$(git log -1 --pretty=format:'%ae')
 
-# Check if gtimeout (from coreutils) or timeout is available
-if command -v gtimeout >/dev/null 2>&1; then
-  TIMEOUT_CMD="gtimeout"
-elif command -v timeout >/dev/null 2>&1; then
-  TIMEOUT_CMD="timeout"
-else
-  TIMEOUT_CMD=""
-fi
+printf "\n📊 \033[1;34mCommit Details\033[0m\n"
+printf "┌─────────────┬────────────────────────────────────────────┐\n"
+printf "│ Branch      │ %-44s │\n" "$BRANCH"
+printf "│ Commit      │ %-44s │\n" "$COMMIT"
+printf "│ Author      │ %-44s │\n" "$AUTHOR"
+printf "│ Email       │ %-44s │\n" "$EMAIL"
+printf "└─────────────┴────────────────────────────────────────────┘\n"
 
-# Generate metadata with a timeout if available
-echo "🔍 Generating repository metadata..."
-if [ -n "$TIMEOUT_CMD" ]; then
-  $TIMEOUT_CMD 30s "$HOME/.bun/bin/bun" run scripts/generate-repo-metadata.ts \
-    --author "$AUTHOR_NAME" \
-    --email "$AUTHOR_EMAIL" \
-    --branch "$BRANCH" \
-    --commit "$COMMIT" \
-    --local
-
-  if [ $? -eq 124 ]; then
-    echo "❌ Metadata generation timed out after 30 seconds"
-    exit 1
+# Check if this commit only contains version files
+CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r HEAD)
+VERSION_FILES_ONLY=true
+for file in $CHANGED_FILES; do
+  if [[ ! "$file" =~ versions/.*\.json$ ]] && [[ ! "$file" =~ metadata-history\.json$ ]] && [[ ! "$file" =~ local-metadata\.json$ ]]; then
+    VERSION_FILES_ONLY=false
+    break
   fi
-else
-  "$HOME/.bun/bin/bun" run scripts/generate-repo-metadata.ts \
-    --author "$AUTHOR_NAME" \
-    --email "$AUTHOR_EMAIL" \
-    --branch "$BRANCH" \
-    --commit "$COMMIT" \
-    --local
+done
+
+if [ "$VERSION_FILES_ONLY" = true ]; then
+  printf "\n🔄 \033[1;33mOnly version files changed\033[0m - Skipping metadata generation\n\n"
+  exit 0
 fi
 
-# Check if metadata files exist in root directory
-if [ ! -f "versions/latest.json" ] || [ ! -f "metadata-history.json" ]; then
-  echo "❌ Root metadata files not found"
-  exit 1
-fi
+# Set environment variable to prevent recursive execution
+export SKIP_POST_COMMIT=1
 
-# Copy to dashboard public directory
-echo "📋 Updating dashboard metadata..."
-mkdir -p apps/baudevs-dashboard/public/versions
+# Generate metadata
+printf "\n📝 \033[1;32mGenerating metadata\033[0m for commit \033[1;36m$COMMIT\033[0m\n"
+bun scripts/generate-repo-metadata.ts --author="$AUTHOR" --email="$EMAIL" --branch="$BRANCH" --commit="$COMMIT"
 
-# Copy files and check for errors
-if ! cp versions/latest.json apps/baudevs-dashboard/public/local-metadata.json; then
-  echo "❌ Failed to copy latest.json to local-metadata.json"
-  exit 1
-fi
-
-if ! cp metadata-history.json apps/baudevs-dashboard/public/metadata-history.json; then
-  echo "❌ Failed to copy metadata-history.json"
-  exit 1
-fi
-
-echo "✅ Successfully copied metadata files"
-
-# Check if metadata files changed
-echo "🔍 Checking for metadata changes..."
-if git diff --quiet apps/baudevs-dashboard/public/local-metadata.json apps/baudevs-dashboard/public/metadata-history.json; then
-  echo "✨ No metadata changes detected"
-else
-  echo "📝 Committing metadata changes..."
-  export SKIP_POST_COMMIT=1
-  git add apps/baudevs-dashboard/public/local-metadata.json apps/baudevs-dashboard/public/metadata-history.json
+# Add metadata files to git if they exist
+if [ -f "metadata-history.json" ] || [ -f "local-metadata.json" ]; then
+  printf "\n📦 \033[1;32mUpdating\033[0m metadata files in git\n"
+  git add metadata-history.json local-metadata.json 2>/dev/null || true
   git commit --amend --no-edit
-  unset SKIP_POST_COMMIT
 fi
-
-echo "✅ Post-commit hook completed successfully"
