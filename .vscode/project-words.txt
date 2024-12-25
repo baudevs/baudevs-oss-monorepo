@@ -42,3 +42,7 @@ worktree-remote-url
 worktrees
 Worktrees
 WORKTREES
+NIPC
+nipc
+CCPA
+ccpa

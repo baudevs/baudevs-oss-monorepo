@@ -1,14 +1,18 @@
 {
-	"folders": [
-		{
-			"path": "..",
-			"name": "baudevs-monorepo"
+  "folders": [
+    {
+      "path": "..",
+      "name": "baudevs-monorepo"
 		},
 		{
 			"path": "../../baudevs-monorepo.worktrees"
 		}
 	],
 	"settings": {
+    "npm.packageManager": "bun",
+    "terminal.integrated.env.osx": {
+      "PATH": "${env:PATH}:/Users/juandavidarroyave/.bun/bin"
+    },
 		"cSpell.caseSensitive": false,
 		"cSpell.customDictionaries": {
 			"project-words": {
@@ -67,6 +71,10 @@
     "apps/baudevs-dashboard/public/repoMetadata.json",
     "apps/baudevs-dashboard/public/local-metadata.json",
     "apps/baudevs-dashboard/public/metadata-history.json",
+    "metadata-history.json",
+    "**/*/generate-repo-metadata.ts",
+    "scripts/**/*",
+    "versions/**/*",
     "**/*/repoMetadata.json",
     "**/*/node_modules",
     "**/*/.gitignore",
@@ -77,7 +85,17 @@
     "**/*/.env.development",
     "**/*/.env.production",
     "**/*/.env.test",
-    ".vscode"
+    ".vscode",
+    ".nx-cache",
+    ".github",
+    ".worktrees",
+    ".husky",
+    ".git",
+    ".env",
+    ".env.local",
+    ".env.development",
+    ".env.production",
+    ".env.test"
 		],
 		"cSpell.languageSettings": [
       {
@@ -89,5 +107,6 @@
         "enabled": true,
       }
     ],
+    "nxConsole.nxWorkspacePath": "",
 	}
 }
