@@ -14,12 +14,12 @@ NC='\033[0m' # No Color
 print_logo() {
   printf "${BLUE}${BOLD}"
   printf "\n"
-  printf " ____                 ____                 \n"
-  printf "|  _ \              |  __ \                \n"
-  printf "| |_) | __ _ _   _ | |  | | _____   _____ \n"
-  printf "|  _ < / _\` | | | || |  | |/ _ \ \ / / __|\n"
-  printf "| |_) | (_| | |_| || |__| |  __/\ V /\__ \\\n"
-  printf "|____/ \__,_|\__,_||_____/ \___| \_/ |___/\n"
+  printf "  ____                 ____                  \n"
+  printf " |  _ \\               |  _ \\                \n"
+  printf " | |_) | __ _ _   _  | |  | | _____   _____ \n"
+  printf " |  _ < / _\` | | | | | |  | |/ _ \\ \\ / / __|\n"
+  printf " | |_) | (_| | |_| | | |__| |  __/\\ V /\\__ \\\n"
+  printf " |____/ \\__,_|\\__,_| |_____/ \\___| \\_/ |___/\n"
   printf "\n"
   printf "${NC}"
 }
@@ -75,7 +75,7 @@ BRANCH=$(git rev-parse --abbrev-ref HEAD)
 AUTHOR=$(git log -1 --pretty=format:'%an')
 EMAIL=$(git log -1 --pretty=format:'%ae')
 
-printf "┌─────────────┬─────────────────────���──────────────────────────┐\n"
+printf "┌─────────────┬────────────────────────────────────────────────┐\n"
 printf "│ 🔖 Branch   │ %-48s │\n" "$BRANCH"
 printf "│ 🔨 Commit   │ %-48s │\n" "$COMMIT"
 printf "│ 👤 Author   │ %-48s │\n" "$AUTHOR"
@@ -107,12 +107,36 @@ printf "🚀 Processing │ Commit ${CYAN}${BOLD}%s${NC}\n" "$COMMIT"
 
 bun scripts/generate-repo-metadata.ts --author="$AUTHOR" --email="$EMAIL" --branch="$BRANCH" --commit="$COMMIT"
 
+# Copy metadata files to dashboard public directory
+print_section "📋 Dashboard Update"
+printf "┌─────────────┬────────────────────────────────────────────────┐\n"
+printf "│ 📂 Action   │ Copying metadata files to dashboard            │\n"
+
+# Ensure the versions directory exists
+mkdir -p apps/baudevs-dashboard/public/versions
+
+# Copy metadata files
+if [ -f "metadata-history.json" ]; then
+  cp metadata-history.json apps/baudevs-dashboard/public/metadata-history.json
+  printf "│ 📄 History  │ ${GREEN}Copied${NC} metadata-history.json                  │\n"
+else
+  printf "│ 📄 History  │ ${RED}Missing${NC} metadata-history.json                  │\n"
+fi
+
+if [ -f "local-metadata.json" ]; then
+  cp local-metadata.json apps/baudevs-dashboard/public/local-metadata.json
+  printf "│ 📄 Local    │ ${GREEN}Copied${NC} local-metadata.json                    │\n"
+else
+  printf "│ 📄 Local    │ ${RED}Missing${NC} local-metadata.json                    │\n"
+fi
+printf "└─────────────┴────────────────────────────────────────────────┘\n"
+
 # Add metadata files to git if they exist
 if [ -f "metadata-history.json" ] || [ -f "local-metadata.json" ]; then
   print_section "📦 Git Update"
   printf "┌─────────────┬────────────────────────────────────────────────┐\n"
   printf "│ 📎 Status   │ Adding metadata files to staging               │\n"
-  git add metadata-history.json local-metadata.json 2>/dev/null || true
+  git add metadata-history.json local-metadata.json apps/baudevs-dashboard/public/metadata-history.json apps/baudevs-dashboard/public/local-metadata.json 2>/dev/null || true
 
   # Create a conventional commit message for metadata update
   COMMIT_MSG="chore(metadata): update repository metadata"
