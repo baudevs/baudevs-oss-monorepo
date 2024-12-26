@@ -13,13 +13,17 @@ NC='\033[0m' # No Color
 # Function to print the BauDevs logo
 print_logo() {
   printf "${BLUE}${BOLD}"
-  printf "\n"
-  printf "  ____                 ____                  \n"
-  printf " |  _ \\               |  _ \\                \n"
-  printf " | |_) | __ _ _   _  | |  | | _____   _____ \n"
-  printf " |  _ < / _\` | | | | | |  | |/ _ \\ \\ / / __|\n"
-  printf " | |_) | (_| | |_| | | |__| |  __/\\ V /\\__ \\\n"
-  printf " |____/ \\__,_|\\__,_| |_____/ \\___| \\_/ |___/\n"
+  printf " .----------------. .----------------. .----------------. .----------------. .----------------. .----------------. .----------------. \n"
+  printf "| .--------------. | .--------------. | .--------------. | .--------------. | .--------------. | .--------------. | .--------------. |\n"
+  printf "| |   ______     | | |      __      | | | _____  _____ | | |  ________    | | |  _________   | | | ____   ____  | | |    _______   | |\n"
+  printf "| |  |_   _ \    | | |     /  \     | | ||_   _||_   _|| | | |_   ___ \`.  | | | |_   ___  |  | | ||_  _| |_  _| | | |   /  ___  |  | |\n"
+  printf "| |    | |_) |   | | |    / /\ \    | | |  | |    | |  | | |   | |   \`. \ | | |   | |_  \_|  | | |  \ \   / /   | | |  |  (__ \_|  | |\n"
+  printf "| |    |  __'.   | | |   / ____ \   | | |  | '    ' |  | | |   | |    | | | | |   |  _|  _   | | |   \ \ / /    | | |   '.___\`-.   | |\n"
+  printf "| |   _| |__) |  | | | _/ /    \ \_ | | |   \ \`--' /   | | |  _| |___.' / | | |  _| |___/ |  | | |    \ ' /     | | |  |\`\____) |  | |\n"
+  printf "| |  |_______/   | | ||____|  |____|| | |    \`.__.'    | | | |________.'  | | | |_________|  | | |     \_/      | | |  |_______.'  | |\n"
+  printf "| |              | | |              | | |              | | |              | | |              | | |              | | |              | |\n"
+  printf "| '--------------' | '--------------' | '--------------' | '--------------' | '--------------' | '--------------' | '--------------' |\n"
+  printf " '----------------' '----------------' '----------------' '----------------' '----------------' '----------------' '----------------' \n"
   printf "\n"
   printf "${NC}"
 }
@@ -123,8 +127,8 @@ else
   printf "│ 📄 History  │ ${RED}Missing${NC} metadata-history.json                  │\n"
 fi
 
-if [ -f "local-metadata.json" ]; then
-  cp local-metadata.json apps/baudevs-dashboard/public/local-metadata.json
+if [ -f "versions/latest.json" ]; then
+  cp versions/latest.json apps/baudevs-dashboard/public/local-metadata.json
   printf "│ 📄 Local    │ ${GREEN}Copied${NC} local-metadata.json                    │\n"
 else
   printf "│ 📄 Local    │ ${RED}Missing${NC} local-metadata.json                    │\n"
@@ -132,11 +136,18 @@ fi
 printf "└─────────────┴────────────────────────────────────────────────┘\n"
 
 # Add metadata files to git if they exist
-if [ -f "metadata-history.json" ] || [ -f "local-metadata.json" ]; then
+if [ -f "metadata-history.json" ] || [ -f "versions/latest.json" ]; then
   print_section "📦 Git Update"
   printf "┌─────────────┬────────────────────────────────────────────────┐\n"
   printf "│ 📎 Status   │ Adding metadata files to staging               │\n"
-  git add metadata-history.json local-metadata.json apps/baudevs-dashboard/public/metadata-history.json apps/baudevs-dashboard/public/local-metadata.json 2>/dev/null || true
+
+  # Add root metadata files
+  git add metadata-history.json versions/latest.json 2>/dev/null || true
+  printf "│ 📝 Root     │ Added version files from root directory        │\n"
+
+  # Add dashboard metadata files
+  git add apps/baudevs-dashboard/public/metadata-history.json apps/baudevs-dashboard/public/local-metadata.json 2>/dev/null || true
+  printf "│ 📝 Dashboard│ Added version files to dashboard public        │\n"
 
   # Create a conventional commit message for metadata update
   COMMIT_MSG="chore(metadata): update repository metadata"

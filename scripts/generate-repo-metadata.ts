@@ -1,3 +1,5 @@
+/// <reference types="bun-types" />
+
 import { execSync } from "child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { join } from "path";
@@ -119,6 +121,15 @@ interface ProjectGraph {
     nodes: Record<string, ProjectGraphNode>;
     dependencies: Record<string, Array<{ target: string; type: string }>>;
   };
+}
+
+interface VersionMetadata {
+  timestamp: string;
+  author: string;
+  email: string;
+  branch: string;
+  commit: string;
+  data: RepoMetadata;
 }
 
 // Parse command line arguments
@@ -339,7 +350,7 @@ if (!existsSync(versionsDir)) {
 
 // Read existing metadata history or create new one
 const historyPath = join(rootDir, "metadata-history.json");
-let history: any[] = [];
+let history: VersionMetadata[] = [];
 if (existsSync(historyPath)) {
   console.log(`📖 Reading existing metadata history: ${historyPath}`);
   history = JSON.parse(readFileSync(historyPath, "utf-8"));
@@ -396,7 +407,7 @@ if (values.local) {
 
   // Copy latest version to dashboard
   const dashboardLatestPath = join(dashboardPublicDir, "local-metadata.json");
-  console.log(`📋 Copying latest version to dashboard: ${dashboardLatestPath}`);
+  console.log(`�� Copying latest version to dashboard: ${dashboardLatestPath}`);
   writeFileSync(dashboardLatestPath, JSON.stringify(metadata, null, 2));
 
   // Copy history to dashboard
