@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { aiSummaryHandler } from './src/api/ai-summary';
 import type { IncomingMessage } from 'http';
+import { join } from 'path';
 
 interface AISummaryRequest {
   prompt: string;
@@ -14,6 +15,7 @@ interface ExtendedRequest extends IncomingMessage {
 
 export default defineConfig({
   root: __dirname,
+  publicDir: join(__dirname, 'public'),
   cacheDir: '../../node_modules/.vite/baudevs-dashboard',
   base: process.env.GITHUB_ACTIONS ? '/baudevs-monorepo/' : '/',
 
@@ -28,6 +30,7 @@ export default defineConfig({
         manualChunks: undefined,
       },
     },
+    emptyOutDir: true
   },
 
   server: {

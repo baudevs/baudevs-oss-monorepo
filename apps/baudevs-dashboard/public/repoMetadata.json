@@ -5,7 +5,7 @@
   "gitVersion": "git version 2.39.5 (Apple Git-154)",
   "nxVersion": "20.3.0",
   "nodeVersion": "v22.6.0",
-  "bunVersion": "1.1.40",
+  "bunVersion": "1.1.42",
   "worktrees": [
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo",

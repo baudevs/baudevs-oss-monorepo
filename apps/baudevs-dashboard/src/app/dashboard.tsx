@@ -338,6 +338,7 @@ function StatsChangeCard({ stat, change }: { stat: string; change: StatChange })
 
 function VersionComparison() {
   const [history, setHistory] = useState<MetadataHistory | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [selectedVersions, setSelectedVersions] = useState<[string, string]>(['', '']);
   const [comparisonData, setComparisonData] = useState<ComparisonData | null>(null);
   const [filter, setFilter] = useState<'all' | 'local' | 'remote'>('all');
@@ -461,7 +462,16 @@ function VersionComparison() {
     return filter === 'local' ? !v.isRemote : v.isRemote;
   }) || [];
 
-  if (!history) return null;
+  if (!history) {
+    if (error) {
+      return (
+        <Alert severity="error" sx={{ mb: 2 }}>
+          {error}
+        </Alert>
+      );
+    }
+    return null;
+  }
 
   return (
     <Paper elevation={1} sx={{ p: 2, mb: 3 }}>

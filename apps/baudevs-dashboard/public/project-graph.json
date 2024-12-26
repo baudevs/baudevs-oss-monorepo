@@ -78,15 +78,25 @@
         "data": {
           "root": "apps/baudevs-dashboard",
           "projectType": "application",
-          "metadata": {},
+          "metadata": {
+            "targetGroups": {},
+            "js": {
+              "packageName": "baudevs-dashboard"
+            }
+          },
           "targets": {
             "build": {
+              "executor": "@nx/vite:build",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "defaultConfiguration": "production",
               "options": {
-                "cwd": "apps/baudevs-dashboard",
-                "command": "vite build",
+                "outputPath": "dist/apps/baudevs-dashboard",
                 "verbose": true
               },
-              "cache": true,
+              "configurations": {},
+              "parallelism": true,
               "dependsOn": [
                 "^build"
               ],
@@ -95,75 +105,22 @@
                 "production",
                 "^production"
               ],
-              "outputs": [
-                "{workspaceRoot}/dist/apps/baudevs-dashboard"
-              ],
-              "metadata": {
-                "technologies": [
-                  "vite"
-                ],
-                "description": "Run Vite build",
-                "help": {
-                  "command": "bun vite build --help",
-                  "example": {
-                    "options": {
-                      "sourcemap": true,
-                      "manifest": "manifest.json"
-                    }
-                  }
-                }
-              },
-              "executor": "nx:run-commands",
-              "configurations": {},
-              "parallelism": true
+              "cache": true
             },
             "serve": {
+              "executor": "@nx/vite:dev-server",
               "options": {
-                "cwd": "apps/baudevs-dashboard",
-                "command": "vite serve",
+                "buildTarget": "baudevs-dashboard:build",
                 "verbose": true
               },
-              "metadata": {
-                "technologies": [
-                  "vite"
-                ],
-                "description": "Starts Vite dev server",
-                "help": {
-                  "command": "bun vite --help",
-                  "example": {
-                    "options": {
-                      "port": 3000
-                    }
-                  }
-                }
-              },
-              "executor": "nx:run-commands",
               "configurations": {},
               "parallelism": true
             },
             "preview": {
-              "dependsOn": [
-                "build"
-              ],
+              "executor": "@nx/vite:preview-server",
               "options": {
-                "cwd": "apps/baudevs-dashboard",
-                "command": "vite preview"
+                "buildTarget": "baudevs-dashboard:build"
               },
-              "metadata": {
-                "technologies": [
-                  "vite"
-                ],
-                "description": "Locally preview Vite production build",
-                "help": {
-                  "command": "bun vite preview --help",
-                  "example": {
-                    "options": {
-                      "port": 3000
-                    }
-                  }
-                }
-              },
-              "executor": "nx:run-commands",
               "configurations": {},
               "parallelism": true
             },
@@ -205,12 +162,23 @@
               "executor": "nx:run-commands",
               "configurations": {},
               "parallelism": true
+            },
+            "release-publish": {
+              "executor": "@nx/vite:build",
+              "options": {
+                "buildTarget": "baudevs-dashboard:build",
+                "publish": false
+              },
+              "configurations": {},
+              "parallelism": true
             }
           },
+          "sourceRoot": "apps/baudevs-dashboard",
           "name": "baudevs-dashboard",
+          "tags": [
+            "npm:private"
+          ],
           "$schema": "../../node_modules/nx/schemas/project-schema.json",
-          "sourceRoot": "apps/baudevs-dashboard/src",
-          "tags": [],
           "implicitDependencies": []
         }
       },

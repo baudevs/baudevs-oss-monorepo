@@ -1,8 +1,4 @@
 {
-  "cli": {
-    "packageManager": "bun",
-    "analytics": false
-  },
   "targetDefaults": {
     "e2e-ci--**/*": {
       "dependsOn": ["^build"]
@@ -59,13 +55,6 @@
     "packagesDir": "packages"
   },
   "plugins": [
-    {
-      "plugin": "@nx/js/plugin",
-      "options": {
-        "packageManager": "bun",
-        "binaryPath": "/Users/juandavidarroyave/.bun/bin/bun"
-      }
-    },
     {
       "plugin": "@nx/next/plugin",
       "options": {
@@ -148,7 +137,7 @@
       "conventionalCommits": true
     }
   },
-  "useDaemonProcess": true,
+  "useDaemonProcess": false,
   "cacheDirectory": ".nx-cache",
   "defaultBase": "main"
 }

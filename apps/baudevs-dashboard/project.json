@@ -1,9 +1,36 @@
 {
   "name": "baudevs-dashboard",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/baudevs-dashboard/src",
   "projectType": "application",
   "tags": [],
+  "sourceRoot": "apps/baudevs-dashboard",
   "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/baudevs-dashboard"
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "options": {
+        "buildTarget": "baudevs-dashboard:build"
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "options": {
+        "buildTarget": "baudevs-dashboard:build"
+      }
+    },
+    "release-publish": {
+      "executor": "@nx/vite:build",
+      "options": {
+        "buildTarget": "baudevs-dashboard:build",
+        "publish": false
+      }
     }
+  }
 }
