@@ -25635,5 +25635,2837 @@
         "totalContributors": 0
       }
     }
+  },
+  {
+    "timestamp": "2024-12-26T07:40:31.641Z",
+    "author": "Juan Arroyave",
+    "email": "juan@scalista.com",
+    "branch": "staging",
+    "commit": "ac74009b7e64bfb2dcbb6ae5e15deb6835940639",
+    "data": {
+      "repoPath": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
+      "defaultBranch": "staging",
+      "generatedAt": "2024-12-26T07:40:29.693Z",
+      "gitVersion": "git version 2.39.5 (Apple Git-154)",
+      "nxVersion": "20.3.0",
+      "nodeVersion": "v22.6.0",
+      "bunVersion": "1.1.42",
+      "worktrees": [
+        {
+          "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
+          "branch": "staging",
+          "commit": "ac74009b7e64bfb2dcbb6ae5e15deb6835940639",
+          "lastActivity": "Thu Dec 26 08:40:26 2024 +0100"
+        },
+        {
+          "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo.worktrees/bau-cms-cli",
+          "branch": "detached",
+          "commit": "05ad5ed7b22b80ed2b7ae3f1a34b448800fd5faf",
+          "lastActivity": "Wed Dec 25 09:29:48 2024 +0100"
+        },
+        {
+          "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo.worktrees/bau-cms-core",
+          "branch": "feature/bau-cms-core",
+          "commit": "56097df190454f1a831d6eb8468d27dcac7e732d",
+          "lastActivity": "Sat Dec 21 09:54:12 2024 +0100"
+        },
+        {
+          "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo.worktrees/bau-cms-example",
+          "branch": "feature/bau-cms-example",
+          "commit": "9e8e65b115a4f6ff129afbdb31118fd04d2af42f",
+          "lastActivity": "Sun Dec 22 08:54:29 2024 +0100"
+        },
+        {
+          "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo.worktrees/baudevs-dashboard",
+          "branch": "feature/dashboard-app",
+          "commit": "90026e2686428eee9087f631a50d1e78e04a49c6",
+          "lastActivity": "Sun Dec 22 20:57:43 2024 +0100"
+        },
+        {
+          "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo.worktrees/develop",
+          "branch": "develop",
+          "commit": "b507a04f34616976663a76bd5c6301661907b2a4",
+          "lastActivity": "Mon Dec 23 09:32:03 2024 +0100"
+        }
+      ],
+      "nxProjects": [
+        {
+          "name": "@baudevs/cmsTemplates",
+          "type": "library",
+          "root": "libs/bau-cms-templates",
+          "sourceRoot": "libs/bau-cms-templates/src",
+          "tags": [
+            "npm:public"
+          ],
+          "dependencies": [
+            "@baudevs/cmsCore"
+          ],
+          "lastCommits": [
+            {
+              "hash": "869ea1e0eb63e802527524c3a3f53215d85d34e5",
+              "author": "Juan Arroyave",
+              "date": "Sun Dec 22 18:46:40 2024 +0100",
+              "message": "breaking: remove @baudevs/dashboard update project configuration and dependencies",
+              "branch": "develop~9",
+              "files": [
+                ".gitignore",
+                "apps/bau-cms-example/package.json",
+                "apps/bau-cms-example/project.json",
+                "apps/baudevs-dashboard-e2e/playwright.config.ts",
+                "apps/baudevs-dashboard-e2e/project.json",
+                "apps/baudevs-dashboard-e2e/src/example.spec.ts",
+                "apps/baudevs-dashboard-e2e/tsconfig.json",
+                "apps/baudevs-dashboard/.gitignore",
+                "apps/baudevs-dashboard/README.md",
+                "apps/baudevs-dashboard/index.html",
+                "apps/baudevs-dashboard/index.ts",
+                "apps/baudevs-dashboard/package.json",
+                "apps/baudevs-dashboard/postcss.config.js",
+                "apps/baudevs-dashboard/project.json",
+                "apps/baudevs-dashboard/public/favicon.ico",
+                "apps/baudevs-dashboard/src/app/app.module.css",
+                "apps/baudevs-dashboard/src/app/app.tsx",
+                "apps/baudevs-dashboard/src/app/nx-welcome.tsx",
+                "apps/baudevs-dashboard/src/assets/.gitkeep",
+                "apps/baudevs-dashboard/src/main.tsx",
+                "apps/baudevs-dashboard/src/styles.css",
+                "apps/baudevs-dashboard/tailwind.config.js",
+                "apps/baudevs-dashboard/tsconfig.app.json",
+                "apps/baudevs-dashboard/tsconfig.json",
+                "apps/baudevs-dashboard/vite.config.ts",
+                "bun.lockb",
+                "libs/bau-cms-admin/project.json",
+                "libs/bau-cms-core/project.json",
+                "libs/bau-cms-editor/project.json",
+                "libs/bau-cms-templates/project.json",
+                "nx.json",
+                "package.json",
+                "packages/bau-cms-cli/project.json",
+                "tsconfig.base.json"
+              ],
+              "nxProjects": [
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsEditor",
+                "@baudevs/cmsTemplates",
+                "@baudevs/cli"
+              ]
+            },
+            {
+              "hash": "c7d79b8c9da644cc312dcb6830c392a3a6bd9698",
+              "author": "Juan Arroyave",
+              "date": "Sat Dec 21 09:53:19 2024 +0100",
+              "message": "WIP: Working chanches acrross bau-cms libraries and example APP. Nothing functional [ci-skip]",
+              "branch": "develop~23",
+              "files": [
+                ".gitignore",
+                "apps/bau-cms-example/.gitignore",
+                "apps/bau-cms-example/README.md",
+                "apps/bau-cms-example/eslint.config.mjs",
+                "apps/bau-cms-example/next.config.ts",
+                "apps/bau-cms-example/package.json",
+                "apps/bau-cms-example/postcss.config.mjs",
+                "apps/bau-cms-example/public/file.svg",
+                "apps/bau-cms-example/public/globe.svg",
+                "apps/bau-cms-example/public/next.svg",
+                "apps/bau-cms-example/public/vercel.svg",
+                "apps/bau-cms-example/public/window.svg",
+                "apps/bau-cms-example/src/app/[slug]/page.tsx",
+                "apps/bau-cms-example/src/app/admin/content/edit/page.tsx",
+                "apps/bau-cms-example/src/app/admin/layout.tsx",
+                "apps/bau-cms-example/src/app/admin/page.tsx",
+                "apps/bau-cms-example/src/app/favicon.ico",
+                "apps/bau-cms-example/src/app/globals.css",
+                "apps/bau-cms-example/src/app/layout.tsx",
+                "apps/bau-cms-example/src/app/page.tsx",
+                "apps/bau-cms-example/src/config/i18n.config.ts",
+                "apps/bau-cms-example/src/lib/cms.ts",
+                "apps/bau-cms-example/src/middleware.ts",
+                "apps/bau-cms-example/tailwind.config.ts",
+                "apps/bau-cms-example/tsconfig.json",
+                "bun.lockb",
+                "libs/bau-cms-admin/.swcrc",
+                "libs/bau-cms-admin/README.md",
+                "libs/bau-cms-admin/eslint.config.mjs",
+                "libs/bau-cms-admin/jest.config.ts",
+                "libs/bau-cms-admin/package.json",
+                "libs/bau-cms-admin/project.json",
+                "libs/bau-cms-admin/src/index.ts",
+                "libs/bau-cms-admin/src/lib/bau-cms-admin.spec.ts",
+                "libs/bau-cms-admin/src/lib/bau-cms-admin.ts",
+                "libs/bau-cms-admin/src/lib/components/AdminLayout.tsx",
+                "libs/bau-cms-admin/src/lib/components/Sidebar.tsx",
+                "libs/bau-cms-admin/tsconfig.json",
+                "libs/bau-cms-admin/tsconfig.lib.json",
+                "libs/bau-cms-admin/tsconfig.spec.json",
+                "libs/bau-cms-cli/.swcrc",
+                "libs/bau-cms-cli/README.md",
+                "libs/bau-cms-cli/eslint.config.mjs",
+                "libs/bau-cms-cli/jest.config.ts",
+                "libs/bau-cms-cli/package.json",
+                "libs/bau-cms-cli/project.json",
+                "libs/bau-cms-cli/src/index.ts",
+                "libs/bau-cms-cli/src/lib/bau-cms-cli.spec.ts",
+                "libs/bau-cms-cli/src/lib/bau-cms-cli.ts",
+                "libs/bau-cms-cli/src/lib/commands/init.ts",
+                "libs/bau-cms-cli/src/lib/commands/migrate.ts",
+                "libs/bau-cms-cli/tsconfig.json",
+                "libs/bau-cms-cli/tsconfig.lib.json",
+                "libs/bau-cms-cli/tsconfig.spec.json",
+                "libs/bau-cms-core/.swcrc",
+                "libs/bau-cms-core/README.md",
+                "libs/bau-cms-core/eslint.config.mjs",
+                "libs/bau-cms-core/jest.config.ts",
+                "libs/bau-cms-core/package.json",
+                "libs/bau-cms-core/project.json",
+                "libs/bau-cms-core/src/index.ts",
+                "libs/bau-cms-core/src/lib/bau-cms-core.spec.ts",
+                "libs/bau-cms-core/src/lib/bau-cms-core.ts",
+                "libs/bau-cms-core/src/lib/content.spec.ts",
+                "libs/bau-cms-core/src/lib/content.ts",
+                "libs/bau-cms-core/src/lib/database/client.ts",
+                "libs/bau-cms-core/src/lib/database/schema.ts",
+                "libs/bau-cms-core/src/lib/types/index.ts",
+                "libs/bau-cms-core/tsconfig.json",
+                "libs/bau-cms-core/tsconfig.lib.json",
+                "libs/bau-cms-core/tsconfig.spec.json",
+                "libs/bau-cms-templates/package.json",
+                "libs/bau-cms-templates/src/index.ts",
+                "libs/bau-cms-templates/src/lib/templates/BlogPost.tsx",
+                "libs/bau-cms-templates/tsconfig.json",
+                "tsconfig.base.json"
+              ],
+              "nxProjects": [
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsTemplates",
+                "@baudevs/cmsTemplates",
+                "@baudevs/cmsTemplates",
+                "@baudevs/cmsTemplates"
+              ]
+            }
+          ],
+          "contributors": [],
+          "metadata": {
+            "targets": {
+              "build": {
+                "executor": "nx:run-script",
+                "options": {
+                  "script": "build",
+                  "verbose": true
+                },
+                "metadata": {
+                  "scriptContent": "tsc",
+                  "runCommand": "bun run build -- undefined"
+                },
+                "configurations": {},
+                "parallelism": true,
+                "dependsOn": [
+                  "^build"
+                ],
+                "inputs": [
+                  "default",
+                  "production",
+                  "^production"
+                ],
+                "cache": true
+              },
+              "dev": {
+                "executor": "nx:run-script",
+                "options": {
+                  "script": "dev"
+                },
+                "metadata": {
+                  "scriptContent": "tsc --watch",
+                  "runCommand": "bun run dev -- undefined"
+                },
+                "configurations": {},
+                "parallelism": true
+              },
+              "nx-release-publish": {
+                "executor": "@nx/js:release-publish",
+                "dependsOn": [
+                  "^nx-release-publish"
+                ],
+                "options": {},
+                "configurations": {},
+                "parallelism": true
+              }
+            },
+            "packageName": "@baudevs/bau-cms-templates",
+            "targetGroups": {
+              "NPM Scripts": [
+                "build",
+                "dev"
+              ]
+            }
+          }
+        },
+        {
+          "name": "baudevs-dashboard",
+          "type": "application",
+          "root": "apps/baudevs-dashboard",
+          "sourceRoot": "apps/baudevs-dashboard",
+          "tags": [
+            "npm:private"
+          ],
+          "dependencies": [],
+          "lastCommits": [
+            {
+              "hash": "38c22439d0d8537b0cf29eb506fedf4833833d9f",
+              "author": "Juan Arroyave",
+              "date": "Thu Dec 26 08:39:43 2024 +0100",
+              "message": "chore(metadata): update repository metadata",
+              "branch": "staging~1",
+              "files": [
+                "apps/baudevs-dashboard/public/local-metadata.json",
+                "apps/baudevs-dashboard/public/metadata-history.json",
+                "metadata-history.json",
+                "versions/latest.json"
+              ],
+              "nxProjects": [
+                "baudevs-dashboard",
+                "baudevs-dashboard"
+              ]
+            },
+            {
+              "hash": "3653c57aa22c801a247bb029a74baf7e47375ea2",
+              "author": "Juan Arroyave",
+              "date": "Thu Dec 26 08:39:43 2024 +0100",
+              "message": "feat(baudevs-dashboard): initialize baudevs-dashboard application with Vite integration",
+              "branch": "staging~2",
+              "files": [
+                "apps/baudevs-dashboard/package.json",
+                "apps/baudevs-dashboard/project.json",
+                "apps/baudevs-dashboard/public/project-graph.json",
+                "apps/baudevs-dashboard/public/repoMetadata.json",
+                "apps/baudevs-dashboard/src/app/dashboard.tsx",
+                "apps/baudevs-dashboard/tsconfig.app.json",
+                "apps/baudevs-dashboard/tsconfig.json",
+                "apps/baudevs-dashboard/vite.config.ts",
+                "bun.lockb",
+                "nx.json"
+              ],
+              "nxProjects": [
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard"
+              ]
+            },
+            {
+              "hash": "728be5dc92240266b369797753f19eaaa8c3f7bb",
+              "author": "Juan Arroyave",
+              "date": "Thu Dec 26 08:35:29 2024 +0100",
+              "message": "chore(metadata): update repository metadata",
+              "branch": "staging~3",
+              "files": [
+                "apps/baudevs-dashboard/public/local-metadata.json",
+                "apps/baudevs-dashboard/public/metadata-history.json",
+                "metadata-history.json",
+                "versions/latest.json"
+              ],
+              "nxProjects": [
+                "baudevs-dashboard",
+                "baudevs-dashboard"
+              ]
+            },
+            {
+              "hash": "e5feede2094927c8e8533dc8e2d39c3ca399da3e",
+              "author": "Juan Arroyave",
+              "date": "Thu Dec 26 08:35:29 2024 +0100",
+              "message": "chore: update project configuration and add dashboard files",
+              "branch": "staging~4",
+              "files": [
+                ".markdownlint.json",
+                "PRIVACY_POLICY.md",
+                "apps/baudevs-dashboard/.gitignore",
+                "apps/baudevs-dashboard/README.md",
+                "package.json",
+                "tsconfig.base.json"
+              ],
+              "nxProjects": [
+                "baudevs-dashboard",
+                "baudevs-dashboard"
+              ]
+            },
+            {
+              "hash": "cfb355a1d1b0abd367fa00a52272beb1a9aa3298",
+              "author": "Juan Arroyave",
+              "date": "Wed Dec 25 12:02:53 2024 +0100",
+              "message": "chore(metadata): update repository metadata",
+              "branch": "staging~8",
+              "files": [
+                "apps/baudevs-dashboard/public/local-metadata.json",
+                "apps/baudevs-dashboard/public/metadata-history.json",
+                "metadata-history.json",
+                "versions/latest.json"
+              ],
+              "nxProjects": [
+                "baudevs-dashboard",
+                "baudevs-dashboard"
+              ]
+            },
+            {
+              "hash": "69ac1e9366a4b824e001144b2aff56f71c3f069b",
+              "author": "Juan Arroyave",
+              "date": "Wed Dec 25 09:13:33 2024 +0100",
+              "message": "feat: update metadata generation and improve error handling in dashboard",
+              "branch": "remotes/origin/staging~1",
+              "files": [
+                "TERMS_AND_CONDITIONS.md",
+                "apps/baudevs-dashboard/public/local-metadata.json",
+                "apps/baudevs-dashboard/public/metadata-history.json",
+                "apps/baudevs-dashboard/src/app/dashboard.tsx",
+                "apps/baudevs-dashboard/vite.config.ts",
+                "bun.lockb",
+                "metadata-history.json",
+                "versions/latest.json"
+              ],
+              "nxProjects": [
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard"
+              ]
+            },
+            {
+              "hash": "93ee20014d31de4f1f90500e88ef203d5d8062f7",
+              "author": "Juan Arroyave",
+              "date": "Tue Dec 24 11:37:46 2024 +0100",
+              "message": "feat: enhance metadata generation in dashboard workflow",
+              "branch": "remotes/origin/staging~2",
+              "files": [
+                ".github/workflows/dashboard.yml",
+                "apps/baudevs-dashboard/public/local-metadata.json",
+                "apps/baudevs-dashboard/public/metadata-history.json"
+              ],
+              "nxProjects": [
+                "baudevs-dashboard",
+                "baudevs-dashboard"
+              ]
+            },
+            {
+              "hash": "02c2183df2f749dbe9f136827b4c858c693add8c",
+              "author": "Juan Arroyave",
+              "date": "Tue Dec 24 11:27:05 2024 +0100",
+              "message": "feat: enhance post-commit hook for improved metadata generation",
+              "branch": "remotes/origin/staging~4",
+              "files": [
+                ".gitignore",
+                "LICENSE.md",
+                "PRIVACY_POLICY.md",
+                "README.md",
+                "TERMS_AND_CONDITIONS.md",
+                "apps/baudevs-dashboard/public/local-metadata.json",
+                "apps/baudevs-dashboard/public/metadata-history.json",
+                "apps/baudevs-dashboard/public/versions/1735027087697-staging-juan-scalista-com-028a88d.json",
+                "apps/baudevs-dashboard/tsconfig.json",
+                "metadata-history.json",
+                "scripts/hooks/post-commit",
+                "versions/latest.json"
+              ],
+              "nxProjects": [
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard"
+              ]
+            },
+            {
+              "hash": "8e2b3e6696854baf730865b78f0f14d374dd58b8",
+              "author": "Juan Arroyave",
+              "date": "Tue Dec 24 09:28:23 2024 +0100",
+              "message": "test: update README to test post-commit hook with bun path",
+              "branch": "remotes/origin/staging~5",
+              "files": [
+                "README.md",
+                "apps/baudevs-dashboard/public/local-metadata.json",
+                "apps/baudevs-dashboard/public/metadata-history.json"
+              ],
+              "nxProjects": [
+                "baudevs-dashboard",
+                "baudevs-dashboard"
+              ]
+            },
+            {
+              "hash": "bc77537b698b6d43e3ade3c3d88bb04a0b726885",
+              "author": "Juan Arroyave",
+              "date": "Tue Dec 24 08:47:44 2024 +0100",
+              "message": "refactor: improve post-commit hook logic for version file detection",
+              "branch": "remotes/origin/staging~15",
+              "files": [
+                "apps/baudevs-dashboard/public/local-metadata.json",
+                "apps/baudevs-dashboard/public/metadata-history.json",
+                "scripts/hooks/post-commit"
+              ],
+              "nxProjects": [
+                "baudevs-dashboard",
+                "baudevs-dashboard"
+              ]
+            }
+          ],
+          "contributors": [],
+          "metadata": {
+            "targets": {
+              "build": {
+                "executor": "@nx/vite:build",
+                "outputs": [
+                  "{options.outputPath}"
+                ],
+                "defaultConfiguration": "production",
+                "options": {
+                  "outputPath": "dist/apps/baudevs-dashboard",
+                  "verbose": true
+                },
+                "configurations": {},
+                "parallelism": true,
+                "dependsOn": [
+                  "^build"
+                ],
+                "inputs": [
+                  "default",
+                  "production",
+                  "^production"
+                ],
+                "cache": true
+              },
+              "serve": {
+                "executor": "@nx/vite:dev-server",
+                "options": {
+                  "buildTarget": "baudevs-dashboard:build",
+                  "verbose": true
+                },
+                "configurations": {},
+                "parallelism": true
+              },
+              "preview": {
+                "executor": "@nx/vite:preview-server",
+                "options": {
+                  "buildTarget": "baudevs-dashboard:build"
+                },
+                "configurations": {},
+                "parallelism": true
+              },
+              "serve-static": {
+                "executor": "@nx/web:file-server",
+                "options": {
+                  "buildTarget": "build",
+                  "spa": true
+                },
+                "configurations": {},
+                "parallelism": true
+              },
+              "typecheck": {
+                "cache": true,
+                "inputs": [
+                  "production",
+                  "^production",
+                  {
+                    "externalDependencies": [
+                      "typescript"
+                    ]
+                  }
+                ],
+                "options": {
+                  "cwd": "apps/baudevs-dashboard",
+                  "command": "tsc --noEmit -p tsconfig.app.json"
+                },
+                "metadata": {
+                  "description": "Run Typechecking",
+                  "help": {
+                    "command": "bun tsc --help -p tsconfig.app.json",
+                    "example": {
+                      "options": {
+                        "noEmit": true
+                      }
+                    }
+                  }
+                },
+                "executor": "nx:run-commands",
+                "configurations": {},
+                "parallelism": true
+              },
+              "release-publish": {
+                "executor": "@nx/vite:build",
+                "options": {
+                  "buildTarget": "baudevs-dashboard:build",
+                  "publish": false
+                },
+                "configurations": {},
+                "parallelism": true
+              }
+            },
+            "packageName": "baudevs-dashboard",
+            "targetGroups": {}
+          }
+        },
+        {
+          "name": "@baudevs/bauCmsNextExample",
+          "type": "application",
+          "root": "apps/bau-cms-example",
+          "sourceRoot": "apps/bau-cms-example/src",
+          "tags": [
+            "npm:private"
+          ],
+          "dependencies": [
+            "@baudevs/cmsAdmin",
+            "@baudevs/cmsCore",
+            "@baudevs/cmsEditor"
+          ],
+          "lastCommits": [
+            {
+              "hash": "869ea1e0eb63e802527524c3a3f53215d85d34e5",
+              "author": "Juan Arroyave",
+              "date": "Sun Dec 22 18:46:40 2024 +0100",
+              "message": "breaking: remove @baudevs/dashboard update project configuration and dependencies",
+              "branch": "develop~9",
+              "files": [
+                ".gitignore",
+                "apps/bau-cms-example/package.json",
+                "apps/bau-cms-example/project.json",
+                "apps/baudevs-dashboard-e2e/playwright.config.ts",
+                "apps/baudevs-dashboard-e2e/project.json",
+                "apps/baudevs-dashboard-e2e/src/example.spec.ts",
+                "apps/baudevs-dashboard-e2e/tsconfig.json",
+                "apps/baudevs-dashboard/.gitignore",
+                "apps/baudevs-dashboard/README.md",
+                "apps/baudevs-dashboard/index.html",
+                "apps/baudevs-dashboard/index.ts",
+                "apps/baudevs-dashboard/package.json",
+                "apps/baudevs-dashboard/postcss.config.js",
+                "apps/baudevs-dashboard/project.json",
+                "apps/baudevs-dashboard/public/favicon.ico",
+                "apps/baudevs-dashboard/src/app/app.module.css",
+                "apps/baudevs-dashboard/src/app/app.tsx",
+                "apps/baudevs-dashboard/src/app/nx-welcome.tsx",
+                "apps/baudevs-dashboard/src/assets/.gitkeep",
+                "apps/baudevs-dashboard/src/main.tsx",
+                "apps/baudevs-dashboard/src/styles.css",
+                "apps/baudevs-dashboard/tailwind.config.js",
+                "apps/baudevs-dashboard/tsconfig.app.json",
+                "apps/baudevs-dashboard/tsconfig.json",
+                "apps/baudevs-dashboard/vite.config.ts",
+                "bun.lockb",
+                "libs/bau-cms-admin/project.json",
+                "libs/bau-cms-core/project.json",
+                "libs/bau-cms-editor/project.json",
+                "libs/bau-cms-templates/project.json",
+                "nx.json",
+                "package.json",
+                "packages/bau-cms-cli/project.json",
+                "tsconfig.base.json"
+              ],
+              "nxProjects": [
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsEditor",
+                "@baudevs/cmsTemplates",
+                "@baudevs/cli"
+              ]
+            },
+            {
+              "hash": "c7d79b8c9da644cc312dcb6830c392a3a6bd9698",
+              "author": "Juan Arroyave",
+              "date": "Sat Dec 21 09:53:19 2024 +0100",
+              "message": "WIP: Working chanches acrross bau-cms libraries and example APP. Nothing functional [ci-skip]",
+              "branch": "develop~23",
+              "files": [
+                ".gitignore",
+                "apps/bau-cms-example/.gitignore",
+                "apps/bau-cms-example/README.md",
+                "apps/bau-cms-example/eslint.config.mjs",
+                "apps/bau-cms-example/next.config.ts",
+                "apps/bau-cms-example/package.json",
+                "apps/bau-cms-example/postcss.config.mjs",
+                "apps/bau-cms-example/public/file.svg",
+                "apps/bau-cms-example/public/globe.svg",
+                "apps/bau-cms-example/public/next.svg",
+                "apps/bau-cms-example/public/vercel.svg",
+                "apps/bau-cms-example/public/window.svg",
+                "apps/bau-cms-example/src/app/[slug]/page.tsx",
+                "apps/bau-cms-example/src/app/admin/content/edit/page.tsx",
+                "apps/bau-cms-example/src/app/admin/layout.tsx",
+                "apps/bau-cms-example/src/app/admin/page.tsx",
+                "apps/bau-cms-example/src/app/favicon.ico",
+                "apps/bau-cms-example/src/app/globals.css",
+                "apps/bau-cms-example/src/app/layout.tsx",
+                "apps/bau-cms-example/src/app/page.tsx",
+                "apps/bau-cms-example/src/config/i18n.config.ts",
+                "apps/bau-cms-example/src/lib/cms.ts",
+                "apps/bau-cms-example/src/middleware.ts",
+                "apps/bau-cms-example/tailwind.config.ts",
+                "apps/bau-cms-example/tsconfig.json",
+                "bun.lockb",
+                "libs/bau-cms-admin/.swcrc",
+                "libs/bau-cms-admin/README.md",
+                "libs/bau-cms-admin/eslint.config.mjs",
+                "libs/bau-cms-admin/jest.config.ts",
+                "libs/bau-cms-admin/package.json",
+                "libs/bau-cms-admin/project.json",
+                "libs/bau-cms-admin/src/index.ts",
+                "libs/bau-cms-admin/src/lib/bau-cms-admin.spec.ts",
+                "libs/bau-cms-admin/src/lib/bau-cms-admin.ts",
+                "libs/bau-cms-admin/src/lib/components/AdminLayout.tsx",
+                "libs/bau-cms-admin/src/lib/components/Sidebar.tsx",
+                "libs/bau-cms-admin/tsconfig.json",
+                "libs/bau-cms-admin/tsconfig.lib.json",
+                "libs/bau-cms-admin/tsconfig.spec.json",
+                "libs/bau-cms-cli/.swcrc",
+                "libs/bau-cms-cli/README.md",
+                "libs/bau-cms-cli/eslint.config.mjs",
+                "libs/bau-cms-cli/jest.config.ts",
+                "libs/bau-cms-cli/package.json",
+                "libs/bau-cms-cli/project.json",
+                "libs/bau-cms-cli/src/index.ts",
+                "libs/bau-cms-cli/src/lib/bau-cms-cli.spec.ts",
+                "libs/bau-cms-cli/src/lib/bau-cms-cli.ts",
+                "libs/bau-cms-cli/src/lib/commands/init.ts",
+                "libs/bau-cms-cli/src/lib/commands/migrate.ts",
+                "libs/bau-cms-cli/tsconfig.json",
+                "libs/bau-cms-cli/tsconfig.lib.json",
+                "libs/bau-cms-cli/tsconfig.spec.json",
+                "libs/bau-cms-core/.swcrc",
+                "libs/bau-cms-core/README.md",
+                "libs/bau-cms-core/eslint.config.mjs",
+                "libs/bau-cms-core/jest.config.ts",
+                "libs/bau-cms-core/package.json",
+                "libs/bau-cms-core/project.json",
+                "libs/bau-cms-core/src/index.ts",
+                "libs/bau-cms-core/src/lib/bau-cms-core.spec.ts",
+                "libs/bau-cms-core/src/lib/bau-cms-core.ts",
+                "libs/bau-cms-core/src/lib/content.spec.ts",
+                "libs/bau-cms-core/src/lib/content.ts",
+                "libs/bau-cms-core/src/lib/database/client.ts",
+                "libs/bau-cms-core/src/lib/database/schema.ts",
+                "libs/bau-cms-core/src/lib/types/index.ts",
+                "libs/bau-cms-core/tsconfig.json",
+                "libs/bau-cms-core/tsconfig.lib.json",
+                "libs/bau-cms-core/tsconfig.spec.json",
+                "libs/bau-cms-templates/package.json",
+                "libs/bau-cms-templates/src/index.ts",
+                "libs/bau-cms-templates/src/lib/templates/BlogPost.tsx",
+                "libs/bau-cms-templates/tsconfig.json",
+                "tsconfig.base.json"
+              ],
+              "nxProjects": [
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsTemplates",
+                "@baudevs/cmsTemplates",
+                "@baudevs/cmsTemplates",
+                "@baudevs/cmsTemplates"
+              ]
+            }
+          ],
+          "contributors": [],
+          "metadata": {
+            "targets": {
+              "build": {
+                "executor": "nx:run-script",
+                "options": {
+                  "script": "build",
+                  "verbose": true
+                },
+                "metadata": {
+                  "scriptContent": "next build",
+                  "runCommand": "bun run build -- undefined"
+                },
+                "configurations": {},
+                "parallelism": true,
+                "dependsOn": [
+                  "^build"
+                ],
+                "inputs": [
+                  "default",
+                  "production",
+                  "^production"
+                ],
+                "cache": true
+              },
+              "dev": {
+                "executor": "nx:run-script",
+                "options": {
+                  "script": "dev"
+                },
+                "metadata": {
+                  "scriptContent": "next dev",
+                  "runCommand": "bun run dev -- undefined"
+                },
+                "configurations": {},
+                "parallelism": true
+              },
+              "start": {
+                "executor": "nx:run-script",
+                "options": {
+                  "script": "start"
+                },
+                "metadata": {
+                  "scriptContent": "next start",
+                  "runCommand": "bun run start -- undefined"
+                },
+                "configurations": {},
+                "parallelism": true
+              },
+              "serve-static": {
+                "executor": "@nx/web:file-server",
+                "options": {
+                  "buildTarget": "build",
+                  "staticFilePath": "apps/bau-cms-example/out",
+                  "port": 3000,
+                  "spa": false
+                },
+                "configurations": {},
+                "parallelism": true
+              },
+              "lint": {
+                "executor": "nx:run-script",
+                "options": {
+                  "script": "lint"
+                },
+                "metadata": {
+                  "scriptContent": "next lint",
+                  "runCommand": "bun run lint -- undefined"
+                },
+                "configurations": {},
+                "parallelism": true,
+                "cache": true
+              }
+            },
+            "packageName": "@baudevs/bau-cms-example",
+            "targetGroups": {
+              "NPM Scripts": [
+                "dev",
+                "build",
+                "start",
+                "lint"
+              ]
+            }
+          }
+        },
+        {
+          "name": "@baudevs/cli",
+          "type": "application",
+          "root": "packages/bau-cms-cli",
+          "sourceRoot": "packages/bau-cms-cli/src",
+          "tags": [
+            "npm:public"
+          ],
+          "dependencies": [],
+          "lastCommits": [
+            {
+              "hash": "869ea1e0eb63e802527524c3a3f53215d85d34e5",
+              "author": "Juan Arroyave",
+              "date": "Sun Dec 22 18:46:40 2024 +0100",
+              "message": "breaking: remove @baudevs/dashboard update project configuration and dependencies",
+              "branch": "develop~9",
+              "files": [
+                ".gitignore",
+                "apps/bau-cms-example/package.json",
+                "apps/bau-cms-example/project.json",
+                "apps/baudevs-dashboard-e2e/playwright.config.ts",
+                "apps/baudevs-dashboard-e2e/project.json",
+                "apps/baudevs-dashboard-e2e/src/example.spec.ts",
+                "apps/baudevs-dashboard-e2e/tsconfig.json",
+                "apps/baudevs-dashboard/.gitignore",
+                "apps/baudevs-dashboard/README.md",
+                "apps/baudevs-dashboard/index.html",
+                "apps/baudevs-dashboard/index.ts",
+                "apps/baudevs-dashboard/package.json",
+                "apps/baudevs-dashboard/postcss.config.js",
+                "apps/baudevs-dashboard/project.json",
+                "apps/baudevs-dashboard/public/favicon.ico",
+                "apps/baudevs-dashboard/src/app/app.module.css",
+                "apps/baudevs-dashboard/src/app/app.tsx",
+                "apps/baudevs-dashboard/src/app/nx-welcome.tsx",
+                "apps/baudevs-dashboard/src/assets/.gitkeep",
+                "apps/baudevs-dashboard/src/main.tsx",
+                "apps/baudevs-dashboard/src/styles.css",
+                "apps/baudevs-dashboard/tailwind.config.js",
+                "apps/baudevs-dashboard/tsconfig.app.json",
+                "apps/baudevs-dashboard/tsconfig.json",
+                "apps/baudevs-dashboard/vite.config.ts",
+                "bun.lockb",
+                "libs/bau-cms-admin/project.json",
+                "libs/bau-cms-core/project.json",
+                "libs/bau-cms-editor/project.json",
+                "libs/bau-cms-templates/project.json",
+                "nx.json",
+                "package.json",
+                "packages/bau-cms-cli/project.json",
+                "tsconfig.base.json"
+              ],
+              "nxProjects": [
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsEditor",
+                "@baudevs/cmsTemplates",
+                "@baudevs/cli"
+              ]
+            },
+            {
+              "hash": "7ec02a2f34062545e38b7cd2537517030fdefd41",
+              "author": "Juan Arroyave",
+              "date": "Mon Dec 23 09:18:55 2024 +0100",
+              "message": "feat: enhance bau-cms-cli with restore functionality and project analysis",
+              "branch": "develop~14",
+              "files": [
+                "packages/bau-cms-cli/src/index.ts",
+                "packages/bau-cms-cli/src/lib/commands/init.ts",
+                "packages/bau-cms-cli/src/lib/commands/migrate.ts",
+                "packages/bau-cms-cli/src/lib/commands/restore.ts",
+                "packages/bau-cms-cli/src/lib/utils/backup-manager.ts",
+                "packages/bau-cms-cli/src/lib/utils/project-analyzer.ts"
+              ],
+              "nxProjects": [
+                "@baudevs/cli",
+                "@baudevs/cli",
+                "@baudevs/cli",
+                "@baudevs/cli",
+                "@baudevs/cli",
+                "@baudevs/cli"
+              ]
+            },
+            {
+              "hash": "7d0c346c93d330c033d71d6b63f617f43c0c744c",
+              "author": "Juan Arroyave",
+              "date": "Sun Dec 22 08:54:03 2024 +0100",
+              "message": "fix: update output path in bau-cms-cli project.json for correct build directory",
+              "branch": "develop~15",
+              "files": [
+                "packages/bau-cms-cli/project.json"
+              ],
+              "nxProjects": [
+                "@baudevs/cli"
+              ]
+            },
+            {
+              "hash": "bf3aca3b89c8910ed53a61d79a99d1530e304acd",
+              "author": "Juan Arroyave",
+              "date": "Sun Dec 22 08:36:00 2024 +0100",
+              "message": "chore: update dependencies and configuration for bau-cms-cli and project structure",
+              "branch": "develop~16",
+              "files": [
+                ".gitignore",
+                "bun.lockb",
+                "package.json",
+                "packages/bau-cms-cli/package.json",
+                "packages/bau-cms-cli/project.json",
+                "packages/bau-cms-cli/src/lib/bau-cms-cli.spec.ts"
+              ],
+              "nxProjects": [
+                "@baudevs/cli",
+                "@baudevs/cli",
+                "@baudevs/cli"
+              ]
+            },
+            {
+              "hash": "82158e04b867d7809e594af3974f288160a52b6b",
+              "author": "Juan Arroyave",
+              "date": "Sun Dec 22 08:16:28 2024 +0100",
+              "message": "refactor: update nx.json and bau-cms-cli configuration for improved build process",
+              "branch": "develop~17",
+              "files": [
+                "nx.json",
+                "packages/bau-cms-cli/package.json",
+                "packages/bau-cms-cli/project.json"
+              ],
+              "nxProjects": [
+                "@baudevs/cli",
+                "@baudevs/cli"
+              ]
+            },
+            {
+              "hash": "0215460140b81adc5d39b56c6a77a9c5bed2498c",
+              "author": "Juan Arroyave",
+              "date": "Sat Dec 21 13:20:56 2024 +0100",
+              "message": "chore: update bau-cms-cli build configuration and add esbuild support for nx 21 compatibility",
+              "branch": "develop~18",
+              "files": [
+                "packages/bau-cms-cli/package.json",
+                "packages/bau-cms-cli/project.json"
+              ],
+              "nxProjects": [
+                "@baudevs/cli",
+                "@baudevs/cli"
+              ]
+            },
+            {
+              "hash": "f727d82335fbe1445e331526ad4c90e3fe4fc2b2",
+              "author": "Juan Arroyave",
+              "date": "Sat Dec 21 13:15:34 2024 +0100",
+              "message": "refactor: update bau-cms-cli project configuration and command structure",
+              "branch": "develop~19",
+              "files": [
+                "packages/bau-cms-cli/project.json",
+                "packages/bau-cms-cli/src/index.ts"
+              ],
+              "nxProjects": [
+                "@baudevs/cli",
+                "@baudevs/cli"
+              ]
+            },
+            {
+              "hash": "618fe9fa5e1a2d8d9fd62df4d13cc6cfc3eac226",
+              "author": "Juan Arroyave",
+              "date": "Sat Dec 21 12:54:06 2024 +0100",
+              "message": "feat: introduce bau-cms-cli package with initialization and migration commands",
+              "branch": "develop~20",
+              "files": [
+                "libs/bau-cms-cli/src/lib/commands/init.ts",
+                "nx.json",
+                "packages/bau-cms-cli/.swcrc",
+                "packages/bau-cms-cli/README.md",
+                "packages/bau-cms-cli/eslint.config.mjs",
+                "packages/bau-cms-cli/jest.config.ts",
+                "packages/bau-cms-cli/package.json",
+                "packages/bau-cms-cli/project.json",
+                "packages/bau-cms-cli/src/index.ts",
+                "packages/bau-cms-cli/src/lib/bau-cms-cli.spec.ts",
+                "packages/bau-cms-cli/src/lib/bau-cms-cli.ts",
+                "packages/bau-cms-cli/src/lib/commands/init.ts",
+                "packages/bau-cms-cli/src/lib/commands/migrate.ts",
+                "packages/bau-cms-cli/tsconfig.json",
+                "packages/bau-cms-cli/tsconfig.lib.json",
+                "packages/bau-cms-cli/tsconfig.spec.json",
+                "tsconfig.base.json",
+                "workspace.json"
+              ],
+              "nxProjects": [
+                "@baudevs/cli",
+                "@baudevs/cli",
+                "@baudevs/cli",
+                "@baudevs/cli",
+                "@baudevs/cli",
+                "@baudevs/cli",
+                "@baudevs/cli",
+                "@baudevs/cli",
+                "@baudevs/cli",
+                "@baudevs/cli",
+                "@baudevs/cli",
+                "@baudevs/cli",
+                "@baudevs/cli",
+                "@baudevs/cli"
+              ]
+            }
+          ],
+          "contributors": [],
+          "metadata": {
+            "targets": {
+              "test": {
+                "options": {
+                  "cwd": "packages/bau-cms-cli",
+                  "env": {
+                    "TS_NODE_COMPILER_OPTIONS": "{\"moduleResolution\":\"node10\"}"
+                  },
+                  "command": "jest"
+                },
+                "metadata": {
+                  "technologies": [
+                    "jest"
+                  ],
+                  "description": "Run Jest Tests",
+                  "help": {
+                    "command": "bun jest --help",
+                    "example": {
+                      "options": {
+                        "coverage": true
+                      }
+                    }
+                  }
+                },
+                "cache": true,
+                "inputs": [
+                  "default",
+                  "^production",
+                  "{workspaceRoot}/jest.preset.js",
+                  {
+                    "externalDependencies": [
+                      "jest"
+                    ]
+                  }
+                ],
+                "outputs": [
+                  "{workspaceRoot}/coverage/libs/bau-cms-cli"
+                ],
+                "executor": "nx:run-commands",
+                "configurations": {},
+                "parallelism": true
+              },
+              "dev": {
+                "executor": "nx:run-script",
+                "options": {
+                  "script": "dev"
+                },
+                "metadata": {
+                  "scriptContent": "tsc --watch",
+                  "runCommand": "bun run dev -- undefined"
+                },
+                "configurations": {},
+                "parallelism": true
+              },
+              "nx-release-publish": {
+                "executor": "@nx/js:release-publish",
+                "dependsOn": [
+                  "^nx-release-publish"
+                ],
+                "options": {},
+                "configurations": {},
+                "parallelism": true
+              },
+              "build": {
+                "executor": "@nx/esbuild:esbuild",
+                "outputs": [
+                  "{options.outputPath}"
+                ],
+                "options": {
+                  "outputPath": "../../dist/packages/bau-cms-cli",
+                  "main": "packages/bau-cms-cli/src/index.ts",
+                  "tsConfig": "packages/bau-cms-cli/tsconfig.json",
+                  "assets": [
+                    "packages/bau-cms-cli/*.md"
+                  ],
+                  "platform": "node",
+                  "format": [
+                    "cjs"
+                  ],
+                  "bundle": true,
+                  "thirdParty": true,
+                  "generatePackageJson": false,
+                  "esbuildOptions": {
+                    "outExtension": {
+                      ".js": ".js"
+                    }
+                  },
+                  "verbose": true
+                },
+                "configurations": {},
+                "parallelism": true,
+                "dependsOn": [
+                  "^build"
+                ],
+                "inputs": [
+                  "default",
+                  "production",
+                  "^production"
+                ],
+                "cache": true
+              },
+              "lint": {
+                "executor": "@nx/eslint:lint",
+                "outputs": [
+                  "{options.outputFile}"
+                ],
+                "options": {
+                  "lintFilePatterns": [
+                    "packages/bau-cms-cli/**/*.ts"
+                  ]
+                },
+                "configurations": {},
+                "parallelism": true,
+                "cache": true
+              }
+            },
+            "packageName": "@baudevs/bau-cms-cli",
+            "targetGroups": {
+              "NPM Scripts": [
+                "dev"
+              ]
+            }
+          }
+        },
+        {
+          "name": "@baudevs/cmsEditor",
+          "type": "library",
+          "root": "libs/bau-cms-editor",
+          "sourceRoot": "libs/bau-cms-editor/src",
+          "tags": [
+            "npm:public"
+          ],
+          "dependencies": [],
+          "lastCommits": [
+            {
+              "hash": "869ea1e0eb63e802527524c3a3f53215d85d34e5",
+              "author": "Juan Arroyave",
+              "date": "Sun Dec 22 18:46:40 2024 +0100",
+              "message": "breaking: remove @baudevs/dashboard update project configuration and dependencies",
+              "branch": "develop~9",
+              "files": [
+                ".gitignore",
+                "apps/bau-cms-example/package.json",
+                "apps/bau-cms-example/project.json",
+                "apps/baudevs-dashboard-e2e/playwright.config.ts",
+                "apps/baudevs-dashboard-e2e/project.json",
+                "apps/baudevs-dashboard-e2e/src/example.spec.ts",
+                "apps/baudevs-dashboard-e2e/tsconfig.json",
+                "apps/baudevs-dashboard/.gitignore",
+                "apps/baudevs-dashboard/README.md",
+                "apps/baudevs-dashboard/index.html",
+                "apps/baudevs-dashboard/index.ts",
+                "apps/baudevs-dashboard/package.json",
+                "apps/baudevs-dashboard/postcss.config.js",
+                "apps/baudevs-dashboard/project.json",
+                "apps/baudevs-dashboard/public/favicon.ico",
+                "apps/baudevs-dashboard/src/app/app.module.css",
+                "apps/baudevs-dashboard/src/app/app.tsx",
+                "apps/baudevs-dashboard/src/app/nx-welcome.tsx",
+                "apps/baudevs-dashboard/src/assets/.gitkeep",
+                "apps/baudevs-dashboard/src/main.tsx",
+                "apps/baudevs-dashboard/src/styles.css",
+                "apps/baudevs-dashboard/tailwind.config.js",
+                "apps/baudevs-dashboard/tsconfig.app.json",
+                "apps/baudevs-dashboard/tsconfig.json",
+                "apps/baudevs-dashboard/vite.config.ts",
+                "bun.lockb",
+                "libs/bau-cms-admin/project.json",
+                "libs/bau-cms-core/project.json",
+                "libs/bau-cms-editor/project.json",
+                "libs/bau-cms-templates/project.json",
+                "nx.json",
+                "package.json",
+                "packages/bau-cms-cli/project.json",
+                "tsconfig.base.json"
+              ],
+              "nxProjects": [
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsEditor",
+                "@baudevs/cmsTemplates",
+                "@baudevs/cli"
+              ]
+            },
+            {
+              "hash": "780ba71c198439cceb48e768e741c6608daf768b",
+              "author": "Juan Arroyave",
+              "date": "Sat Dec 21 09:52:41 2024 +0100",
+              "message": "WIP: Working chanches acrross bau-cms libraries and example APP. Nothing functional [ci-skip]",
+              "branch": "develop~24",
+              "files": [
+                "libs/bau-cms-editor/package.json",
+                "libs/bau-cms-editor/src/index.ts",
+                "libs/bau-cms-editor/src/lib/components/ContentForm.tsx",
+                "libs/bau-cms-editor/src/lib/components/Editor.tsx",
+                "libs/bau-cms-editor/src/lib/components/PreviewModal.tsx"
+              ],
+              "nxProjects": [
+                "@baudevs/cmsEditor",
+                "@baudevs/cmsEditor",
+                "@baudevs/cmsEditor",
+                "@baudevs/cmsEditor",
+                "@baudevs/cmsEditor"
+              ]
+            }
+          ],
+          "contributors": [],
+          "metadata": {
+            "targets": {
+              "build": {
+                "executor": "nx:run-script",
+                "options": {
+                  "script": "build",
+                  "verbose": true
+                },
+                "metadata": {
+                  "scriptContent": "tsc",
+                  "runCommand": "bun run build -- undefined"
+                },
+                "configurations": {},
+                "parallelism": true,
+                "dependsOn": [
+                  "^build"
+                ],
+                "inputs": [
+                  "default",
+                  "production",
+                  "^production"
+                ],
+                "cache": true
+              },
+              "dev": {
+                "executor": "nx:run-script",
+                "options": {
+                  "script": "dev"
+                },
+                "metadata": {
+                  "scriptContent": "tsc --watch",
+                  "runCommand": "bun run dev -- undefined"
+                },
+                "configurations": {},
+                "parallelism": true
+              },
+              "nx-release-publish": {
+                "executor": "@nx/js:release-publish",
+                "dependsOn": [
+                  "^nx-release-publish"
+                ],
+                "options": {},
+                "configurations": {},
+                "parallelism": true
+              }
+            },
+            "packageName": "@baudevs/bau-cms-editor",
+            "targetGroups": {
+              "NPM Scripts": [
+                "build",
+                "dev"
+              ]
+            }
+          }
+        },
+        {
+          "name": "@baudevs/cmsAdmin",
+          "type": "library",
+          "root": "libs/bau-cms-admin",
+          "sourceRoot": "libs/bau-cms-admin/src",
+          "tags": [
+            "npm:public"
+          ],
+          "dependencies": [
+            "@baudevs/cmsCore"
+          ],
+          "lastCommits": [
+            {
+              "hash": "869ea1e0eb63e802527524c3a3f53215d85d34e5",
+              "author": "Juan Arroyave",
+              "date": "Sun Dec 22 18:46:40 2024 +0100",
+              "message": "breaking: remove @baudevs/dashboard update project configuration and dependencies",
+              "branch": "develop~9",
+              "files": [
+                ".gitignore",
+                "apps/bau-cms-example/package.json",
+                "apps/bau-cms-example/project.json",
+                "apps/baudevs-dashboard-e2e/playwright.config.ts",
+                "apps/baudevs-dashboard-e2e/project.json",
+                "apps/baudevs-dashboard-e2e/src/example.spec.ts",
+                "apps/baudevs-dashboard-e2e/tsconfig.json",
+                "apps/baudevs-dashboard/.gitignore",
+                "apps/baudevs-dashboard/README.md",
+                "apps/baudevs-dashboard/index.html",
+                "apps/baudevs-dashboard/index.ts",
+                "apps/baudevs-dashboard/package.json",
+                "apps/baudevs-dashboard/postcss.config.js",
+                "apps/baudevs-dashboard/project.json",
+                "apps/baudevs-dashboard/public/favicon.ico",
+                "apps/baudevs-dashboard/src/app/app.module.css",
+                "apps/baudevs-dashboard/src/app/app.tsx",
+                "apps/baudevs-dashboard/src/app/nx-welcome.tsx",
+                "apps/baudevs-dashboard/src/assets/.gitkeep",
+                "apps/baudevs-dashboard/src/main.tsx",
+                "apps/baudevs-dashboard/src/styles.css",
+                "apps/baudevs-dashboard/tailwind.config.js",
+                "apps/baudevs-dashboard/tsconfig.app.json",
+                "apps/baudevs-dashboard/tsconfig.json",
+                "apps/baudevs-dashboard/vite.config.ts",
+                "bun.lockb",
+                "libs/bau-cms-admin/project.json",
+                "libs/bau-cms-core/project.json",
+                "libs/bau-cms-editor/project.json",
+                "libs/bau-cms-templates/project.json",
+                "nx.json",
+                "package.json",
+                "packages/bau-cms-cli/project.json",
+                "tsconfig.base.json"
+              ],
+              "nxProjects": [
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsEditor",
+                "@baudevs/cmsTemplates",
+                "@baudevs/cli"
+              ]
+            },
+            {
+              "hash": "c7d79b8c9da644cc312dcb6830c392a3a6bd9698",
+              "author": "Juan Arroyave",
+              "date": "Sat Dec 21 09:53:19 2024 +0100",
+              "message": "WIP: Working chanches acrross bau-cms libraries and example APP. Nothing functional [ci-skip]",
+              "branch": "develop~23",
+              "files": [
+                ".gitignore",
+                "apps/bau-cms-example/.gitignore",
+                "apps/bau-cms-example/README.md",
+                "apps/bau-cms-example/eslint.config.mjs",
+                "apps/bau-cms-example/next.config.ts",
+                "apps/bau-cms-example/package.json",
+                "apps/bau-cms-example/postcss.config.mjs",
+                "apps/bau-cms-example/public/file.svg",
+                "apps/bau-cms-example/public/globe.svg",
+                "apps/bau-cms-example/public/next.svg",
+                "apps/bau-cms-example/public/vercel.svg",
+                "apps/bau-cms-example/public/window.svg",
+                "apps/bau-cms-example/src/app/[slug]/page.tsx",
+                "apps/bau-cms-example/src/app/admin/content/edit/page.tsx",
+                "apps/bau-cms-example/src/app/admin/layout.tsx",
+                "apps/bau-cms-example/src/app/admin/page.tsx",
+                "apps/bau-cms-example/src/app/favicon.ico",
+                "apps/bau-cms-example/src/app/globals.css",
+                "apps/bau-cms-example/src/app/layout.tsx",
+                "apps/bau-cms-example/src/app/page.tsx",
+                "apps/bau-cms-example/src/config/i18n.config.ts",
+                "apps/bau-cms-example/src/lib/cms.ts",
+                "apps/bau-cms-example/src/middleware.ts",
+                "apps/bau-cms-example/tailwind.config.ts",
+                "apps/bau-cms-example/tsconfig.json",
+                "bun.lockb",
+                "libs/bau-cms-admin/.swcrc",
+                "libs/bau-cms-admin/README.md",
+                "libs/bau-cms-admin/eslint.config.mjs",
+                "libs/bau-cms-admin/jest.config.ts",
+                "libs/bau-cms-admin/package.json",
+                "libs/bau-cms-admin/project.json",
+                "libs/bau-cms-admin/src/index.ts",
+                "libs/bau-cms-admin/src/lib/bau-cms-admin.spec.ts",
+                "libs/bau-cms-admin/src/lib/bau-cms-admin.ts",
+                "libs/bau-cms-admin/src/lib/components/AdminLayout.tsx",
+                "libs/bau-cms-admin/src/lib/components/Sidebar.tsx",
+                "libs/bau-cms-admin/tsconfig.json",
+                "libs/bau-cms-admin/tsconfig.lib.json",
+                "libs/bau-cms-admin/tsconfig.spec.json",
+                "libs/bau-cms-cli/.swcrc",
+                "libs/bau-cms-cli/README.md",
+                "libs/bau-cms-cli/eslint.config.mjs",
+                "libs/bau-cms-cli/jest.config.ts",
+                "libs/bau-cms-cli/package.json",
+                "libs/bau-cms-cli/project.json",
+                "libs/bau-cms-cli/src/index.ts",
+                "libs/bau-cms-cli/src/lib/bau-cms-cli.spec.ts",
+                "libs/bau-cms-cli/src/lib/bau-cms-cli.ts",
+                "libs/bau-cms-cli/src/lib/commands/init.ts",
+                "libs/bau-cms-cli/src/lib/commands/migrate.ts",
+                "libs/bau-cms-cli/tsconfig.json",
+                "libs/bau-cms-cli/tsconfig.lib.json",
+                "libs/bau-cms-cli/tsconfig.spec.json",
+                "libs/bau-cms-core/.swcrc",
+                "libs/bau-cms-core/README.md",
+                "libs/bau-cms-core/eslint.config.mjs",
+                "libs/bau-cms-core/jest.config.ts",
+                "libs/bau-cms-core/package.json",
+                "libs/bau-cms-core/project.json",
+                "libs/bau-cms-core/src/index.ts",
+                "libs/bau-cms-core/src/lib/bau-cms-core.spec.ts",
+                "libs/bau-cms-core/src/lib/bau-cms-core.ts",
+                "libs/bau-cms-core/src/lib/content.spec.ts",
+                "libs/bau-cms-core/src/lib/content.ts",
+                "libs/bau-cms-core/src/lib/database/client.ts",
+                "libs/bau-cms-core/src/lib/database/schema.ts",
+                "libs/bau-cms-core/src/lib/types/index.ts",
+                "libs/bau-cms-core/tsconfig.json",
+                "libs/bau-cms-core/tsconfig.lib.json",
+                "libs/bau-cms-core/tsconfig.spec.json",
+                "libs/bau-cms-templates/package.json",
+                "libs/bau-cms-templates/src/index.ts",
+                "libs/bau-cms-templates/src/lib/templates/BlogPost.tsx",
+                "libs/bau-cms-templates/tsconfig.json",
+                "tsconfig.base.json"
+              ],
+              "nxProjects": [
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsTemplates",
+                "@baudevs/cmsTemplates",
+                "@baudevs/cmsTemplates",
+                "@baudevs/cmsTemplates"
+              ]
+            }
+          ],
+          "contributors": [],
+          "metadata": {
+            "targets": {
+              "test": {
+                "options": {
+                  "cwd": "libs/bau-cms-admin",
+                  "env": {
+                    "TS_NODE_COMPILER_OPTIONS": "{\"moduleResolution\":\"node10\"}"
+                  },
+                  "command": "jest"
+                },
+                "metadata": {
+                  "technologies": [
+                    "jest"
+                  ],
+                  "description": "Run Jest Tests",
+                  "help": {
+                    "command": "bun jest --help",
+                    "example": {
+                      "options": {
+                        "coverage": true
+                      }
+                    }
+                  }
+                },
+                "cache": true,
+                "inputs": [
+                  "default",
+                  "^production",
+                  "{workspaceRoot}/jest.preset.js",
+                  {
+                    "externalDependencies": [
+                      "jest"
+                    ]
+                  }
+                ],
+                "outputs": [
+                  "{workspaceRoot}/coverage/libs/bau-cms-admin"
+                ],
+                "executor": "nx:run-commands",
+                "configurations": {},
+                "parallelism": true
+              },
+              "dev": {
+                "executor": "nx:run-script",
+                "options": {
+                  "script": "dev"
+                },
+                "metadata": {
+                  "scriptContent": "tsc --watch",
+                  "runCommand": "bun run dev -- undefined"
+                },
+                "configurations": {},
+                "parallelism": true
+              },
+              "nx-release-publish": {
+                "executor": "@nx/js:release-publish",
+                "dependsOn": [
+                  "^nx-release-publish"
+                ],
+                "options": {},
+                "configurations": {},
+                "parallelism": true
+              },
+              "build": {
+                "executor": "@nx/js:swc",
+                "outputs": [
+                  "{options.outputPath}"
+                ],
+                "options": {
+                  "outputPath": "dist/libs/bau-cms-admin",
+                  "main": "libs/bau-cms-admin/src/index.ts",
+                  "tsConfig": "libs/bau-cms-admin/tsconfig.lib.json",
+                  "assets": [
+                    "libs/bau-cms-admin/*.md"
+                  ]
+                },
+                "configurations": {},
+                "parallelism": true,
+                "cache": true,
+                "dependsOn": [
+                  "^build"
+                ],
+                "inputs": [
+                  "production",
+                  "^production"
+                ]
+              }
+            },
+            "packageName": "@baudevs/bau-cms-admin",
+            "targetGroups": {
+              "NPM Scripts": [
+                "dev"
+              ]
+            }
+          }
+        },
+        {
+          "name": "@baudevs/cmsCore",
+          "type": "library",
+          "root": "libs/bau-cms-core",
+          "sourceRoot": "libs/bau-cms-core/src",
+          "tags": [
+            "npm:public"
+          ],
+          "dependencies": [],
+          "lastCommits": [
+            {
+              "hash": "869ea1e0eb63e802527524c3a3f53215d85d34e5",
+              "author": "Juan Arroyave",
+              "date": "Sun Dec 22 18:46:40 2024 +0100",
+              "message": "breaking: remove @baudevs/dashboard update project configuration and dependencies",
+              "branch": "develop~9",
+              "files": [
+                ".gitignore",
+                "apps/bau-cms-example/package.json",
+                "apps/bau-cms-example/project.json",
+                "apps/baudevs-dashboard-e2e/playwright.config.ts",
+                "apps/baudevs-dashboard-e2e/project.json",
+                "apps/baudevs-dashboard-e2e/src/example.spec.ts",
+                "apps/baudevs-dashboard-e2e/tsconfig.json",
+                "apps/baudevs-dashboard/.gitignore",
+                "apps/baudevs-dashboard/README.md",
+                "apps/baudevs-dashboard/index.html",
+                "apps/baudevs-dashboard/index.ts",
+                "apps/baudevs-dashboard/package.json",
+                "apps/baudevs-dashboard/postcss.config.js",
+                "apps/baudevs-dashboard/project.json",
+                "apps/baudevs-dashboard/public/favicon.ico",
+                "apps/baudevs-dashboard/src/app/app.module.css",
+                "apps/baudevs-dashboard/src/app/app.tsx",
+                "apps/baudevs-dashboard/src/app/nx-welcome.tsx",
+                "apps/baudevs-dashboard/src/assets/.gitkeep",
+                "apps/baudevs-dashboard/src/main.tsx",
+                "apps/baudevs-dashboard/src/styles.css",
+                "apps/baudevs-dashboard/tailwind.config.js",
+                "apps/baudevs-dashboard/tsconfig.app.json",
+                "apps/baudevs-dashboard/tsconfig.json",
+                "apps/baudevs-dashboard/vite.config.ts",
+                "bun.lockb",
+                "libs/bau-cms-admin/project.json",
+                "libs/bau-cms-core/project.json",
+                "libs/bau-cms-editor/project.json",
+                "libs/bau-cms-templates/project.json",
+                "nx.json",
+                "package.json",
+                "packages/bau-cms-cli/project.json",
+                "tsconfig.base.json"
+              ],
+              "nxProjects": [
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "baudevs-dashboard",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsEditor",
+                "@baudevs/cmsTemplates",
+                "@baudevs/cli"
+              ]
+            },
+            {
+              "hash": "c7d79b8c9da644cc312dcb6830c392a3a6bd9698",
+              "author": "Juan Arroyave",
+              "date": "Sat Dec 21 09:53:19 2024 +0100",
+              "message": "WIP: Working chanches acrross bau-cms libraries and example APP. Nothing functional [ci-skip]",
+              "branch": "develop~23",
+              "files": [
+                ".gitignore",
+                "apps/bau-cms-example/.gitignore",
+                "apps/bau-cms-example/README.md",
+                "apps/bau-cms-example/eslint.config.mjs",
+                "apps/bau-cms-example/next.config.ts",
+                "apps/bau-cms-example/package.json",
+                "apps/bau-cms-example/postcss.config.mjs",
+                "apps/bau-cms-example/public/file.svg",
+                "apps/bau-cms-example/public/globe.svg",
+                "apps/bau-cms-example/public/next.svg",
+                "apps/bau-cms-example/public/vercel.svg",
+                "apps/bau-cms-example/public/window.svg",
+                "apps/bau-cms-example/src/app/[slug]/page.tsx",
+                "apps/bau-cms-example/src/app/admin/content/edit/page.tsx",
+                "apps/bau-cms-example/src/app/admin/layout.tsx",
+                "apps/bau-cms-example/src/app/admin/page.tsx",
+                "apps/bau-cms-example/src/app/favicon.ico",
+                "apps/bau-cms-example/src/app/globals.css",
+                "apps/bau-cms-example/src/app/layout.tsx",
+                "apps/bau-cms-example/src/app/page.tsx",
+                "apps/bau-cms-example/src/config/i18n.config.ts",
+                "apps/bau-cms-example/src/lib/cms.ts",
+                "apps/bau-cms-example/src/middleware.ts",
+                "apps/bau-cms-example/tailwind.config.ts",
+                "apps/bau-cms-example/tsconfig.json",
+                "bun.lockb",
+                "libs/bau-cms-admin/.swcrc",
+                "libs/bau-cms-admin/README.md",
+                "libs/bau-cms-admin/eslint.config.mjs",
+                "libs/bau-cms-admin/jest.config.ts",
+                "libs/bau-cms-admin/package.json",
+                "libs/bau-cms-admin/project.json",
+                "libs/bau-cms-admin/src/index.ts",
+                "libs/bau-cms-admin/src/lib/bau-cms-admin.spec.ts",
+                "libs/bau-cms-admin/src/lib/bau-cms-admin.ts",
+                "libs/bau-cms-admin/src/lib/components/AdminLayout.tsx",
+                "libs/bau-cms-admin/src/lib/components/Sidebar.tsx",
+                "libs/bau-cms-admin/tsconfig.json",
+                "libs/bau-cms-admin/tsconfig.lib.json",
+                "libs/bau-cms-admin/tsconfig.spec.json",
+                "libs/bau-cms-cli/.swcrc",
+                "libs/bau-cms-cli/README.md",
+                "libs/bau-cms-cli/eslint.config.mjs",
+                "libs/bau-cms-cli/jest.config.ts",
+                "libs/bau-cms-cli/package.json",
+                "libs/bau-cms-cli/project.json",
+                "libs/bau-cms-cli/src/index.ts",
+                "libs/bau-cms-cli/src/lib/bau-cms-cli.spec.ts",
+                "libs/bau-cms-cli/src/lib/bau-cms-cli.ts",
+                "libs/bau-cms-cli/src/lib/commands/init.ts",
+                "libs/bau-cms-cli/src/lib/commands/migrate.ts",
+                "libs/bau-cms-cli/tsconfig.json",
+                "libs/bau-cms-cli/tsconfig.lib.json",
+                "libs/bau-cms-cli/tsconfig.spec.json",
+                "libs/bau-cms-core/.swcrc",
+                "libs/bau-cms-core/README.md",
+                "libs/bau-cms-core/eslint.config.mjs",
+                "libs/bau-cms-core/jest.config.ts",
+                "libs/bau-cms-core/package.json",
+                "libs/bau-cms-core/project.json",
+                "libs/bau-cms-core/src/index.ts",
+                "libs/bau-cms-core/src/lib/bau-cms-core.spec.ts",
+                "libs/bau-cms-core/src/lib/bau-cms-core.ts",
+                "libs/bau-cms-core/src/lib/content.spec.ts",
+                "libs/bau-cms-core/src/lib/content.ts",
+                "libs/bau-cms-core/src/lib/database/client.ts",
+                "libs/bau-cms-core/src/lib/database/schema.ts",
+                "libs/bau-cms-core/src/lib/types/index.ts",
+                "libs/bau-cms-core/tsconfig.json",
+                "libs/bau-cms-core/tsconfig.lib.json",
+                "libs/bau-cms-core/tsconfig.spec.json",
+                "libs/bau-cms-templates/package.json",
+                "libs/bau-cms-templates/src/index.ts",
+                "libs/bau-cms-templates/src/lib/templates/BlogPost.tsx",
+                "libs/bau-cms-templates/tsconfig.json",
+                "tsconfig.base.json"
+              ],
+              "nxProjects": [
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/bauCmsNextExample",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsAdmin",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsCore",
+                "@baudevs/cmsTemplates",
+                "@baudevs/cmsTemplates",
+                "@baudevs/cmsTemplates",
+                "@baudevs/cmsTemplates"
+              ]
+            }
+          ],
+          "contributors": [],
+          "metadata": {
+            "targets": {
+              "test": {
+                "options": {
+                  "cwd": "libs/bau-cms-core",
+                  "env": {
+                    "TS_NODE_COMPILER_OPTIONS": "{\"moduleResolution\":\"node10\"}"
+                  },
+                  "command": "jest"
+                },
+                "metadata": {
+                  "technologies": [
+                    "jest"
+                  ],
+                  "description": "Run Jest Tests",
+                  "help": {
+                    "command": "bun jest --help",
+                    "example": {
+                      "options": {
+                        "coverage": true
+                      }
+                    }
+                  }
+                },
+                "cache": true,
+                "inputs": [
+                  "default",
+                  "^production",
+                  "{workspaceRoot}/jest.preset.js",
+                  {
+                    "externalDependencies": [
+                      "jest"
+                    ]
+                  }
+                ],
+                "outputs": [
+                  "{workspaceRoot}/coverage/libs/bau-cms-core"
+                ],
+                "executor": "nx:run-commands",
+                "configurations": {},
+                "parallelism": true
+              },
+              "dev": {
+                "executor": "nx:run-script",
+                "options": {
+                  "script": "dev"
+                },
+                "metadata": {
+                  "scriptContent": "tsc --watch",
+                  "runCommand": "bun run dev -- undefined"
+                },
+                "configurations": {},
+                "parallelism": true
+              },
+              "nx-release-publish": {
+                "executor": "@nx/js:release-publish",
+                "dependsOn": [
+                  "^nx-release-publish"
+                ],
+                "options": {},
+                "configurations": {},
+                "parallelism": true
+              },
+              "build": {
+                "executor": "@nx/js:swc",
+                "outputs": [
+                  "{options.outputPath}"
+                ],
+                "options": {
+                  "outputPath": "dist/libs/bau-cms-core",
+                  "main": "libs/bau-cms-core/src/index.ts",
+                  "tsConfig": "libs/bau-cms-core/tsconfig.lib.json",
+                  "assets": [
+                    "libs/bau-cms-core/*.md"
+                  ]
+                },
+                "configurations": {},
+                "parallelism": true,
+                "cache": true,
+                "dependsOn": [
+                  "^build"
+                ],
+                "inputs": [
+                  "production",
+                  "^production"
+                ]
+              }
+            },
+            "packageName": "@baudevs/bau-cms-core",
+            "targetGroups": {
+              "NPM Scripts": [
+                "dev"
+              ]
+            }
+          }
+        },
+        {
+          "name": "@baudevs/bau-log-hero",
+          "type": "library",
+          "root": "libs/bauLogHero",
+          "sourceRoot": "libs/bauLogHero/src",
+          "tags": [
+            "npm:public"
+          ],
+          "dependencies": [],
+          "lastCommits": [
+            {
+              "hash": "6a4129ae5094de255f7628515ad437ee4a853a41",
+              "author": "Juan Arroyave",
+              "date": "Fri Dec 20 12:57:18 2024 +0100",
+              "message": "breaking: migrate project to Bun, update dependencies, and add workspaces",
+              "branch": "feature/bau-cms-core~2",
+              "files": [
+                ".github/workflows/release.yml",
+                ".gitignore",
+                ".nx/version-plans/version-plan-1734695663813.md",
+                "apps/baudevs-monorepo-e2e/eslint.config.mjs",
+                "apps/baudevs-monorepo-e2e/tsconfig.json",
+                "apps/baudevs-monorepo/eslint.config.mjs",
+                "apps/baudevs-monorepo/tsconfig.json",
+                "bun.lockb",
+                "eslint.config.mjs",
+                "libs/bauLogHero/eslint.config.mjs",
+                "libs/bauLogHero/package-lock.json",
+                "nx.json",
+                "package-lock.json",
+                "package.json",
+                "tsconfig.base.json"
+              ],
+              "nxProjects": [
+                "@baudevs/bau-log-hero",
+                "@baudevs/bau-log-hero"
+              ]
+            },
+            {
+              "hash": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
+              "author": "baudevs",
+              "date": "Fri Dec 13 09:30:48 2024 +0000",
+              "message": "chore(release):",
+              "branch": "tags/release/@baudevs/bau-log-hero/1.3.0^0",
+              "files": [
+                ".nx/version-plans/version-plan-1734081650948.md",
+                ".nx/version-plans/version-plan-1734082144910.md",
+                "libs/bauLogHero/CHANGELOG.md",
+                "libs/bauLogHero/package.json"
+              ],
+              "nxProjects": [
+                "@baudevs/bau-log-hero",
+                "@baudevs/bau-log-hero"
+              ]
+            },
+            {
+              "hash": "6730796c2781baace6d1a5e4847f6d8fbdb546d4",
+              "author": "Juan Arroyave",
+              "date": "Fri Dec 13 09:28:52 2024 +0000",
+              "message": "refactor: rename logger creation function for consistency",
+              "branch": "tags/release/@baudevs/bau-log-hero/1.3.0~2",
+              "files": [
+                "libs/bauLogHero/src/lib/logger.spec.ts"
+              ],
+              "nxProjects": [
+                "@baudevs/bau-log-hero"
+              ]
+            },
+            {
+              "hash": "4bc6ca5f72f847077ecfd2423256bf0f1b0e5fe4",
+              "author": "Juan Arroyave",
+              "date": "Fri Dec 13 09:20:23 2024 +0000",
+              "message": "breaking: rename logger export for clarity",
+              "branch": "tags/release/@baudevs/bau-log-hero/1.3.0~4",
+              "files": [
+                "libs/bauLogHero/src/index.ts"
+              ],
+              "nxProjects": [
+                "@baudevs/bau-log-hero"
+              ]
+            },
+            {
+              "hash": "2374fdce3660b5a39df4af3ce11c1cb3bdd9c6f4",
+              "author": "baudevs",
+              "date": "Fri Dec 13 09:20:04 2024 +0000",
+              "message": "chore(release):",
+              "branch": "tags/release/@baudevs/bau-log-hero/1.2.2^0",
+              "files": [
+                ".nx/version-plans/version-plan-1734081496792.md",
+                "libs/bauLogHero/CHANGELOG.md",
+                "libs/bauLogHero/package.json"
+              ],
+              "nxProjects": [
+                "@baudevs/bau-log-hero",
+                "@baudevs/bau-log-hero"
+              ]
+            },
+            {
+              "hash": "aced94647fbdbd338bf5fa082ff6d3c805e4a81f",
+              "author": "Juan Arroyave",
+              "date": "Fri Dec 13 09:18:12 2024 +0000",
+              "message": "chore: automated commit before release",
+              "branch": "tags/release/@baudevs/bau-log-hero/1.2.2~2",
+              "files": [
+                "libs/bauLogHero/README.md",
+                "scripts/pre-release-commands.sh"
+              ],
+              "nxProjects": [
+                "@baudevs/bau-log-hero"
+              ]
+            },
+            {
+              "hash": "8dc710f5c83d6239d34dae4a273a4ab1c91ae0f1",
+              "author": "baudevs",
+              "date": "Fri Dec 13 09:09:09 2024 +0000",
+              "message": "chore(release):",
+              "branch": "tags/release/@baudevs/bau-log-hero/1.2.1^0",
+              "files": [
+                ".nx/version-plans/version-plan-1734080809805.md",
+                "libs/bauLogHero/CHANGELOG.md",
+                "libs/bauLogHero/package.json"
+              ],
+              "nxProjects": [
+                "@baudevs/bau-log-hero",
+                "@baudevs/bau-log-hero"
+              ]
+            },
+            {
+              "hash": "9c4bdffc291c5e895d152aeec77d4b0ac7a1409e",
+              "author": "Juan Arroyave",
+              "date": "Fri Dec 13 09:05:04 2024 +0000",
+              "message": "chore: update project.json asset configuration and add pre-release script",
+              "branch": "tags/release/@baudevs/bau-log-hero/1.2.1~4",
+              "files": [
+                "libs/bauLogHero/project.json",
+                "scripts/pre-release-commands.sh"
+              ],
+              "nxProjects": [
+                "@baudevs/bau-log-hero"
+              ]
+            },
+            {
+              "hash": "ab5cfe2a51893392f5f4f39c76cf23a78622e3f3",
+              "author": "baudevs",
+              "date": "Thu Dec 12 20:02:12 2024 +0000",
+              "message": "chore(release):",
+              "branch": "tags/release/@baudevs/bau-log-hero/1.2.0^0",
+              "files": [
+                ".nx/version-plans/version-plan-1734033589420.md",
+                "libs/bauLogHero/CHANGELOG.md",
+                "libs/bauLogHero/package.json"
+              ],
+              "nxProjects": [
+                "@baudevs/bau-log-hero",
+                "@baudevs/bau-log-hero"
+              ]
+            },
+            {
+              "hash": "16b4431e1b46af7304fccc21d9bcca7baf4cb656",
+              "author": "baudevs",
+              "date": "Thu Dec 12 19:55:25 2024 +0000",
+              "message": "chore(release):",
+              "branch": "tags/release/@baudevs/bau-log-hero/1.1.0^0",
+              "files": [
+                ".nx/version-plans/version-plan-1734032709991.md",
+                ".nx/version-plans/version-plan-1734033113210.md",
+                "libs/bauLogHero/CHANGELOG.md",
+                "libs/bauLogHero/package.json"
+              ],
+              "nxProjects": [
+                "@baudevs/bau-log-hero",
+                "@baudevs/bau-log-hero"
+              ]
+            }
+          ],
+          "contributors": [],
+          "metadata": {
+            "targets": {
+              "test": {
+                "cache": false,
+                "executor": "@nx/jest:jest",
+                "dependsOn": [
+                  "^build"
+                ],
+                "inputs": [
+                  "default",
+                  "production",
+                  "^production"
+                ],
+                "outputs": [],
+                "options": {
+                  "jestConfig": "libs/bauLogHero/jest.config.ts",
+                  "passWithNoTests": true
+                },
+                "configurations": {
+                  "ci": {
+                    "ci": true,
+                    "codeCoverage": true
+                  }
+                },
+                "parallelism": true
+              },
+              "nx-release-publish": {
+                "executor": "@nx/js:release-publish",
+                "dependsOn": [
+                  "^nx-release-publish"
+                ],
+                "options": {},
+                "configurations": {},
+                "parallelism": true
+              },
+              "build": {
+                "cache": false,
+                "executor": "@nx/js:tsc",
+                "options": {
+                  "outputPath": "dist/libs/@baudevs/bau-log-hero",
+                  "main": "libs/bauLogHero/src/index.ts",
+                  "tsConfig": "libs/bauLogHero/tsconfig.lib.json",
+                  "assets": [
+                    "libs/bauLogHero//**/*.md",
+                    "libs/bauLogHero//**/*.json",
+                    "!libs/bauLogHero//**/*.test.ts",
+                    "!libs/bauLogHero//**/*.test.tsx",
+                    "!libs/bauLogHero//**/*.spec.ts",
+                    "!libs/bauLogHero//**/*.spec.tsx",
+                    "!libs/bauLogHero//**/project.json",
+                    "!libs/bauLogHero//**/nx.json",
+                    "!libs/bauLogHero//**/tsconfig.json",
+                    "!libs/bauLogHero//**/tsconfig.lib.json",
+                    "!libs/bauLogHero//**/*.spec.json",
+                    "!libs/bauLogHero//**/*.spec.ts",
+                    "!libs/bauLogHero//**/*.spec.tsx",
+                    "!libs/bauLogHero//**/*.spec.tsx",
+                    "!libs/bauLogHero//**/*.eslintrc.json",
+                    "!libs/bauLogHero//**/*.eslintignore",
+                    "!libs/bauLogHero//**/*.eslintrc.js"
+                  ]
+                },
+                "configurations": {},
+                "parallelism": true,
+                "dependsOn": [
+                  "^build"
+                ],
+                "inputs": [
+                  "production",
+                  "^production"
+                ]
+              },
+              "release": {
+                "cache": false,
+                "executor": "@nx/js:tsc",
+                "options": {
+                  "project": "@baudevs/bau-log-hero",
+                  "packageRoot": "dist/libs/bauLogHero",
+                  "publish": false
+                },
+                "changelog": {
+                  "projectChangelogs": {
+                    "file": "CHANGELOG.md",
+                    "createRelease": "github"
+                  }
+                },
+                "configurations": {},
+                "parallelism": true,
+                "dependsOn": [
+                  "^build"
+                ],
+                "inputs": [
+                  "production",
+                  "^production"
+                ]
+              },
+              "publish": {
+                "executor": "@nx/js:tsc",
+                "options": {
+                  "project": "@baudevs/bau-log-hero",
+                  "packageRoot": "dist/libs/bauLogHero"
+                },
+                "configurations": {},
+                "parallelism": true,
+                "cache": true,
+                "dependsOn": [
+                  "^build"
+                ],
+                "inputs": [
+                  "production",
+                  "^production"
+                ]
+              }
+            },
+            "packageName": "@baudevs/bau-log-hero",
+            "targetGroups": {}
+          }
+        }
+      ],
+      "branchRelationships": [
+        {
+          "from": "develop",
+          "to": "feature/bau-cms-cli",
+          "type": "rebase",
+          "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
+          "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
+          "divergedCommits": 31
+        },
+        {
+          "from": "develop",
+          "to": "feature/bau-cms-core",
+          "type": "merge",
+          "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
+          "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
+          "divergedCommits": 30
+        },
+        {
+          "from": "develop",
+          "to": "feature/bau-cms-example",
+          "type": "merge",
+          "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
+          "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
+          "divergedCommits": 41
+        },
+        {
+          "from": "develop",
+          "to": "feature/dashboard-app",
+          "type": "merge",
+          "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
+          "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
+          "divergedCommits": 55
+        },
+        {
+          "from": "develop",
+          "to": "main",
+          "type": "merge",
+          "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
+          "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
+          "divergedCommits": 32
+        },
+        {
+          "from": "develop",
+          "to": "staging",
+          "type": "rebase",
+          "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
+          "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
+          "divergedCommits": 45
+        },
+        {
+          "from": "feature/bau-cms-cli",
+          "to": "develop",
+          "type": "merge",
+          "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
+          "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
+          "divergedCommits": 31
+        },
+        {
+          "from": "feature/bau-cms-cli",
+          "to": "feature/bau-cms-core",
+          "type": "merge",
+          "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
+          "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
+          "divergedCommits": 61
+        },
+        {
+          "from": "feature/bau-cms-cli",
+          "to": "feature/bau-cms-example",
+          "type": "merge",
+          "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
+          "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
+          "divergedCommits": 72
+        },
+        {
+          "from": "feature/bau-cms-cli",
+          "to": "feature/dashboard-app",
+          "type": "merge",
+          "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
+          "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
+          "divergedCommits": 86
+        },
+        {
+          "from": "feature/bau-cms-cli",
+          "to": "main",
+          "type": "merge",
+          "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
+          "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
+          "divergedCommits": 63
+        },
+        {
+          "from": "feature/bau-cms-cli",
+          "to": "staging",
+          "type": "merge",
+          "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
+          "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
+          "divergedCommits": 18
+        },
+        {
+          "from": "feature/bau-cms-core",
+          "to": "develop",
+          "type": "merge",
+          "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
+          "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
+          "divergedCommits": 30
+        },
+        {
+          "from": "feature/bau-cms-core",
+          "to": "feature/bau-cms-cli",
+          "type": "merge",
+          "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
+          "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
+          "divergedCommits": 61
+        },
+        {
+          "from": "feature/bau-cms-core",
+          "to": "feature/bau-cms-example",
+          "type": "rebase",
+          "lastSync": "Sat Dec 21 09:54:12 2024 +0100",
+          "commonAncestor": "56097df190454f1a831d6eb8468d27dcac7e732d",
+          "divergedCommits": 11
+        },
+        {
+          "from": "feature/bau-cms-core",
+          "to": "feature/dashboard-app",
+          "type": "rebase",
+          "lastSync": "Sat Dec 21 09:54:12 2024 +0100",
+          "commonAncestor": "56097df190454f1a831d6eb8468d27dcac7e732d",
+          "divergedCommits": 25
+        },
+        {
+          "from": "feature/bau-cms-core",
+          "to": "main",
+          "type": "merge",
+          "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
+          "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
+          "divergedCommits": 6
+        },
+        {
+          "from": "feature/bau-cms-core",
+          "to": "staging",
+          "type": "merge",
+          "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
+          "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
+          "divergedCommits": 75
+        },
+        {
+          "from": "feature/bau-cms-example",
+          "to": "develop",
+          "type": "merge",
+          "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
+          "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
+          "divergedCommits": 41
+        },
+        {
+          "from": "feature/bau-cms-example",
+          "to": "feature/bau-cms-cli",
+          "type": "merge",
+          "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
+          "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
+          "divergedCommits": 72
+        },
+        {
+          "from": "feature/bau-cms-example",
+          "to": "feature/bau-cms-core",
+          "type": "merge",
+          "lastSync": "Sat Dec 21 09:54:12 2024 +0100",
+          "commonAncestor": "56097df190454f1a831d6eb8468d27dcac7e732d",
+          "divergedCommits": 11
+        },
+        {
+          "from": "feature/bau-cms-example",
+          "to": "feature/dashboard-app",
+          "type": "merge",
+          "lastSync": "Sun Dec 22 08:54:03 2024 +0100",
+          "commonAncestor": "d5097fd84c33e1cc72165a1b84ab911b768268cf",
+          "divergedCommits": 20
+        },
+        {
+          "from": "feature/bau-cms-example",
+          "to": "main",
+          "type": "merge",
+          "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
+          "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
+          "divergedCommits": 17
+        },
+        {
+          "from": "feature/bau-cms-example",
+          "to": "staging",
+          "type": "merge",
+          "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
+          "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
+          "divergedCommits": 86
+        },
+        {
+          "from": "feature/dashboard-app",
+          "to": "develop",
+          "type": "merge",
+          "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
+          "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
+          "divergedCommits": 55
+        },
+        {
+          "from": "feature/dashboard-app",
+          "to": "feature/bau-cms-cli",
+          "type": "merge",
+          "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
+          "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
+          "divergedCommits": 86
+        },
+        {
+          "from": "feature/dashboard-app",
+          "to": "feature/bau-cms-core",
+          "type": "merge",
+          "lastSync": "Sat Dec 21 09:54:12 2024 +0100",
+          "commonAncestor": "56097df190454f1a831d6eb8468d27dcac7e732d",
+          "divergedCommits": 25
+        },
+        {
+          "from": "feature/dashboard-app",
+          "to": "feature/bau-cms-example",
+          "type": "merge",
+          "lastSync": "Sun Dec 22 08:54:03 2024 +0100",
+          "commonAncestor": "d5097fd84c33e1cc72165a1b84ab911b768268cf",
+          "divergedCommits": 20
+        },
+        {
+          "from": "feature/dashboard-app",
+          "to": "main",
+          "type": "merge",
+          "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
+          "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
+          "divergedCommits": 31
+        },
+        {
+          "from": "feature/dashboard-app",
+          "to": "staging",
+          "type": "merge",
+          "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
+          "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
+          "divergedCommits": 100
+        },
+        {
+          "from": "main",
+          "to": "develop",
+          "type": "merge",
+          "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
+          "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
+          "divergedCommits": 32
+        },
+        {
+          "from": "main",
+          "to": "feature/bau-cms-cli",
+          "type": "merge",
+          "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
+          "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
+          "divergedCommits": 63
+        },
+        {
+          "from": "main",
+          "to": "feature/bau-cms-core",
+          "type": "merge",
+          "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
+          "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
+          "divergedCommits": 6
+        },
+        {
+          "from": "main",
+          "to": "feature/bau-cms-example",
+          "type": "merge",
+          "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
+          "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
+          "divergedCommits": 17
+        },
+        {
+          "from": "main",
+          "to": "feature/dashboard-app",
+          "type": "merge",
+          "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
+          "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
+          "divergedCommits": 31
+        },
+        {
+          "from": "main",
+          "to": "staging",
+          "type": "merge",
+          "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
+          "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
+          "divergedCommits": 77
+        },
+        {
+          "from": "staging",
+          "to": "develop",
+          "type": "merge",
+          "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
+          "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
+          "divergedCommits": 45
+        },
+        {
+          "from": "staging",
+          "to": "feature/bau-cms-cli",
+          "type": "merge",
+          "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
+          "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
+          "divergedCommits": 18
+        },
+        {
+          "from": "staging",
+          "to": "feature/bau-cms-core",
+          "type": "merge",
+          "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
+          "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
+          "divergedCommits": 75
+        },
+        {
+          "from": "staging",
+          "to": "feature/bau-cms-example",
+          "type": "merge",
+          "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
+          "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
+          "divergedCommits": 86
+        },
+        {
+          "from": "staging",
+          "to": "feature/dashboard-app",
+          "type": "merge",
+          "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
+          "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
+          "divergedCommits": 100
+        },
+        {
+          "from": "staging",
+          "to": "main",
+          "type": "merge",
+          "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
+          "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
+          "divergedCommits": 77
+        }
+      ],
+      "recentActivity": {
+        "lastPush": "Sun Dec 22 09:53:48 2024 +0100",
+        "lastPull": "2024-12-26T07:40:31.456Z",
+        "lastMerge": "2024-12-26T07:40:31.468Z",
+        "activeBranches": [
+          {
+            "name": "staging",
+            "lastCommit": "ac74009b7e64bfb2dcbb6ae5e15deb6835940639",
+            "author": "Juan Arroyave",
+            "commitCount": 115
+          },
+          {
+            "name": "feature/bau-cms-cli",
+            "lastCommit": "ee0f9852b646cbfb9eeeb341efe9bd4be54aacb3",
+            "author": "Juan Arroyave",
+            "commitCount": 101
+          },
+          {
+            "name": "develop",
+            "lastCommit": "b507a04f34616976663a76bd5c6301661907b2a4",
+            "author": "Juan Arroyave",
+            "commitCount": 70
+          },
+          {
+            "name": "feature/dashboard-app",
+            "lastCommit": "90026e2686428eee9087f631a50d1e78e04a49c6",
+            "author": "Juan Arroyave",
+            "commitCount": 69
+          },
+          {
+            "name": "main",
+            "lastCommit": "c98248e4c7c3c1dbb3a02f9c352562a582e8f7ca",
+            "author": "Juan Arroyave",
+            "commitCount": 44
+          },
+          {
+            "name": "feature/bau-cms-example",
+            "lastCommit": "9e8e65b115a4f6ff129afbdb31118fd04d2af42f",
+            "author": "Juan Arroyave",
+            "commitCount": 55
+          },
+          {
+            "name": "feature/bau-cms-core",
+            "lastCommit": "56097df190454f1a831d6eb8468d27dcac7e732d",
+            "author": "Juan Arroyave",
+            "commitCount": 44
+          }
+        ]
+      },
+      "projectStats": {
+        "totalApps": 3,
+        "totalLibraries": 5,
+        "totalPackages": 0,
+        "totalFiles": 173,
+        "totalCommits": 115,
+        "totalContributors": 0
+      }
+    }
   }
 ]
