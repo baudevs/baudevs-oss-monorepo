@@ -224,9 +224,9 @@ For privacy-related inquiries:
 
 * Legal Entity: MagicusPrime LDA
 * NIPC/VAT: 518300714
-* Privacy Officer: privacy@baudevs.com
-* Data Protection: dpo@baudevs.com
-* General: legal@baudevs.com
+* Privacy Officer: <privacy@baudevs.com>
+* Data Protection: <dpo@baudevs.com>
+* General: <compliance@baudevs.com>
 * Address: MagicusPrime LDA, Portugal
 
 ## 15. Compliance
@@ -247,7 +247,7 @@ For privacy-related inquiries:
 
 ## 16. Dispute Resolution
 
-* Initial contact through privacy@baudevs.com
+* Initial contact through <privacy@baudevs.com>
 * 30-day resolution period
 * Mediation if necessary
 * Jurisdiction in Portugal
@@ -255,4 +255,4 @@ For privacy-related inquiries:
 ---
 
 This Privacy Policy is effective as of December 24, 2024. By using our Services,
-you agree to the collection and use of information in accordance with this policy. 
+you agree to the collection and use of information in accordance with this policy.
