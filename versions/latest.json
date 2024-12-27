@@ -1,17 +1,17 @@
 {
   "repoPath": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
   "defaultBranch": "staging",
-  "generatedAt": "2024-12-27T07:05:55.739Z",
+  "generatedAt": "2024-12-27T11:51:43.295Z",
   "gitVersion": "git version 2.39.5 (Apple Git-154)",
   "nxVersion": "20.3.0",
-  "nodeVersion": "v22.6.0",
-  "bunVersion": "1.1.42",
+  "nodeVersion": "v23.3.0",
+  "pnpmVersion": "9.15.1",
   "worktrees": [
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
       "branch": "staging",
-      "commit": "31dc0df9a356901a0e4e88836a9ef581bf743060",
-      "lastActivity": "Fri Dec 27 08:05:52 2024 +0100"
+      "commit": "3bbb8291db8cd590914c6e25955b28e176748142",
+      "lastActivity": "Fri Dec 27 12:51:34 2024 +0100"
     },
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo.worktrees/bau-cms-cli",
@@ -280,6 +280,44 @@
       "contributors": [],
       "metadata": {
         "targets": {
+          "lint": {
+            "cache": true,
+            "options": {
+              "cwd": "libs/bau-cms-templates",
+              "command": "eslint ."
+            },
+            "inputs": [
+              "default",
+              "^default",
+              "{workspaceRoot}/eslint.config.js",
+              "{workspaceRoot}/tools/eslint-rules/**/*",
+              {
+                "externalDependencies": [
+                  "eslint"
+                ]
+              }
+            ],
+            "outputs": [
+              "{options.outputFile}"
+            ],
+            "metadata": {
+              "technologies": [
+                "eslint"
+              ],
+              "description": "Runs ESLint on project",
+              "help": {
+                "command": "bun eslint --help",
+                "example": {
+                  "options": {
+                    "max-warnings": 0
+                  }
+                }
+              }
+            },
+            "executor": "nx:run-commands",
+            "configurations": {},
+            "parallelism": true
+          },
           "build": {
             "executor": "nx:run-script",
             "options": {
@@ -288,12 +326,13 @@
             },
             "metadata": {
               "scriptContent": "tsc",
-              "runCommand": "bun run build -- undefined"
+              "runCommand": "pnpm run build"
             },
             "configurations": {},
             "parallelism": true,
             "dependsOn": [
-              "^build"
+              "^build",
+              "lint"
             ],
             "inputs": [
               "default",
@@ -309,7 +348,7 @@
             },
             "metadata": {
               "scriptContent": "tsc --watch",
-              "runCommand": "bun run dev -- undefined"
+              "runCommand": "pnpm run dev"
             },
             "configurations": {},
             "parallelism": true
@@ -344,11 +383,28 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "bb1047c3dafbd105967df19ad588070d3eb95bb8",
+          "author": "Juan Arroyave",
+          "date": "Fri Dec 27 08:05:52 2024 +0100",
+          "message": "chore(metadata): update repository metadata",
+          "branch": "remotes/origin/staging",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "31dc0df9a356901a0e4e88836a9ef581bf743060",
           "author": "Juan Arroyave",
           "date": "Fri Dec 27 08:05:52 2024 +0100",
           "message": "feat(cli): introduce BauCMS CLI for project management",
-          "branch": "staging",
+          "branch": "remotes/origin/staging~1",
           "files": [
             "apps/bau-cms-example/package.json",
             "apps/baudevs-dashboard/public/project-graph.json",
@@ -410,7 +466,7 @@
           "author": "Juan Arroyave",
           "date": "Fri Dec 27 08:05:25 2024 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~1",
+          "branch": "remotes/origin/staging~2",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -427,7 +483,7 @@
           "author": "Juan Arroyave",
           "date": "Thu Dec 26 11:51:30 2024 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~3",
+          "branch": "remotes/origin/staging~4",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -444,7 +500,7 @@
           "author": "Juan Arroyave",
           "date": "Thu Dec 26 11:51:30 2024 +0100",
           "message": "chore(baudevs-dashboard): enhance TypeScript configuration for improved build process",
-          "branch": "staging~4",
+          "branch": "remotes/origin/staging~5",
           "files": [
             "apps/baudevs-dashboard/tsconfig.app.json",
             "apps/baudevs-dashboard/tsconfig.json"
@@ -459,7 +515,7 @@
           "author": "Juan Arroyave",
           "date": "Thu Dec 26 08:40:26 2024 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/staging",
+          "branch": "remotes/origin/staging~6",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -476,7 +532,7 @@
           "author": "Juan Arroyave",
           "date": "Thu Dec 26 08:39:43 2024 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/staging~2",
+          "branch": "remotes/origin/staging~8",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -493,7 +549,7 @@
           "author": "Juan Arroyave",
           "date": "Thu Dec 26 08:39:43 2024 +0100",
           "message": "feat(baudevs-dashboard): initialize baudevs-dashboard application with Vite integration",
-          "branch": "remotes/origin/staging~3",
+          "branch": "remotes/origin/staging~9",
           "files": [
             "apps/baudevs-dashboard/package.json",
             "apps/baudevs-dashboard/project.json",
@@ -522,7 +578,7 @@
           "author": "Juan Arroyave",
           "date": "Thu Dec 26 08:35:29 2024 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/staging~4",
+          "branch": "remotes/origin/staging~10",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -539,7 +595,7 @@
           "author": "Juan Arroyave",
           "date": "Thu Dec 26 08:35:29 2024 +0100",
           "message": "chore: update project configuration and add dashboard files",
-          "branch": "remotes/origin/staging~5",
+          "branch": "remotes/origin/staging~11",
           "files": [
             ".markdownlint.json",
             "PRIVACY_POLICY.md",
@@ -552,28 +608,49 @@
             "baudevs-dashboard",
             "baudevs-dashboard"
           ]
-        },
-        {
-          "hash": "cfb355a1d1b0abd367fa00a52272beb1a9aa3298",
-          "author": "Juan Arroyave",
-          "date": "Wed Dec 25 12:02:53 2024 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/staging~9",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
         }
       ],
       "contributors": [],
       "metadata": {
         "targets": {
+          "lint": {
+            "cache": true,
+            "options": {
+              "cwd": "apps/baudevs-dashboard",
+              "command": "eslint ."
+            },
+            "inputs": [
+              "default",
+              "^default",
+              "{workspaceRoot}/eslint.config.js",
+              "{workspaceRoot}/tools/eslint-rules/**/*",
+              {
+                "externalDependencies": [
+                  "eslint"
+                ]
+              }
+            ],
+            "outputs": [
+              "{options.outputFile}"
+            ],
+            "metadata": {
+              "technologies": [
+                "eslint"
+              ],
+              "description": "Runs ESLint on project",
+              "help": {
+                "command": "bun eslint --help",
+                "example": {
+                  "options": {
+                    "max-warnings": 0
+                  }
+                }
+              }
+            },
+            "executor": "nx:run-commands",
+            "configurations": {},
+            "parallelism": true
+          },
           "build": {
             "executor": "@nx/vite:build",
             "outputs": [
@@ -587,7 +664,8 @@
             "configurations": {},
             "parallelism": true,
             "dependsOn": [
-              "^build"
+              "^build",
+              "lint"
             ],
             "inputs": [
               "default",
@@ -640,7 +718,7 @@
             "metadata": {
               "description": "Run Typechecking",
               "help": {
-                "command": "bun tsc --help -p tsconfig.app.json",
+                "command": "pnpm exec tsc --help -p tsconfig.app.json",
                 "example": {
                   "options": {
                     "noEmit": true
@@ -672,7 +750,14 @@
       "root": "packages/@baudevs/cli",
       "sourceRoot": "src",
       "tags": [
-        "npm:public"
+        "npm:public",
+        "baudevs",
+        "targetivo gmbh",
+        "magicusprime",
+        "targetivo",
+        "magicusprime lda",
+        "baucms",
+        "@baudevs/cli"
       ],
       "dependencies": [],
       "lastCommits": [
@@ -681,7 +766,7 @@
           "author": "Juan Arroyave",
           "date": "Fri Dec 27 08:05:52 2024 +0100",
           "message": "feat(cli): introduce BauCMS CLI for project management",
-          "branch": "staging",
+          "branch": "remotes/origin/staging~1",
           "files": [
             "apps/bau-cms-example/package.json",
             "apps/baudevs-dashboard/public/project-graph.json",
@@ -742,45 +827,21 @@
       "contributors": [],
       "metadata": {
         "targets": {
-          "test": {
+          "lint": {
+            "executor": "@nx/eslint:lint",
             "options": {
-              "cwd": "packages/@baudevs/cli",
-              "env": {
-                "TS_NODE_COMPILER_OPTIONS": "{\"moduleResolution\":\"node10\"}"
-              },
-              "command": "jest"
+              "externalDependencies": "none",
+              "lintFilePatterns": [
+                "packages/@baudevs/cli/**/*.{ts,tsx,js,jsx}",
+                "packages/@baudevs/cli/package.json"
+              ]
             },
-            "metadata": {
-              "technologies": [
-                "jest"
-              ],
-              "description": "Run Jest Tests",
-              "help": {
-                "command": "bun jest --help",
-                "example": {
-                  "options": {
-                    "coverage": true
-                  }
-                }
-              }
-            },
-            "cache": true,
-            "inputs": [
-              "default",
-              "^production",
-              "{workspaceRoot}/jest.preset.js",
-              {
-                "externalDependencies": [
-                  "jest"
-                ]
-              }
-            ],
-            "outputs": [
-              "{workspaceRoot}/coverage/libs/@baudevs/cli"
-            ],
-            "executor": "nx:run-commands",
             "configurations": {},
-            "parallelism": true
+            "parallelism": true,
+            "cache": true,
+            "outputs": [
+              "{options.outputFile}"
+            ]
           },
           "nx-release-publish": {
             "executor": "@nx/js:release-publish",
@@ -803,14 +864,14 @@
                 "packages/@baudevs/cli/**/package.json"
               ],
               "format": [
-                "cjs"
+                "esm"
               ],
               "platform": "node",
               "bundle": true,
               "external": [
                 "@baudevs/*"
               ],
-              "generatePackageJson": false,
+              "generateTypes": true,
               "esbuildOptions": {
                 "outExtension": {
                   ".js": ".js"
@@ -823,7 +884,8 @@
             "configurations": {},
             "parallelism": true,
             "dependsOn": [
-              "^build"
+              "^build",
+              "lint"
             ],
             "inputs": [
               "default",
@@ -845,9 +907,8 @@
         "npm:private"
       ],
       "dependencies": [
-        "@baudevs/cmsAdmin",
-        "@baudevs/cmsCore",
-        "@baudevs/cmsEditor"
+        "@baudevs/cmsEditor",
+        "@baudevs/cmsCore"
       ],
       "lastCommits": [
         {
@@ -855,7 +916,7 @@
           "author": "Juan Arroyave",
           "date": "Fri Dec 27 08:05:52 2024 +0100",
           "message": "feat(cli): introduce BauCMS CLI for project management",
-          "branch": "staging",
+          "branch": "remotes/origin/staging~1",
           "files": [
             "apps/bau-cms-example/package.json",
             "apps/baudevs-dashboard/public/project-graph.json",
@@ -1143,12 +1204,13 @@
             },
             "metadata": {
               "scriptContent": "next build",
-              "runCommand": "bun run build -- undefined"
+              "runCommand": "pnpm run build"
             },
             "configurations": {},
             "parallelism": true,
             "dependsOn": [
-              "^build"
+              "^build",
+              "lint"
             ],
             "inputs": [
               "default",
@@ -1164,7 +1226,7 @@
             },
             "metadata": {
               "scriptContent": "next dev",
-              "runCommand": "bun run dev -- undefined"
+              "runCommand": "pnpm run dev"
             },
             "configurations": {},
             "parallelism": true
@@ -1176,7 +1238,7 @@
             },
             "metadata": {
               "scriptContent": "next start",
-              "runCommand": "bun run start -- undefined"
+              "runCommand": "pnpm run start"
             },
             "configurations": {},
             "parallelism": true
@@ -1198,21 +1260,20 @@
               "script": "lint"
             },
             "metadata": {
+              "technologies": [
+                "eslint"
+              ],
+              "description": "Runs ESLint on project",
+              "help": {
+                "command": "bun eslint --help",
+                "example": {
+                  "options": {
+                    "max-warnings": 0
+                  }
+                }
+              },
               "scriptContent": "next lint",
-              "runCommand": "bun run lint -- undefined"
-            },
-            "configurations": {},
-            "parallelism": true,
-            "cache": true
-          },
-          "bau": {
-            "executor": "nx:run-script",
-            "options": {
-              "script": "bau"
-            },
-            "metadata": {
-              "scriptContent": "bun ../../dist/packages/@baudevs/cli/index.js",
-              "runCommand": "bun run bau -- undefined"
+              "runCommand": "pnpm run lint"
             },
             "configurations": {},
             "parallelism": true
@@ -1224,8 +1285,7 @@
             "dev",
             "build",
             "start",
-            "lint",
-            "bau"
+            "lint"
           ]
         }
       }
@@ -1338,6 +1398,44 @@
       "contributors": [],
       "metadata": {
         "targets": {
+          "lint": {
+            "cache": true,
+            "options": {
+              "cwd": "libs/bau-cms-editor",
+              "command": "eslint ."
+            },
+            "inputs": [
+              "default",
+              "^default",
+              "{workspaceRoot}/eslint.config.js",
+              "{workspaceRoot}/tools/eslint-rules/**/*",
+              {
+                "externalDependencies": [
+                  "eslint"
+                ]
+              }
+            ],
+            "outputs": [
+              "{options.outputFile}"
+            ],
+            "metadata": {
+              "technologies": [
+                "eslint"
+              ],
+              "description": "Runs ESLint on project",
+              "help": {
+                "command": "bun eslint --help",
+                "example": {
+                  "options": {
+                    "max-warnings": 0
+                  }
+                }
+              }
+            },
+            "executor": "nx:run-commands",
+            "configurations": {},
+            "parallelism": true
+          },
           "build": {
             "executor": "nx:run-script",
             "options": {
@@ -1346,12 +1444,13 @@
             },
             "metadata": {
               "scriptContent": "tsc",
-              "runCommand": "bun run build -- undefined"
+              "runCommand": "pnpm run build"
             },
             "configurations": {},
             "parallelism": true,
             "dependsOn": [
-              "^build"
+              "^build",
+              "lint"
             ],
             "inputs": [
               "default",
@@ -1367,7 +1466,7 @@
             },
             "metadata": {
               "scriptContent": "tsc --watch",
-              "runCommand": "bun run dev -- undefined"
+              "runCommand": "pnpm run dev"
             },
             "configurations": {},
             "parallelism": true
@@ -1626,6 +1725,44 @@
       "contributors": [],
       "metadata": {
         "targets": {
+          "lint": {
+            "cache": true,
+            "options": {
+              "cwd": "libs/bau-cms-admin",
+              "command": "eslint ."
+            },
+            "inputs": [
+              "default",
+              "^default",
+              "{workspaceRoot}/eslint.config.js",
+              "{workspaceRoot}/tools/eslint-rules/**/*",
+              {
+                "externalDependencies": [
+                  "eslint"
+                ]
+              }
+            ],
+            "outputs": [
+              "{options.outputFile}"
+            ],
+            "metadata": {
+              "technologies": [
+                "eslint"
+              ],
+              "description": "Runs ESLint on project",
+              "help": {
+                "command": "bun eslint --help",
+                "example": {
+                  "options": {
+                    "max-warnings": 0
+                  }
+                }
+              }
+            },
+            "executor": "nx:run-commands",
+            "configurations": {},
+            "parallelism": true
+          },
           "test": {
             "options": {
               "cwd": "libs/bau-cms-admin",
@@ -1673,7 +1810,7 @@
             },
             "metadata": {
               "scriptContent": "tsc --watch",
-              "runCommand": "bun run dev -- undefined"
+              "runCommand": "pnpm run dev"
             },
             "configurations": {},
             "parallelism": true
@@ -1953,6 +2090,44 @@
       "contributors": [],
       "metadata": {
         "targets": {
+          "lint": {
+            "cache": true,
+            "options": {
+              "cwd": "libs/bau-cms-core",
+              "command": "eslint ."
+            },
+            "inputs": [
+              "default",
+              "^default",
+              "{workspaceRoot}/eslint.config.js",
+              "{workspaceRoot}/tools/eslint-rules/**/*",
+              {
+                "externalDependencies": [
+                  "eslint"
+                ]
+              }
+            ],
+            "outputs": [
+              "{options.outputFile}"
+            ],
+            "metadata": {
+              "technologies": [
+                "eslint"
+              ],
+              "description": "Runs ESLint on project",
+              "help": {
+                "command": "bun eslint --help",
+                "example": {
+                  "options": {
+                    "max-warnings": 0
+                  }
+                }
+              }
+            },
+            "executor": "nx:run-commands",
+            "configurations": {},
+            "parallelism": true
+          },
           "test": {
             "options": {
               "cwd": "libs/bau-cms-core",
@@ -2000,7 +2175,7 @@
             },
             "metadata": {
               "scriptContent": "tsc --watch",
-              "runCommand": "bun run dev -- undefined"
+              "runCommand": "pnpm run dev"
             },
             "configurations": {},
             "parallelism": true
@@ -2225,6 +2400,44 @@
       "contributors": [],
       "metadata": {
         "targets": {
+          "lint": {
+            "cache": true,
+            "options": {
+              "cwd": "libs/bauLogHero",
+              "command": "eslint ."
+            },
+            "inputs": [
+              "default",
+              "^default",
+              "{workspaceRoot}/eslint.config.js",
+              "{workspaceRoot}/tools/eslint-rules/**/*",
+              {
+                "externalDependencies": [
+                  "eslint"
+                ]
+              }
+            ],
+            "outputs": [
+              "{options.outputFile}"
+            ],
+            "metadata": {
+              "technologies": [
+                "eslint"
+              ],
+              "description": "Runs ESLint on project",
+              "help": {
+                "command": "bun eslint --help",
+                "example": {
+                  "options": {
+                    "max-warnings": 0
+                  }
+                }
+              }
+            },
+            "executor": "nx:run-commands",
+            "configurations": {},
+            "parallelism": true
+          },
           "test": {
             "cache": false,
             "executor": "@nx/jest:jest",
@@ -2389,7 +2602,7 @@
       "type": "rebase",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 51
+      "divergedCommits": 53
     },
     {
       "from": "feature/bau-cms-cli",
@@ -2437,7 +2650,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 24
+      "divergedCommits": 26
     },
     {
       "from": "feature/bau-cms-core",
@@ -2485,7 +2698,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 81
+      "divergedCommits": 83
     },
     {
       "from": "feature/bau-cms-example",
@@ -2533,7 +2746,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 92
+      "divergedCommits": 94
     },
     {
       "from": "feature/dashboard-app",
@@ -2581,7 +2794,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 106
+      "divergedCommits": 108
     },
     {
       "from": "main",
@@ -2629,7 +2842,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
       "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
-      "divergedCommits": 83
+      "divergedCommits": 85
     },
     {
       "from": "staging",
@@ -2637,7 +2850,7 @@
       "type": "merge",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 51
+      "divergedCommits": 53
     },
     {
       "from": "staging",
@@ -2645,7 +2858,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 24
+      "divergedCommits": 26
     },
     {
       "from": "staging",
@@ -2653,7 +2866,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 81
+      "divergedCommits": 83
     },
     {
       "from": "staging",
@@ -2661,7 +2874,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 92
+      "divergedCommits": 94
     },
     {
       "from": "staging",
@@ -2669,7 +2882,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 106
+      "divergedCommits": 108
     },
     {
       "from": "staging",
@@ -2677,19 +2890,19 @@
       "type": "merge",
       "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
       "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
-      "divergedCommits": 83
+      "divergedCommits": 85
     }
   ],
   "recentActivity": {
     "lastPush": "Sun Dec 22 09:53:48 2024 +0100",
-    "lastPull": "2024-12-27T07:05:57.020Z",
-    "lastMerge": "2024-12-27T07:05:57.027Z",
+    "lastPull": "2024-12-27T11:51:44.940Z",
+    "lastMerge": "2024-12-27T11:51:44.947Z",
     "activeBranches": [
       {
         "name": "staging",
-        "lastCommit": "31dc0df9a356901a0e4e88836a9ef581bf743060",
+        "lastCommit": "3bbb8291db8cd590914c6e25955b28e176748142",
         "author": "Juan Arroyave",
-        "commitCount": 121
+        "commitCount": 123
       },
       {
         "name": "feature/bau-cms-cli",
@@ -2734,7 +2947,7 @@
     "totalLibraries": 6,
     "totalPackages": 0,
     "totalFiles": 175,
-    "totalCommits": 121,
+    "totalCommits": 123,
     "totalContributors": 0
   }
 }
