@@ -7,7 +7,7 @@ import { restoreCommand } from './lib/commands/restore';
 const program = new Command();
 
 program
-  .name('baucms')
+  .name('bau')
   .description('BauCMS CLI tool for managing your CMS')
   .version('0.0.1');
 

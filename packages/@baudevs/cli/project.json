@@ -1,0 +1,32 @@
+{
+  "name": "@baudevs/cli",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "cache": false,
+      "executor": "@nx/esbuild:esbuild",
+      "options": {
+        "outputPath": "{workspaceRoot}/dist/packages/@baudevs/cli",
+        "main": "{projectRoot}/src/index.ts",
+        "tsConfig": "{projectRoot}/tsconfig.lib.json",
+        "assets": [
+          "{projectRoot}/**/*.md",
+          "{projectRoot}/**/package.json"
+        ],
+        "format": ["cjs"],
+        "platform": "node",
+        "bundle": true,
+        "external": ["@baudevs/*"],
+        "generatePackageJson": false,
+        "esbuildOptions": {
+          "outExtension": { ".js": ".js" },
+          "sourcemap": true,
+          "outdir": "dist/packages/@baudevs/cli"
+        }
+      }
+    }
+  },
+  "tags": []
+}

@@ -21,7 +21,7 @@ export class BackupManager {
   private currentManifest: BackupManifest;
 
   constructor(projectPath: string = process.cwd()) {
-    this.backupDir = join(projectPath, '.baucms-backup');
+    this.backupDir = join(projectPath, '.bau-backup');
     this.currentManifest = {
       changes: [],
       timestamp: Date.now(),
@@ -37,7 +37,7 @@ export class BackupManager {
 
   async trackChange(filePath: string, newContent: string, type: FileChange['type'] = 'modify') {
     let originalContent: string | null = null;
-    
+
     if (existsSync(filePath)) {
       originalContent = await readFile(filePath, 'utf-8');
     }
@@ -80,7 +80,7 @@ export class BackupManager {
 
   async getChangeSummary(): Promise<string> {
     let summary = 'Changes made by BauCMS:\n\n';
-    
+
     for (const change of this.currentManifest.changes) {
       summary += `${change.type.toUpperCase()}: ${change.path}\n`;
       if (change.type === 'modify') {
@@ -91,4 +91,4 @@ export class BackupManager {
 
     return summary;
   }
-} 
+}

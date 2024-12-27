@@ -85,6 +85,7 @@
     {
       "plugin": "@nx/vite/plugin",
       "options": {
+        "startTargetName": "start",
         "buildTargetName": "build",
         "testTargetName": "test",
         "serveTargetName": "serve",

@@ -182,6 +182,118 @@
           "implicitDependencies": []
         }
       },
+      "@baudevs/cli": {
+        "name": "@baudevs/cli",
+        "type": "lib",
+        "data": {
+          "root": "packages/@baudevs/cli",
+          "targets": {
+            "test": {
+              "options": {
+                "cwd": "packages/@baudevs/cli",
+                "env": {
+                  "TS_NODE_COMPILER_OPTIONS": "{\"moduleResolution\":\"node10\"}"
+                },
+                "command": "jest"
+              },
+              "metadata": {
+                "technologies": [
+                  "jest"
+                ],
+                "description": "Run Jest Tests",
+                "help": {
+                  "command": "bun jest --help",
+                  "example": {
+                    "options": {
+                      "coverage": true
+                    }
+                  }
+                }
+              },
+              "cache": true,
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/jest.preset.js",
+                {
+                  "externalDependencies": [
+                    "jest"
+                  ]
+                }
+              ],
+              "outputs": [
+                "{workspaceRoot}/coverage/libs/@baudevs/cli"
+              ],
+              "executor": "nx:run-commands",
+              "configurations": {},
+              "parallelism": true
+            },
+            "nx-release-publish": {
+              "executor": "@nx/js:release-publish",
+              "dependsOn": [
+                "^nx-release-publish"
+              ],
+              "options": {},
+              "configurations": {},
+              "parallelism": true
+            },
+            "build": {
+              "cache": false,
+              "executor": "@nx/esbuild:esbuild",
+              "options": {
+                "outputPath": "dist/packages/@baudevs/cli",
+                "main": "packages/@baudevs/cli/src/index.ts",
+                "tsConfig": "packages/@baudevs/cli/tsconfig.lib.json",
+                "assets": [
+                  "packages/@baudevs/cli/**/*.md",
+                  "packages/@baudevs/cli/**/package.json"
+                ],
+                "format": [
+                  "cjs"
+                ],
+                "platform": "node",
+                "bundle": true,
+                "external": [
+                  "@baudevs/*"
+                ],
+                "generatePackageJson": false,
+                "esbuildOptions": {
+                  "outExtension": {
+                    ".js": ".js"
+                  },
+                  "sourcemap": true,
+                  "outdir": "dist/packages/@baudevs/cli"
+                },
+                "verbose": true
+              },
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "default",
+                "production",
+                "^production"
+              ]
+            }
+          },
+          "sourceRoot": "src",
+          "name": "@baudevs/cli",
+          "tags": [
+            "npm:public"
+          ],
+          "metadata": {
+            "targetGroups": {},
+            "js": {
+              "packageName": "@baudevs/cli"
+            }
+          },
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "projectType": "library",
+          "implicitDependencies": []
+        }
+      },
       "@baudevs/bauCmsNextExample": {
         "name": "@baudevs/bauCmsNextExample",
         "type": "app",
@@ -257,6 +369,18 @@
               "configurations": {},
               "parallelism": true,
               "cache": true
+            },
+            "bau": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "bau"
+              },
+              "metadata": {
+                "scriptContent": "bun ../../dist/packages/@baudevs/cli/index.js",
+                "runCommand": "bun run bau -- undefined"
+              },
+              "configurations": {},
+              "parallelism": true
             }
           },
           "sourceRoot": "apps/bau-cms-example/src",
@@ -271,154 +395,15 @@
                 "dev",
                 "build",
                 "start",
-                "lint"
+                "lint",
+                "bau"
               ]
             },
             "js": {
-              "packageName": "@baudevs/bau-cms-example"
+              "packageName": "bau-cms-example"
             }
           },
           "$schema": "../../node_modules/nx/schemas/project-schema.json",
-          "implicitDependencies": []
-        }
-      },
-      "@baudevs/cli": {
-        "name": "@baudevs/cli",
-        "type": "app",
-        "data": {
-          "root": "packages/bau-cms-cli",
-          "targets": {
-            "test": {
-              "options": {
-                "cwd": "packages/bau-cms-cli",
-                "env": {
-                  "TS_NODE_COMPILER_OPTIONS": "{\"moduleResolution\":\"node10\"}"
-                },
-                "command": "jest"
-              },
-              "metadata": {
-                "technologies": [
-                  "jest"
-                ],
-                "description": "Run Jest Tests",
-                "help": {
-                  "command": "bun jest --help",
-                  "example": {
-                    "options": {
-                      "coverage": true
-                    }
-                  }
-                }
-              },
-              "cache": true,
-              "inputs": [
-                "default",
-                "^production",
-                "{workspaceRoot}/jest.preset.js",
-                {
-                  "externalDependencies": [
-                    "jest"
-                  ]
-                }
-              ],
-              "outputs": [
-                "{workspaceRoot}/coverage/libs/bau-cms-cli"
-              ],
-              "executor": "nx:run-commands",
-              "configurations": {},
-              "parallelism": true
-            },
-            "dev": {
-              "executor": "nx:run-script",
-              "options": {
-                "script": "dev"
-              },
-              "metadata": {
-                "scriptContent": "tsc --watch",
-                "runCommand": "bun run dev -- undefined"
-              },
-              "configurations": {},
-              "parallelism": true
-            },
-            "nx-release-publish": {
-              "executor": "@nx/js:release-publish",
-              "dependsOn": [
-                "^nx-release-publish"
-              ],
-              "options": {},
-              "configurations": {},
-              "parallelism": true
-            },
-            "build": {
-              "executor": "@nx/esbuild:esbuild",
-              "outputs": [
-                "{options.outputPath}"
-              ],
-              "options": {
-                "outputPath": "../../dist/packages/bau-cms-cli",
-                "main": "packages/bau-cms-cli/src/index.ts",
-                "tsConfig": "packages/bau-cms-cli/tsconfig.json",
-                "assets": [
-                  "packages/bau-cms-cli/*.md"
-                ],
-                "platform": "node",
-                "format": [
-                  "cjs"
-                ],
-                "bundle": true,
-                "thirdParty": true,
-                "generatePackageJson": false,
-                "esbuildOptions": {
-                  "outExtension": {
-                    ".js": ".js"
-                  }
-                },
-                "verbose": true
-              },
-              "configurations": {},
-              "parallelism": true,
-              "dependsOn": [
-                "^build"
-              ],
-              "inputs": [
-                "default",
-                "production",
-                "^production"
-              ],
-              "cache": true
-            },
-            "lint": {
-              "executor": "@nx/eslint:lint",
-              "outputs": [
-                "{options.outputFile}"
-              ],
-              "options": {
-                "lintFilePatterns": [
-                  "packages/bau-cms-cli/**/*.ts"
-                ]
-              },
-              "configurations": {},
-              "parallelism": true,
-              "cache": true
-            }
-          },
-          "sourceRoot": "packages/bau-cms-cli/src",
-          "name": "@baudevs/cli",
-          "tags": [
-            "npm:public"
-          ],
-          "metadata": {
-            "targetGroups": {
-              "NPM Scripts": [
-                "dev"
-              ]
-            },
-            "js": {
-              "packageName": "@baudevs/bau-cms-cli"
-            }
-          },
-          "$schema": "../../node_modules/nx/schemas/project-schema.json",
-          "projectType": "application",
           "implicitDependencies": []
         }
       },
@@ -861,6 +846,7 @@
         }
       ],
       "baudevs-dashboard": [],
+      "@baudevs/cli": [],
       "@baudevs/bauCmsNextExample": [
         {
           "source": "@baudevs/bauCmsNextExample",
@@ -878,7 +864,6 @@
           "type": "static"
         }
       ],
-      "@baudevs/cli": [],
       "@baudevs/cmsEditor": [],
       "@baudevs/cmsAdmin": [
         {

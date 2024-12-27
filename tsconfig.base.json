@@ -15,13 +15,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@baudevs/cli": ["packages/bau-cms-cli/src/index.ts"],
-      "@baudevs/cms/admin": ["libs/bau-cms-admin/src/index.ts"],
-      "@baudevs/cms/core": ["libs/bau-cms-core/src/index.ts"],
-      "@baudevs/cms/editor": ["libs/bau-cms-editor/src/index.ts"],
-      "@baudevs/cms/templates": ["libs/bau-cms-templates/src/index.ts"],
-      "@baudevs/logHero": ["libs/bauLogHero/src/index.ts"],
-      "@baudevs/dashboard": ["apps/baudevs-dashboard/src/index.ts"]
     },
     "typeRoots": ["node_modules/@types", "./types.d.ts"]
   },

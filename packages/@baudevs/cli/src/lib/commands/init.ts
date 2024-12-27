@@ -1,7 +1,7 @@
 import inquirer from 'inquirer';
 import chalk from 'chalk';
 import ora from 'ora';
-import { mkdir, writeFile } from 'fs/promises';
+import { mkdir, writeFile, readFile } from 'fs/promises';
 import { join } from 'path';
 import { analyzeProject, type ProjectStructure } from '../utils/project-analyzer';
 import { BackupManager } from '../utils/backup-manager';
@@ -16,15 +16,94 @@ interface SetupAnswers {
   selectedTemplates: ('page' | 'blog-post' | 'service' | 'product')[];
   i18n: boolean;
   i18nLibrary?: 'next-intl' | 'next-i18next';
+  enforceStructure: boolean;
 }
 
-export async function initCommand() {
+interface InitOptions {
+  yes?: boolean;
+  dir?: string;
+}
+
+async function validateProjectStructure(projectStructure: ProjectStructure): Promise<string[]> {
+  const issues: string[] = [];
+
+  if (!projectStructure.usesAppRouter) {
+    issues.push('BauCMS requires Next.js App Router. Please migrate your project to use the App Router.');
+  }
+
+  if (projectStructure.nextConfig.path && projectStructure.nextConfig.content) {
+    if (!projectStructure.nextConfig.content.includes('experimental: {')) {
+      issues.push('Next.js experimental features might be required for some BauCMS features.');
+    }
+  }
+
+  return issues;
+}
+
+async function setupProjectStructure(projectPath: string, structure: ProjectStructure) {
+  // Ensure src directory exists
+  const srcDir = join(projectPath, 'src');
+  if (!structure.usesSrcDirectory) {
+    await mkdir(srcDir, { recursive: true });
+
+    // Move app directory if it exists
+    const appDir = join(projectPath, 'app');
+    const newAppDir = join(srcDir, 'app');
+    if (structure.usesAppRouter) {
+      await mkdir(newAppDir, { recursive: true });
+      // Note: actual moving would be handled by the backup manager
+    }
+  }
+
+  // Ensure proper Next.js config
+  const nextConfigPath = structure.nextConfig.path || join(projectPath, 'next.config.mjs');
+  const nextConfigContent = `
+import { withBauCMS } from '@baudevs/bau-cms-core/next-config';
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    serverActions: true,
+    serverComponentsExternalPackages: ['@libsql/client'],
+  },
+};
+
+export default withBauCMS(nextConfig);
+`;
+
+  return {
+    nextConfigPath,
+    nextConfigContent
+  };
+}
+
+export async function initCommand(options: InitOptions = {}) {
   const spinner = ora('Analyzing your Next.js project...').start();
-  
+
   try {
     // Analyze project structure
-    const projectStructure = await analyzeProject();
+    const structure = await analyzeProject();
     spinner.succeed('Project analysis complete');
+
+    // Validate project structure
+    const issues = await validateProjectStructure(structure);
+
+    if (issues.length > 0) {
+      console.log(chalk.yellow('\nWarning: Your project structure has some issues:'));
+      issues.forEach(issue => console.log(chalk.yellow(`- ${issue}`)));
+
+      const { proceed } = await inquirer.prompt([{
+        type: 'confirm',
+        name: 'proceed',
+        message: 'Would you like BauCMS to fix these issues?',
+        default: true
+      }]);
+
+      if (!proceed) {
+        console.log(chalk.red('Setup cancelled. Please fix the issues manually and try again.'));
+        process.exit(1);
+      }
+    }
 
     // Initialize backup manager
     const backupManager = new BackupManager();
@@ -33,24 +112,31 @@ export async function initCommand() {
     // Start interactive setup
     console.log(chalk.blue('\nWelcome to BauCMS setup!'));
     console.log('\nProject details detected:');
-    console.log(`- Using ${projectStructure.usesSrcDirectory ? 'src/' : 'root'} directory`);
-    console.log(`- Using ${projectStructure.usesAppRouter ? 'App Router' : 'Pages Router'}`);
-    console.log(`- Package manager: ${projectStructure.packageManager}`);
-    if (projectStructure.usesI18n.enabled) {
-      console.log(`- i18n: ${projectStructure.usesI18n.library || 'configured'}`);
+    console.log(`- Using ${structure.usesSrcDirectory ? 'src/' : 'root'} directory`);
+    console.log(`- Using ${structure.usesAppRouter ? 'App Router' : 'Pages Router'}`);
+    console.log(`- Package manager: ${structure.packageManager}`);
+    if (structure.usesI18n.enabled) {
+      console.log(`- i18n: ${structure.usesI18n.library || 'configured'}`);
     }
-    if (projectStructure.existingMiddleware.exists) {
+    if (structure.existingMiddleware.exists) {
       console.log('- Existing middleware detected');
     }
 
-    const answers: SetupAnswers = await inquirer.prompt([
+    // @ts-ignore - Inquirer types are not perfect, but the runtime works correctly
+    const answers = await inquirer.prompt<SetupAnswers>([
+      {
+        type: 'confirm',
+        name: 'enforceStructure',
+        message: 'Would you like BauCMS to enforce its recommended project structure?',
+        default: true,
+      },
       {
         type: 'list',
         name: 'databaseType',
         message: 'Which type of database would you like to use?',
         choices: [
-          { name: 'Local SQLite', value: 'local' },
-          { name: 'Turso (Remote SQLite)', value: 'turso' }
+          { name: 'Local SQLite (Recommended for development)', value: 'local' },
+          { name: 'Turso (Recommended for production)', value: 'turso' }
         ]
       },
       {
@@ -58,32 +144,32 @@ export async function initCommand() {
         name: 'databasePath',
         message: 'Where would you like to store your database file?',
         default: './content.db',
-        when: (answers) => answers.databaseType === 'local'
+        when: (answers: Partial<SetupAnswers>) => answers.databaseType === 'local'
       },
       {
         type: 'input',
         name: 'tursoUrl',
         message: 'Enter your Turso database URL:',
-        when: (answers) => answers.databaseType === 'turso',
-        validate: (input) => input.length > 0 || 'Database URL is required'
+        when: (answers: Partial<SetupAnswers>) => answers.databaseType === 'turso',
+        validate: (input: string) => input.length > 0 || 'Database URL is required'
       },
       {
         type: 'input',
         name: 'tursoAuthToken',
         message: 'Enter your Turso authentication token:',
-        when: (answers) => answers.databaseType === 'turso',
-        validate: (input) => input.length > 0 || 'Auth token is required'
+        when: (answers: Partial<SetupAnswers>) => answers.databaseType === 'turso',
+        validate: (input: string) => input.length > 0 || 'Auth token is required'
       },
       {
         type: 'confirm',
         name: 'setupAuth',
-        message: 'Would you like to set up authentication with Clerk?',
+        message: 'Would you like to set up authentication with Clerk? (Recommended)',
         default: true,
       },
       {
         type: 'confirm',
         name: 'setupAdminUI',
-        message: 'Would you like to set up the admin UI? (accessible at /admin)',
+        message: 'Would you like to set up the admin UI? (Recommended)',
         default: true,
       },
       {
@@ -91,19 +177,19 @@ export async function initCommand() {
         name: 'selectedTemplates',
         message: 'Which content templates would you like to use?',
         choices: [
-          { name: 'Page (Basic page)', value: 'page' },
+          { name: 'Page (Basic page)', value: 'page', checked: true },
           { name: 'Blog Post (with /blog routing)', value: 'blog-post' },
           { name: 'Service (with /services routing)', value: 'service' },
           { name: 'Product (with /products routing)', value: 'product' }
         ],
-        validate: (input) => input.length > 0 || 'Please select at least one template'
+        validate: (input: string[]) => input.length > 0 || 'Please select at least one template'
       },
       {
         type: 'confirm',
         name: 'i18n',
         message: 'Would you like to enable internationalization (i18n)?',
-        default: projectStructure.usesI18n.enabled,
-        when: !projectStructure.usesI18n.enabled
+        default: structure.usesI18n.enabled,
+        when: !structure.usesI18n.enabled
       },
       {
         type: 'list',
@@ -113,14 +199,21 @@ export async function initCommand() {
           { name: 'next-intl (Recommended)', value: 'next-intl' },
           { name: 'next-i18next', value: 'next-i18next' }
         ],
-        when: (answers) => answers.i18n && !projectStructure.usesI18n.enabled
+        when: (answers: Partial<SetupAnswers>) => answers.i18n && !structure.usesI18n.enabled
       }
     ]);
 
     spinner.start('Setting up BauCMS...');
 
+    // Setup project structure if requested
+    if (answers.enforceStructure) {
+      const { nextConfigPath, nextConfigContent } = await setupProjectStructure(process.cwd(), structure);
+      await writeFile(nextConfigPath, nextConfigContent);
+      await backupManager.trackChange(nextConfigPath, nextConfigContent, structure.nextConfig.path ? 'modify' : 'create');
+    }
+
     // Create necessary directories based on project structure
-    const baseDir = projectStructure.usesSrcDirectory ? 'src' : '';
+    const baseDir = answers.enforceStructure || structure.usesSrcDirectory ? 'src' : '';
     const apiDir = join(baseDir, 'app', 'api', 'baucms');
     const adminDir = join(baseDir, 'app', 'admin');
 
@@ -176,21 +269,21 @@ export default function AdminPage() {
       const middlewarePath = join(baseDir, 'middleware.ts');
       let middlewareContent: string;
 
-      if (projectStructure.existingMiddleware.exists && projectStructure.existingMiddleware.content) {
+      if (structure.existingMiddleware.exists && structure.existingMiddleware.content) {
         // Integrate with existing middleware
         middlewareContent = await integrateWithExistingMiddleware(
-          projectStructure.existingMiddleware.content,
-          projectStructure.existingMiddleware.path || middlewarePath
+          structure.existingMiddleware.content,
+          structure.existingMiddleware.path || middlewarePath
         );
       } else {
         // Create new middleware
         middlewareContent = `
 import { authMiddleware } from '@clerk/nextjs/server';
- 
+
 export default authMiddleware({
   publicRoutes: ["/api/baucms(.*)"],
 });
- 
+
 export const config = {
   matcher: ['/(api|admin)(.*)'],
 };
@@ -198,29 +291,49 @@ export const config = {
       }
 
       await writeFile(middlewarePath, middlewareContent);
-      await backupManager.trackChange(middlewarePath, middlewareContent, projectStructure.existingMiddleware.exists ? 'modify' : 'create');
+      await backupManager.trackChange(middlewarePath, middlewareContent, structure.existingMiddleware.exists ? 'modify' : 'create');
     }
+
+    // Update package.json with required dependencies
+    const packageJsonPath = join(process.cwd(), 'package.json');
+    const packageJson = JSON.parse(await readFile(packageJsonPath, 'utf-8'));
+
+    const dependencies = {
+      '@baudevs/bau-cms-core': 'latest',
+      ...(answers.setupAdminUI && { '@baudevs/bau-cms-editor': 'latest' }),
+      ...(answers.setupAuth && { '@clerk/nextjs': '^6.0.0' }),
+      ...(answers.i18n && { [answers.i18nLibrary || 'next-intl']: 'latest' })
+    };
+
+    packageJson.dependencies = {
+      ...packageJson.dependencies,
+      ...dependencies
+    };
+
+    await writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2));
+    await backupManager.trackChange(packageJsonPath, JSON.stringify(packageJson, null, 2), 'modify');
 
     // Save changes summary
     const summary = await backupManager.getChangeSummary();
-    await writeFile('.baucms-changes.md', summary);
+    await writeFile('.bau-changes.md', summary);
 
     spinner.succeed('BauCMS has been set up successfully!');
-    
+
     console.log('\nNext steps:');
-    console.log('1. Run ' + chalk.cyan('baucms migrate') + ' to set up your database');
+    console.log('1. Install dependencies with: ' + chalk.cyan(`${structure.packageManager} install`));
+    console.log('2. Run ' + chalk.cyan('bau migrate') + ' to set up your database');
     if (answers.setupAuth) {
-      console.log('2. Add your Clerk environment variables to .env.local:');
+      console.log('3. Add your Clerk environment variables to .env.local:');
       console.log('   ' + chalk.cyan('NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key'));
       console.log('   ' + chalk.cyan('CLERK_SECRET_KEY=your_secret_key'));
     }
     if (answers.setupAdminUI) {
-      console.log(`${answers.setupAuth ? '3' : '2'}. Visit ` + chalk.cyan('/admin') + ' to start managing your content');
+      console.log(`${answers.setupAuth ? '4' : '3'}. Visit ` + chalk.cyan('/admin') + ' to start managing your content');
     }
-    
-    console.log('\nA backup of all changes has been created in ' + chalk.cyan('.baucms-backup'));
-    console.log('To restore your project to its previous state, run: ' + chalk.cyan('baucms restore'));
-    
+
+    console.log('\nA backup of all changes has been created in ' + chalk.cyan('.bau-backup'));
+    console.log('To restore your project to its previous state, run: ' + chalk.cyan('bau restore'));
+
   } catch (error) {
     spinner.fail('Failed to set up BauCMS');
     if (error instanceof Error) {
@@ -241,7 +354,7 @@ async function integrateWithExistingMiddleware(existingContent: string, path: st
     return existingContent.replace(
       /export const config\s*=\s*{([^}]*)}/,
       (match, group) => {
-        const existingMatchers = group.includes('matcher') 
+        const existingMatchers = group.includes('matcher')
           ? group.replace(/matcher:\s*\[(.*)\]/, '$1')
           : '';
         return `export const config = {
@@ -260,4 +373,4 @@ async function integrateWithExistingMiddleware(existingContent: string, path: st
 export const config = {
   matcher: ['/(api|admin)(.*)'],
 };`;
-} 
+}

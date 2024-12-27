@@ -19,12 +19,12 @@ if (swcJestConfig.swcrc === undefined) {
 // swcJestConfig.module.noInterop = false;
 
 export default {
-  displayName: 'bau-cms-cli',
-  preset: '../../jest.preset.js',
+  displayName: '@baudevs/cli',
+  preset: '../../../jest.preset.js',
   transform: {
     '^.+\\.[tj]s$': ['@swc/jest', swcJestConfig],
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
   testEnvironment: 'node',
-  coverageDirectory: '../../coverage/libs/bau-cms-cli',
+  coverageDirectory: '../../../coverage/libs/@baudevs/cli',
 };

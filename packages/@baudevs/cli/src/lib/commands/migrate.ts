@@ -7,7 +7,12 @@ import { mkdir, cp } from 'fs/promises';
 import { join } from 'path';
 import { existsSync } from 'fs';
 
-export async function migrateCommand() {
+interface MigrateOptions {
+  dryRun?: boolean;
+  reset?: boolean;
+}
+
+export async function migrateCommand(options: MigrateOptions = {}) {
   const spinner = ora('Setting up migrations...').start();
 
   try {
@@ -15,7 +20,7 @@ export async function migrateCommand() {
     const migrationsDir = join(process.cwd(), 'migrations');
     if (!existsSync(migrationsDir)) {
       await mkdir(migrationsDir, { recursive: true });
-      
+
       // Copy migrations from core package
       const coreMigrationsPath = join(process.cwd(), 'node_modules/@baudevs/bau-cms-core/migrations');
       if (!existsSync(coreMigrationsPath)) {
@@ -23,7 +28,7 @@ export async function migrateCommand() {
         console.error('Please make sure @baudevs/bau-cms-core is installed');
         process.exit(1);
       }
-      
+
       await cp(coreMigrationsPath, migrationsDir, { recursive: true });
     }
 
@@ -43,11 +48,11 @@ export async function migrateCommand() {
     });
 
     spinner.succeed('Database migrations completed successfully!');
-    
+
     console.log('\nNext steps:');
     console.log('1. Your database is now ready at: ' + chalk.cyan(dbPath));
     console.log('2. You can start adding content through the API or admin UI');
-    
+
   } catch (error) {
     spinner.fail('Failed to run migrations');
     if (error instanceof Error) {
@@ -60,4 +65,4 @@ export async function migrateCommand() {
     }
     process.exit(1);
   }
-} 
+}

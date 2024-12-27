@@ -8,7 +8,7 @@ export async function restoreCommand() {
 
   try {
     const backupManager = new BackupManager();
-    
+
     const summary = await backupManager.getChangeSummary();
     spinner.stop();
 
@@ -33,10 +33,10 @@ export async function restoreCommand() {
     spinner.start('Restoring project...');
     await backupManager.restoreAll();
     spinner.succeed('Project restored successfully!');
-    
+
     console.log('\nYour project has been restored to its state before BauCMS installation.');
-    console.log('The backup files are still available in ' + chalk.cyan('.baucms-backup') + ' if needed.');
-    
+    console.log('The backup files are still available in ' + chalk.cyan('.bau-backup') + ' if needed.');
+
   } catch (error) {
     spinner.fail('Failed to restore project');
     if (error instanceof Error) {
@@ -49,4 +49,4 @@ export async function restoreCommand() {
     }
     process.exit(1);
   }
-} 
+}
