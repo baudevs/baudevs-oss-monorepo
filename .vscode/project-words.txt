@@ -31,6 +31,7 @@ rubik-cube
 rubiks
 Rubiks
 shortlog
+turso
 vite
 vitest
 worktree
@@ -47,3 +48,5 @@ worktree-remote-url
 worktrees
 Worktrees
 WORKTREES
+turso
+Turso
