@@ -1,7 +1,7 @@
 {
   "repoPath": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
   "defaultBranch": "staging",
-  "generatedAt": "2024-12-27T07:05:33.955Z",
+  "generatedAt": "2024-12-27T07:05:55.739Z",
   "gitVersion": "git version 2.39.5 (Apple Git-154)",
   "nxVersion": "20.3.0",
   "nodeVersion": "v22.6.0",
@@ -10,8 +10,8 @@
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
       "branch": "staging",
-      "commit": "2c7650e55fcb1030d95a14739093b733e9a89873",
-      "lastActivity": "Fri Dec 27 08:05:25 2024 +0100"
+      "commit": "31dc0df9a356901a0e4e88836a9ef581bf743060",
+      "lastActivity": "Fri Dec 27 08:05:52 2024 +0100"
     },
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo.worktrees/bau-cms-cli",
@@ -344,11 +344,90 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "31dc0df9a356901a0e4e88836a9ef581bf743060",
+          "author": "Juan Arroyave",
+          "date": "Fri Dec 27 08:05:52 2024 +0100",
+          "message": "feat(cli): introduce BauCMS CLI for project management",
+          "branch": "staging",
+          "files": [
+            "apps/bau-cms-example/package.json",
+            "apps/baudevs-dashboard/public/project-graph.json",
+            "bun.lockb",
+            "bunfig.toml",
+            "nx.json",
+            "packages/@baudevs/cli/.swcrc",
+            "packages/@baudevs/cli/README.md",
+            "packages/@baudevs/cli/eslint.config.mjs",
+            "packages/@baudevs/cli/jest.config.ts",
+            "packages/@baudevs/cli/package.json",
+            "packages/@baudevs/cli/project.json",
+            "packages/@baudevs/cli/src/index.ts",
+            "packages/@baudevs/cli/src/lib/bau-cms-cli.spec.ts",
+            "packages/@baudevs/cli/src/lib/bau-cms-cli.ts",
+            "packages/@baudevs/cli/src/lib/commands/help.ts",
+            "packages/@baudevs/cli/src/lib/commands/init.ts",
+            "packages/@baudevs/cli/src/lib/commands/migrate.ts",
+            "packages/@baudevs/cli/src/lib/commands/restore.ts",
+            "packages/@baudevs/cli/src/lib/utils/ascii-art.ts",
+            "packages/@baudevs/cli/src/lib/utils/backup-manager.ts",
+            "packages/@baudevs/cli/src/lib/utils/project-analyzer.ts",
+            "packages/@baudevs/cli/tsconfig.json",
+            "packages/@baudevs/cli/tsconfig.lib.json",
+            "packages/@baudevs/cli/tsconfig.spec.json",
+            "packages/bau-cms-cli/README.md",
+            "packages/bau-cms-cli/package.json",
+            "packages/bau-cms-cli/project.json",
+            "packages/bau-cms-cli/tsconfig.json",
+            "tsconfig.base.json",
+            "workspace.json"
+          ],
+          "nxProjects": [
+            "@baudevs/bauCmsNextExample",
+            "baudevs-dashboard",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli"
+          ]
+        },
+        {
+          "hash": "1faf2efe1808e0d14bcda142f4758e8c7662b160",
+          "author": "Juan Arroyave",
+          "date": "Fri Dec 27 08:05:25 2024 +0100",
+          "message": "chore(metadata): update repository metadata",
+          "branch": "staging~1",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "008d7978bc4bfc3f12bab64044fca21399bbf208",
           "author": "Juan Arroyave",
           "date": "Thu Dec 26 11:51:30 2024 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~1",
+          "branch": "staging~3",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -365,7 +444,7 @@
           "author": "Juan Arroyave",
           "date": "Thu Dec 26 11:51:30 2024 +0100",
           "message": "chore(baudevs-dashboard): enhance TypeScript configuration for improved build process",
-          "branch": "staging~2",
+          "branch": "staging~4",
           "files": [
             "apps/baudevs-dashboard/tsconfig.app.json",
             "apps/baudevs-dashboard/tsconfig.json"
@@ -490,45 +569,6 @@
             "baudevs-dashboard",
             "baudevs-dashboard"
           ]
-        },
-        {
-          "hash": "69ac1e9366a4b824e001144b2aff56f71c3f069b",
-          "author": "Juan Arroyave",
-          "date": "Wed Dec 25 09:13:33 2024 +0100",
-          "message": "feat: update metadata generation and improve error handling in dashboard",
-          "branch": "feature/bau-cms-cli~3",
-          "files": [
-            "TERMS_AND_CONDITIONS.md",
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "apps/baudevs-dashboard/src/app/dashboard.tsx",
-            "apps/baudevs-dashboard/vite.config.ts",
-            "bun.lockb",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "93ee20014d31de4f1f90500e88ef203d5d8062f7",
-          "author": "Juan Arroyave",
-          "date": "Tue Dec 24 11:37:46 2024 +0100",
-          "message": "feat: enhance metadata generation in dashboard workflow",
-          "branch": "feature/bau-cms-cli~4",
-          "files": [
-            ".github/workflows/dashboard.yml",
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
         }
       ],
       "contributors": [],
@@ -635,7 +675,70 @@
         "npm:public"
       ],
       "dependencies": [],
-      "lastCommits": [],
+      "lastCommits": [
+        {
+          "hash": "31dc0df9a356901a0e4e88836a9ef581bf743060",
+          "author": "Juan Arroyave",
+          "date": "Fri Dec 27 08:05:52 2024 +0100",
+          "message": "feat(cli): introduce BauCMS CLI for project management",
+          "branch": "staging",
+          "files": [
+            "apps/bau-cms-example/package.json",
+            "apps/baudevs-dashboard/public/project-graph.json",
+            "bun.lockb",
+            "bunfig.toml",
+            "nx.json",
+            "packages/@baudevs/cli/.swcrc",
+            "packages/@baudevs/cli/README.md",
+            "packages/@baudevs/cli/eslint.config.mjs",
+            "packages/@baudevs/cli/jest.config.ts",
+            "packages/@baudevs/cli/package.json",
+            "packages/@baudevs/cli/project.json",
+            "packages/@baudevs/cli/src/index.ts",
+            "packages/@baudevs/cli/src/lib/bau-cms-cli.spec.ts",
+            "packages/@baudevs/cli/src/lib/bau-cms-cli.ts",
+            "packages/@baudevs/cli/src/lib/commands/help.ts",
+            "packages/@baudevs/cli/src/lib/commands/init.ts",
+            "packages/@baudevs/cli/src/lib/commands/migrate.ts",
+            "packages/@baudevs/cli/src/lib/commands/restore.ts",
+            "packages/@baudevs/cli/src/lib/utils/ascii-art.ts",
+            "packages/@baudevs/cli/src/lib/utils/backup-manager.ts",
+            "packages/@baudevs/cli/src/lib/utils/project-analyzer.ts",
+            "packages/@baudevs/cli/tsconfig.json",
+            "packages/@baudevs/cli/tsconfig.lib.json",
+            "packages/@baudevs/cli/tsconfig.spec.json",
+            "packages/bau-cms-cli/README.md",
+            "packages/bau-cms-cli/package.json",
+            "packages/bau-cms-cli/project.json",
+            "packages/bau-cms-cli/tsconfig.json",
+            "tsconfig.base.json",
+            "workspace.json"
+          ],
+          "nxProjects": [
+            "@baudevs/bauCmsNextExample",
+            "baudevs-dashboard",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli"
+          ]
+        }
+      ],
       "contributors": [],
       "metadata": {
         "targets": {
@@ -747,6 +850,68 @@
         "@baudevs/cmsEditor"
       ],
       "lastCommits": [
+        {
+          "hash": "31dc0df9a356901a0e4e88836a9ef581bf743060",
+          "author": "Juan Arroyave",
+          "date": "Fri Dec 27 08:05:52 2024 +0100",
+          "message": "feat(cli): introduce BauCMS CLI for project management",
+          "branch": "staging",
+          "files": [
+            "apps/bau-cms-example/package.json",
+            "apps/baudevs-dashboard/public/project-graph.json",
+            "bun.lockb",
+            "bunfig.toml",
+            "nx.json",
+            "packages/@baudevs/cli/.swcrc",
+            "packages/@baudevs/cli/README.md",
+            "packages/@baudevs/cli/eslint.config.mjs",
+            "packages/@baudevs/cli/jest.config.ts",
+            "packages/@baudevs/cli/package.json",
+            "packages/@baudevs/cli/project.json",
+            "packages/@baudevs/cli/src/index.ts",
+            "packages/@baudevs/cli/src/lib/bau-cms-cli.spec.ts",
+            "packages/@baudevs/cli/src/lib/bau-cms-cli.ts",
+            "packages/@baudevs/cli/src/lib/commands/help.ts",
+            "packages/@baudevs/cli/src/lib/commands/init.ts",
+            "packages/@baudevs/cli/src/lib/commands/migrate.ts",
+            "packages/@baudevs/cli/src/lib/commands/restore.ts",
+            "packages/@baudevs/cli/src/lib/utils/ascii-art.ts",
+            "packages/@baudevs/cli/src/lib/utils/backup-manager.ts",
+            "packages/@baudevs/cli/src/lib/utils/project-analyzer.ts",
+            "packages/@baudevs/cli/tsconfig.json",
+            "packages/@baudevs/cli/tsconfig.lib.json",
+            "packages/@baudevs/cli/tsconfig.spec.json",
+            "packages/bau-cms-cli/README.md",
+            "packages/bau-cms-cli/package.json",
+            "packages/bau-cms-cli/project.json",
+            "packages/bau-cms-cli/tsconfig.json",
+            "tsconfig.base.json",
+            "workspace.json"
+          ],
+          "nxProjects": [
+            "@baudevs/bauCmsNextExample",
+            "baudevs-dashboard",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli"
+          ]
+        },
         {
           "hash": "869ea1e0eb63e802527524c3a3f53215d85d34e5",
           "author": "Juan Arroyave",
@@ -2224,7 +2389,7 @@
       "type": "rebase",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 49
+      "divergedCommits": 51
     },
     {
       "from": "feature/bau-cms-cli",
@@ -2272,7 +2437,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 22
+      "divergedCommits": 24
     },
     {
       "from": "feature/bau-cms-core",
@@ -2320,7 +2485,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 79
+      "divergedCommits": 81
     },
     {
       "from": "feature/bau-cms-example",
@@ -2368,7 +2533,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 90
+      "divergedCommits": 92
     },
     {
       "from": "feature/dashboard-app",
@@ -2416,7 +2581,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 104
+      "divergedCommits": 106
     },
     {
       "from": "main",
@@ -2464,7 +2629,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
       "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
-      "divergedCommits": 81
+      "divergedCommits": 83
     },
     {
       "from": "staging",
@@ -2472,7 +2637,7 @@
       "type": "merge",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 49
+      "divergedCommits": 51
     },
     {
       "from": "staging",
@@ -2480,7 +2645,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 22
+      "divergedCommits": 24
     },
     {
       "from": "staging",
@@ -2488,7 +2653,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 79
+      "divergedCommits": 81
     },
     {
       "from": "staging",
@@ -2496,7 +2661,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 90
+      "divergedCommits": 92
     },
     {
       "from": "staging",
@@ -2504,7 +2669,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 104
+      "divergedCommits": 106
     },
     {
       "from": "staging",
@@ -2512,19 +2677,19 @@
       "type": "merge",
       "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
       "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
-      "divergedCommits": 81
+      "divergedCommits": 83
     }
   ],
   "recentActivity": {
     "lastPush": "Sun Dec 22 09:53:48 2024 +0100",
-    "lastPull": "2024-12-27T07:05:35.314Z",
-    "lastMerge": "2024-12-27T07:05:35.322Z",
+    "lastPull": "2024-12-27T07:05:57.020Z",
+    "lastMerge": "2024-12-27T07:05:57.027Z",
     "activeBranches": [
       {
         "name": "staging",
-        "lastCommit": "2c7650e55fcb1030d95a14739093b733e9a89873",
+        "lastCommit": "31dc0df9a356901a0e4e88836a9ef581bf743060",
         "author": "Juan Arroyave",
-        "commitCount": 119
+        "commitCount": 121
       },
       {
         "name": "feature/bau-cms-cli",
@@ -2568,8 +2733,8 @@
     "totalApps": 2,
     "totalLibraries": 6,
     "totalPackages": 0,
-    "totalFiles": 172,
-    "totalCommits": 119,
+    "totalFiles": 175,
+    "totalCommits": 121,
     "totalContributors": 0
   }
 }
