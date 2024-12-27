@@ -2,14 +2,18 @@ bau
 baudevs
 baudevs-monorepo
 baudevs-types
+buildable
 ccpa
 CCPA
 cicd
+claude
 committerdate
 elif
 esnext
+geist
 github
 GITHUB
+gmbh
 hero
 lockb
 log
@@ -21,6 +25,7 @@ magicusprime
 nipc
 NIPC
 openai
+outdir
 playlistswap
 presentamator
 reflog
@@ -31,7 +36,9 @@ rubik-cube
 rubiks
 Rubiks
 shortlog
+targetivo
 turso
+Turso
 vite
 vitest
 worktree
@@ -48,5 +55,3 @@ worktree-remote-url
 worktrees
 Worktrees
 WORKTREES
-turso
-Turso

@@ -1,4 +1,3 @@
-/// <reference types="bun-types" />
 
 import { execSync } from "child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
@@ -73,7 +72,7 @@ interface RepoMetadata {
   gitVersion: string;
   nxVersion: string;
   nodeVersion: string;
-  bunVersion: string;
+  pnpmVersion: string;
   worktrees: GitWorktree[];
   nxProjects: NxProject[];
   branchRelationships: BranchRelationship[];
@@ -195,13 +194,13 @@ function getGitWorktrees(): GitWorktree[] {
 function getNxProjects(): NxProject[] {
   console.log('📦 Getting NX projects...');
   // Get all projects using nx show projects
-  const projectsOutput = execCommand('bun nx show projects --json');
+  const projectsOutput = execCommand('pnpm nx show projects --json');
   const projectNames = JSON.parse(projectsOutput) as string[];
   const projects: NxProject[] = [];
 
   // Generate project graph once
   const dashboardPublicDir = join(rootDir, 'apps/baudevs-dashboard/public');
-  execCommand(`bun nx graph --file=${dashboardPublicDir}/project-graph.json`);
+  execCommand(`pnpm nx graph --file=${dashboardPublicDir}/project-graph.json`);
   const projectGraph = JSON.parse(readFileSync(dashboardPublicDir + '/project-graph.json', 'utf-8')) as ProjectGraph;
 
   for (const name of projectNames) {
@@ -369,7 +368,7 @@ const metadata: RepoMetadata = {
   gitVersion: execCommand('git --version'),
   nxVersion: JSON.parse(readFileSync('package.json', 'utf-8')).devDependencies['nx'] || '',
   nodeVersion: process.version,
-  bunVersion: execCommand('bun --version'),
+  pnpmVersion: execCommand('pnpm --version'),
   worktrees: getGitWorktrees(),
   nxProjects,
   branchRelationships: getBranchRelationships(),

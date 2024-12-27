@@ -45,13 +45,13 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
+      - name: Setup Pnpm
+        uses: pnpm/action-setup@v4
         with:
-          bun-version: 'latest'
+          version: '9.15.1'
 
       - name: Install Dependencies
-        run: bun install
+        run: pnpm install
 
       - name: Install System Dependencies
         run: |
@@ -83,7 +83,7 @@ jobs:
           COMMIT_HASH="${{ github.sha }}"
 
           # Generate metadata
-          bun scripts/generate-repo-metadata.ts \
+          pnpm run scripts/generate-repo-metadata.ts \
             --author="$AUTHOR_NAME" \
             --email="$AUTHOR_EMAIL" \
             --branch="$BRANCH_NAME" \
@@ -93,7 +93,7 @@ jobs:
           cp repoMetadata.json apps/baudevs-dashboard/public/
 
       - name: Build Dashboard
-        run: bunx nx build baudevs-dashboard --verbose
+        run: pnpm nx build baudevs-dashboard --verbose
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

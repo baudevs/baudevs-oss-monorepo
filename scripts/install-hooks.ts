@@ -1,5 +1,4 @@
-#!/usr/bin/env bun
-/// <reference types="bun-types" />
+#!/usr/bin/env node
 
 import { copyFileSync, chmodSync, mkdirSync, existsSync } from 'fs';
 import { join } from 'path';

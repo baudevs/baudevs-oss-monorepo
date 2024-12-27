@@ -109,7 +109,7 @@ export SKIP_POST_COMMIT=1
 print_section "📝 Metadata Generation"
 printf "🚀 Processing │ Commit ${CYAN}${BOLD}%s${NC}\n" "$COMMIT"
 
-bun scripts/generate-repo-metadata.ts --author="$AUTHOR" --email="$EMAIL" --branch="$BRANCH" --commit="$COMMIT"
+pnpm exec tsx scripts/generate-repo-metadata.ts --author="$AUTHOR" --email="$EMAIL" --branch="$BRANCH" --commit="$COMMIT"
 
 # Copy metadata files to dashboard public directory
 print_section "📋 Dashboard Update"
