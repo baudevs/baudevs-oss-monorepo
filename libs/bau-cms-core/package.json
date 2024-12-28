@@ -1,28 +1,25 @@
 {
   "name": "@baudevs/bau-cms-core",
-  "version": "0.0.1",
-  "dependencies": {
-    "@libsql/client": "^0.14.0",
-    "@types/better-sqlite3": "^7.6.12",
-    "better-sqlite3": "^11.7.0",
-    "drizzle-orm": "^0.38.2"
-  },
-  "peerDependencies": {
-    "next": "^15.1.2",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
-  },
-  "devDependencies": {
-    "@types/node": "^22.10.2",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "typescript": "^5.3.3"
-  },
+  "version": "0.1.0",
+  "private": true,
   "type": "module",
-  "main": "./dist/index.js",
-  "types": "./dist/types/index.d.ts",
+  "main": "./index.js",
+  "types": "./index.d.ts",
   "scripts": {
     "build": "tsc",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@libsql/client": "^0.14.0",
+    "drizzle-orm": "^0.38.3",
+    "drizzle-kit": "^0.20.14"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.10",
+    "typescript": "^5.7.2",
+    "eslint": "^9.1.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0"
   }
 }
