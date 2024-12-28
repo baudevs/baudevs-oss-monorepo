@@ -5,48 +5,49 @@
   "projectType": "library",
   "targets": {
     "build": {
-      "cache": false,
-      "executor": "@nx/js:tsc",
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "{workspaceRoot}/dist/packages/@baudevs/cli",
+        "outputPath": "dist/packages/@baudevs/cli",
         "main": "{projectRoot}/src/index.ts",
         "tsConfig": "{projectRoot}/tsconfig.lib.json",
         "assets": [
           "{projectRoot}/**/*.md",
           "{projectRoot}/**/package.json"
         ],
-        "format": ["esm"],
+        "format": ["cjs"],
         "platform": "node",
         "bundle": true,
-        "external": ["@baudevs/*"],
-        "generateTypes": true,
+        "thirdParty": true,
+        "external": ["@libsql/client"],
         "esbuildOptions": {
           "outExtension": { ".js": ".js" },
-          "sourcemap": true,
-          "outdir": "dist/packages/@baudevs/cli"
+          "sourcemap": true
         }
       }
     },
-    "release": {
-      "cache": false,
-      "executor": "@nx/js:tsc",
+    "lint": {
+      "executor": "@nx/eslint:lint",
       "options": {
-        "project": "@baudevs/cli",
-        "packageRoot": "dist/{projectRoot}",
-        "publish": false
-      },
-      "changelog": {
-        "projectChangelogs": {
-          "file": "CHANGELOG.md",
-          "createRelease": "github"
-        }
+        "lintFilePatterns": [
+          "packages/@baudevs/cli/**/*.ts"
+        ],
+        "ignoredDependencies": [
+          "@libsql/client",
+          "@types/inquirer",
+          "chalk",
+          "commander",
+          "drizzle-orm",
+          "inquirer",
+          "ora"
+        ]
       }
     },
-    "publish": {
-      "executor": "@nx/js:tsc",
+    "run-bin": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
       "options": {
-        "project": "@baudevs/cli",
-        "packageRoot": "dist/{projectRoot}"
+        "commands": ["node dist/packages/@baudevs/cli/index.js"]
       }
     }
   },
