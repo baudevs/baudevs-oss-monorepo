@@ -143,7 +143,7 @@
                 ],
                 "description": "Runs ESLint on project",
                 "help": {
-                  "command": "bun eslint --help",
+                  "command": "pnpm exec eslint --help",
                   "example": {
                     "options": {
                       "max-warnings": 0
@@ -267,20 +267,45 @@
           "root": "packages/@baudevs/cli",
           "targets": {
             "lint": {
-              "executor": "@nx/eslint:lint",
-              "options": {
-                "externalDependencies": "none",
-                "lintFilePatterns": [
-                  "packages/@baudevs/cli/**/*.{ts,tsx,js,jsx}",
-                  "packages/@baudevs/cli/package.json"
-                ]
-              },
-              "configurations": {},
-              "parallelism": true,
               "cache": true,
+              "options": {
+                "cwd": "packages/@baudevs/cli",
+                "env": {
+                  "ESLINT_USE_FLAT_CONFIG": "true"
+                },
+                "command": "eslint ."
+              },
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/eslint.config.js",
+                "{workspaceRoot}/tools/eslint-rules/**/*",
+                {
+                  "externalDependencies": [
+                    "eslint"
+                  ]
+                }
+              ],
               "outputs": [
                 "{options.outputFile}"
-              ]
+              ],
+              "metadata": {
+                "technologies": [
+                  "eslint"
+                ],
+                "description": "Runs ESLint on project",
+                "help": {
+                  "command": "pnpm exec eslint --help",
+                  "example": {
+                    "options": {
+                      "max-warnings": 0
+                    }
+                  }
+                }
+              },
+              "executor": "nx:run-commands",
+              "configurations": {},
+              "parallelism": true
             },
             "nx-release-publish": {
               "executor": "@nx/js:release-publish",
@@ -293,7 +318,7 @@
             },
             "build": {
               "cache": false,
-              "executor": "@nx/esbuild:esbuild",
+              "executor": "@nx/js:tsc",
               "options": {
                 "outputPath": "dist/packages/@baudevs/cli",
                 "main": "packages/@baudevs/cli/src/index.ts",
@@ -317,17 +342,55 @@
                   },
                   "sourcemap": true,
                   "outdir": "dist/packages/@baudevs/cli"
-                },
-                "verbose": true
+                }
               },
               "configurations": {},
               "parallelism": true,
               "dependsOn": [
-                "^build",
-                "lint"
+                "^build"
               ],
               "inputs": [
-                "default",
+                "production",
+                "^production"
+              ]
+            },
+            "release": {
+              "cache": false,
+              "executor": "@nx/js:tsc",
+              "options": {
+                "project": "@baudevs/cli",
+                "packageRoot": "dist/packages/@baudevs/cli",
+                "publish": false
+              },
+              "changelog": {
+                "projectChangelogs": {
+                  "file": "CHANGELOG.md",
+                  "createRelease": "github"
+                }
+              },
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ]
+            },
+            "publish": {
+              "executor": "@nx/js:tsc",
+              "options": {
+                "project": "@baudevs/cli",
+                "packageRoot": "dist/packages/@baudevs/cli"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "cache": true,
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
                 "production",
                 "^production"
               ]
@@ -431,7 +494,7 @@
                 ],
                 "description": "Runs ESLint on project",
                 "help": {
-                  "command": "bun eslint --help",
+                  "command": "pnpm exec eslint --help",
                   "example": {
                     "options": {
                       "max-warnings": 0
