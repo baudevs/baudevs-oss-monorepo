@@ -1,7 +1,7 @@
 {
   "repoPath": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
   "defaultBranch": "staging",
-  "generatedAt": "2024-12-27T11:51:43.295Z",
+  "generatedAt": "2024-12-28T06:25:47.105Z",
   "gitVersion": "git version 2.39.5 (Apple Git-154)",
   "nxVersion": "20.3.0",
   "nodeVersion": "v23.3.0",
@@ -10,8 +10,8 @@
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
       "branch": "staging",
-      "commit": "3bbb8291db8cd590914c6e25955b28e176748142",
-      "lastActivity": "Fri Dec 27 12:51:34 2024 +0100"
+      "commit": "2fd8258693f3be7be8e170b9c8d18f260c98fb3d",
+      "lastActivity": "Sat Dec 28 07:25:35 2024 +0100"
     },
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo.worktrees/bau-cms-cli",
@@ -383,6 +383,104 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "2fd8258693f3be7be8e170b9c8d18f260c98fb3d",
+          "author": "Juan Arroyave",
+          "date": "Sat Dec 28 07:25:35 2024 +0100",
+          "message": "chore: migrate ESLint configuration and enhance project structure",
+          "branch": "staging",
+          "files": [
+            "apps/bau-cms-example/README.md",
+            "apps/bau-cms-example/eslint.config.mjs",
+            "apps/bau-cms-example/package.json",
+            "apps/bau-cms-example/postcss.config.mjs",
+            "apps/bau-cms-example/postcss.config.ts",
+            "apps/bau-cms-example/public/globe.svg",
+            "apps/baudevs-dashboard/package.json",
+            "apps/baudevs-dashboard/postcss.config.js",
+            "apps/baudevs-dashboard/public/project-graph.json",
+            "apps/baudevs-dashboard/src/app/dashboard.tsx",
+            "apps/baudevs-dashboard/tsconfig.app.json",
+            "apps/baudevs-dashboard/tsconfig.json",
+            "eslint.config.js",
+            "eslint.config.mjs",
+            "jest.preset.js",
+            "libs/bau-cms-admin/eslint.config.mjs",
+            "libs/bau-cms-admin/jest.config.ts",
+            "libs/bau-cms-admin/package.json",
+            "libs/bau-cms-core/eslint.config.mjs",
+            "libs/bau-cms-core/jest.config.ts",
+            "libs/bau-cms-core/src/lib/types/index.ts",
+            "libs/bauLogHero/eslint.config.mjs",
+            "libs/bauLogHero/package.json",
+            "libs/bauLogHero/project.json",
+            "nx.json",
+            "package.json",
+            "packages/@baudevs/cli/eslint.config.mjs",
+            "packages/@baudevs/cli/jest.config.ts",
+            "packages/@baudevs/cli/package.json",
+            "packages/@baudevs/cli/project.json",
+            "packages/@baudevs/cli/src/lib/bau-cms-cli.ts",
+            "packages/@baudevs/cli/src/lib/commands/init.ts",
+            "packages/@baudevs/cli/src/lib/commands/migrate.ts",
+            "packages/@baudevs/cli/src/lib/utils/backup-manager.ts",
+            "packages/@baudevs/cli/src/lib/utils/project-analyzer.ts",
+            "packages/@baudevs/cli/tsconfig.json",
+            "packages/@baudevs/cli/tsconfig.lib.json",
+            "pnpm-lock.yaml"
+          ],
+          "nxProjects": [
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "@baudevs/cmsAdmin",
+            "@baudevs/cmsAdmin",
+            "@baudevs/cmsAdmin",
+            "@baudevs/cmsCore",
+            "@baudevs/cmsCore",
+            "@baudevs/cmsCore",
+            "@baudevs/bau-log-hero",
+            "@baudevs/bau-log-hero",
+            "@baudevs/bau-log-hero",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli"
+          ]
+        },
+        {
+          "hash": "c0e5f24082bc0c4780f786b631a8e595b8509bdb",
+          "author": "Juan Arroyave",
+          "date": "Fri Dec 27 12:50:17 2024 +0100",
+          "message": "chore(metadata): update repository metadata",
+          "branch": "staging~1",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "bb1047c3dafbd105967df19ad588070d3eb95bb8",
           "author": "Juan Arroyave",
           "date": "Fri Dec 27 08:05:52 2024 +0100",
@@ -572,42 +670,6 @@
             "baudevs-dashboard",
             "baudevs-dashboard"
           ]
-        },
-        {
-          "hash": "728be5dc92240266b369797753f19eaaa8c3f7bb",
-          "author": "Juan Arroyave",
-          "date": "Thu Dec 26 08:35:29 2024 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/staging~10",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "e5feede2094927c8e8533dc8e2d39c3ca399da3e",
-          "author": "Juan Arroyave",
-          "date": "Thu Dec 26 08:35:29 2024 +0100",
-          "message": "chore: update project configuration and add dashboard files",
-          "branch": "remotes/origin/staging~11",
-          "files": [
-            ".markdownlint.json",
-            "PRIVACY_POLICY.md",
-            "apps/baudevs-dashboard/.gitignore",
-            "apps/baudevs-dashboard/README.md",
-            "package.json",
-            "tsconfig.base.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
         }
       ],
       "contributors": [],
@@ -639,7 +701,7 @@
               ],
               "description": "Runs ESLint on project",
               "help": {
-                "command": "bun eslint --help",
+                "command": "pnpm exec eslint --help",
                 "example": {
                   "options": {
                     "max-warnings": 0
@@ -762,6 +824,87 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "2fd8258693f3be7be8e170b9c8d18f260c98fb3d",
+          "author": "Juan Arroyave",
+          "date": "Sat Dec 28 07:25:35 2024 +0100",
+          "message": "chore: migrate ESLint configuration and enhance project structure",
+          "branch": "staging",
+          "files": [
+            "apps/bau-cms-example/README.md",
+            "apps/bau-cms-example/eslint.config.mjs",
+            "apps/bau-cms-example/package.json",
+            "apps/bau-cms-example/postcss.config.mjs",
+            "apps/bau-cms-example/postcss.config.ts",
+            "apps/bau-cms-example/public/globe.svg",
+            "apps/baudevs-dashboard/package.json",
+            "apps/baudevs-dashboard/postcss.config.js",
+            "apps/baudevs-dashboard/public/project-graph.json",
+            "apps/baudevs-dashboard/src/app/dashboard.tsx",
+            "apps/baudevs-dashboard/tsconfig.app.json",
+            "apps/baudevs-dashboard/tsconfig.json",
+            "eslint.config.js",
+            "eslint.config.mjs",
+            "jest.preset.js",
+            "libs/bau-cms-admin/eslint.config.mjs",
+            "libs/bau-cms-admin/jest.config.ts",
+            "libs/bau-cms-admin/package.json",
+            "libs/bau-cms-core/eslint.config.mjs",
+            "libs/bau-cms-core/jest.config.ts",
+            "libs/bau-cms-core/src/lib/types/index.ts",
+            "libs/bauLogHero/eslint.config.mjs",
+            "libs/bauLogHero/package.json",
+            "libs/bauLogHero/project.json",
+            "nx.json",
+            "package.json",
+            "packages/@baudevs/cli/eslint.config.mjs",
+            "packages/@baudevs/cli/jest.config.ts",
+            "packages/@baudevs/cli/package.json",
+            "packages/@baudevs/cli/project.json",
+            "packages/@baudevs/cli/src/lib/bau-cms-cli.ts",
+            "packages/@baudevs/cli/src/lib/commands/init.ts",
+            "packages/@baudevs/cli/src/lib/commands/migrate.ts",
+            "packages/@baudevs/cli/src/lib/utils/backup-manager.ts",
+            "packages/@baudevs/cli/src/lib/utils/project-analyzer.ts",
+            "packages/@baudevs/cli/tsconfig.json",
+            "packages/@baudevs/cli/tsconfig.lib.json",
+            "pnpm-lock.yaml"
+          ],
+          "nxProjects": [
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "@baudevs/cmsAdmin",
+            "@baudevs/cmsAdmin",
+            "@baudevs/cmsAdmin",
+            "@baudevs/cmsCore",
+            "@baudevs/cmsCore",
+            "@baudevs/cmsCore",
+            "@baudevs/bau-log-hero",
+            "@baudevs/bau-log-hero",
+            "@baudevs/bau-log-hero",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli"
+          ]
+        },
+        {
           "hash": "31dc0df9a356901a0e4e88836a9ef581bf743060",
           "author": "Juan Arroyave",
           "date": "Fri Dec 27 08:05:52 2024 +0100",
@@ -828,20 +971,45 @@
       "metadata": {
         "targets": {
           "lint": {
-            "executor": "@nx/eslint:lint",
-            "options": {
-              "externalDependencies": "none",
-              "lintFilePatterns": [
-                "packages/@baudevs/cli/**/*.{ts,tsx,js,jsx}",
-                "packages/@baudevs/cli/package.json"
-              ]
-            },
-            "configurations": {},
-            "parallelism": true,
             "cache": true,
+            "options": {
+              "cwd": "packages/@baudevs/cli",
+              "env": {
+                "ESLINT_USE_FLAT_CONFIG": "true"
+              },
+              "command": "eslint ."
+            },
+            "inputs": [
+              "default",
+              "^default",
+              "{workspaceRoot}/eslint.config.js",
+              "{workspaceRoot}/tools/eslint-rules/**/*",
+              {
+                "externalDependencies": [
+                  "eslint"
+                ]
+              }
+            ],
             "outputs": [
               "{options.outputFile}"
-            ]
+            ],
+            "metadata": {
+              "technologies": [
+                "eslint"
+              ],
+              "description": "Runs ESLint on project",
+              "help": {
+                "command": "pnpm exec eslint --help",
+                "example": {
+                  "options": {
+                    "max-warnings": 0
+                  }
+                }
+              }
+            },
+            "executor": "nx:run-commands",
+            "configurations": {},
+            "parallelism": true
           },
           "nx-release-publish": {
             "executor": "@nx/js:release-publish",
@@ -854,7 +1022,7 @@
           },
           "build": {
             "cache": false,
-            "executor": "@nx/esbuild:esbuild",
+            "executor": "@nx/js:tsc",
             "options": {
               "outputPath": "dist/packages/@baudevs/cli",
               "main": "packages/@baudevs/cli/src/index.ts",
@@ -878,17 +1046,55 @@
                 },
                 "sourcemap": true,
                 "outdir": "dist/packages/@baudevs/cli"
-              },
-              "verbose": true
+              }
             },
             "configurations": {},
             "parallelism": true,
             "dependsOn": [
-              "^build",
-              "lint"
+              "^build"
             ],
             "inputs": [
-              "default",
+              "production",
+              "^production"
+            ]
+          },
+          "release": {
+            "cache": false,
+            "executor": "@nx/js:tsc",
+            "options": {
+              "project": "@baudevs/cli",
+              "packageRoot": "dist/packages/@baudevs/cli",
+              "publish": false
+            },
+            "changelog": {
+              "projectChangelogs": {
+                "file": "CHANGELOG.md",
+                "createRelease": "github"
+              }
+            },
+            "configurations": {},
+            "parallelism": true,
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ]
+          },
+          "publish": {
+            "executor": "@nx/js:tsc",
+            "options": {
+              "project": "@baudevs/cli",
+              "packageRoot": "dist/packages/@baudevs/cli"
+            },
+            "configurations": {},
+            "parallelism": true,
+            "cache": true,
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
               "production",
               "^production"
             ]
@@ -911,6 +1117,87 @@
         "@baudevs/cmsCore"
       ],
       "lastCommits": [
+        {
+          "hash": "2fd8258693f3be7be8e170b9c8d18f260c98fb3d",
+          "author": "Juan Arroyave",
+          "date": "Sat Dec 28 07:25:35 2024 +0100",
+          "message": "chore: migrate ESLint configuration and enhance project structure",
+          "branch": "staging",
+          "files": [
+            "apps/bau-cms-example/README.md",
+            "apps/bau-cms-example/eslint.config.mjs",
+            "apps/bau-cms-example/package.json",
+            "apps/bau-cms-example/postcss.config.mjs",
+            "apps/bau-cms-example/postcss.config.ts",
+            "apps/bau-cms-example/public/globe.svg",
+            "apps/baudevs-dashboard/package.json",
+            "apps/baudevs-dashboard/postcss.config.js",
+            "apps/baudevs-dashboard/public/project-graph.json",
+            "apps/baudevs-dashboard/src/app/dashboard.tsx",
+            "apps/baudevs-dashboard/tsconfig.app.json",
+            "apps/baudevs-dashboard/tsconfig.json",
+            "eslint.config.js",
+            "eslint.config.mjs",
+            "jest.preset.js",
+            "libs/bau-cms-admin/eslint.config.mjs",
+            "libs/bau-cms-admin/jest.config.ts",
+            "libs/bau-cms-admin/package.json",
+            "libs/bau-cms-core/eslint.config.mjs",
+            "libs/bau-cms-core/jest.config.ts",
+            "libs/bau-cms-core/src/lib/types/index.ts",
+            "libs/bauLogHero/eslint.config.mjs",
+            "libs/bauLogHero/package.json",
+            "libs/bauLogHero/project.json",
+            "nx.json",
+            "package.json",
+            "packages/@baudevs/cli/eslint.config.mjs",
+            "packages/@baudevs/cli/jest.config.ts",
+            "packages/@baudevs/cli/package.json",
+            "packages/@baudevs/cli/project.json",
+            "packages/@baudevs/cli/src/lib/bau-cms-cli.ts",
+            "packages/@baudevs/cli/src/lib/commands/init.ts",
+            "packages/@baudevs/cli/src/lib/commands/migrate.ts",
+            "packages/@baudevs/cli/src/lib/utils/backup-manager.ts",
+            "packages/@baudevs/cli/src/lib/utils/project-analyzer.ts",
+            "packages/@baudevs/cli/tsconfig.json",
+            "packages/@baudevs/cli/tsconfig.lib.json",
+            "pnpm-lock.yaml"
+          ],
+          "nxProjects": [
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "@baudevs/cmsAdmin",
+            "@baudevs/cmsAdmin",
+            "@baudevs/cmsAdmin",
+            "@baudevs/cmsCore",
+            "@baudevs/cmsCore",
+            "@baudevs/cmsCore",
+            "@baudevs/bau-log-hero",
+            "@baudevs/bau-log-hero",
+            "@baudevs/bau-log-hero",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli"
+          ]
+        },
         {
           "hash": "31dc0df9a356901a0e4e88836a9ef581bf743060",
           "author": "Juan Arroyave",
@@ -1265,7 +1552,7 @@
               ],
               "description": "Runs ESLint on project",
               "help": {
-                "command": "bun eslint --help",
+                "command": "pnpm exec eslint --help",
                 "example": {
                   "options": {
                     "max-warnings": 0
@@ -1502,6 +1789,87 @@
         "@baudevs/cmsCore"
       ],
       "lastCommits": [
+        {
+          "hash": "2fd8258693f3be7be8e170b9c8d18f260c98fb3d",
+          "author": "Juan Arroyave",
+          "date": "Sat Dec 28 07:25:35 2024 +0100",
+          "message": "chore: migrate ESLint configuration and enhance project structure",
+          "branch": "staging",
+          "files": [
+            "apps/bau-cms-example/README.md",
+            "apps/bau-cms-example/eslint.config.mjs",
+            "apps/bau-cms-example/package.json",
+            "apps/bau-cms-example/postcss.config.mjs",
+            "apps/bau-cms-example/postcss.config.ts",
+            "apps/bau-cms-example/public/globe.svg",
+            "apps/baudevs-dashboard/package.json",
+            "apps/baudevs-dashboard/postcss.config.js",
+            "apps/baudevs-dashboard/public/project-graph.json",
+            "apps/baudevs-dashboard/src/app/dashboard.tsx",
+            "apps/baudevs-dashboard/tsconfig.app.json",
+            "apps/baudevs-dashboard/tsconfig.json",
+            "eslint.config.js",
+            "eslint.config.mjs",
+            "jest.preset.js",
+            "libs/bau-cms-admin/eslint.config.mjs",
+            "libs/bau-cms-admin/jest.config.ts",
+            "libs/bau-cms-admin/package.json",
+            "libs/bau-cms-core/eslint.config.mjs",
+            "libs/bau-cms-core/jest.config.ts",
+            "libs/bau-cms-core/src/lib/types/index.ts",
+            "libs/bauLogHero/eslint.config.mjs",
+            "libs/bauLogHero/package.json",
+            "libs/bauLogHero/project.json",
+            "nx.json",
+            "package.json",
+            "packages/@baudevs/cli/eslint.config.mjs",
+            "packages/@baudevs/cli/jest.config.ts",
+            "packages/@baudevs/cli/package.json",
+            "packages/@baudevs/cli/project.json",
+            "packages/@baudevs/cli/src/lib/bau-cms-cli.ts",
+            "packages/@baudevs/cli/src/lib/commands/init.ts",
+            "packages/@baudevs/cli/src/lib/commands/migrate.ts",
+            "packages/@baudevs/cli/src/lib/utils/backup-manager.ts",
+            "packages/@baudevs/cli/src/lib/utils/project-analyzer.ts",
+            "packages/@baudevs/cli/tsconfig.json",
+            "packages/@baudevs/cli/tsconfig.lib.json",
+            "pnpm-lock.yaml"
+          ],
+          "nxProjects": [
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "@baudevs/cmsAdmin",
+            "@baudevs/cmsAdmin",
+            "@baudevs/cmsAdmin",
+            "@baudevs/cmsCore",
+            "@baudevs/cmsCore",
+            "@baudevs/cmsCore",
+            "@baudevs/bau-log-hero",
+            "@baudevs/bau-log-hero",
+            "@baudevs/bau-log-hero",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli"
+          ]
+        },
         {
           "hash": "869ea1e0eb63e802527524c3a3f53215d85d34e5",
           "author": "Juan Arroyave",
@@ -1868,6 +2236,87 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "2fd8258693f3be7be8e170b9c8d18f260c98fb3d",
+          "author": "Juan Arroyave",
+          "date": "Sat Dec 28 07:25:35 2024 +0100",
+          "message": "chore: migrate ESLint configuration and enhance project structure",
+          "branch": "staging",
+          "files": [
+            "apps/bau-cms-example/README.md",
+            "apps/bau-cms-example/eslint.config.mjs",
+            "apps/bau-cms-example/package.json",
+            "apps/bau-cms-example/postcss.config.mjs",
+            "apps/bau-cms-example/postcss.config.ts",
+            "apps/bau-cms-example/public/globe.svg",
+            "apps/baudevs-dashboard/package.json",
+            "apps/baudevs-dashboard/postcss.config.js",
+            "apps/baudevs-dashboard/public/project-graph.json",
+            "apps/baudevs-dashboard/src/app/dashboard.tsx",
+            "apps/baudevs-dashboard/tsconfig.app.json",
+            "apps/baudevs-dashboard/tsconfig.json",
+            "eslint.config.js",
+            "eslint.config.mjs",
+            "jest.preset.js",
+            "libs/bau-cms-admin/eslint.config.mjs",
+            "libs/bau-cms-admin/jest.config.ts",
+            "libs/bau-cms-admin/package.json",
+            "libs/bau-cms-core/eslint.config.mjs",
+            "libs/bau-cms-core/jest.config.ts",
+            "libs/bau-cms-core/src/lib/types/index.ts",
+            "libs/bauLogHero/eslint.config.mjs",
+            "libs/bauLogHero/package.json",
+            "libs/bauLogHero/project.json",
+            "nx.json",
+            "package.json",
+            "packages/@baudevs/cli/eslint.config.mjs",
+            "packages/@baudevs/cli/jest.config.ts",
+            "packages/@baudevs/cli/package.json",
+            "packages/@baudevs/cli/project.json",
+            "packages/@baudevs/cli/src/lib/bau-cms-cli.ts",
+            "packages/@baudevs/cli/src/lib/commands/init.ts",
+            "packages/@baudevs/cli/src/lib/commands/migrate.ts",
+            "packages/@baudevs/cli/src/lib/utils/backup-manager.ts",
+            "packages/@baudevs/cli/src/lib/utils/project-analyzer.ts",
+            "packages/@baudevs/cli/tsconfig.json",
+            "packages/@baudevs/cli/tsconfig.lib.json",
+            "pnpm-lock.yaml"
+          ],
+          "nxProjects": [
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "@baudevs/cmsAdmin",
+            "@baudevs/cmsAdmin",
+            "@baudevs/cmsAdmin",
+            "@baudevs/cmsCore",
+            "@baudevs/cmsCore",
+            "@baudevs/cmsCore",
+            "@baudevs/bau-log-hero",
+            "@baudevs/bau-log-hero",
+            "@baudevs/bau-log-hero",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli"
+          ]
+        },
+        {
           "hash": "869ea1e0eb63e802527524c3a3f53215d85d34e5",
           "author": "Juan Arroyave",
           "date": "Sun Dec 22 18:46:40 2024 +0100",
@@ -2233,6 +2682,87 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "2fd8258693f3be7be8e170b9c8d18f260c98fb3d",
+          "author": "Juan Arroyave",
+          "date": "Sat Dec 28 07:25:35 2024 +0100",
+          "message": "chore: migrate ESLint configuration and enhance project structure",
+          "branch": "staging",
+          "files": [
+            "apps/bau-cms-example/README.md",
+            "apps/bau-cms-example/eslint.config.mjs",
+            "apps/bau-cms-example/package.json",
+            "apps/bau-cms-example/postcss.config.mjs",
+            "apps/bau-cms-example/postcss.config.ts",
+            "apps/bau-cms-example/public/globe.svg",
+            "apps/baudevs-dashboard/package.json",
+            "apps/baudevs-dashboard/postcss.config.js",
+            "apps/baudevs-dashboard/public/project-graph.json",
+            "apps/baudevs-dashboard/src/app/dashboard.tsx",
+            "apps/baudevs-dashboard/tsconfig.app.json",
+            "apps/baudevs-dashboard/tsconfig.json",
+            "eslint.config.js",
+            "eslint.config.mjs",
+            "jest.preset.js",
+            "libs/bau-cms-admin/eslint.config.mjs",
+            "libs/bau-cms-admin/jest.config.ts",
+            "libs/bau-cms-admin/package.json",
+            "libs/bau-cms-core/eslint.config.mjs",
+            "libs/bau-cms-core/jest.config.ts",
+            "libs/bau-cms-core/src/lib/types/index.ts",
+            "libs/bauLogHero/eslint.config.mjs",
+            "libs/bauLogHero/package.json",
+            "libs/bauLogHero/project.json",
+            "nx.json",
+            "package.json",
+            "packages/@baudevs/cli/eslint.config.mjs",
+            "packages/@baudevs/cli/jest.config.ts",
+            "packages/@baudevs/cli/package.json",
+            "packages/@baudevs/cli/project.json",
+            "packages/@baudevs/cli/src/lib/bau-cms-cli.ts",
+            "packages/@baudevs/cli/src/lib/commands/init.ts",
+            "packages/@baudevs/cli/src/lib/commands/migrate.ts",
+            "packages/@baudevs/cli/src/lib/utils/backup-manager.ts",
+            "packages/@baudevs/cli/src/lib/utils/project-analyzer.ts",
+            "packages/@baudevs/cli/tsconfig.json",
+            "packages/@baudevs/cli/tsconfig.lib.json",
+            "pnpm-lock.yaml"
+          ],
+          "nxProjects": [
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "@baudevs/bauCmsNextExample",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "@baudevs/cmsAdmin",
+            "@baudevs/cmsAdmin",
+            "@baudevs/cmsAdmin",
+            "@baudevs/cmsCore",
+            "@baudevs/cmsCore",
+            "@baudevs/cmsCore",
+            "@baudevs/bau-log-hero",
+            "@baudevs/bau-log-hero",
+            "@baudevs/bau-log-hero",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli"
+          ]
+        },
+        {
           "hash": "6a4129ae5094de255f7628515ad437ee4a853a41",
           "author": "Juan Arroyave",
           "date": "Fri Dec 20 12:57:18 2024 +0100",
@@ -2371,23 +2901,6 @@
           "branch": "tags/release/@baudevs/bau-log-hero/1.2.0^0",
           "files": [
             ".nx/version-plans/version-plan-1734033589420.md",
-            "libs/bauLogHero/CHANGELOG.md",
-            "libs/bauLogHero/package.json"
-          ],
-          "nxProjects": [
-            "@baudevs/bau-log-hero",
-            "@baudevs/bau-log-hero"
-          ]
-        },
-        {
-          "hash": "16b4431e1b46af7304fccc21d9bcca7baf4cb656",
-          "author": "baudevs",
-          "date": "Thu Dec 12 19:55:25 2024 +0000",
-          "message": "chore(release):",
-          "branch": "tags/release/@baudevs/bau-log-hero/1.1.0^0",
-          "files": [
-            ".nx/version-plans/version-plan-1734032709991.md",
-            ".nx/version-plans/version-plan-1734033113210.md",
             "libs/bauLogHero/CHANGELOG.md",
             "libs/bauLogHero/package.json"
           ],
@@ -2602,7 +3115,7 @@
       "type": "rebase",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 53
+      "divergedCommits": 55
     },
     {
       "from": "feature/bau-cms-cli",
@@ -2650,7 +3163,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 26
+      "divergedCommits": 28
     },
     {
       "from": "feature/bau-cms-core",
@@ -2698,7 +3211,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 83
+      "divergedCommits": 85
     },
     {
       "from": "feature/bau-cms-example",
@@ -2746,7 +3259,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 94
+      "divergedCommits": 96
     },
     {
       "from": "feature/dashboard-app",
@@ -2794,7 +3307,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 108
+      "divergedCommits": 110
     },
     {
       "from": "main",
@@ -2842,7 +3355,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
       "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
-      "divergedCommits": 85
+      "divergedCommits": 87
     },
     {
       "from": "staging",
@@ -2850,7 +3363,7 @@
       "type": "merge",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 53
+      "divergedCommits": 55
     },
     {
       "from": "staging",
@@ -2858,7 +3371,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 26
+      "divergedCommits": 28
     },
     {
       "from": "staging",
@@ -2866,7 +3379,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 83
+      "divergedCommits": 85
     },
     {
       "from": "staging",
@@ -2874,7 +3387,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 94
+      "divergedCommits": 96
     },
     {
       "from": "staging",
@@ -2882,7 +3395,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 108
+      "divergedCommits": 110
     },
     {
       "from": "staging",
@@ -2890,19 +3403,19 @@
       "type": "merge",
       "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
       "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
-      "divergedCommits": 85
+      "divergedCommits": 87
     }
   ],
   "recentActivity": {
     "lastPush": "Sun Dec 22 09:53:48 2024 +0100",
-    "lastPull": "2024-12-27T11:51:44.940Z",
-    "lastMerge": "2024-12-27T11:51:44.947Z",
+    "lastPull": "2024-12-28T06:25:48.586Z",
+    "lastMerge": "2024-12-28T06:25:48.593Z",
     "activeBranches": [
       {
         "name": "staging",
-        "lastCommit": "3bbb8291db8cd590914c6e25955b28e176748142",
+        "lastCommit": "2fd8258693f3be7be8e170b9c8d18f260c98fb3d",
         "author": "Juan Arroyave",
-        "commitCount": 123
+        "commitCount": 125
       },
       {
         "name": "feature/bau-cms-cli",
@@ -2946,8 +3459,8 @@
     "totalApps": 2,
     "totalLibraries": 6,
     "totalPackages": 0,
-    "totalFiles": 175,
-    "totalCommits": 123,
+    "totalFiles": 169,
+    "totalCommits": 125,
     "totalContributors": 0
   }
 }
