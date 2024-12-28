@@ -270,45 +270,27 @@
           "root": "packages/@baudevs/cli",
           "targets": {
             "lint": {
-              "cache": true,
+              "executor": "@nx/eslint:lint",
               "options": {
-                "cwd": "packages/@baudevs/cli",
-                "env": {
-                  "ESLINT_USE_FLAT_CONFIG": "true"
-                },
-                "command": "eslint ."
+                "lintFilePatterns": [
+                  "packages/@baudevs/cli/**/*.ts"
+                ],
+                "ignoredDependencies": [
+                  "@libsql/client",
+                  "@types/inquirer",
+                  "chalk",
+                  "commander",
+                  "drizzle-orm",
+                  "inquirer",
+                  "ora"
+                ]
               },
-              "inputs": [
-                "default",
-                "^default",
-                "{workspaceRoot}/eslint.config.js",
-                "{workspaceRoot}/tools/eslint-rules/**/*",
-                {
-                  "externalDependencies": [
-                    "eslint"
-                  ]
-                }
-              ],
+              "configurations": {},
+              "parallelism": true,
+              "cache": true,
               "outputs": [
                 "{options.outputFile}"
-              ],
-              "metadata": {
-                "technologies": [
-                  "eslint"
-                ],
-                "description": "Runs ESLint on project",
-                "help": {
-                  "command": "pnpm exec eslint --help",
-                  "example": {
-                    "options": {
-                      "max-warnings": 0
-                    }
-                  }
-                }
-              },
-              "executor": "nx:run-commands",
-              "configurations": {},
-              "parallelism": true
+              ]
             },
             "nx-release-publish": {
               "executor": "@nx/js:release-publish",
@@ -320,8 +302,10 @@
               "parallelism": true
             },
             "build": {
-              "cache": false,
-              "executor": "@nx/js:tsc",
+              "executor": "@nx/esbuild:esbuild",
+              "outputs": [
+                "{options.outputPath}"
+              ],
               "options": {
                 "outputPath": "dist/packages/@baudevs/cli",
                 "main": "packages/@baudevs/cli/src/index.ts",
@@ -331,72 +315,47 @@
                   "packages/@baudevs/cli/**/package.json"
                 ],
                 "format": [
-                  "esm"
+                  "cjs"
                 ],
                 "platform": "node",
                 "bundle": true,
+                "thirdParty": true,
                 "external": [
-                  "@baudevs/*"
+                  "@libsql/client"
                 ],
-                "generateTypes": true,
                 "esbuildOptions": {
                   "outExtension": {
                     ".js": ".js"
                   },
-                  "sourcemap": true,
-                  "outdir": "dist/packages/@baudevs/cli"
-                }
+                  "sourcemap": true
+                },
+                "verbose": true
               },
               "configurations": {},
               "parallelism": true,
               "dependsOn": [
-                "^build"
+                "^build",
+                "lint"
               ],
               "inputs": [
+                "default",
                 "production",
                 "^production"
-              ]
+              ],
+              "cache": true
             },
-            "release": {
-              "cache": false,
-              "executor": "@nx/js:tsc",
+            "run-bin": {
+              "executor": "nx:run-commands",
+              "dependsOn": [
+                "build"
+              ],
               "options": {
-                "project": "@baudevs/cli",
-                "packageRoot": "dist/packages/@baudevs/cli",
-                "publish": false
-              },
-              "changelog": {
-                "projectChangelogs": {
-                  "file": "CHANGELOG.md",
-                  "createRelease": "github"
-                }
+                "commands": [
+                  "node dist/packages/@baudevs/cli/index.js"
+                ]
               },
               "configurations": {},
-              "parallelism": true,
-              "dependsOn": [
-                "^build"
-              ],
-              "inputs": [
-                "production",
-                "^production"
-              ]
-            },
-            "publish": {
-              "executor": "@nx/js:tsc",
-              "options": {
-                "project": "@baudevs/cli",
-                "packageRoot": "dist/packages/@baudevs/cli"
-              },
-              "configurations": {},
-              "parallelism": true,
-              "cache": true,
-              "dependsOn": [
-                "^build"
-              ],
-              "inputs": [
-                "production",
-                "^production"
-              ]
+              "parallelism": true
             }
           },
           "sourceRoot": "src",
@@ -509,6 +468,18 @@
               },
               "configurations": {},
               "parallelism": true
+            },
+            "bau": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "bau"
+              },
+              "metadata": {
+                "scriptContent": "node ../../dist/packages/@baudevs/cli/index.js",
+                "runCommand": "pnpm run bau"
+              },
+              "configurations": {},
+              "parallelism": true
             }
           },
           "sourceRoot": "apps/bau-cms-example/src",
@@ -523,7 +494,8 @@
                 "dev",
                 "build",
                 "start",
-                "lint"
+                "lint",
+                "bau"
               ]
             },
             "js": {
@@ -1129,6 +1101,11 @@
       "baudevs-dashboard": [],
       "@baudevs/cli": [],
       "@baudevs/bauCmsNextExample": [
+        {
+          "source": "@baudevs/bauCmsNextExample",
+          "target": "@baudevs/cli",
+          "type": "static"
+        },
         {
           "source": "@baudevs/bauCmsNextExample",
           "target": "@baudevs/cmsEditor",
