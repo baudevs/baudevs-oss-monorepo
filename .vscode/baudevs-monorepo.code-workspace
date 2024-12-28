@@ -82,6 +82,7 @@
       "*.tiff",
       "**/*/versions/**/*",
     "apps/baudevs-dashboard/public/metadata-history.json",
+    "apps/baudevs-dashboard/public/local-metadata.json",
     "metadata-history.json",
     "**/*/generate-repo-metadata.ts",
     "scripts/**/*",
