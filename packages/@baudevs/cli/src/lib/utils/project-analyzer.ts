@@ -31,7 +31,7 @@ export async function analyzeProject(projectPath: string = process.cwd()): Promi
     existingMiddleware: {
       exists: false
     },
-    packageManager: 'npm',
+    packageManager: 'pnpm',
     nextConfig: {
       path: '',
       content: '',
@@ -47,12 +47,10 @@ export async function analyzeProject(projectPath: string = process.cwd()): Promi
   structure.usesAppRouter = existsSync(appDir);
 
   // Detect package manager
-  if (existsSync(join(projectPath, 'bun.lockb'))) {
-    structure.packageManager = 'bun';
+  if (existsSync(join(projectPath, 'pnpm-lock.yaml'))) {
+    structure.packageManager = 'pnpm';
   } else if (existsSync(join(projectPath, 'yarn.lock'))) {
     structure.packageManager = 'yarn';
-  } else if (existsSync(join(projectPath, 'pnpm-lock.yaml'))) {
-    structure.packageManager = 'pnpm';
   }
 
   // Check for i18n configuration
@@ -64,6 +62,7 @@ export async function analyzeProject(projectPath: string = process.cwd()): Promi
       structure.usesI18n = { enabled: true, library: 'next-i18next' };
     }
   } catch (error) {
+    console.error(error);
     console.warn('Could not read package.json');
   }
 
@@ -107,4 +106,4 @@ export async function analyzeProject(projectPath: string = process.cwd()): Promi
   }
 
   return structure;
-} 
+}

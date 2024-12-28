@@ -12,7 +12,7 @@ interface MigrateOptions {
   reset?: boolean;
 }
 
-export async function migrateCommand(options: MigrateOptions = {}) {
+export async function migrateCommand(_options: MigrateOptions = {}) {
   const spinner = ora('Setting up migrations...').start();
 
   try {

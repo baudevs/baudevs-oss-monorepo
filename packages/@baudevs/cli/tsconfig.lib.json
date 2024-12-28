@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "../../../dist/packages/@baudevs/cli",
     "declaration": true,
-    "types": ["node", "inquirer"]
+    "types": ["node"]
   },
   "include": ["src/**/*"],
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]

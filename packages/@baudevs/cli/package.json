@@ -1,10 +1,19 @@
 {
   "name": "@baudevs/cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "bin": {
-    "bau": "./index.js"
+    "bau": "index.js"
+  },
+  "scripts": {
+    "build": "pnpm nx build @baudevs/cli"
   },
   "dependencies": {
+
+  },
+  "tsconfig": "tsconfig.json",
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "typescript": "^5.3.3",
     "@libsql/client": "^0.14.0",
     "@types/inquirer": "^9.0.7",
     "chalk": "^5.4.0",
@@ -12,9 +21,5 @@
     "drizzle-orm": "^0.38.2",
     "inquirer": "^12.2.0",
     "ora": "^8.1.1"
-  },
-  "devDependencies": {
-    "@types/node": "^20.11.19",
-    "typescript": "^5.3.3"
   }
 }

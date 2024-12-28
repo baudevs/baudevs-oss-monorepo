@@ -47,7 +47,7 @@ async function setupProjectStructure(projectPath: string, structure: ProjectStru
     await mkdir(srcDir, { recursive: true });
 
     // Move app directory if it exists
-    const appDir = join(projectPath, 'app');
+   //  const appDir = join(projectPath, 'app');
     const newAppDir = join(srcDir, 'app');
     if (structure.usesAppRouter) {
       await mkdir(newAppDir, { recursive: true });
@@ -77,7 +77,7 @@ export default withBauCMS(nextConfig);
   };
 }
 
-export async function initCommand(options: InitOptions = {}) {
+export async function initCommand(_options: InitOptions = {}) {
   const spinner = ora('Analyzing your Next.js project...').start();
 
   try {
@@ -122,7 +122,7 @@ export async function initCommand(options: InitOptions = {}) {
       console.log('- Existing middleware detected');
     }
 
-    // @ts-ignore - Inquirer types are not perfect, but the runtime works correctly
+    // @ts-expect-error - Inquirer types are not perfect, but the runtime works correctly
     const answers = await inquirer.prompt<SetupAnswers>([
       {
         type: 'confirm',
@@ -348,12 +348,12 @@ export const config = {
   }
 }
 
-async function integrateWithExistingMiddleware(existingContent: string, path: string): Promise<string> {
+async function integrateWithExistingMiddleware(existingContent: string, _path: string): Promise<string> {
   // Simple integration strategy - add Clerk's matcher to existing matchers
   if (existingContent.includes('export const config')) {
     return existingContent.replace(
       /export const config\s*=\s*{([^}]*)}/,
-      (match, group) => {
+      (_match, group) => {
         const existingMatchers = group.includes('matcher')
           ? group.replace(/matcher:\s*\[(.*)\]/, '$1')
           : '';

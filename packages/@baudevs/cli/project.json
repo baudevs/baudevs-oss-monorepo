@@ -6,7 +6,7 @@
   "targets": {
     "build": {
       "cache": false,
-      "executor": "@nx/esbuild:esbuild",
+      "executor": "@nx/js:tsc",
       "options": {
         "outputPath": "{workspaceRoot}/dist/packages/@baudevs/cli",
         "main": "{projectRoot}/src/index.ts",
@@ -15,18 +15,40 @@
           "{projectRoot}/**/*.md",
           "{projectRoot}/**/package.json"
         ],
-        "format": ["cjs"],
+        "format": ["esm"],
         "platform": "node",
         "bundle": true,
         "external": ["@baudevs/*"],
-        "generatePackageJson": false,
+        "generateTypes": true,
         "esbuildOptions": {
           "outExtension": { ".js": ".js" },
           "sourcemap": true,
           "outdir": "dist/packages/@baudevs/cli"
         }
       }
+    },
+    "release": {
+      "cache": false,
+      "executor": "@nx/js:tsc",
+      "options": {
+        "project": "@baudevs/cli",
+        "packageRoot": "dist/{projectRoot}",
+        "publish": false
+      },
+      "changelog": {
+        "projectChangelogs": {
+          "file": "CHANGELOG.md",
+          "createRelease": "github"
+        }
+      }
+    },
+    "publish": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "project": "@baudevs/cli",
+        "packageRoot": "dist/{projectRoot}"
+      }
     }
   },
-  "tags": []
+  "tags": ["baudevs", "targetivo gmbh", "magicusprime", "targetivo", "magicusprime lda", "baucms", "@baudevs/cli"]
 }

@@ -52,7 +52,8 @@ export class BackupManager {
 
     // Save backup of original file if it existed
     if (originalContent !== null) {
-      const backupPath = join(this.backupDir, `${Date.now()}-${filePath.replace(/[\/\\]/g, '-')}`);
+      // @eslint ignore
+      const backupPath = join(this.backupDir, `${Date.now()}-${filePath.replace(/[\\/]/g, '-')}`);
       await writeFile(backupPath, originalContent);
     }
 

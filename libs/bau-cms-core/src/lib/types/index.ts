@@ -42,7 +42,7 @@ export interface ContentOperations {
   publish(slug: string): Promise<Content>;
   unpublish(slug: string): Promise<Content>;
   updateMenu(slug: string, menu: Menu | null): Promise<Content>;
-} 
+}
 
 export type FieldType = 'text' | 'number' | 'image' | 'array' | 'object' | 'markdown' | 'date' | 'boolean' | 'select';
 
@@ -65,7 +65,7 @@ export interface BaseContent {
 export interface CustomField {
   name: string;
   type: FieldType;
-  value: any;
+  value: string | number | boolean | string[] | Record<string, unknown> | Date;
   validation?: {
     required?: boolean;
     min?: number;
@@ -188,26 +188,26 @@ export interface Page extends BaseContent {
     };
     sections?: Array<{
       type: string;
-      content: any;
+      content: string | number | boolean | string[] | Record<string, unknown> | Date;
     }>;
     sidebar?: {
       enabled: boolean;
       widgets: Array<{
         type: string;
-        content: any;
+        content: string | number | boolean | string[] | Record<string, unknown> | Date;
       }>;
     };
   };
-} 
+}
 
 
-interface ContentRow {
+interface ContentRow { // eslint-disable-line @typescript-eslint/no-unused-vars
   id: string;
   template: string;
   status: ContentStatus;
   createdAt: string;
   updatedAt: string;
-  data: string | Record<string, any>;
+  data: string | Record<string, unknown>;
   slug: string;
   menu_visible?: number;
   menu_parent_id?: string;
@@ -215,7 +215,7 @@ interface ContentRow {
   menu_label?: string;
 }
 
-interface TemplateRow {
+interface TemplateRow { // eslint-disable-line @typescript-eslint/no-unused-vars
   id: string;
   name: string;
   description: string | null;

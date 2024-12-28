@@ -2,12 +2,11 @@
   "name": "baudevs-dashboard",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {},
   "sourceRoot": "apps/baudevs-dashboard/src",
   "devDependencies": {
     "@nx/vite": "^20.3.0",
-    "bun": "^1.1.42",
-    "bun-types": "^1.1.42",
     "vite": "^6.0.5"
   }
 }

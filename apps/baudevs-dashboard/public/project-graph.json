@@ -6,6 +6,90 @@
         "type": "lib",
         "data": {
           "root": "libs/bau-cms-templates",
+          "targets": {
+            "lint": {
+              "cache": true,
+              "options": {
+                "cwd": "libs/bau-cms-templates",
+                "command": "eslint ."
+              },
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/eslint.config.js",
+                "{workspaceRoot}/tools/eslint-rules/**/*",
+                {
+                  "externalDependencies": [
+                    "eslint"
+                  ]
+                }
+              ],
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "metadata": {
+                "technologies": [
+                  "eslint"
+                ],
+                "description": "Runs ESLint on project",
+                "help": {
+                  "command": "bun eslint --help",
+                  "example": {
+                    "options": {
+                      "max-warnings": 0
+                    }
+                  }
+                }
+              },
+              "executor": "nx:run-commands",
+              "configurations": {},
+              "parallelism": true
+            },
+            "build": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "build",
+                "verbose": true
+              },
+              "metadata": {
+                "scriptContent": "tsc",
+                "runCommand": "pnpm run build"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "^build",
+                "lint"
+              ],
+              "inputs": [
+                "default",
+                "production",
+                "^production"
+              ],
+              "cache": true
+            },
+            "dev": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "dev"
+              },
+              "metadata": {
+                "scriptContent": "tsc --watch",
+                "runCommand": "pnpm run dev"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "nx-release-publish": {
+              "executor": "@nx/js:release-publish",
+              "dependsOn": [
+                "^nx-release-publish"
+              ],
+              "options": {},
+              "configurations": {},
+              "parallelism": true
+            }
+          },
           "sourceRoot": "libs/bau-cms-templates/src",
           "name": "@baudevs/cmsTemplates",
           "projectType": "library",
@@ -23,51 +107,6 @@
               "packageName": "@baudevs/bau-cms-templates"
             }
           },
-          "targets": {
-            "build": {
-              "executor": "nx:run-script",
-              "options": {
-                "script": "build",
-                "verbose": true
-              },
-              "metadata": {
-                "scriptContent": "tsc",
-                "runCommand": "bun run build -- undefined"
-              },
-              "configurations": {},
-              "parallelism": true,
-              "dependsOn": [
-                "^build"
-              ],
-              "inputs": [
-                "default",
-                "production",
-                "^production"
-              ],
-              "cache": true
-            },
-            "dev": {
-              "executor": "nx:run-script",
-              "options": {
-                "script": "dev"
-              },
-              "metadata": {
-                "scriptContent": "tsc --watch",
-                "runCommand": "bun run dev -- undefined"
-              },
-              "configurations": {},
-              "parallelism": true
-            },
-            "nx-release-publish": {
-              "executor": "@nx/js:release-publish",
-              "dependsOn": [
-                "^nx-release-publish"
-              ],
-              "options": {},
-              "configurations": {},
-              "parallelism": true
-            }
-          },
           "$schema": "../../node_modules/nx/schemas/project-schema.json",
           "implicitDependencies": []
         }
@@ -77,14 +116,45 @@
         "type": "app",
         "data": {
           "root": "apps/baudevs-dashboard",
-          "projectType": "application",
-          "metadata": {
-            "targetGroups": {},
-            "js": {
-              "packageName": "baudevs-dashboard"
-            }
-          },
           "targets": {
+            "lint": {
+              "cache": true,
+              "options": {
+                "cwd": "apps/baudevs-dashboard",
+                "command": "eslint ."
+              },
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/eslint.config.js",
+                "{workspaceRoot}/tools/eslint-rules/**/*",
+                {
+                  "externalDependencies": [
+                    "eslint"
+                  ]
+                }
+              ],
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "metadata": {
+                "technologies": [
+                  "eslint"
+                ],
+                "description": "Runs ESLint on project",
+                "help": {
+                  "command": "bun eslint --help",
+                  "example": {
+                    "options": {
+                      "max-warnings": 0
+                    }
+                  }
+                }
+              },
+              "executor": "nx:run-commands",
+              "configurations": {},
+              "parallelism": true
+            },
             "build": {
               "executor": "@nx/vite:build",
               "outputs": [
@@ -98,7 +168,8 @@
               "configurations": {},
               "parallelism": true,
               "dependsOn": [
-                "^build"
+                "^build",
+                "lint"
               ],
               "inputs": [
                 "default",
@@ -151,7 +222,7 @@
               "metadata": {
                 "description": "Run Typechecking",
                 "help": {
-                  "command": "bun tsc --help -p tsconfig.app.json",
+                  "command": "pnpm exec tsc --help -p tsconfig.app.json",
                   "example": {
                     "options": {
                       "noEmit": true
@@ -173,6 +244,13 @@
               "parallelism": true
             }
           },
+          "projectType": "application",
+          "metadata": {
+            "targetGroups": {},
+            "js": {
+              "packageName": "baudevs-dashboard"
+            }
+          },
           "sourceRoot": "apps/baudevs-dashboard",
           "name": "baudevs-dashboard",
           "tags": [
@@ -188,45 +266,21 @@
         "data": {
           "root": "packages/@baudevs/cli",
           "targets": {
-            "test": {
+            "lint": {
+              "executor": "@nx/eslint:lint",
               "options": {
-                "cwd": "packages/@baudevs/cli",
-                "env": {
-                  "TS_NODE_COMPILER_OPTIONS": "{\"moduleResolution\":\"node10\"}"
-                },
-                "command": "jest"
+                "externalDependencies": "none",
+                "lintFilePatterns": [
+                  "packages/@baudevs/cli/**/*.{ts,tsx,js,jsx}",
+                  "packages/@baudevs/cli/package.json"
+                ]
               },
-              "metadata": {
-                "technologies": [
-                  "jest"
-                ],
-                "description": "Run Jest Tests",
-                "help": {
-                  "command": "bun jest --help",
-                  "example": {
-                    "options": {
-                      "coverage": true
-                    }
-                  }
-                }
-              },
-              "cache": true,
-              "inputs": [
-                "default",
-                "^production",
-                "{workspaceRoot}/jest.preset.js",
-                {
-                  "externalDependencies": [
-                    "jest"
-                  ]
-                }
-              ],
-              "outputs": [
-                "{workspaceRoot}/coverage/libs/@baudevs/cli"
-              ],
-              "executor": "nx:run-commands",
               "configurations": {},
-              "parallelism": true
+              "parallelism": true,
+              "cache": true,
+              "outputs": [
+                "{options.outputFile}"
+              ]
             },
             "nx-release-publish": {
               "executor": "@nx/js:release-publish",
@@ -249,14 +303,14 @@
                   "packages/@baudevs/cli/**/package.json"
                 ],
                 "format": [
-                  "cjs"
+                  "esm"
                 ],
                 "platform": "node",
                 "bundle": true,
                 "external": [
                   "@baudevs/*"
                 ],
-                "generatePackageJson": false,
+                "generateTypes": true,
                 "esbuildOptions": {
                   "outExtension": {
                     ".js": ".js"
@@ -269,7 +323,8 @@
               "configurations": {},
               "parallelism": true,
               "dependsOn": [
-                "^build"
+                "^build",
+                "lint"
               ],
               "inputs": [
                 "default",
@@ -281,7 +336,14 @@
           "sourceRoot": "src",
           "name": "@baudevs/cli",
           "tags": [
-            "npm:public"
+            "npm:public",
+            "baudevs",
+            "targetivo gmbh",
+            "magicusprime",
+            "targetivo",
+            "magicusprime lda",
+            "baucms",
+            "@baudevs/cli"
           ],
           "metadata": {
             "targetGroups": {},
@@ -308,12 +370,13 @@
               },
               "metadata": {
                 "scriptContent": "next build",
-                "runCommand": "bun run build -- undefined"
+                "runCommand": "pnpm run build"
               },
               "configurations": {},
               "parallelism": true,
               "dependsOn": [
-                "^build"
+                "^build",
+                "lint"
               ],
               "inputs": [
                 "default",
@@ -329,7 +392,7 @@
               },
               "metadata": {
                 "scriptContent": "next dev",
-                "runCommand": "bun run dev -- undefined"
+                "runCommand": "pnpm run dev"
               },
               "configurations": {},
               "parallelism": true
@@ -341,7 +404,7 @@
               },
               "metadata": {
                 "scriptContent": "next start",
-                "runCommand": "bun run start -- undefined"
+                "runCommand": "pnpm run start"
               },
               "configurations": {},
               "parallelism": true
@@ -363,21 +426,20 @@
                 "script": "lint"
               },
               "metadata": {
+                "technologies": [
+                  "eslint"
+                ],
+                "description": "Runs ESLint on project",
+                "help": {
+                  "command": "bun eslint --help",
+                  "example": {
+                    "options": {
+                      "max-warnings": 0
+                    }
+                  }
+                },
                 "scriptContent": "next lint",
-                "runCommand": "bun run lint -- undefined"
-              },
-              "configurations": {},
-              "parallelism": true,
-              "cache": true
-            },
-            "bau": {
-              "executor": "nx:run-script",
-              "options": {
-                "script": "bau"
-              },
-              "metadata": {
-                "scriptContent": "bun ../../dist/packages/@baudevs/cli/index.js",
-                "runCommand": "bun run bau -- undefined"
+                "runCommand": "pnpm run lint"
               },
               "configurations": {},
               "parallelism": true
@@ -395,8 +457,7 @@
                 "dev",
                 "build",
                 "start",
-                "lint",
-                "bau"
+                "lint"
               ]
             },
             "js": {
@@ -412,6 +473,90 @@
         "type": "lib",
         "data": {
           "root": "libs/bau-cms-editor",
+          "targets": {
+            "lint": {
+              "cache": true,
+              "options": {
+                "cwd": "libs/bau-cms-editor",
+                "command": "eslint ."
+              },
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/eslint.config.js",
+                "{workspaceRoot}/tools/eslint-rules/**/*",
+                {
+                  "externalDependencies": [
+                    "eslint"
+                  ]
+                }
+              ],
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "metadata": {
+                "technologies": [
+                  "eslint"
+                ],
+                "description": "Runs ESLint on project",
+                "help": {
+                  "command": "bun eslint --help",
+                  "example": {
+                    "options": {
+                      "max-warnings": 0
+                    }
+                  }
+                }
+              },
+              "executor": "nx:run-commands",
+              "configurations": {},
+              "parallelism": true
+            },
+            "build": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "build",
+                "verbose": true
+              },
+              "metadata": {
+                "scriptContent": "tsc",
+                "runCommand": "pnpm run build"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "^build",
+                "lint"
+              ],
+              "inputs": [
+                "default",
+                "production",
+                "^production"
+              ],
+              "cache": true
+            },
+            "dev": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "dev"
+              },
+              "metadata": {
+                "scriptContent": "tsc --watch",
+                "runCommand": "pnpm run dev"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "nx-release-publish": {
+              "executor": "@nx/js:release-publish",
+              "dependsOn": [
+                "^nx-release-publish"
+              ],
+              "options": {},
+              "configurations": {},
+              "parallelism": true
+            }
+          },
           "sourceRoot": "libs/bau-cms-editor/src",
           "name": "@baudevs/cmsEditor",
           "projectType": "library",
@@ -429,51 +574,6 @@
               "packageName": "@baudevs/bau-cms-editor"
             }
           },
-          "targets": {
-            "build": {
-              "executor": "nx:run-script",
-              "options": {
-                "script": "build",
-                "verbose": true
-              },
-              "metadata": {
-                "scriptContent": "tsc",
-                "runCommand": "bun run build -- undefined"
-              },
-              "configurations": {},
-              "parallelism": true,
-              "dependsOn": [
-                "^build"
-              ],
-              "inputs": [
-                "default",
-                "production",
-                "^production"
-              ],
-              "cache": true
-            },
-            "dev": {
-              "executor": "nx:run-script",
-              "options": {
-                "script": "dev"
-              },
-              "metadata": {
-                "scriptContent": "tsc --watch",
-                "runCommand": "bun run dev -- undefined"
-              },
-              "configurations": {},
-              "parallelism": true
-            },
-            "nx-release-publish": {
-              "executor": "@nx/js:release-publish",
-              "dependsOn": [
-                "^nx-release-publish"
-              ],
-              "options": {},
-              "configurations": {},
-              "parallelism": true
-            }
-          },
           "$schema": "../../node_modules/nx/schemas/project-schema.json",
           "implicitDependencies": []
         }
@@ -484,6 +584,44 @@
         "data": {
           "root": "libs/bau-cms-admin",
           "targets": {
+            "lint": {
+              "cache": true,
+              "options": {
+                "cwd": "libs/bau-cms-admin",
+                "command": "eslint ."
+              },
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/eslint.config.js",
+                "{workspaceRoot}/tools/eslint-rules/**/*",
+                {
+                  "externalDependencies": [
+                    "eslint"
+                  ]
+                }
+              ],
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "metadata": {
+                "technologies": [
+                  "eslint"
+                ],
+                "description": "Runs ESLint on project",
+                "help": {
+                  "command": "bun eslint --help",
+                  "example": {
+                    "options": {
+                      "max-warnings": 0
+                    }
+                  }
+                }
+              },
+              "executor": "nx:run-commands",
+              "configurations": {},
+              "parallelism": true
+            },
             "test": {
               "options": {
                 "cwd": "libs/bau-cms-admin",
@@ -531,7 +669,7 @@
               },
               "metadata": {
                 "scriptContent": "tsc --watch",
-                "runCommand": "bun run dev -- undefined"
+                "runCommand": "pnpm run dev"
               },
               "configurations": {},
               "parallelism": true
@@ -596,6 +734,44 @@
         "data": {
           "root": "libs/bau-cms-core",
           "targets": {
+            "lint": {
+              "cache": true,
+              "options": {
+                "cwd": "libs/bau-cms-core",
+                "command": "eslint ."
+              },
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/eslint.config.js",
+                "{workspaceRoot}/tools/eslint-rules/**/*",
+                {
+                  "externalDependencies": [
+                    "eslint"
+                  ]
+                }
+              ],
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "metadata": {
+                "technologies": [
+                  "eslint"
+                ],
+                "description": "Runs ESLint on project",
+                "help": {
+                  "command": "bun eslint --help",
+                  "example": {
+                    "options": {
+                      "max-warnings": 0
+                    }
+                  }
+                }
+              },
+              "executor": "nx:run-commands",
+              "configurations": {},
+              "parallelism": true
+            },
             "test": {
               "options": {
                 "cwd": "libs/bau-cms-core",
@@ -643,7 +819,7 @@
               },
               "metadata": {
                 "scriptContent": "tsc --watch",
-                "runCommand": "bun run dev -- undefined"
+                "runCommand": "pnpm run dev"
               },
               "configurations": {},
               "parallelism": true
@@ -708,6 +884,44 @@
         "data": {
           "root": "libs/bauLogHero",
           "targets": {
+            "lint": {
+              "cache": true,
+              "options": {
+                "cwd": "libs/bauLogHero",
+                "command": "eslint ."
+              },
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/eslint.config.js",
+                "{workspaceRoot}/tools/eslint-rules/**/*",
+                {
+                  "externalDependencies": [
+                    "eslint"
+                  ]
+                }
+              ],
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "metadata": {
+                "technologies": [
+                  "eslint"
+                ],
+                "description": "Runs ESLint on project",
+                "help": {
+                  "command": "bun eslint --help",
+                  "example": {
+                    "options": {
+                      "max-warnings": 0
+                    }
+                  }
+                }
+              },
+              "executor": "nx:run-commands",
+              "configurations": {},
+              "parallelism": true
+            },
             "test": {
               "cache": false,
               "executor": "@nx/jest:jest",
@@ -833,6 +1047,7 @@
             }
           },
           "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "type": "module",
           "implicitDependencies": []
         }
       }
@@ -850,17 +1065,12 @@
       "@baudevs/bauCmsNextExample": [
         {
           "source": "@baudevs/bauCmsNextExample",
-          "target": "@baudevs/cmsAdmin",
+          "target": "@baudevs/cmsEditor",
           "type": "static"
         },
         {
           "source": "@baudevs/bauCmsNextExample",
           "target": "@baudevs/cmsCore",
-          "type": "static"
-        },
-        {
-          "source": "@baudevs/bauCmsNextExample",
-          "target": "@baudevs/cmsEditor",
           "type": "static"
         }
       ],

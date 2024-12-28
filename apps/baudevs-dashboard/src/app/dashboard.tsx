@@ -70,7 +70,7 @@ interface RepoMetadata {
   gitVersion: string;
   nxVersion: string;
   nodeVersion: string;
-  bunVersion: string;
+  pnpmVersion: string;
   worktrees: GitWorktree[];
   nxProjects: NxProject[];
   branchRelationships: BranchRelationship[];
@@ -758,7 +758,7 @@ function DashboardContent() {
             <Typography>Git: {data.gitVersion}</Typography>
             <Typography>Nx: {data.nxVersion}</Typography>
             <Typography>Node: {data.nodeVersion}</Typography>
-            <Typography>Bun: {data.bunVersion}</Typography>
+            <Typography>Pnpm: {data.pnpmVersion}</Typography>
           </Grid>
         </Grid>
       </Paper>
