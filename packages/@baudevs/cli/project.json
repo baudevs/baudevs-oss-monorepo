@@ -1,14 +1,15 @@
 {
   "name": "@baudevs/cli",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "src",
+  "sourceRoot": "{projectRoot}/src",
   "projectType": "library",
   "targets": {
     "build": {
       "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
+      "dependsOn": ["lint"],
       "options": {
-        "outputPath": "dist/packages/@baudevs/cli",
+        "outputPath": "dist/{projectRoot}",
         "main": "{projectRoot}/src/index.ts",
         "tsConfig": "{projectRoot}/tsconfig.lib.json",
         "assets": [
@@ -28,28 +29,14 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "packages/@baudevs/cli/**/*.ts"
-        ],
-        "ignoredDependencies": [
-          "@libsql/client",
-          "@types/inquirer",
-          "chalk",
-          "commander",
-          "drizzle-orm",
-          "inquirer",
-          "ora"
-        ]
-      }
-    },
-    "run-bin": {
-      "executor": "nx:run-commands",
-      "dependsOn": ["build"],
-      "options": {
-        "commands": ["node dist/packages/@baudevs/cli/index.js"]
+        "lintFilePatterns": ["{projectRoot}/**/*.ts"],
+        "fix": true,
+        "cache": true,
+        "cacheLocation": "node_modules/.cache/eslint"
       }
     }
   },
-  "tags": ["baudevs", "targetivo gmbh", "magicusprime", "targetivo", "magicusprime lda", "baucms", "@baudevs/cli"]
+  "tags": []
 }

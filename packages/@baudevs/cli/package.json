@@ -1,24 +1,32 @@
 {
   "name": "@baudevs/cli",
-  "version": "0.1.1",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./index.js",
+  "types": "./index.d.ts",
   "bin": {
-    "bau": "index.js"
+    "bau": "./index.js"
   },
   "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@libsql/client": "^0.14.0",
-        "@types/inquirer": "^9.0.7",
-        "chalk": "^5.4.0",
-        "commander": "^12.1.0",
-        "drizzle-orm": "^0.38.2",
-        "inquirer": "^12.2.0",
-        "ora": "^8.1.1"
+    "drizzle-orm": "^0.38.3",
+    "chalk": "^5.3.0",
+    "commander": "^12.0.0",
+    "inquirer": "^9.2.15",
+    "ora": "^8.0.1"
   },
-  "tsconfig": "tsconfig.json",
   "devDependencies": {
-    "@types/node": "^20.11.19",
-    "typescript": "^5.3.3"
-
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.17.10",
+    "typescript": "^5.7.2",
+    "eslint": "^9.1.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0"
   }
 }

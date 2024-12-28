@@ -1,9 +1,20 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../../dist/packages/@baudevs/cli",
+    "rootDir": ".",
+    "strict": true,
+    "types": ["node"],
+    "lib": ["ES2020"],
+    "module": "ESNext",
+    "target": "ES2020",
+    "sourceMap": true,
     "declaration": true,
-    "types": ["node"]
+    "skipLibCheck": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "moduleResolution": "bundler",
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "../../../dist/packages/@baudevs/cli",
   },
   "include": ["src/**/*"],
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
