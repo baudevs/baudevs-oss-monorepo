@@ -1,7 +1,7 @@
 {
   "repoPath": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
   "defaultBranch": "staging",
-  "generatedAt": "2024-12-28T07:41:03.993Z",
+  "generatedAt": "2024-12-28T08:44:20.975Z",
   "gitVersion": "git version 2.39.5 (Apple Git-154)",
   "nxVersion": "20.3.0",
   "nodeVersion": "v23.3.0",
@@ -10,8 +10,8 @@
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
       "branch": "staging",
-      "commit": "57e56fc10c743b5cca1c7093baea0b6e4dc7cc99",
-      "lastActivity": "Sat Dec 28 08:40:57 2024 +0100"
+      "commit": "833c943fd31ad2e50c70ed3d84cd52f50fb3d715",
+      "lastActivity": "Sat Dec 28 09:44:13 2024 +0100"
     },
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo.worktrees/bau-cms-cli",
@@ -383,11 +383,28 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "48cc85d18f609f1261a673cb9887483d7832f3d0",
+          "author": "Juan Arroyave",
+          "date": "Sat Dec 28 08:40:57 2024 +0100",
+          "message": "chore(metadata): update repository metadata",
+          "branch": "staging~1",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "57e56fc10c743b5cca1c7093baea0b6e4dc7cc99",
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 08:40:57 2024 +0100",
           "message": "chore(baudevs-dashboard): refine project configuration and build processes",
-          "branch": "staging",
+          "branch": "staging~2",
           "files": [
             "apps/baudevs-dashboard/public/project-graph.json"
           ],
@@ -400,7 +417,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 08:40:07 2024 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~1",
+          "branch": "staging~3",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -417,7 +434,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 08:39:33 2024 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~3",
+          "branch": "staging~5",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -434,7 +451,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 08:39:33 2024 +0100",
           "message": "chore(baudevs-dashboard): update ESLint command configuration",
-          "branch": "staging~4",
+          "branch": "staging~6",
           "files": [
             "apps/baudevs-dashboard/public/project-graph.json"
           ],
@@ -447,7 +464,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:26:07 2024 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~5",
+          "branch": "staging~7",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -464,7 +481,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:26:07 2024 +0100",
           "message": "chore(baudevs-dashboard): update ESLint configuration and build process",
-          "branch": "staging~6",
+          "branch": "staging~8",
           "files": [
             "apps/baudevs-dashboard/public/project-graph.json"
           ],
@@ -477,7 +494,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:25:35 2024 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~7",
+          "branch": "staging~9",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -494,7 +511,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:25:35 2024 +0100",
           "message": "chore: migrate ESLint configuration and enhance project structure",
-          "branch": "staging~8",
+          "branch": "staging~10",
           "files": [
             "apps/bau-cms-example/README.md",
             "apps/bau-cms-example/eslint.config.mjs",
@@ -575,24 +592,7 @@
           "author": "Juan Arroyave",
           "date": "Fri Dec 27 12:50:17 2024 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~9",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "bb1047c3dafbd105967df19ad588070d3eb95bb8",
-          "author": "Juan Arroyave",
-          "date": "Fri Dec 27 08:05:52 2024 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/staging",
+          "branch": "staging~11",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -743,28 +743,136 @@
       }
     },
     {
+      "name": "@baudevs/bau-cms-core",
+      "type": "library",
+      "root": "packages/bau-cms-core",
+      "sourceRoot": "packages/bau-cms-core",
+      "tags": [
+        "npm:private"
+      ],
+      "dependencies": [],
+      "lastCommits": [],
+      "contributors": [],
+      "metadata": {
+        "targets": {
+          "lint": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "lint"
+            },
+            "metadata": {
+              "technologies": [
+                "eslint"
+              ],
+              "description": "Runs ESLint on project",
+              "help": {
+                "command": "pnpm exec eslint --help",
+                "example": {
+                  "options": {
+                    "max-warnings": 0
+                  }
+                }
+              },
+              "scriptContent": "eslint .",
+              "runCommand": "pnpm run lint"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "build": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "build",
+              "verbose": true
+            },
+            "metadata": {
+              "scriptContent": "tsc && pnpm run copy-migrations",
+              "runCommand": "pnpm run build"
+            },
+            "configurations": {},
+            "parallelism": true,
+            "dependsOn": [
+              "^build",
+              "lint"
+            ],
+            "inputs": [
+              "default",
+              "production",
+              "^production"
+            ],
+            "cache": true
+          },
+          "dev": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "dev"
+            },
+            "metadata": {
+              "scriptContent": "tsc --watch",
+              "runCommand": "pnpm run dev"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "copy-migrations": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "copy-migrations"
+            },
+            "metadata": {
+              "scriptContent": "cp -r src/migrations dist/",
+              "runCommand": "pnpm run copy-migrations"
+            },
+            "configurations": {},
+            "parallelism": true
+          }
+        },
+        "packageName": "@baudevs/bau-cms-core",
+        "targetGroups": {
+          "NPM Scripts": [
+            "build",
+            "dev",
+            "lint",
+            "copy-migrations"
+          ]
+        }
+      }
+    },
+    {
       "name": "@baudevs/cli",
       "type": "library",
       "root": "packages/@baudevs/cli",
-      "sourceRoot": "src",
+      "sourceRoot": "{projectRoot}/src",
       "tags": [
-        "npm:public",
-        "baudevs",
-        "targetivo gmbh",
-        "magicusprime",
-        "targetivo",
-        "magicusprime lda",
-        "baucms",
-        "@baudevs/cli"
+        "npm:private"
       ],
       "dependencies": [],
       "lastCommits": [
+        {
+          "hash": "833c943fd31ad2e50c70ed3d84cd52f50fb3d715",
+          "author": "Juan Arroyave",
+          "date": "Sat Dec 28 09:44:13 2024 +0100",
+          "message": "chore(cli): update package configuration and dependencies",
+          "branch": "staging",
+          "files": [
+            "packages/@baudevs/cli/package.json",
+            "packages/@baudevs/cli/project.json",
+            "packages/@baudevs/cli/tsconfig.json",
+            "packages/@baudevs/cli/tsconfig.lib.json"
+          ],
+          "nxProjects": [
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli",
+            "@baudevs/cli"
+          ]
+        },
         {
           "hash": "3ab8aa15f1c32d69b3cc36eb25376e5ed627f4d5",
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 08:40:07 2024 +0100",
           "message": "chore: update project structure and dependencies",
-          "branch": "staging~2",
+          "branch": "staging~4",
           "files": [
             "packages/@baudevs/cli/package.json",
             "packages/@baudevs/cli/project.json",
@@ -781,7 +889,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:25:35 2024 +0100",
           "message": "chore: migrate ESLint configuration and enhance project structure",
-          "branch": "staging~8",
+          "branch": "staging~10",
           "files": [
             "apps/bau-cms-example/README.md",
             "apps/bau-cms-example/eslint.config.mjs",
@@ -925,33 +1033,30 @@
         "targets": {
           "lint": {
             "executor": "@nx/eslint:lint",
+            "outputs": [
+              "{options.outputFile}"
+            ],
             "options": {
               "lintFilePatterns": [
                 "packages/@baudevs/cli/**/*.ts"
               ],
-              "ignoredDependencies": [
-                "@libsql/client",
-                "@types/inquirer",
-                "chalk",
-                "commander",
-                "drizzle-orm",
-                "inquirer",
-                "ora"
-              ]
+              "fix": true,
+              "cache": true,
+              "cacheLocation": "node_modules/.cache/eslint"
             },
             "configurations": {},
             "parallelism": true,
-            "cache": true,
-            "outputs": [
-              "{options.outputFile}"
-            ]
+            "cache": true
           },
-          "nx-release-publish": {
-            "executor": "@nx/js:release-publish",
-            "dependsOn": [
-              "^nx-release-publish"
-            ],
-            "options": {},
+          "dev": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "dev"
+            },
+            "metadata": {
+              "scriptContent": "tsc --watch",
+              "runCommand": "pnpm run dev"
+            },
             "configurations": {},
             "parallelism": true
           },
@@ -959,6 +1064,9 @@
             "executor": "@nx/esbuild:esbuild",
             "outputs": [
               "{options.outputPath}"
+            ],
+            "dependsOn": [
+              "lint"
             ],
             "options": {
               "outputPath": "dist/packages/@baudevs/cli",
@@ -987,33 +1095,20 @@
             },
             "configurations": {},
             "parallelism": true,
-            "dependsOn": [
-              "^build",
-              "lint"
-            ],
             "inputs": [
               "default",
               "production",
               "^production"
             ],
             "cache": true
-          },
-          "run-bin": {
-            "executor": "nx:run-commands",
-            "dependsOn": [
-              "build"
-            ],
-            "options": {
-              "commands": [
-                "node dist/packages/@baudevs/cli/index.js"
-              ]
-            },
-            "configurations": {},
-            "parallelism": true
           }
         },
         "packageName": "@baudevs/cli",
-        "targetGroups": {}
+        "targetGroups": {
+          "NPM Scripts": [
+            "dev"
+          ]
+        }
       }
     },
     {
@@ -1035,7 +1130,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:25:35 2024 +0100",
           "message": "chore: migrate ESLint configuration and enhance project structure",
-          "branch": "staging~8",
+          "branch": "staging~10",
           "files": [
             "apps/bau-cms-example/README.md",
             "apps/bau-cms-example/eslint.config.mjs",
@@ -1720,7 +1815,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:25:35 2024 +0100",
           "message": "chore: migrate ESLint configuration and enhance project structure",
-          "branch": "staging~8",
+          "branch": "staging~10",
           "files": [
             "apps/bau-cms-example/README.md",
             "apps/bau-cms-example/eslint.config.mjs",
@@ -2166,7 +2261,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:25:35 2024 +0100",
           "message": "chore: migrate ESLint configuration and enhance project structure",
-          "branch": "staging~8",
+          "branch": "staging~10",
           "files": [
             "apps/bau-cms-example/README.md",
             "apps/bau-cms-example/eslint.config.mjs",
@@ -2469,6 +2564,9 @@
             "cache": true,
             "options": {
               "cwd": "libs/bau-cms-core",
+              "env": {
+                "ESLINT_USE_FLAT_CONFIG": "true"
+              },
               "command": "eslint ."
             },
             "inputs": [
@@ -2491,7 +2589,7 @@
               ],
               "description": "Runs ESLint on project",
               "help": {
-                "command": "bun eslint --help",
+                "command": "pnpm exec eslint --help",
                 "example": {
                   "options": {
                     "max-warnings": 0
@@ -2517,7 +2615,7 @@
               ],
               "description": "Run Jest Tests",
               "help": {
-                "command": "bun jest --help",
+                "command": "pnpm exec jest --help",
                 "example": {
                   "options": {
                     "coverage": true
@@ -2612,7 +2710,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:25:35 2024 +0100",
           "message": "chore: migrate ESLint configuration and enhance project structure",
-          "branch": "staging~8",
+          "branch": "staging~10",
           "files": [
             "apps/bau-cms-example/README.md",
             "apps/bau-cms-example/eslint.config.mjs",
@@ -3041,7 +3139,7 @@
       "type": "rebase",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 63
+      "divergedCommits": 65
     },
     {
       "from": "feature/bau-cms-cli",
@@ -3089,7 +3187,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 36
+      "divergedCommits": 38
     },
     {
       "from": "feature/bau-cms-core",
@@ -3137,7 +3235,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 93
+      "divergedCommits": 95
     },
     {
       "from": "feature/bau-cms-example",
@@ -3185,7 +3283,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 104
+      "divergedCommits": 106
     },
     {
       "from": "feature/dashboard-app",
@@ -3233,7 +3331,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 118
+      "divergedCommits": 120
     },
     {
       "from": "main",
@@ -3281,7 +3379,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
       "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
-      "divergedCommits": 95
+      "divergedCommits": 97
     },
     {
       "from": "staging",
@@ -3289,7 +3387,7 @@
       "type": "merge",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 63
+      "divergedCommits": 65
     },
     {
       "from": "staging",
@@ -3297,7 +3395,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 36
+      "divergedCommits": 38
     },
     {
       "from": "staging",
@@ -3305,7 +3403,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 93
+      "divergedCommits": 95
     },
     {
       "from": "staging",
@@ -3313,7 +3411,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 104
+      "divergedCommits": 106
     },
     {
       "from": "staging",
@@ -3321,7 +3419,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 118
+      "divergedCommits": 120
     },
     {
       "from": "staging",
@@ -3329,19 +3427,19 @@
       "type": "merge",
       "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
       "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
-      "divergedCommits": 95
+      "divergedCommits": 97
     }
   ],
   "recentActivity": {
     "lastPush": "Sun Dec 22 09:53:48 2024 +0100",
-    "lastPull": "2024-12-28T07:41:05.477Z",
-    "lastMerge": "2024-12-28T07:41:05.485Z",
+    "lastPull": "2024-12-28T08:44:22.993Z",
+    "lastMerge": "2024-12-28T08:44:23.001Z",
     "activeBranches": [
       {
         "name": "staging",
-        "lastCommit": "57e56fc10c743b5cca1c7093baea0b6e4dc7cc99",
+        "lastCommit": "833c943fd31ad2e50c70ed3d84cd52f50fb3d715",
         "author": "Juan Arroyave",
-        "commitCount": 133
+        "commitCount": 135
       },
       {
         "name": "feature/bau-cms-cli",
@@ -3383,10 +3481,10 @@
   },
   "projectStats": {
     "totalApps": 2,
-    "totalLibraries": 6,
+    "totalLibraries": 7,
     "totalPackages": 0,
     "totalFiles": 169,
-    "totalCommits": 133,
+    "totalCommits": 135,
     "totalContributors": 0
   }
 }

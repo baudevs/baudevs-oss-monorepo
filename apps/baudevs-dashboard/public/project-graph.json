@@ -263,6 +263,105 @@
           "implicitDependencies": []
         }
       },
+      "@baudevs/bau-cms-core": {
+        "name": "@baudevs/bau-cms-core",
+        "type": "lib",
+        "data": {
+          "root": "packages/bau-cms-core",
+          "targets": {
+            "lint": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "lint"
+              },
+              "metadata": {
+                "technologies": [
+                  "eslint"
+                ],
+                "description": "Runs ESLint on project",
+                "help": {
+                  "command": "pnpm exec eslint --help",
+                  "example": {
+                    "options": {
+                      "max-warnings": 0
+                    }
+                  }
+                },
+                "scriptContent": "eslint .",
+                "runCommand": "pnpm run lint"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "build": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "build",
+                "verbose": true
+              },
+              "metadata": {
+                "scriptContent": "tsc && pnpm run copy-migrations",
+                "runCommand": "pnpm run build"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "^build",
+                "lint"
+              ],
+              "inputs": [
+                "default",
+                "production",
+                "^production"
+              ],
+              "cache": true
+            },
+            "dev": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "dev"
+              },
+              "metadata": {
+                "scriptContent": "tsc --watch",
+                "runCommand": "pnpm run dev"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "copy-migrations": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "copy-migrations"
+              },
+              "metadata": {
+                "scriptContent": "cp -r src/migrations dist/",
+                "runCommand": "pnpm run copy-migrations"
+              },
+              "configurations": {},
+              "parallelism": true
+            }
+          },
+          "sourceRoot": "packages/bau-cms-core",
+          "name": "@baudevs/bau-cms-core",
+          "tags": [
+            "npm:private"
+          ],
+          "metadata": {
+            "targetGroups": {
+              "NPM Scripts": [
+                "build",
+                "dev",
+                "lint",
+                "copy-migrations"
+              ]
+            },
+            "js": {
+              "packageName": "@baudevs/bau-cms-core"
+            }
+          },
+          "implicitDependencies": []
+        }
+      },
       "@baudevs/cli": {
         "name": "@baudevs/cli",
         "type": "lib",
@@ -271,33 +370,30 @@
           "targets": {
             "lint": {
               "executor": "@nx/eslint:lint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
               "options": {
                 "lintFilePatterns": [
                   "packages/@baudevs/cli/**/*.ts"
                 ],
-                "ignoredDependencies": [
-                  "@libsql/client",
-                  "@types/inquirer",
-                  "chalk",
-                  "commander",
-                  "drizzle-orm",
-                  "inquirer",
-                  "ora"
-                ]
+                "fix": true,
+                "cache": true,
+                "cacheLocation": "node_modules/.cache/eslint"
               },
               "configurations": {},
               "parallelism": true,
-              "cache": true,
-              "outputs": [
-                "{options.outputFile}"
-              ]
+              "cache": true
             },
-            "nx-release-publish": {
-              "executor": "@nx/js:release-publish",
-              "dependsOn": [
-                "^nx-release-publish"
-              ],
-              "options": {},
+            "dev": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "dev"
+              },
+              "metadata": {
+                "scriptContent": "tsc --watch",
+                "runCommand": "pnpm run dev"
+              },
               "configurations": {},
               "parallelism": true
             },
@@ -305,6 +401,9 @@
               "executor": "@nx/esbuild:esbuild",
               "outputs": [
                 "{options.outputPath}"
+              ],
+              "dependsOn": [
+                "lint"
               ],
               "options": {
                 "outputPath": "dist/packages/@baudevs/cli",
@@ -333,45 +432,25 @@
               },
               "configurations": {},
               "parallelism": true,
-              "dependsOn": [
-                "^build",
-                "lint"
-              ],
               "inputs": [
                 "default",
                 "production",
                 "^production"
               ],
               "cache": true
-            },
-            "run-bin": {
-              "executor": "nx:run-commands",
-              "dependsOn": [
-                "build"
-              ],
-              "options": {
-                "commands": [
-                  "node dist/packages/@baudevs/cli/index.js"
-                ]
-              },
-              "configurations": {},
-              "parallelism": true
             }
           },
-          "sourceRoot": "src",
+          "sourceRoot": "{projectRoot}/src",
           "name": "@baudevs/cli",
           "tags": [
-            "npm:public",
-            "baudevs",
-            "targetivo gmbh",
-            "magicusprime",
-            "targetivo",
-            "magicusprime lda",
-            "baucms",
-            "@baudevs/cli"
+            "npm:private"
           ],
           "metadata": {
-            "targetGroups": {},
+            "targetGroups": {
+              "NPM Scripts": [
+                "dev"
+              ]
+            },
             "js": {
               "packageName": "@baudevs/cli"
             }
@@ -776,6 +855,9 @@
               "cache": true,
               "options": {
                 "cwd": "libs/bau-cms-core",
+                "env": {
+                  "ESLINT_USE_FLAT_CONFIG": "true"
+                },
                 "command": "eslint ."
               },
               "inputs": [
@@ -798,7 +880,7 @@
                 ],
                 "description": "Runs ESLint on project",
                 "help": {
-                  "command": "bun eslint --help",
+                  "command": "pnpm exec eslint --help",
                   "example": {
                     "options": {
                       "max-warnings": 0
@@ -824,7 +906,7 @@
                 ],
                 "description": "Run Jest Tests",
                 "help": {
-                  "command": "bun jest --help",
+                  "command": "pnpm exec jest --help",
                   "example": {
                     "options": {
                       "coverage": true
@@ -1099,6 +1181,7 @@
         }
       ],
       "baudevs-dashboard": [],
+      "@baudevs/bau-cms-core": [],
       "@baudevs/cli": [],
       "@baudevs/bauCmsNextExample": [
         {
