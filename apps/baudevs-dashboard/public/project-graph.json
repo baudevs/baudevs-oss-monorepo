@@ -263,105 +263,6 @@
           "implicitDependencies": []
         }
       },
-      "@baudevs/bau-cms-core": {
-        "name": "@baudevs/bau-cms-core",
-        "type": "lib",
-        "data": {
-          "root": "packages/bau-cms-core",
-          "targets": {
-            "lint": {
-              "executor": "nx:run-script",
-              "options": {
-                "script": "lint"
-              },
-              "metadata": {
-                "technologies": [
-                  "eslint"
-                ],
-                "description": "Runs ESLint on project",
-                "help": {
-                  "command": "pnpm exec eslint --help",
-                  "example": {
-                    "options": {
-                      "max-warnings": 0
-                    }
-                  }
-                },
-                "scriptContent": "eslint .",
-                "runCommand": "pnpm run lint"
-              },
-              "configurations": {},
-              "parallelism": true
-            },
-            "build": {
-              "executor": "nx:run-script",
-              "options": {
-                "script": "build",
-                "verbose": true
-              },
-              "metadata": {
-                "scriptContent": "tsc && pnpm run copy-migrations",
-                "runCommand": "pnpm run build"
-              },
-              "configurations": {},
-              "parallelism": true,
-              "dependsOn": [
-                "^build",
-                "lint"
-              ],
-              "inputs": [
-                "default",
-                "production",
-                "^production"
-              ],
-              "cache": true
-            },
-            "dev": {
-              "executor": "nx:run-script",
-              "options": {
-                "script": "dev"
-              },
-              "metadata": {
-                "scriptContent": "tsc --watch",
-                "runCommand": "pnpm run dev"
-              },
-              "configurations": {},
-              "parallelism": true
-            },
-            "copy-migrations": {
-              "executor": "nx:run-script",
-              "options": {
-                "script": "copy-migrations"
-              },
-              "metadata": {
-                "scriptContent": "cp -r src/migrations dist/",
-                "runCommand": "pnpm run copy-migrations"
-              },
-              "configurations": {},
-              "parallelism": true
-            }
-          },
-          "sourceRoot": "packages/bau-cms-core",
-          "name": "@baudevs/bau-cms-core",
-          "tags": [
-            "npm:private"
-          ],
-          "metadata": {
-            "targetGroups": {
-              "NPM Scripts": [
-                "build",
-                "dev",
-                "lint",
-                "copy-migrations"
-              ]
-            },
-            "js": {
-              "packageName": "@baudevs/bau-cms-core"
-            }
-          },
-          "implicitDependencies": []
-        }
-      },
       "@baudevs/cli": {
         "name": "@baudevs/cli",
         "type": "lib",
@@ -845,52 +746,28 @@
           "implicitDependencies": []
         }
       },
-      "@baudevs/cmsCore": {
-        "name": "@baudevs/cmsCore",
+      "@baudevs/bau-cms-core": {
+        "name": "@baudevs/bau-cms-core",
         "type": "lib",
         "data": {
           "root": "libs/bau-cms-core",
           "targets": {
             "lint": {
-              "cache": true,
-              "options": {
-                "cwd": "libs/bau-cms-core",
-                "env": {
-                  "ESLINT_USE_FLAT_CONFIG": "true"
-                },
-                "command": "eslint ."
-              },
-              "inputs": [
-                "default",
-                "^default",
-                "{workspaceRoot}/eslint.config.js",
-                "{workspaceRoot}/tools/eslint-rules/**/*",
-                {
-                  "externalDependencies": [
-                    "eslint"
-                  ]
-                }
-              ],
+              "executor": "@nx/eslint:lint",
               "outputs": [
                 "{options.outputFile}"
               ],
-              "metadata": {
-                "technologies": [
-                  "eslint"
+              "options": {
+                "lintFilePatterns": [
+                  "libs/bau-cms-core/**/*.ts"
                 ],
-                "description": "Runs ESLint on project",
-                "help": {
-                  "command": "pnpm exec eslint --help",
-                  "example": {
-                    "options": {
-                      "max-warnings": 0
-                    }
-                  }
-                }
+                "fix": true,
+                "cache": true,
+                "cacheLocation": "node_modules/.cache/eslint"
               },
-              "executor": "nx:run-commands",
               "configurations": {},
-              "parallelism": true
+              "parallelism": true,
+              "cache": true
             },
             "test": {
               "options": {
@@ -944,45 +821,59 @@
               "configurations": {},
               "parallelism": true
             },
-            "nx-release-publish": {
-              "executor": "@nx/js:release-publish",
-              "dependsOn": [
-                "^nx-release-publish"
-              ],
-              "options": {},
-              "configurations": {},
-              "parallelism": true
-            },
             "build": {
-              "executor": "@nx/js:swc",
+              "executor": "@nx/esbuild:esbuild",
               "outputs": [
                 "{options.outputPath}"
+              ],
+              "dependsOn": [
+                "lint"
               ],
               "options": {
                 "outputPath": "dist/libs/bau-cms-core",
                 "main": "libs/bau-cms-core/src/index.ts",
                 "tsConfig": "libs/bau-cms-core/tsconfig.lib.json",
                 "assets": [
-                  "libs/bau-cms-core/*.md"
-                ]
+                  "libs/bau-cms-core/**/*.md",
+                  "libs/bau-cms-core/**/package.json",
+                  {
+                    "input": "libs/bau-cms-core/src",
+                    "glob": "**/migrations/**/*",
+                    "output": "migrations"
+                  }
+                ],
+                "format": [
+                  "cjs"
+                ],
+                "platform": "node",
+                "bundle": true,
+                "thirdParty": true,
+                "external": [
+                  "@libsql/client"
+                ],
+                "esbuildOptions": {
+                  "outExtension": {
+                    ".js": ".js"
+                  },
+                  "sourcemap": true
+                },
+                "verbose": true
               },
               "configurations": {},
               "parallelism": true,
-              "cache": true,
-              "dependsOn": [
-                "^build"
-              ],
               "inputs": [
+                "default",
                 "production",
                 "^production"
-              ]
+              ],
+              "cache": true
             }
           },
-          "sourceRoot": "libs/bau-cms-core/src",
-          "name": "@baudevs/cmsCore",
+          "sourceRoot": "{projectRoot}/src",
+          "name": "@baudevs/bau-cms-core",
           "projectType": "library",
           "tags": [
-            "npm:public"
+            "npm:private"
           ],
           "metadata": {
             "targetGroups": {
@@ -1176,14 +1067,18 @@
       "@baudevs/cmsTemplates": [
         {
           "source": "@baudevs/cmsTemplates",
-          "target": "@baudevs/cmsCore",
+          "target": "@baudevs/bau-cms-core",
           "type": "static"
         }
       ],
       "baudevs-dashboard": [],
-      "@baudevs/bau-cms-core": [],
       "@baudevs/cli": [],
       "@baudevs/bauCmsNextExample": [
+        {
+          "source": "@baudevs/bauCmsNextExample",
+          "target": "@baudevs/bau-cms-core",
+          "type": "static"
+        },
         {
           "source": "@baudevs/bauCmsNextExample",
           "target": "@baudevs/cli",
@@ -1193,22 +1088,17 @@
           "source": "@baudevs/bauCmsNextExample",
           "target": "@baudevs/cmsEditor",
           "type": "static"
-        },
-        {
-          "source": "@baudevs/bauCmsNextExample",
-          "target": "@baudevs/cmsCore",
-          "type": "static"
         }
       ],
       "@baudevs/cmsEditor": [],
       "@baudevs/cmsAdmin": [
         {
           "source": "@baudevs/cmsAdmin",
-          "target": "@baudevs/cmsCore",
+          "target": "@baudevs/bau-cms-core",
           "type": "static"
         }
       ],
-      "@baudevs/cmsCore": [],
+      "@baudevs/bau-cms-core": [],
       "@baudevs/bau-log-hero": []
     }
   }
