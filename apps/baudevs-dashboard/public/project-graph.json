@@ -121,6 +121,9 @@
               "cache": true,
               "options": {
                 "cwd": "apps/baudevs-dashboard",
+                "env": {
+                  "ESLINT_USE_FLAT_CONFIG": "true"
+                },
                 "command": "eslint ."
               },
               "inputs": [
