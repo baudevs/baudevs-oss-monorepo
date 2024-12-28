@@ -1,7 +1,7 @@
 {
   "repoPath": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
   "defaultBranch": "staging",
-  "generatedAt": "2024-12-28T08:44:20.975Z",
+  "generatedAt": "2024-12-28T08:53:22.239Z",
   "gitVersion": "git version 2.39.5 (Apple Git-154)",
   "nxVersion": "20.3.0",
   "nodeVersion": "v23.3.0",
@@ -10,8 +10,8 @@
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
       "branch": "staging",
-      "commit": "833c943fd31ad2e50c70ed3d84cd52f50fb3d715",
-      "lastActivity": "Sat Dec 28 09:44:13 2024 +0100"
+      "commit": "5d5e0d0c4ee5e84170a9106cd47aa4ccea0500af",
+      "lastActivity": "Sat Dec 28 09:53:11 2024 +0100"
     },
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo.worktrees/bau-cms-cli",
@@ -54,7 +54,7 @@
         "npm:public"
       ],
       "dependencies": [
-        "@baudevs/cmsCore"
+        "@baudevs/bau-cms-core"
       ],
       "lastCommits": [
         {
@@ -125,7 +125,7 @@
             "baudevs-dashboard",
             "baudevs-dashboard",
             "@baudevs/cmsAdmin",
-            "@baudevs/cmsCore",
+            "@baudevs/bau-cms-core",
             "@baudevs/cmsEditor",
             "@baudevs/cmsTemplates"
           ]
@@ -253,23 +253,23 @@
             "@baudevs/cmsAdmin",
             "@baudevs/cmsAdmin",
             "@baudevs/cmsAdmin",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
             "@baudevs/cmsTemplates",
             "@baudevs/cmsTemplates",
             "@baudevs/cmsTemplates",
@@ -383,11 +383,30 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "5d5e0d0c4ee5e84170a9106cd47aa4ccea0500af",
+          "author": "Juan Arroyave",
+          "date": "Sat Dec 28 09:44:13 2024 +0100",
+          "message": "chore(metadata): update repository metadata",
+          "branch": "staging",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "apps/baudevs-dashboard/public/project-graph.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "48cc85d18f609f1261a673cb9887483d7832f3d0",
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 08:40:57 2024 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~1",
+          "branch": "staging~2",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -404,7 +423,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 08:40:57 2024 +0100",
           "message": "chore(baudevs-dashboard): refine project configuration and build processes",
-          "branch": "staging~2",
+          "branch": "staging~3",
           "files": [
             "apps/baudevs-dashboard/public/project-graph.json"
           ],
@@ -417,7 +436,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 08:40:07 2024 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~3",
+          "branch": "staging~4",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -434,7 +453,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 08:39:33 2024 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~5",
+          "branch": "staging~6",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -451,7 +470,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 08:39:33 2024 +0100",
           "message": "chore(baudevs-dashboard): update ESLint command configuration",
-          "branch": "staging~6",
+          "branch": "staging~7",
           "files": [
             "apps/baudevs-dashboard/public/project-graph.json"
           ],
@@ -464,7 +483,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:26:07 2024 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~7",
+          "branch": "staging~8",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -481,7 +500,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:26:07 2024 +0100",
           "message": "chore(baudevs-dashboard): update ESLint configuration and build process",
-          "branch": "staging~8",
+          "branch": "staging~9",
           "files": [
             "apps/baudevs-dashboard/public/project-graph.json"
           ],
@@ -494,7 +513,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:25:35 2024 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~9",
+          "branch": "staging~10",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -511,7 +530,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:25:35 2024 +0100",
           "message": "chore: migrate ESLint configuration and enhance project structure",
-          "branch": "staging~10",
+          "branch": "staging~11",
           "files": [
             "apps/bau-cms-example/README.md",
             "apps/bau-cms-example/eslint.config.mjs",
@@ -568,9 +587,9 @@
             "@baudevs/cmsAdmin",
             "@baudevs/cmsAdmin",
             "@baudevs/cmsAdmin",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
             "@baudevs/bau-log-hero",
             "@baudevs/bau-log-hero",
             "@baudevs/bau-log-hero",
@@ -585,23 +604,6 @@
             "@baudevs/cli",
             "@baudevs/cli",
             "@baudevs/cli"
-          ]
-        },
-        {
-          "hash": "c0e5f24082bc0c4780f786b631a8e595b8509bdb",
-          "author": "Juan Arroyave",
-          "date": "Fri Dec 27 12:50:17 2024 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "staging~11",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
           ]
         }
       ],
@@ -743,102 +745,6 @@
       }
     },
     {
-      "name": "@baudevs/bau-cms-core",
-      "type": "library",
-      "root": "packages/bau-cms-core",
-      "sourceRoot": "packages/bau-cms-core",
-      "tags": [
-        "npm:private"
-      ],
-      "dependencies": [],
-      "lastCommits": [],
-      "contributors": [],
-      "metadata": {
-        "targets": {
-          "lint": {
-            "executor": "nx:run-script",
-            "options": {
-              "script": "lint"
-            },
-            "metadata": {
-              "technologies": [
-                "eslint"
-              ],
-              "description": "Runs ESLint on project",
-              "help": {
-                "command": "pnpm exec eslint --help",
-                "example": {
-                  "options": {
-                    "max-warnings": 0
-                  }
-                }
-              },
-              "scriptContent": "eslint .",
-              "runCommand": "pnpm run lint"
-            },
-            "configurations": {},
-            "parallelism": true
-          },
-          "build": {
-            "executor": "nx:run-script",
-            "options": {
-              "script": "build",
-              "verbose": true
-            },
-            "metadata": {
-              "scriptContent": "tsc && pnpm run copy-migrations",
-              "runCommand": "pnpm run build"
-            },
-            "configurations": {},
-            "parallelism": true,
-            "dependsOn": [
-              "^build",
-              "lint"
-            ],
-            "inputs": [
-              "default",
-              "production",
-              "^production"
-            ],
-            "cache": true
-          },
-          "dev": {
-            "executor": "nx:run-script",
-            "options": {
-              "script": "dev"
-            },
-            "metadata": {
-              "scriptContent": "tsc --watch",
-              "runCommand": "pnpm run dev"
-            },
-            "configurations": {},
-            "parallelism": true
-          },
-          "copy-migrations": {
-            "executor": "nx:run-script",
-            "options": {
-              "script": "copy-migrations"
-            },
-            "metadata": {
-              "scriptContent": "cp -r src/migrations dist/",
-              "runCommand": "pnpm run copy-migrations"
-            },
-            "configurations": {},
-            "parallelism": true
-          }
-        },
-        "packageName": "@baudevs/bau-cms-core",
-        "targetGroups": {
-          "NPM Scripts": [
-            "build",
-            "dev",
-            "lint",
-            "copy-migrations"
-          ]
-        }
-      }
-    },
-    {
       "name": "@baudevs/cli",
       "type": "library",
       "root": "packages/@baudevs/cli",
@@ -853,7 +759,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 09:44:13 2024 +0100",
           "message": "chore(cli): update package configuration and dependencies",
-          "branch": "staging",
+          "branch": "staging~1",
           "files": [
             "packages/@baudevs/cli/package.json",
             "packages/@baudevs/cli/project.json",
@@ -872,7 +778,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 08:40:07 2024 +0100",
           "message": "chore: update project structure and dependencies",
-          "branch": "staging~4",
+          "branch": "staging~5",
           "files": [
             "packages/@baudevs/cli/package.json",
             "packages/@baudevs/cli/project.json",
@@ -889,7 +795,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:25:35 2024 +0100",
           "message": "chore: migrate ESLint configuration and enhance project structure",
-          "branch": "staging~10",
+          "branch": "staging~11",
           "files": [
             "apps/bau-cms-example/README.md",
             "apps/bau-cms-example/eslint.config.mjs",
@@ -946,9 +852,9 @@
             "@baudevs/cmsAdmin",
             "@baudevs/cmsAdmin",
             "@baudevs/cmsAdmin",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
             "@baudevs/bau-log-hero",
             "@baudevs/bau-log-hero",
             "@baudevs/bau-log-hero",
@@ -1120,9 +1026,9 @@
         "npm:private"
       ],
       "dependencies": [
+        "@baudevs/bau-cms-core",
         "@baudevs/cli",
-        "@baudevs/cmsEditor",
-        "@baudevs/cmsCore"
+        "@baudevs/cmsEditor"
       ],
       "lastCommits": [
         {
@@ -1130,7 +1036,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:25:35 2024 +0100",
           "message": "chore: migrate ESLint configuration and enhance project structure",
-          "branch": "staging~10",
+          "branch": "staging~11",
           "files": [
             "apps/bau-cms-example/README.md",
             "apps/bau-cms-example/eslint.config.mjs",
@@ -1187,9 +1093,9 @@
             "@baudevs/cmsAdmin",
             "@baudevs/cmsAdmin",
             "@baudevs/cmsAdmin",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
             "@baudevs/bau-log-hero",
             "@baudevs/bau-log-hero",
             "@baudevs/bau-log-hero",
@@ -1336,7 +1242,7 @@
             "baudevs-dashboard",
             "baudevs-dashboard",
             "@baudevs/cmsAdmin",
-            "@baudevs/cmsCore",
+            "@baudevs/bau-cms-core",
             "@baudevs/cmsEditor",
             "@baudevs/cmsTemplates"
           ]
@@ -1464,23 +1370,23 @@
             "@baudevs/cmsAdmin",
             "@baudevs/cmsAdmin",
             "@baudevs/cmsAdmin",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
             "@baudevs/cmsTemplates",
             "@baudevs/cmsTemplates",
             "@baudevs/cmsTemplates",
@@ -1676,7 +1582,7 @@
             "baudevs-dashboard",
             "baudevs-dashboard",
             "@baudevs/cmsAdmin",
-            "@baudevs/cmsCore",
+            "@baudevs/bau-cms-core",
             "@baudevs/cmsEditor",
             "@baudevs/cmsTemplates"
           ]
@@ -1807,7 +1713,7 @@
         "npm:public"
       ],
       "dependencies": [
-        "@baudevs/cmsCore"
+        "@baudevs/bau-cms-core"
       ],
       "lastCommits": [
         {
@@ -1815,7 +1721,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:25:35 2024 +0100",
           "message": "chore: migrate ESLint configuration and enhance project structure",
-          "branch": "staging~10",
+          "branch": "staging~11",
           "files": [
             "apps/bau-cms-example/README.md",
             "apps/bau-cms-example/eslint.config.mjs",
@@ -1872,9 +1778,9 @@
             "@baudevs/cmsAdmin",
             "@baudevs/cmsAdmin",
             "@baudevs/cmsAdmin",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
             "@baudevs/bau-log-hero",
             "@baudevs/bau-log-hero",
             "@baudevs/bau-log-hero",
@@ -1959,7 +1865,7 @@
             "baudevs-dashboard",
             "baudevs-dashboard",
             "@baudevs/cmsAdmin",
-            "@baudevs/cmsCore",
+            "@baudevs/bau-cms-core",
             "@baudevs/cmsEditor",
             "@baudevs/cmsTemplates"
           ]
@@ -2087,23 +1993,23 @@
             "@baudevs/cmsAdmin",
             "@baudevs/cmsAdmin",
             "@baudevs/cmsAdmin",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
             "@baudevs/cmsTemplates",
             "@baudevs/cmsTemplates",
             "@baudevs/cmsTemplates",
@@ -2247,12 +2153,12 @@
       }
     },
     {
-      "name": "@baudevs/cmsCore",
+      "name": "@baudevs/bau-cms-core",
       "type": "library",
       "root": "libs/bau-cms-core",
-      "sourceRoot": "libs/bau-cms-core/src",
+      "sourceRoot": "{projectRoot}/src",
       "tags": [
-        "npm:public"
+        "npm:private"
       ],
       "dependencies": [],
       "lastCommits": [
@@ -2261,7 +2167,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:25:35 2024 +0100",
           "message": "chore: migrate ESLint configuration and enhance project structure",
-          "branch": "staging~10",
+          "branch": "staging~11",
           "files": [
             "apps/bau-cms-example/README.md",
             "apps/bau-cms-example/eslint.config.mjs",
@@ -2318,9 +2224,9 @@
             "@baudevs/cmsAdmin",
             "@baudevs/cmsAdmin",
             "@baudevs/cmsAdmin",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
             "@baudevs/bau-log-hero",
             "@baudevs/bau-log-hero",
             "@baudevs/bau-log-hero",
@@ -2405,7 +2311,7 @@
             "baudevs-dashboard",
             "baudevs-dashboard",
             "@baudevs/cmsAdmin",
-            "@baudevs/cmsCore",
+            "@baudevs/bau-cms-core",
             "@baudevs/cmsEditor",
             "@baudevs/cmsTemplates"
           ]
@@ -2533,23 +2439,23 @@
             "@baudevs/cmsAdmin",
             "@baudevs/cmsAdmin",
             "@baudevs/cmsAdmin",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
             "@baudevs/cmsTemplates",
             "@baudevs/cmsTemplates",
             "@baudevs/cmsTemplates",
@@ -2561,45 +2467,21 @@
       "metadata": {
         "targets": {
           "lint": {
-            "cache": true,
-            "options": {
-              "cwd": "libs/bau-cms-core",
-              "env": {
-                "ESLINT_USE_FLAT_CONFIG": "true"
-              },
-              "command": "eslint ."
-            },
-            "inputs": [
-              "default",
-              "^default",
-              "{workspaceRoot}/eslint.config.js",
-              "{workspaceRoot}/tools/eslint-rules/**/*",
-              {
-                "externalDependencies": [
-                  "eslint"
-                ]
-              }
-            ],
+            "executor": "@nx/eslint:lint",
             "outputs": [
               "{options.outputFile}"
             ],
-            "metadata": {
-              "technologies": [
-                "eslint"
+            "options": {
+              "lintFilePatterns": [
+                "libs/bau-cms-core/**/*.ts"
               ],
-              "description": "Runs ESLint on project",
-              "help": {
-                "command": "pnpm exec eslint --help",
-                "example": {
-                  "options": {
-                    "max-warnings": 0
-                  }
-                }
-              }
+              "fix": true,
+              "cache": true,
+              "cacheLocation": "node_modules/.cache/eslint"
             },
-            "executor": "nx:run-commands",
             "configurations": {},
-            "parallelism": true
+            "parallelism": true,
+            "cache": true
           },
           "test": {
             "options": {
@@ -2653,38 +2535,52 @@
             "configurations": {},
             "parallelism": true
           },
-          "nx-release-publish": {
-            "executor": "@nx/js:release-publish",
-            "dependsOn": [
-              "^nx-release-publish"
-            ],
-            "options": {},
-            "configurations": {},
-            "parallelism": true
-          },
           "build": {
-            "executor": "@nx/js:swc",
+            "executor": "@nx/esbuild:esbuild",
             "outputs": [
               "{options.outputPath}"
+            ],
+            "dependsOn": [
+              "lint"
             ],
             "options": {
               "outputPath": "dist/libs/bau-cms-core",
               "main": "libs/bau-cms-core/src/index.ts",
               "tsConfig": "libs/bau-cms-core/tsconfig.lib.json",
               "assets": [
-                "libs/bau-cms-core/*.md"
-              ]
+                "libs/bau-cms-core/**/*.md",
+                "libs/bau-cms-core/**/package.json",
+                {
+                  "input": "libs/bau-cms-core/src",
+                  "glob": "**/migrations/**/*",
+                  "output": "migrations"
+                }
+              ],
+              "format": [
+                "cjs"
+              ],
+              "platform": "node",
+              "bundle": true,
+              "thirdParty": true,
+              "external": [
+                "@libsql/client"
+              ],
+              "esbuildOptions": {
+                "outExtension": {
+                  ".js": ".js"
+                },
+                "sourcemap": true
+              },
+              "verbose": true
             },
             "configurations": {},
             "parallelism": true,
-            "cache": true,
-            "dependsOn": [
-              "^build"
-            ],
             "inputs": [
+              "default",
               "production",
               "^production"
-            ]
+            ],
+            "cache": true
           }
         },
         "packageName": "@baudevs/bau-cms-core",
@@ -2710,7 +2606,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:25:35 2024 +0100",
           "message": "chore: migrate ESLint configuration and enhance project structure",
-          "branch": "staging~10",
+          "branch": "staging~11",
           "files": [
             "apps/bau-cms-example/README.md",
             "apps/bau-cms-example/eslint.config.mjs",
@@ -2767,9 +2663,9 @@
             "@baudevs/cmsAdmin",
             "@baudevs/cmsAdmin",
             "@baudevs/cmsAdmin",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
-            "@baudevs/cmsCore",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
+            "@baudevs/bau-cms-core",
             "@baudevs/bau-log-hero",
             "@baudevs/bau-log-hero",
             "@baudevs/bau-log-hero",
@@ -3139,7 +3035,7 @@
       "type": "rebase",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 65
+      "divergedCommits": 66
     },
     {
       "from": "feature/bau-cms-cli",
@@ -3187,7 +3083,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 38
+      "divergedCommits": 39
     },
     {
       "from": "feature/bau-cms-core",
@@ -3235,7 +3131,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 95
+      "divergedCommits": 96
     },
     {
       "from": "feature/bau-cms-example",
@@ -3283,7 +3179,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 106
+      "divergedCommits": 107
     },
     {
       "from": "feature/dashboard-app",
@@ -3331,7 +3227,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 120
+      "divergedCommits": 121
     },
     {
       "from": "main",
@@ -3379,7 +3275,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
       "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
-      "divergedCommits": 97
+      "divergedCommits": 98
     },
     {
       "from": "staging",
@@ -3387,7 +3283,7 @@
       "type": "merge",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 65
+      "divergedCommits": 66
     },
     {
       "from": "staging",
@@ -3395,7 +3291,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 38
+      "divergedCommits": 39
     },
     {
       "from": "staging",
@@ -3403,7 +3299,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 95
+      "divergedCommits": 96
     },
     {
       "from": "staging",
@@ -3411,7 +3307,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 106
+      "divergedCommits": 107
     },
     {
       "from": "staging",
@@ -3419,7 +3315,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 120
+      "divergedCommits": 121
     },
     {
       "from": "staging",
@@ -3427,19 +3323,19 @@
       "type": "merge",
       "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
       "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
-      "divergedCommits": 97
+      "divergedCommits": 98
     }
   ],
   "recentActivity": {
     "lastPush": "Sun Dec 22 09:53:48 2024 +0100",
-    "lastPull": "2024-12-28T08:44:22.993Z",
-    "lastMerge": "2024-12-28T08:44:23.001Z",
+    "lastPull": "2024-12-28T08:53:23.797Z",
+    "lastMerge": "2024-12-28T08:53:23.805Z",
     "activeBranches": [
       {
         "name": "staging",
-        "lastCommit": "833c943fd31ad2e50c70ed3d84cd52f50fb3d715",
+        "lastCommit": "5d5e0d0c4ee5e84170a9106cd47aa4ccea0500af",
         "author": "Juan Arroyave",
-        "commitCount": 135
+        "commitCount": 136
       },
       {
         "name": "feature/bau-cms-cli",
@@ -3481,10 +3377,10 @@
   },
   "projectStats": {
     "totalApps": 2,
-    "totalLibraries": 7,
+    "totalLibraries": 6,
     "totalPackages": 0,
     "totalFiles": 169,
-    "totalCommits": 135,
+    "totalCommits": 136,
     "totalContributors": 0
   }
 }
