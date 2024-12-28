@@ -1,7 +1,7 @@
 {
   "repoPath": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
   "defaultBranch": "staging",
-  "generatedAt": "2024-12-28T09:04:32.464Z",
+  "generatedAt": "2024-12-28T09:05:09.833Z",
   "gitVersion": "git version 2.39.5 (Apple Git-154)",
   "nxVersion": "20.3.0",
   "nodeVersion": "v23.3.0",
@@ -10,8 +10,8 @@
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
       "branch": "staging",
-      "commit": "037ad8d527a04ad48b5bc959506cfe83c894cbbc",
-      "lastActivity": "Sat Dec 28 10:04:23 2024 +0100"
+      "commit": "650a400ff980a9985c014885df07d65b545ae929",
+      "lastActivity": "Sat Dec 28 10:05:02 2024 +0100"
     },
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo.worktrees/bau-cms-cli",
@@ -383,11 +383,28 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "b22944da47008732c68c0d568dc5bd879fda2c3d",
+          "author": "Juan Arroyave",
+          "date": "Sat Dec 28 10:04:23 2024 +0100",
+          "message": "chore(metadata): update repository metadata",
+          "branch": "staging~1",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "cf7b1a3b18d45b4232f25efc87dc34a2f964003a",
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 09:54:13 2024 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~1",
+          "branch": "staging~3",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -404,7 +421,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 09:54:13 2024 +0100",
           "message": "chore(bau-cms-core): add new library configuration and improve build processes",
-          "branch": "staging~2",
+          "branch": "staging~4",
           "files": [
             "apps/baudevs-dashboard/public/project-graph.json"
           ],
@@ -417,7 +434,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 09:44:13 2024 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~3",
+          "branch": "staging~5",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -434,7 +451,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 09:44:13 2024 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~4",
+          "branch": "staging~6",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -453,7 +470,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 08:40:57 2024 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~6",
+          "branch": "staging~8",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -470,7 +487,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 08:40:57 2024 +0100",
           "message": "chore(baudevs-dashboard): refine project configuration and build processes",
-          "branch": "staging~7",
+          "branch": "staging~9",
           "files": [
             "apps/baudevs-dashboard/public/project-graph.json"
           ],
@@ -483,7 +500,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 08:40:07 2024 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~8",
+          "branch": "staging~10",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -500,7 +517,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 08:39:33 2024 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~10",
+          "branch": "staging~12",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -517,28 +534,11 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 08:39:33 2024 +0100",
           "message": "chore(baudevs-dashboard): update ESLint command configuration",
-          "branch": "staging~11",
+          "branch": "staging~13",
           "files": [
             "apps/baudevs-dashboard/public/project-graph.json"
           ],
           "nxProjects": [
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "38fe5e5b8d6d2fd400c2c36d0a3bf4c88e05a27e",
-          "author": "Juan Arroyave",
-          "date": "Sat Dec 28 07:26:07 2024 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "staging~12",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
             "baudevs-dashboard"
           ]
         }
@@ -695,7 +695,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 09:44:13 2024 +0100",
           "message": "chore(cli): update package configuration and dependencies",
-          "branch": "staging~5",
+          "branch": "staging~7",
           "files": [
             "packages/@baudevs/cli/package.json",
             "packages/@baudevs/cli/project.json",
@@ -714,7 +714,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 08:40:07 2024 +0100",
           "message": "chore: update project structure and dependencies",
-          "branch": "staging~9",
+          "branch": "staging~11",
           "files": [
             "packages/@baudevs/cli/package.json",
             "packages/@baudevs/cli/project.json",
@@ -731,7 +731,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:25:35 2024 +0100",
           "message": "chore: migrate ESLint configuration and enhance project structure",
-          "branch": "staging~15",
+          "branch": "staging~17",
           "files": [
             "apps/bau-cms-example/README.md",
             "apps/bau-cms-example/eslint.config.mjs",
@@ -972,7 +972,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:25:35 2024 +0100",
           "message": "chore: migrate ESLint configuration and enhance project structure",
-          "branch": "staging~15",
+          "branch": "staging~17",
           "files": [
             "apps/bau-cms-example/README.md",
             "apps/bau-cms-example/eslint.config.mjs",
@@ -1657,7 +1657,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:25:35 2024 +0100",
           "message": "chore: migrate ESLint configuration and enhance project structure",
-          "branch": "staging~15",
+          "branch": "staging~17",
           "files": [
             "apps/bau-cms-example/README.md",
             "apps/bau-cms-example/eslint.config.mjs",
@@ -2103,7 +2103,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 10:04:23 2024 +0100",
           "message": "feat(bau-cms-core): enhance library structure and functionality",
-          "branch": "staging",
+          "branch": "staging~2",
           "files": [
             "libs/bau-cms-core/package.json",
             "libs/bau-cms-core/project.json",
@@ -2136,7 +2136,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:25:35 2024 +0100",
           "message": "chore: migrate ESLint configuration and enhance project structure",
-          "branch": "staging~15",
+          "branch": "staging~17",
           "files": [
             "apps/bau-cms-example/README.md",
             "apps/bau-cms-example/eslint.config.mjs",
@@ -2575,7 +2575,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:25:35 2024 +0100",
           "message": "chore: migrate ESLint configuration and enhance project structure",
-          "branch": "staging~15",
+          "branch": "staging~17",
           "files": [
             "apps/bau-cms-example/README.md",
             "apps/bau-cms-example/eslint.config.mjs",
@@ -3004,7 +3004,7 @@
       "type": "rebase",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 70
+      "divergedCommits": 72
     },
     {
       "from": "feature/bau-cms-cli",
@@ -3052,7 +3052,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 43
+      "divergedCommits": 45
     },
     {
       "from": "feature/bau-cms-core",
@@ -3100,7 +3100,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 100
+      "divergedCommits": 102
     },
     {
       "from": "feature/bau-cms-example",
@@ -3148,7 +3148,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 111
+      "divergedCommits": 113
     },
     {
       "from": "feature/dashboard-app",
@@ -3196,7 +3196,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 125
+      "divergedCommits": 127
     },
     {
       "from": "main",
@@ -3244,7 +3244,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
       "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
-      "divergedCommits": 102
+      "divergedCommits": 104
     },
     {
       "from": "staging",
@@ -3252,7 +3252,7 @@
       "type": "merge",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 70
+      "divergedCommits": 72
     },
     {
       "from": "staging",
@@ -3260,7 +3260,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 43
+      "divergedCommits": 45
     },
     {
       "from": "staging",
@@ -3268,7 +3268,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 100
+      "divergedCommits": 102
     },
     {
       "from": "staging",
@@ -3276,7 +3276,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 111
+      "divergedCommits": 113
     },
     {
       "from": "staging",
@@ -3284,7 +3284,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 125
+      "divergedCommits": 127
     },
     {
       "from": "staging",
@@ -3292,19 +3292,19 @@
       "type": "merge",
       "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
       "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
-      "divergedCommits": 102
+      "divergedCommits": 104
     }
   ],
   "recentActivity": {
     "lastPush": "Sun Dec 22 09:53:48 2024 +0100",
-    "lastPull": "2024-12-28T09:04:34.040Z",
-    "lastMerge": "2024-12-28T09:04:34.049Z",
+    "lastPull": "2024-12-28T09:05:11.460Z",
+    "lastMerge": "2024-12-28T09:05:11.468Z",
     "activeBranches": [
       {
         "name": "staging",
-        "lastCommit": "037ad8d527a04ad48b5bc959506cfe83c894cbbc",
+        "lastCommit": "650a400ff980a9985c014885df07d65b545ae929",
         "author": "Juan Arroyave",
-        "commitCount": 140
+        "commitCount": 142
       },
       {
         "name": "feature/bau-cms-cli",
@@ -3349,7 +3349,7 @@
     "totalLibraries": 6,
     "totalPackages": 0,
     "totalFiles": 171,
-    "totalCommits": 140,
+    "totalCommits": 142,
     "totalContributors": 0
   }
 }
