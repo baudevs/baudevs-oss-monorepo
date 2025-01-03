@@ -39,6 +39,7 @@ shortlog
 targetivo
 turso
 Turso
+unpatch
 vite
 vitest
 worktree

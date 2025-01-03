@@ -36,7 +36,7 @@ tracker.activate();
 - removeEndpoint(pattern: string | RegExp): Removes an existing endpoint.
 - listEndpoints(): Lists all monitored endpoints.
 
-**Example: Rollup Configuration Template**
+## **Example: Rollup Configuration Template**
 
 ```javascript
 // rollup.config.js
