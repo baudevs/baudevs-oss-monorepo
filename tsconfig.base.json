@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@/packages/*": ["packages/*"],
-      "@/scripts/*": ["scripts/*"]
+      "@/scripts/*": ["scripts/*"],
+      "@baudevs/bau-gtm-tracker": ["libs/bau-gtm-tracker/src/index.ts"]
     },
     "typeRoots": ["node_modules/@types", "./types.d.ts"]
   },

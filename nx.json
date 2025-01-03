@@ -35,7 +35,7 @@
           "{projectRoot}/**/*.{ts,tsx,js,jsx}",
           "{projectRoot}/package.json"
         ]
-        }
+      }
     },
     "test": {
       "cache": true
@@ -101,6 +101,12 @@
         "serveStaticTargetName": "serve-static",
         "typecheckTargetName": "typecheck"
       }
+    },
+    {
+      "plugin": "@nx/rollup/plugin",
+      "options": {
+        "buildTargetName": "build"
+      }
     }
   ],
   "generators": {
@@ -134,7 +140,7 @@
   "release": {
     "versionPlans": true,
     "projectsRelationship": "independent",
-    "projects": ["@baudevs/bau-log-hero"],
+    "projects": ["@baudevs/bau-log-hero", "bau-gtm-tracker"],
     "releaseTagPattern": "release/{projectName}/{version}",
     "changelog": {
       "projectChangelogs": {
@@ -147,6 +153,7 @@
       "push": true
     },
     "version": {
+      "preVersionCommand": "pnpm dlx nx run-many -t build",
       "conventionalCommits": true
     }
   },

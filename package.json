@@ -15,18 +15,17 @@
   "private": true,
   "packageManager": "pnpm@9.15.1",
   "dependencies": {
+    "@clerk/nextjs": "^6.0.0",
     "@nx/esbuild": "20.3.0",
-    "@nx/js": "^20.3.0",
     "@radix-ui/react-slot": "^1.1.1",
     "@typescript-eslint/eslint-plugin": "^8",
     "next": "15.1.3",
+    "next-intl": "latest",
     "openai": "^4.77.0",
     "parser@^8": "link:@typescript-eslint/eslint/parser@^8",
     "parser@^9": "link:@typescript-eslint/eslint/parser@^9",
     "react": "19.0.0",
-    "react-dom": "19.0.0",
-    "@clerk/nextjs": "^6.0.0",
-    "next-intl": "latest"
+    "react-dom": "19.0.0"
   },
   "keywords": [
     "baudevs",
@@ -56,9 +55,11 @@
     "@nx/eslint": "^20.3.0",
     "@nx/eslint-plugin": "20.3.0",
     "@nx/jest": "20.3.0",
+    "@nx/js": "^20.3.0",
     "@nx/next": "20.3.0",
     "@nx/playwright": "20.3.0",
     "@nx/react": "20.3.0",
+    "@nx/rollup": "20.3.0",
     "@nx/vite": "20.3.0",
     "@nx/web": "20.3.0",
     "@nx/workspace": "20.3.0",
@@ -95,6 +96,8 @@
     "nx": "20.3.0",
     "postcss": "^8.4.49",
     "prettier": "^3.4.2",
+    "rollup": "^4.14.0",
+    "swc-loader": "0.1.15",
     "tailwindcss": "^3.4.17",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
@@ -102,6 +105,7 @@
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.18.2",
+    "verdaccio": "^5.0.4",
     "vite": "^6.0.6",
     "vite-plugin-dts": "~4.4.0",
     "vitest": "^2.1.8"
@@ -114,5 +118,8 @@
     "esbuild",
     "nx",
     "sharp"
-  ]
+  ],
+  "nx": {
+    "includedScripts": []
+  }
 }
