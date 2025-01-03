@@ -4,6 +4,11 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "dev": "nx run-many --target=dev --all",
+    "build": "nx run-many --target=build --all",
+    "test": "nx run-many --target=test --all",
+    "lint": "nx run-many --target=lint --all",
+    "cli": "node dist/packages/@baudevs/cli/index.js",
     "prepare": "pnpm exec tsx scripts/install-hooks.ts",
     "bau:metadata": "pnpm exec tsx scripts/generate-repo-metadata.ts"
   },
@@ -19,7 +24,9 @@
     "parser@^8": "link:@typescript-eslint/eslint/parser@^8",
     "parser@^9": "link:@typescript-eslint/eslint/parser@^9",
     "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "react-dom": "19.0.0",
+    "@clerk/nextjs": "^6.0.0",
+    "next-intl": "latest"
   },
   "keywords": [
     "baudevs",

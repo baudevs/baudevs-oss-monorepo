@@ -1081,11 +1081,6 @@
         },
         {
           "source": "@baudevs/bauCmsNextExample",
-          "target": "@baudevs/cli",
-          "type": "static"
-        },
-        {
-          "source": "@baudevs/bauCmsNextExample",
           "target": "@baudevs/cmsEditor",
           "type": "static"
         }
