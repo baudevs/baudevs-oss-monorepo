@@ -11,6 +11,9 @@
               "cache": true,
               "options": {
                 "cwd": "libs/bau-cms-templates",
+                "env": {
+                  "ESLINT_USE_FLAT_CONFIG": "true"
+                },
                 "command": "eslint ."
               },
               "inputs": [
@@ -33,7 +36,7 @@
                 ],
                 "description": "Runs ESLint on project",
                 "help": {
-                  "command": "bun eslint --help",
+                  "command": "pnpm exec eslint --help",
                   "example": {
                     "options": {
                       "max-warnings": 0
@@ -361,6 +364,173 @@
           "implicitDependencies": []
         }
       },
+      "@baudevs/bau-gtm-tracker": {
+        "name": "@baudevs/bau-gtm-tracker",
+        "type": "lib",
+        "data": {
+          "root": "libs/bau-gtm-tracker",
+          "targets": {
+            "lint": {
+              "cache": true,
+              "options": {
+                "cwd": "libs/bau-gtm-tracker",
+                "env": {
+                  "ESLINT_USE_FLAT_CONFIG": "true"
+                },
+                "command": "eslint ."
+              },
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/eslint.config.js",
+                "{workspaceRoot}/tools/eslint-rules/**/*",
+                {
+                  "externalDependencies": [
+                    "eslint"
+                  ]
+                }
+              ],
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "metadata": {
+                "technologies": [
+                  "eslint"
+                ],
+                "description": "Runs ESLint on project",
+                "help": {
+                  "command": "pnpm exec eslint --help",
+                  "example": {
+                    "options": {
+                      "max-warnings": 0
+                    }
+                  }
+                }
+              },
+              "executor": "nx:run-commands",
+              "configurations": {},
+              "parallelism": true
+            },
+            "build": {
+              "cache": true,
+              "dependsOn": [
+                "lint",
+                "nx-rollup:build"
+              ],
+              "inputs": [
+                "default",
+                "production",
+                "^production"
+              ],
+              "outputs": [
+                "{workspaceRoot}/libs/bau-gtm-tracker/dist/libs/@baudevs/bau-gtm-tracker"
+              ],
+              "metadata": {
+                "technologies": [
+                  "rollup"
+                ],
+                "description": "Run Rollup",
+                "help": {
+                  "command": "pnpm exec rollup --help",
+                  "example": {
+                    "options": {
+                      "sourcemap": true,
+                      "watch": true
+                    }
+                  }
+                }
+              },
+              "executor": "nx:run-commands",
+              "options": {
+                "cwd": "libs/bau-gtm-tracker",
+                "command": "rollup -c rollup.config.cjs",
+                "verbose": true
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "version": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "version"
+              },
+              "metadata": {
+                "scriptContent": "pnpm nx build @baudevs/bau-gtm-tracker",
+                "runCommand": "pnpm run version"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "prepack": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "prepack"
+              },
+              "metadata": {
+                "scriptContent": "pnpm nx build @baudevs/bau-gtm-tracker",
+                "runCommand": "pnpm run prepack"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "nx-release-publish": {
+              "executor": "@nx/js:release-publish",
+              "dependsOn": [
+                "^nx-release-publish"
+              ],
+              "options": {
+                "packageRoot": "dist/libs/@baudevs/bau-gtm-tracker"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "github": {
+              "executor": "@jscutlery/semver:github",
+              "options": {
+                "tag": "${tag}",
+                "notes": "${notes}"
+              },
+              "configurations": {},
+              "parallelism": true
+            }
+          },
+          "sourceRoot": "libs/bau-gtm-tracker/src",
+          "name": "@baudevs/bau-gtm-tracker",
+          "projectType": "library",
+          "tags": [
+            "npm:public",
+            "npm:gtm",
+            "npm:google-tag-manager",
+            "npm:analytics",
+            "npm:tracking",
+            "npm:xhr",
+            "npm:fetch",
+            "npm:websocket"
+          ],
+          "metadata": {
+            "targetGroups": {
+              "NPM Scripts": [
+                "version",
+                "prepack"
+              ]
+            },
+            "description": "A robust library to intercept Fetch, XHR, and WebSocket requests and push events to dataLayer for GTM",
+            "js": {
+              "packageName": "@baudevs/bau-gtm-tracker"
+            }
+          },
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "release": {
+            "version": {
+              "generatorOptions": {
+                "packageRoot": "dist/{projectRoot}",
+                "currentVersionResolver": "git-tag"
+              }
+            }
+          },
+          "implicitDependencies": []
+        }
+      },
       "@baudevs/bauCmsNextExample": {
         "name": "@baudevs/bauCmsNextExample",
         "type": "app",
@@ -496,6 +666,9 @@
               "cache": true,
               "options": {
                 "cwd": "libs/bau-cms-editor",
+                "env": {
+                  "ESLINT_USE_FLAT_CONFIG": "true"
+                },
                 "command": "eslint ."
               },
               "inputs": [
@@ -518,7 +691,7 @@
                 ],
                 "description": "Runs ESLint on project",
                 "help": {
-                  "command": "bun eslint --help",
+                  "command": "pnpm exec eslint --help",
                   "example": {
                     "options": {
                       "max-warnings": 0
@@ -606,6 +779,9 @@
               "cache": true,
               "options": {
                 "cwd": "libs/bau-cms-admin",
+                "env": {
+                  "ESLINT_USE_FLAT_CONFIG": "true"
+                },
                 "command": "eslint ."
               },
               "inputs": [
@@ -628,7 +804,7 @@
                 ],
                 "description": "Runs ESLint on project",
                 "help": {
-                  "command": "bun eslint --help",
+                  "command": "pnpm exec eslint --help",
                   "example": {
                     "options": {
                       "max-warnings": 0
@@ -654,7 +830,7 @@
                 ],
                 "description": "Run Jest Tests",
                 "help": {
-                  "command": "bun jest --help",
+                  "command": "pnpm exec jest --help",
                   "example": {
                     "options": {
                       "coverage": true
@@ -899,6 +1075,9 @@
               "cache": true,
               "options": {
                 "cwd": "libs/bauLogHero",
+                "env": {
+                  "ESLINT_USE_FLAT_CONFIG": "true"
+                },
                 "command": "eslint ."
               },
               "inputs": [
@@ -921,7 +1100,7 @@
                 ],
                 "description": "Runs ESLint on project",
                 "help": {
-                  "command": "bun eslint --help",
+                  "command": "pnpm exec eslint --help",
                   "example": {
                     "options": {
                       "max-warnings": 0
@@ -1061,6 +1240,41 @@
           "type": "module",
           "implicitDependencies": []
         }
+      },
+      "@baudevs/monorepo": {
+        "name": "@baudevs/monorepo",
+        "type": "lib",
+        "data": {
+          "root": ".",
+          "sourceRoot": ".",
+          "name": "@baudevs/monorepo",
+          "includedScripts": [],
+          "tags": [
+            "npm:private",
+            "npm:baudevs",
+            "npm:bau",
+            "npm:log",
+            "npm:hero",
+            "npm:logger",
+            "npm:logging",
+            "npm:log-hero",
+            "npm:log-hero-logger",
+            "npm:presentamator",
+            "npm:rhythmalytics",
+            "npm:baudevs-types",
+            "npm:playlistswap",
+            "npm:baudevs-monorepo",
+            "npm:magicusprime"
+          ],
+          "metadata": {
+            "targetGroups": {},
+            "js": {
+              "packageName": "@baudevs/monorepo"
+            }
+          },
+          "targets": {},
+          "implicitDependencies": []
+        }
       }
     },
     "dependencies": {
@@ -1073,6 +1287,7 @@
       ],
       "baudevs-dashboard": [],
       "@baudevs/cli": [],
+      "@baudevs/bau-gtm-tracker": [],
       "@baudevs/bauCmsNextExample": [
         {
           "source": "@baudevs/bauCmsNextExample",
@@ -1094,7 +1309,8 @@
         }
       ],
       "@baudevs/bau-cms-core": [],
-      "@baudevs/bau-log-hero": []
+      "@baudevs/bau-log-hero": [],
+      "@baudevs/monorepo": []
     }
   }
 }
