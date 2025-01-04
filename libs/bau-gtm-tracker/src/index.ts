@@ -1,1 +1,3 @@
-export * from './lib/bau-gtm-tracker';
+// libs/bau-gtm-tracker/src/index.ts
+
+export { BauGtmTracker, DataLayerEvent, RequestTrackerOptions } from './lib/bau-gtm-tracker';

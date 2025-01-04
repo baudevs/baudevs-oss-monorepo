@@ -56,3 +56,4 @@ vitest.config.*.timestamp*
 .env.*
 node_modules/
 CLOUD_REQUIREMENTS.md
+.npmrc
