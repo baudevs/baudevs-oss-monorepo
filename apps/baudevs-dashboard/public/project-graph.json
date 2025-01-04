@@ -371,21 +371,48 @@
           "root": "libs/bau-gtm-tracker",
           "targets": {
             "lint": {
-              "cache": false,
-              "executor": "@nx/eslint:lint",
+              "cache": true,
               "options": {
-                "lintFilePatterns": [
-                  "libs/bau-gtm-tracker/src/**/*.ts"
-                ]
+                "cwd": "libs/bau-gtm-tracker",
+                "env": {
+                  "ESLINT_USE_FLAT_CONFIG": "true"
+                },
+                "command": "eslint ."
               },
-              "configurations": {},
-              "parallelism": true,
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/eslint.config.js",
+                "{workspaceRoot}/tools/eslint-rules/**/*",
+                {
+                  "externalDependencies": [
+                    "eslint"
+                  ]
+                }
+              ],
               "outputs": [
                 "{options.outputFile}"
-              ]
+              ],
+              "metadata": {
+                "technologies": [
+                  "eslint"
+                ],
+                "description": "Runs ESLint on project",
+                "help": {
+                  "command": "pnpm exec eslint --help",
+                  "example": {
+                    "options": {
+                      "max-warnings": 0
+                    }
+                  }
+                }
+              },
+              "executor": "nx:run-commands",
+              "configurations": {},
+              "parallelism": true
             },
             "build": {
-              "cache": false,
+              "cache": true,
               "dependsOn": [
                 "lint",
                 "nx-rollup:build"
@@ -454,6 +481,37 @@
               "options": {},
               "configurations": {},
               "parallelism": true
+            },
+            "release": {
+              "dependsOn": [
+                "build"
+              ],
+              "options": {
+                "project": "@baudevs/bau-gtm-tracker",
+                "packageRoot": "dist/libs/@baudevs/bau-gtm-tracker",
+                "publish": false
+              },
+              "changelog": {
+                "projectChangelogs": {
+                  "file": "CHANGELOG.md",
+                  "createRelease": "github"
+                }
+              },
+              "configurations": {},
+              "parallelism": true,
+              "executor": "nx:noop"
+            },
+            "publish": {
+              "dependsOn": [
+                "release"
+              ],
+              "options": {
+                "project": "@baudevs/bau-gtm-tracker",
+                "packageRoot": "dist/libs/@baudevs/bau-gtm-tracker"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "executor": "nx:noop"
             }
           },
           "sourceRoot": "libs/bau-gtm-tracker/src",
