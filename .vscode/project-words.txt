@@ -25,6 +25,7 @@ logging
 magicusprime
 nipc
 NIPC
+npmjs
 openai
 outdir
 playlistswap

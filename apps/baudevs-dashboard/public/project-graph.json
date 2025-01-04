@@ -449,18 +449,6 @@
               "configurations": {},
               "parallelism": true
             },
-            "version": {
-              "executor": "nx:run-script",
-              "options": {
-                "script": "version"
-              },
-              "metadata": {
-                "scriptContent": "pnpm nx build @baudevs/bau-gtm-tracker",
-                "runCommand": "pnpm run version"
-              },
-              "configurations": {},
-              "parallelism": true
-            },
             "prepack": {
               "executor": "nx:run-script",
               "options": {
@@ -480,6 +468,19 @@
               ],
               "options": {
                 "packageRoot": "dist/libs/@baudevs/bau-gtm-tracker"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "version": {
+              "executor": "@jscutlery/semver:version",
+              "options": {
+                "preset": "conventional",
+                "trackDeps": true,
+                "push": true,
+                "postTargets": [
+                  "@baudevs/bau-gtm-tracker:github"
+                ]
               },
               "configurations": {},
               "parallelism": true
@@ -510,7 +511,6 @@
           "metadata": {
             "targetGroups": {
               "NPM Scripts": [
-                "version",
                 "prepack"
               ]
             },
