@@ -1,17 +1,17 @@
 {
   "repoPath": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
   "defaultBranch": "staging",
-  "generatedAt": "2025-01-04T09:28:09.280Z",
+  "generatedAt": "2025-01-04T10:00:36.680Z",
   "gitVersion": "git version 2.39.5 (Apple Git-154)",
   "nxVersion": "20.3.0",
   "nodeVersion": "v23.3.0",
-  "pnpmVersion": "9.15.2",
+  "pnpmVersion": "9.15.1",
   "worktrees": [
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
       "branch": "staging",
-      "commit": "045b70723a77f6bf00c555ce8acdbfd9ac1b2cec",
-      "lastActivity": "Sat Jan 4 10:27:57 2025 +0100"
+      "commit": "38e394b8491d08f7ae9a566bc464226d2b2f5c49",
+      "lastActivity": "Sat Jan 4 11:00:27 2025 +0100"
     },
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo.worktrees/bau-cms-cli",
@@ -388,11 +388,43 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "38e394b8491d08f7ae9a566bc464226d2b2f5c49",
+          "author": "Juan Arroyave",
+          "date": "Sat Jan 4 11:00:27 2025 +0100",
+          "message": "feat(project-graph): update versioning configuration and enhance project-words",
+          "branch": "staging",
+          "files": [
+            ".vscode/project-words.txt",
+            "apps/baudevs-dashboard/public/project-graph.json"
+          ],
+          "nxProjects": [
+            "@baudevs/monorepo",
+            "baudevs-dashboard"
+          ]
+        },
+        {
+          "hash": "62136fb98c3b65ba7c5db8a3ac788dd32153cff4",
+          "author": "Juan Arroyave",
+          "date": "Sat Jan 4 10:27:57 2025 +0100",
+          "message": "chore(metadata): update repository metadata",
+          "branch": "staging~1",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "9e7e3adad7ead7b2146c88c9727c7188a84ccd9d",
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 10:20:35 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~1",
+          "branch": "staging~3",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -409,7 +441,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 10:20:35 2025 +0100",
           "message": "feat(bau-gtm-tracker): add ESLint configuration and new library metadata",
-          "branch": "staging~2",
+          "branch": "staging~4",
           "files": [
             "apps/baudevs-dashboard/public/project-graph.json"
           ],
@@ -422,7 +454,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 10:18:21 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~3",
+          "branch": "staging~5",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -439,7 +471,7 @@
           "author": "Juan Arroyave",
           "date": "Fri Jan 3 12:31:40 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~5",
+          "branch": "staging~7",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -456,7 +488,7 @@
           "author": "Juan Arroyave",
           "date": "Fri Jan 3 12:02:41 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~7",
+          "branch": "staging~9",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -473,7 +505,7 @@
           "author": "Juan Arroyave",
           "date": "Fri Jan 3 11:43:52 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~9",
+          "branch": "staging~11",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -546,40 +578,6 @@
             "@baudevs/bauCmsNextExample",
             "@baudevs/bauCmsNextExample",
             "@baudevs/bauCmsNextExample",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "b0d23103fc15ff417a7a55748028226732ed7c60",
-          "author": "Juan Arroyave",
-          "date": "Fri Jan 3 11:21:56 2025 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/staging~2",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "2e10a5cd9779698efac8a68382b8a36f6d60ab4c",
-          "author": "Juan Arroyave",
-          "date": "Sat Dec 28 10:05:02 2024 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/staging~4",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
             "baudevs-dashboard"
           ]
         }
@@ -1016,7 +1014,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 10:27:57 2025 +0100",
           "message": "feat(bau-gtm-tracker): enhance library functionality and update configuration",
-          "branch": "staging",
+          "branch": "staging~2",
           "files": [
             "libs/bau-gtm-tracker/README.md",
             "libs/bau-gtm-tracker/package.json",
@@ -1039,7 +1037,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 10:18:21 2025 +0100",
           "message": "feat(bau-gtm-tracker): enhance tracking library functionality and update project configuration",
-          "branch": "staging~4",
+          "branch": "staging~6",
           "files": [
             ".gitignore",
             ".npmrc",
@@ -1060,7 +1058,7 @@
           "author": "Juan Arroyave",
           "date": "Fri Jan 3 11:43:52 2025 +0100",
           "message": "feat(bau-gtm-tracker): add new library for Google Tag Manager tracking",
-          "branch": "staging~10",
+          "branch": "staging~12",
           "files": [
             "libs/bau-gtm-tracker/.swcrc",
             "libs/bau-gtm-tracker/README.md",
@@ -1093,48 +1091,21 @@
       "metadata": {
         "targets": {
           "lint": {
-            "cache": true,
+            "cache": false,
+            "executor": "@nx/eslint:lint",
             "options": {
-              "cwd": "libs/bau-gtm-tracker",
-              "env": {
-                "ESLINT_USE_FLAT_CONFIG": "true"
-              },
-              "command": "eslint ."
+              "lintFilePatterns": [
+                "libs/bau-gtm-tracker/src/**/*.ts"
+              ]
             },
-            "inputs": [
-              "default",
-              "^default",
-              "{workspaceRoot}/eslint.config.js",
-              "{workspaceRoot}/tools/eslint-rules/**/*",
-              {
-                "externalDependencies": [
-                  "eslint"
-                ]
-              }
-            ],
+            "configurations": {},
+            "parallelism": true,
             "outputs": [
               "{options.outputFile}"
-            ],
-            "metadata": {
-              "technologies": [
-                "eslint"
-              ],
-              "description": "Runs ESLint on project",
-              "help": {
-                "command": "pnpm exec eslint --help",
-                "example": {
-                  "options": {
-                    "max-warnings": 0
-                  }
-                }
-              }
-            },
-            "executor": "nx:run-commands",
-            "configurations": {},
-            "parallelism": true
+            ]
           },
           "build": {
-            "cache": true,
+            "cache": false,
             "dependsOn": [
               "lint",
               "nx-rollup:build"
@@ -1165,8 +1136,20 @@
             "executor": "nx:run-commands",
             "options": {
               "cwd": "libs/bau-gtm-tracker",
-              "command": "rollup -c rollup.config.cjs",
+              "command": "rollup -c rollup.config.mjs",
               "verbose": true
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "version": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "version"
+            },
+            "metadata": {
+              "scriptContent": "pnpm nx build @baudevs/bau-gtm-tracker",
+              "runCommand": "pnpm run version"
             },
             "configurations": {},
             "parallelism": true
@@ -1188,31 +1171,7 @@
             "dependsOn": [
               "^nx-release-publish"
             ],
-            "options": {
-              "packageRoot": "dist/libs/@baudevs/bau-gtm-tracker"
-            },
-            "configurations": {},
-            "parallelism": true
-          },
-          "version": {
-            "executor": "@jscutlery/semver:version",
-            "options": {
-              "preset": "conventional",
-              "trackDeps": true,
-              "push": true,
-              "postTargets": [
-                "@baudevs/bau-gtm-tracker:github"
-              ]
-            },
-            "configurations": {},
-            "parallelism": true
-          },
-          "github": {
-            "executor": "@jscutlery/semver:github",
-            "options": {
-              "tag": "${tag}",
-              "notes": "${notes}"
-            },
+            "options": {},
             "configurations": {},
             "parallelism": true
           }
@@ -1220,6 +1179,7 @@
         "packageName": "@baudevs/bau-gtm-tracker",
         "targetGroups": {
           "NPM Scripts": [
+            "version",
             "prepack"
           ]
         }
@@ -3323,11 +3283,43 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "38e394b8491d08f7ae9a566bc464226d2b2f5c49",
+          "author": "Juan Arroyave",
+          "date": "Sat Jan 4 11:00:27 2025 +0100",
+          "message": "feat(project-graph): update versioning configuration and enhance project-words",
+          "branch": "staging",
+          "files": [
+            ".vscode/project-words.txt",
+            "apps/baudevs-dashboard/public/project-graph.json"
+          ],
+          "nxProjects": [
+            "@baudevs/monorepo",
+            "baudevs-dashboard"
+          ]
+        },
+        {
+          "hash": "62136fb98c3b65ba7c5db8a3ac788dd32153cff4",
+          "author": "Juan Arroyave",
+          "date": "Sat Jan 4 10:27:57 2025 +0100",
+          "message": "chore(metadata): update repository metadata",
+          "branch": "staging~1",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "045b70723a77f6bf00c555ce8acdbfd9ac1b2cec",
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 10:27:57 2025 +0100",
           "message": "feat(bau-gtm-tracker): enhance library functionality and update configuration",
-          "branch": "staging",
+          "branch": "staging~2",
           "files": [
             "libs/bau-gtm-tracker/README.md",
             "libs/bau-gtm-tracker/package.json",
@@ -3350,7 +3342,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 10:20:35 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~1",
+          "branch": "staging~3",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -3367,7 +3359,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 10:20:35 2025 +0100",
           "message": "feat(bau-gtm-tracker): add ESLint configuration and new library metadata",
-          "branch": "staging~2",
+          "branch": "staging~4",
           "files": [
             "apps/baudevs-dashboard/public/project-graph.json"
           ],
@@ -3380,7 +3372,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 10:18:21 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~3",
+          "branch": "staging~5",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -3397,7 +3389,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 10:18:21 2025 +0100",
           "message": "feat(bau-gtm-tracker): enhance tracking library functionality and update project configuration",
-          "branch": "staging~4",
+          "branch": "staging~6",
           "files": [
             ".gitignore",
             ".npmrc",
@@ -3418,7 +3410,7 @@
           "author": "Juan Arroyave",
           "date": "Fri Jan 3 12:31:40 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "staging~5",
+          "branch": "staging~7",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -3435,7 +3427,7 @@
           "author": "Juan Arroyave",
           "date": "Fri Jan 3 12:31:40 2025 +0100",
           "message": "feat(resources): enhance project documentation and add new terms",
-          "branch": "staging~6",
+          "branch": "staging~8",
           "files": [
             ".vscode/project-words.txt",
             "agents/Resources/urls.md",
@@ -3449,38 +3441,6 @@
           "hash": "48c90fd5f3c0ff210c9c731f60573657665036cd",
           "author": "Juan Arroyave",
           "date": "Fri Jan 3 12:02:41 2025 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "staging~7",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "f96b9406806c5a06694b78ceb1d6932bd5372bd7",
-          "author": "Juan Arroyave",
-          "date": "Fri Jan 3 12:02:41 2025 +0100",
-          "message": "feat(prompts): add new prompts and templates for library development",
-          "branch": "staging~8",
-          "files": [
-            "agents/Prompts/Master.md",
-            "agents/Prompts/Rollup_JS.md",
-            "agents/Resources/urls.md",
-            "agents/Tasks/bauGTMTracker.md",
-            "agents/templates/Rollup.template.md"
-          ],
-          "nxProjects": []
-        },
-        {
-          "hash": "50363f83764d47e6d443734bee853120cac1e21f",
-          "author": "Juan Arroyave",
-          "date": "Fri Jan 3 11:43:52 2025 +0100",
           "message": "chore(metadata): update repository metadata",
           "branch": "staging~9",
           "files": [
@@ -3550,7 +3510,7 @@
       "type": "rebase",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 88
+      "divergedCommits": 90
     },
     {
       "from": "feature/bau-cms-cli",
@@ -3598,7 +3558,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 61
+      "divergedCommits": 63
     },
     {
       "from": "feature/bau-cms-core",
@@ -3646,7 +3606,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 118
+      "divergedCommits": 120
     },
     {
       "from": "feature/bau-cms-example",
@@ -3694,7 +3654,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 129
+      "divergedCommits": 131
     },
     {
       "from": "feature/dashboard-app",
@@ -3742,7 +3702,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 143
+      "divergedCommits": 145
     },
     {
       "from": "main",
@@ -3790,7 +3750,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
       "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
-      "divergedCommits": 120
+      "divergedCommits": 122
     },
     {
       "from": "staging",
@@ -3798,7 +3758,7 @@
       "type": "merge",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 88
+      "divergedCommits": 90
     },
     {
       "from": "staging",
@@ -3806,7 +3766,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 61
+      "divergedCommits": 63
     },
     {
       "from": "staging",
@@ -3814,7 +3774,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 118
+      "divergedCommits": 120
     },
     {
       "from": "staging",
@@ -3822,7 +3782,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 129
+      "divergedCommits": 131
     },
     {
       "from": "staging",
@@ -3830,7 +3790,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 143
+      "divergedCommits": 145
     },
     {
       "from": "staging",
@@ -3838,19 +3798,19 @@
       "type": "merge",
       "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
       "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
-      "divergedCommits": 120
+      "divergedCommits": 122
     }
   ],
   "recentActivity": {
     "lastPush": "Sun Dec 22 09:53:48 2024 +0100",
-    "lastPull": "2025-01-04T09:28:10.886Z",
-    "lastMerge": "2025-01-04T09:28:10.895Z",
+    "lastPull": "2025-01-04T10:00:38.263Z",
+    "lastMerge": "2025-01-04T10:00:38.271Z",
     "activeBranches": [
       {
         "name": "staging",
-        "lastCommit": "045b70723a77f6bf00c555ce8acdbfd9ac1b2cec",
+        "lastCommit": "38e394b8491d08f7ae9a566bc464226d2b2f5c49",
         "author": "Juan Arroyave",
-        "commitCount": 158
+        "commitCount": 160
       },
       {
         "name": "feature/bau-cms-cli",
@@ -3895,7 +3855,7 @@
     "totalLibraries": 8,
     "totalPackages": 0,
     "totalFiles": 200,
-    "totalCommits": 158,
+    "totalCommits": 160,
     "totalContributors": 0
   }
 }
