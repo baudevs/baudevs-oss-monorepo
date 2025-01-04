@@ -1,7 +1,51 @@
 {
   "name": "@baudevs/bau-gtm-tracker",
   "version": "0.0.1",
-  "dependencies": {},
-  "main": "./index.cjs",
-  "module": "./index.js"
+  "description": "A robust library to intercept Fetch, XHR, and WebSocket requests and push events to dataLayer for GTM",
+  "keywords": [
+    "gtm",
+    "google-tag-manager",
+    "analytics",
+    "tracking",
+    "xhr",
+    "fetch",
+    "websocket"
+  ],
+  "author": "Baudevs",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/baudevs/baudevs-monorepo.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./bau-gtm-tracker.cjs.js",
+  "module": "./bau-gtm-tracker.esm.js",
+  "types": "./types/lib/bau-gtm-tracker.d.ts",
+  "unpkg": "./bau-gtm-tracker.umd.min.js",
+  "jsdelivr": "./bau-gtm-tracker.umd.min.js",
+  "files": [
+    "*.js",
+    "*.js.map",
+    "types/**/*.d.ts",
+    "LICENSE",
+    "*.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "version": "pnpm nx build @baudevs/bau-gtm-tracker",
+    "prepack": "pnpm nx build @baudevs/bau-gtm-tracker"
+  },
+  "dependencies": {
+    "@nx/rollup": "^20.3.0",
+    "@rollup/plugin-commonjs": "^23.0.7",
+    "@rollup/plugin-node-resolve": "^15.3.1",
+    "@rollup/plugin-swc": "^0.4.0",
+    "@rollup/plugin-terser": "^0.4.4"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^10.0.1",
+    "typescript": "^5.7.2"
+  }
 }
