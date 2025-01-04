@@ -83,6 +83,8 @@ jobs:
           COMMIT_HASH="${{ github.sha }}"
 
           # Generate metadata
+          pwd
+          ls -la
           chmod +x scripts/generate-repo-metadata.ts
           pnpm run scripts/generate-repo-metadata.ts \
             --author="$AUTHOR_NAME" \
