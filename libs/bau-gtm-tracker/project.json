@@ -15,16 +15,28 @@
   "tags": [],
   "targets": {
     "build": {
-      "cache": false,
       "dependsOn": ["lint", "nx-rollup:build"]
     },
-    "lint": {
-      "cache": false,
-      "executor": "@nx/eslint:lint",
+    "release": {
+      "dependsOn": ["build"],
       "options": {
-        "lintFilePatterns": ["libs/bau-gtm-tracker/src/**/*.ts"]
+        "project": "@baudevs/bau-gtm-tracker",
+        "packageRoot": "dist/libs/@baudevs/bau-gtm-tracker",
+        "publish": false
+      },
+      "changelog": {
+        "projectChangelogs": {
+          "file": "CHANGELOG.md",
+          "createRelease": "github"
+        }
+      }
+    },
+    "publish": {
+      "dependsOn": ["release"],
+      "options": {
+        "project": "@baudevs/bau-gtm-tracker",
+        "packageRoot": "dist/libs/@baudevs/bau-gtm-tracker"
       }
     }
   }
 }
-

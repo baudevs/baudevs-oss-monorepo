@@ -757,3 +757,16 @@ tracker.activate();
 Configure GTM to listen for events pushed to `dataLayer` and set up corresponding tags and triggers to handle them.
 
 ---
+
+## Production Behavior
+
+When running in a production environment (CI/GitHub Actions), the library automatically optimizes console output:
+
+- `console.log` and `console.debug` calls are removed for optimal performance
+- Important tracking information via `console.info` is preserved
+- Error and warning messages (`console.error`, `console.warn`) are maintained for debugging
+- All console output is preserved in development environments
+
+This ensures that your production builds are clean while maintaining necessary logging for tracking and debugging purposes.
+
+---
