@@ -1,4 +1,4 @@
-name: Release
+name: "Release"
 
 on:
   push:
@@ -22,35 +22,41 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Set Up Bun
-        uses: oven-sh/setup-bun@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          bun-version: 'latest' # Specify the Bun version or use 'latest'
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Setup Pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: '9.15.1'
 
       - name: Install Dependencies
+        run: pnpm install
+
+      - name: Install System Dependencies
         run: |
-          bun install
+          sudo apt-get update
+          sudo apt-get install -y jq
 
       - name: Set SHAs for Affected Commands
-        run: |
-          bunx nx set-shas
+        run: pnpm nx set-shas
 
       - name: Run Linting
-        run: |
-          bunx nx affected -t lint
+        run: pnpm nx affected --target=lint
 
       - name: Run Tests
-        run: |
-          bunx nx affected -t test
+        run: pnpm nx affected --target=test
 
       - name: Build Affected Projects
-        run: |
-          bunx nx affected -t build
+        run: pnpm nx affected --target=build
 
       - name: Configure Git credentials
         run: |
@@ -58,13 +64,11 @@ jobs:
           git config --global user.email "tech@baudevs.com"
 
       - name: Execute Release
-        run: |
-          bunx nx release
+        run: pnpm nx release
         env:
           GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
 
       - name: Publish Packages
-        run: |
-          bunx nx release publish
+        run: pnpm nx release publish
         env:
           NPM_TOKEN: ${{ env.NPM_ACCESS_TOKEN }}
