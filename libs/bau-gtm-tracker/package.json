@@ -2,6 +2,7 @@
   "name": "@baudevs/bau-gtm-tracker",
   "version": "0.0.1",
   "description": "A robust library to intercept Fetch, XHR, and WebSocket requests and push events to dataLayer for GTM",
+
   "keywords": [
     "gtm",
     "google-tag-manager",
@@ -15,7 +16,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/baudevs/baudevs-monorepo.git"
+    "url": "https://github.com/baudevs/baudevs-monorepo.git/libs/bau-gtm-tracker"
   },
   "publishConfig": {
     "access": "public"
@@ -42,7 +43,8 @@
     "@rollup/plugin-commonjs": "^23.0.7",
     "@rollup/plugin-node-resolve": "^15.3.1",
     "@rollup/plugin-swc": "^0.4.0",
-    "@rollup/plugin-terser": "^0.4.4"
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup-plugin-gzip": "^3.1.2"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^10.0.1",

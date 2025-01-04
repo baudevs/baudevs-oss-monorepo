@@ -15,28 +15,16 @@
   "tags": [],
   "targets": {
     "build": {
+      "cache": false,
       "dependsOn": ["lint", "nx-rollup:build"]
     },
-    "version": {
-          "executor": "@jscutlery/semver:version",
-          "options": {
-            "preset": "conventional",
-            "trackDeps": true,
-            "push": true,
-            "postTargets": ["@baudevs/bau-gtm-tracker:github"]
-          }
-        },
-        "github": {
-          "executor": "@jscutlery/semver:github",
-          "options": {
-            "tag": "${tag}",
-            "notes": "${notes}"
-      }
-    },
-    "nx-release-publish": {
+    "lint": {
+      "cache": false,
+      "executor": "@nx/eslint:lint",
       "options": {
-        "packageRoot": "dist/libs/@baudevs/bau-gtm-tracker"
+        "lintFilePatterns": ["libs/bau-gtm-tracker/src/**/*.ts"]
       }
     }
   }
 }
+

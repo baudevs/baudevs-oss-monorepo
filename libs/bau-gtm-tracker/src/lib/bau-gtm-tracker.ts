@@ -86,7 +86,7 @@ export class BauGtmTracker {
     }
 
     this.isActive = true;
-    console.log('>> bau-gtm-tracker ACTIVATED <<');
+    console.info('>> bau-gtm-tracker ACTIVATED <<');
   }
 
   /**
@@ -105,7 +105,7 @@ export class BauGtmTracker {
     }
 
     this.isActive = false;
-    console.log('>> bau-gtm-tracker DEACTIVATED <<');
+    console.info('>> bau-gtm-tracker DEACTIVATED <<');
   }
 
   /**
@@ -118,7 +118,7 @@ export class BauGtmTracker {
       return;
     }
     this.endpoints.push(pattern);
-    console.log('>> Endpoint Added:', pattern);
+    console.info('>> Endpoint Added:', pattern);
   }
 
   /**
@@ -137,7 +137,7 @@ export class BauGtmTracker {
 
     if (index !== -1) {
       const removed = this.endpoints.splice(index, 1)[0];
-      console.log('>> Endpoint Removed:', removed);
+      console.info('>> Endpoint Removed:', removed);
     } else {
       console.warn('removeEndpoint: Pattern not found:', pattern);
     }
@@ -147,7 +147,7 @@ export class BauGtmTracker {
    * Lists all currently monitored endpoint patterns.
    */
   public listEndpoints() {
-    console.log('>> Current Endpoints:', this.endpoints);
+    console.info('>> Current Endpoints:', this.endpoints);
     return [...this.endpoints];
   }
 
@@ -174,7 +174,7 @@ export class BauGtmTracker {
           });
           console.error('[Fetch Intercept] Request failed:', requestUrl, error);
         }
-        throw error; // Re-throw to maintain fetch behavior
+        throw error;
       }
 
       try {
@@ -213,6 +213,7 @@ export class BauGtmTracker {
           console.log(window.dataLayer)
           console.log('[Fetch Intercept] Request detected:', requestUrl, requestBody);
           console.log("--------------------------------DEBUG END--------------------------------")
+          console.info('[Fetch Intercept] Request detected:', requestUrl);
         }
       } catch (error) {
         console.warn('[Fetch Intercept Processing Error]', error);
@@ -264,10 +265,10 @@ export class BauGtmTracker {
               responseStatus: this.status,
               response: this.responseText || '',
             });
-            console.log('[XHR Intercept] Request detected:', this._bauGtmTracker_url, body);
+            console.info('[XHR Intercept] Request detected:', this._bauGtmTracker_url);
           }
         } catch (error) {
-          console.warn('[XHR Intercept Error]', error);
+          console.error('[XHR Intercept Error]', error);
         }
       });
 
@@ -299,7 +300,7 @@ export class BauGtmTracker {
           websocketUrl: url.toString(),
           protocols: Array.isArray(protocols) ? protocols : protocols ? [protocols] : [],
         });
-        console.log('[WebSocket Intercept] Connection detected:', url, protocols);
+        console.info('[WebSocket Intercept] Connection detected:', url);
       }
       return new originalWebSocket(url, protocols);
     } as unknown as typeof WebSocket;
