@@ -1,17 +1,17 @@
 {
   "repoPath": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
   "defaultBranch": "staging",
-  "generatedAt": "2025-01-04T10:29:20.151Z",
+  "generatedAt": "2025-01-04T10:32:44.757Z",
   "gitVersion": "git version 2.39.5 (Apple Git-154)",
   "nxVersion": "20.3.0",
   "nodeVersion": "v23.3.0",
-  "pnpmVersion": "9.15.2",
+  "pnpmVersion": "9.15.1",
   "worktrees": [
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
       "branch": "staging",
-      "commit": "d711144afee3f69b7bb4a745ed6c3cbe8cc35e0c",
-      "lastActivity": "Sat Jan 4 11:29:10 2025 +0100"
+      "commit": "3e652687f2de477b3973f453b992833df8bd1a1d",
+      "lastActivity": "Sat Jan 4 11:32:30 2025 +0100"
     },
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo.worktrees/bau-cms-cli",
@@ -388,11 +388,28 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "0a355c2498b86ead009dda621d52e253f5e94506",
+          "author": "Juan Arroyave",
+          "date": "Sat Jan 4 11:29:10 2025 +0100",
+          "message": "chore(metadata): update repository metadata",
+          "branch": "remotes/origin/staging",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "d711144afee3f69b7bb4a745ed6c3cbe8cc35e0c",
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 11:29:10 2025 +0100",
           "message": "chore(app-dashboard): update package.json to include dependencies for the dashboard app",
-          "branch": "staging",
+          "branch": "remotes/origin/staging~1",
           "files": [
             "apps/baudevs-dashboard/package.json"
           ],
@@ -405,7 +422,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 11:19:47 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/staging",
+          "branch": "remotes/origin/staging~2",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -422,7 +439,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 11:19:47 2025 +0100",
           "message": "chore(workflow): update dashboard workflow to use tsx for metadata generation",
-          "branch": "remotes/origin/staging~1",
+          "branch": "remotes/origin/staging~3",
           "files": [
             ".github/workflows/dashboard.yml",
             "apps/baudevs-dashboard/public/project-graph.json"
@@ -437,7 +454,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 11:15:15 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/staging~2",
+          "branch": "remotes/origin/staging~4",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -454,7 +471,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 11:13:19 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/staging~4",
+          "branch": "remotes/origin/staging~6",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -471,7 +488,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 11:03:39 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/staging~6",
+          "branch": "remotes/origin/staging~8",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -488,7 +505,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 11:01:20 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/staging~8",
+          "branch": "remotes/origin/staging~10",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -505,7 +522,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 11:01:20 2025 +0100",
           "message": "chore(project-graph): update build and lint configurations for @baudevs/bau-gtm-tracker",
-          "branch": "remotes/origin/staging~9",
+          "branch": "remotes/origin/staging~11",
           "files": [
             "apps/baudevs-dashboard/public/project-graph.json"
           ],
@@ -518,7 +535,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 11:00:27 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/staging~10",
+          "branch": "remotes/origin/staging~12",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -527,21 +544,6 @@
           ],
           "nxProjects": [
             "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "38e394b8491d08f7ae9a566bc464226d2b2f5c49",
-          "author": "Juan Arroyave",
-          "date": "Sat Jan 4 11:00:27 2025 +0100",
-          "message": "feat(project-graph): update versioning configuration and enhance project-words",
-          "branch": "remotes/origin/staging~11",
-          "files": [
-            ".vscode/project-words.txt",
-            "apps/baudevs-dashboard/public/project-graph.json"
-          ],
-          "nxProjects": [
-            "@baudevs/monorepo",
             "baudevs-dashboard"
           ]
         }
@@ -698,7 +700,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 09:44:13 2024 +0100",
           "message": "chore(cli): update package configuration and dependencies",
-          "branch": "remotes/origin/staging~36",
+          "branch": "remotes/origin/staging~38",
           "files": [
             "packages/@baudevs/cli/package.json",
             "packages/@baudevs/cli/project.json",
@@ -717,7 +719,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 08:40:07 2024 +0100",
           "message": "chore: update project structure and dependencies",
-          "branch": "remotes/origin/staging~40",
+          "branch": "remotes/origin/staging~42",
           "files": [
             "packages/@baudevs/cli/package.json",
             "packages/@baudevs/cli/project.json",
@@ -734,7 +736,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:25:35 2024 +0100",
           "message": "chore: migrate ESLint configuration and enhance project structure",
-          "branch": "remotes/origin/staging~46",
+          "branch": "remotes/origin/staging~48",
           "files": [
             "apps/bau-cms-example/README.md",
             "apps/bau-cms-example/eslint.config.mjs",
@@ -815,7 +817,7 @@
           "author": "Juan Arroyave",
           "date": "Fri Dec 27 08:05:52 2024 +0100",
           "message": "feat(cli): introduce BauCMS CLI for project management",
-          "branch": "remotes/origin/staging~50",
+          "branch": "remotes/origin/staging~52",
           "files": [
             "apps/bau-cms-example/package.json",
             "apps/baudevs-dashboard/public/project-graph.json",
@@ -978,7 +980,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 11:03:39 2025 +0100",
           "message": "feat(bau-gtm-tracker): integrate rollup-plugin-gzip and update configurations",
-          "branch": "remotes/origin/staging~7",
+          "branch": "remotes/origin/staging~9",
           "files": [
             "libs/bau-gtm-tracker/package.json",
             "libs/bau-gtm-tracker/project.json",
@@ -1000,7 +1002,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 10:27:57 2025 +0100",
           "message": "feat(bau-gtm-tracker): enhance library functionality and update configuration",
-          "branch": "remotes/origin/staging~13",
+          "branch": "remotes/origin/staging~15",
           "files": [
             "libs/bau-gtm-tracker/README.md",
             "libs/bau-gtm-tracker/package.json",
@@ -1023,7 +1025,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 10:18:21 2025 +0100",
           "message": "feat(bau-gtm-tracker): enhance tracking library functionality and update project configuration",
-          "branch": "remotes/origin/staging~17",
+          "branch": "remotes/origin/staging~19",
           "files": [
             ".gitignore",
             ".npmrc",
@@ -1044,7 +1046,7 @@
           "author": "Juan Arroyave",
           "date": "Fri Jan 3 11:43:52 2025 +0100",
           "message": "feat(bau-gtm-tracker): add new library for Google Tag Manager tracking",
-          "branch": "remotes/origin/staging~23",
+          "branch": "remotes/origin/staging~25",
           "files": [
             "libs/bau-gtm-tracker/.swcrc",
             "libs/bau-gtm-tracker/README.md",
@@ -1247,7 +1249,7 @@
           "author": "Juan Arroyave",
           "date": "Fri Jan 3 11:22:38 2025 +0100",
           "message": "feat(bau-cms-example): enhance admin interface and CMS functionality",
-          "branch": "remotes/origin/staging~25",
+          "branch": "remotes/origin/staging~27",
           "files": [
             "apps/bau-cms-example/app/admin/components/sidebar.tsx",
             "apps/bau-cms-example/app/admin/content/new/content-form.tsx",
@@ -1294,7 +1296,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:25:35 2024 +0100",
           "message": "chore: migrate ESLint configuration and enhance project structure",
-          "branch": "remotes/origin/staging~46",
+          "branch": "remotes/origin/staging~48",
           "files": [
             "apps/bau-cms-example/README.md",
             "apps/bau-cms-example/eslint.config.mjs",
@@ -1375,7 +1377,7 @@
           "author": "Juan Arroyave",
           "date": "Fri Dec 27 08:05:52 2024 +0100",
           "message": "feat(cli): introduce BauCMS CLI for project management",
-          "branch": "remotes/origin/staging~50",
+          "branch": "remotes/origin/staging~52",
           "files": [
             "apps/bau-cms-example/package.json",
             "apps/baudevs-dashboard/public/project-graph.json",
@@ -1985,7 +1987,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:25:35 2024 +0100",
           "message": "chore: migrate ESLint configuration and enhance project structure",
-          "branch": "remotes/origin/staging~46",
+          "branch": "remotes/origin/staging~48",
           "files": [
             "apps/bau-cms-example/README.md",
             "apps/bau-cms-example/eslint.config.mjs",
@@ -2436,7 +2438,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 10:04:23 2024 +0100",
           "message": "feat(bau-cms-core): enhance library structure and functionality",
-          "branch": "remotes/origin/staging~31",
+          "branch": "remotes/origin/staging~33",
           "files": [
             "libs/bau-cms-core/package.json",
             "libs/bau-cms-core/project.json",
@@ -2469,7 +2471,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:25:35 2024 +0100",
           "message": "chore: migrate ESLint configuration and enhance project structure",
-          "branch": "remotes/origin/staging~46",
+          "branch": "remotes/origin/staging~48",
           "files": [
             "apps/bau-cms-example/README.md",
             "apps/bau-cms-example/eslint.config.mjs",
@@ -2910,7 +2912,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Dec 28 07:25:35 2024 +0100",
           "message": "chore: migrate ESLint configuration and enhance project structure",
-          "branch": "remotes/origin/staging~46",
+          "branch": "remotes/origin/staging~48",
           "files": [
             "apps/bau-cms-example/README.md",
             "apps/bau-cms-example/eslint.config.mjs",
@@ -3327,11 +3329,39 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "3e652687f2de477b3973f453b992833df8bd1a1d",
+          "author": "Juan Arroyave",
+          "date": "Sat Jan 4 11:32:30 2025 +0100",
+          "message": "chore(dependencies): update pnpm-lock.yaml to add and update multiple dependencies",
+          "branch": "staging",
+          "files": [
+            "pnpm-lock.yaml"
+          ],
+          "nxProjects": []
+        },
+        {
+          "hash": "0a355c2498b86ead009dda621d52e253f5e94506",
+          "author": "Juan Arroyave",
+          "date": "Sat Jan 4 11:29:10 2025 +0100",
+          "message": "chore(metadata): update repository metadata",
+          "branch": "remotes/origin/staging",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "d711144afee3f69b7bb4a745ed6c3cbe8cc35e0c",
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 11:29:10 2025 +0100",
           "message": "chore(app-dashboard): update package.json to include dependencies for the dashboard app",
-          "branch": "staging",
+          "branch": "remotes/origin/staging~1",
           "files": [
             "apps/baudevs-dashboard/package.json"
           ],
@@ -3344,7 +3374,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 11:19:47 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/staging",
+          "branch": "remotes/origin/staging~2",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -3361,7 +3391,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 11:19:47 2025 +0100",
           "message": "chore(workflow): update dashboard workflow to use tsx for metadata generation",
-          "branch": "remotes/origin/staging~1",
+          "branch": "remotes/origin/staging~3",
           "files": [
             ".github/workflows/dashboard.yml",
             "apps/baudevs-dashboard/public/project-graph.json"
@@ -3376,7 +3406,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 11:15:15 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/staging~2",
+          "branch": "remotes/origin/staging~4",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -3393,7 +3423,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 11:15:15 2025 +0100",
           "message": "chore(workflow): add debugging commands to dashboard workflow for metadata generation",
-          "branch": "remotes/origin/staging~3",
+          "branch": "remotes/origin/staging~5",
           "files": [
             ".github/workflows/dashboard.yml"
           ],
@@ -3406,7 +3436,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 11:13:19 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/staging~4",
+          "branch": "remotes/origin/staging~6",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -3423,7 +3453,7 @@
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 11:13:19 2025 +0100",
           "message": "chore(workflow): make generate-repo-metadata script executable in dashboard workflow",
-          "branch": "remotes/origin/staging~5",
+          "branch": "remotes/origin/staging~7",
           "files": [
             ".github/workflows/dashboard.yml"
           ],
@@ -3435,45 +3465,6 @@
           "hash": "8d2abcd9f8e8273ca5c120dea42ac0c248456df9",
           "author": "Juan Arroyave",
           "date": "Sat Jan 4 11:03:39 2025 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/staging~6",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "13e0384bbd2491f29a0a228b7a3e4c56640bd386",
-          "author": "Juan Arroyave",
-          "date": "Sat Jan 4 11:03:39 2025 +0100",
-          "message": "feat(bau-gtm-tracker): integrate rollup-plugin-gzip and update configurations",
-          "branch": "remotes/origin/staging~7",
-          "files": [
-            "libs/bau-gtm-tracker/package.json",
-            "libs/bau-gtm-tracker/project.json",
-            "libs/bau-gtm-tracker/rollup.config.cjs",
-            "libs/bau-gtm-tracker/rollup.config.mjs",
-            "libs/bau-gtm-tracker/src/lib/bau-gtm-tracker.ts",
-            "pnpm-lock.yaml"
-          ],
-          "nxProjects": [
-            "@baudevs/bau-gtm-tracker",
-            "@baudevs/bau-gtm-tracker",
-            "@baudevs/bau-gtm-tracker",
-            "@baudevs/bau-gtm-tracker",
-            "@baudevs/bau-gtm-tracker"
-          ]
-        },
-        {
-          "hash": "1cad294b12fb2360554ae2a0bd30efbbed99ea4b",
-          "author": "Juan Arroyave",
-          "date": "Sat Jan 4 11:01:20 2025 +0100",
           "message": "chore(metadata): update repository metadata",
           "branch": "remotes/origin/staging~8",
           "files": [
@@ -3543,7 +3534,7 @@
       "type": "rebase",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 102
+      "divergedCommits": 104
     },
     {
       "from": "feature/bau-cms-cli",
@@ -3591,7 +3582,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 75
+      "divergedCommits": 77
     },
     {
       "from": "feature/bau-cms-core",
@@ -3639,7 +3630,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 132
+      "divergedCommits": 134
     },
     {
       "from": "feature/bau-cms-example",
@@ -3687,7 +3678,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 143
+      "divergedCommits": 145
     },
     {
       "from": "feature/dashboard-app",
@@ -3735,7 +3726,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 157
+      "divergedCommits": 159
     },
     {
       "from": "main",
@@ -3783,7 +3774,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
       "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
-      "divergedCommits": 134
+      "divergedCommits": 136
     },
     {
       "from": "staging",
@@ -3791,7 +3782,7 @@
       "type": "merge",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 102
+      "divergedCommits": 104
     },
     {
       "from": "staging",
@@ -3799,7 +3790,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 75
+      "divergedCommits": 77
     },
     {
       "from": "staging",
@@ -3807,7 +3798,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 132
+      "divergedCommits": 134
     },
     {
       "from": "staging",
@@ -3815,7 +3806,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 143
+      "divergedCommits": 145
     },
     {
       "from": "staging",
@@ -3823,7 +3814,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 157
+      "divergedCommits": 159
     },
     {
       "from": "staging",
@@ -3831,19 +3822,19 @@
       "type": "merge",
       "lastSync": "Fri Dec 13 09:30:48 2024 +0000",
       "commonAncestor": "c11d1303367cc346324fa1c8b3fc51487cdd4825",
-      "divergedCommits": 134
+      "divergedCommits": 136
     }
   ],
   "recentActivity": {
     "lastPush": "Sun Dec 22 09:53:48 2024 +0100",
-    "lastPull": "2025-01-04T10:29:21.869Z",
-    "lastMerge": "2025-01-04T10:29:21.878Z",
+    "lastPull": "2025-01-04T10:32:46.489Z",
+    "lastMerge": "2025-01-04T10:32:46.498Z",
     "activeBranches": [
       {
         "name": "staging",
-        "lastCommit": "d711144afee3f69b7bb4a745ed6c3cbe8cc35e0c",
+        "lastCommit": "3e652687f2de477b3973f453b992833df8bd1a1d",
         "author": "Juan Arroyave",
-        "commitCount": 172
+        "commitCount": 174
       },
       {
         "name": "feature/bau-cms-cli",
@@ -3888,7 +3879,7 @@
     "totalLibraries": 8,
     "totalPackages": 0,
     "totalFiles": 200,
-    "totalCommits": 172,
+    "totalCommits": 174,
     "totalContributors": 0
   }
 }
