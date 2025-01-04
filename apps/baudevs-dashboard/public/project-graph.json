@@ -371,48 +371,21 @@
           "root": "libs/bau-gtm-tracker",
           "targets": {
             "lint": {
-              "cache": true,
+              "cache": false,
+              "executor": "@nx/eslint:lint",
               "options": {
-                "cwd": "libs/bau-gtm-tracker",
-                "env": {
-                  "ESLINT_USE_FLAT_CONFIG": "true"
-                },
-                "command": "eslint ."
+                "lintFilePatterns": [
+                  "libs/bau-gtm-tracker/src/**/*.ts"
+                ]
               },
-              "inputs": [
-                "default",
-                "^default",
-                "{workspaceRoot}/eslint.config.js",
-                "{workspaceRoot}/tools/eslint-rules/**/*",
-                {
-                  "externalDependencies": [
-                    "eslint"
-                  ]
-                }
-              ],
+              "configurations": {},
+              "parallelism": true,
               "outputs": [
                 "{options.outputFile}"
-              ],
-              "metadata": {
-                "technologies": [
-                  "eslint"
-                ],
-                "description": "Runs ESLint on project",
-                "help": {
-                  "command": "pnpm exec eslint --help",
-                  "example": {
-                    "options": {
-                      "max-warnings": 0
-                    }
-                  }
-                }
-              },
-              "executor": "nx:run-commands",
-              "configurations": {},
-              "parallelism": true
+              ]
             },
             "build": {
-              "cache": true,
+              "cache": false,
               "dependsOn": [
                 "lint",
                 "nx-rollup:build"
@@ -443,8 +416,20 @@
               "executor": "nx:run-commands",
               "options": {
                 "cwd": "libs/bau-gtm-tracker",
-                "command": "rollup -c rollup.config.cjs",
+                "command": "rollup -c rollup.config.mjs",
                 "verbose": true
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "version": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "version"
+              },
+              "metadata": {
+                "scriptContent": "pnpm nx build @baudevs/bau-gtm-tracker",
+                "runCommand": "pnpm run version"
               },
               "configurations": {},
               "parallelism": true
@@ -466,31 +451,7 @@
               "dependsOn": [
                 "^nx-release-publish"
               ],
-              "options": {
-                "packageRoot": "dist/libs/@baudevs/bau-gtm-tracker"
-              },
-              "configurations": {},
-              "parallelism": true
-            },
-            "version": {
-              "executor": "@jscutlery/semver:version",
-              "options": {
-                "preset": "conventional",
-                "trackDeps": true,
-                "push": true,
-                "postTargets": [
-                  "@baudevs/bau-gtm-tracker:github"
-                ]
-              },
-              "configurations": {},
-              "parallelism": true
-            },
-            "github": {
-              "executor": "@jscutlery/semver:github",
-              "options": {
-                "tag": "${tag}",
-                "notes": "${notes}"
-              },
+              "options": {},
               "configurations": {},
               "parallelism": true
             }
@@ -511,6 +472,7 @@
           "metadata": {
             "targetGroups": {
               "NPM Scripts": [
+                "version",
                 "prepack"
               ]
             },
