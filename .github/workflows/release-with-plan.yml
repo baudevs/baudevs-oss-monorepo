@@ -39,7 +39,7 @@ jobs:
           version: ${{ env.PNPM_VERSION }}
 
       - name: Install Dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Set SHAs for Affected Commands
         run: pnpm nx set-shas

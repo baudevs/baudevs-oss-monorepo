@@ -59,15 +59,7 @@ jobs:
           version: ${{ env.PNPM_VERSION }}
 
       - name: Install Dependencies
-        run: pnpm install --no-frozen-lockfile
-
-      - name: Install Release Tools Dependencies
-        run: |
-          cd tools/release-tools
-          pnpm install --no-frozen-lockfile
-          cd ../../
-          echo "Release tools dependencies installed"
-          pwd
+        run: pnpm install --frozen-lockfile
 
 
       - name: Build Release Tools
@@ -128,7 +120,7 @@ jobs:
           version: ${{ env.PNPM_VERSION }}
 
       - name: Install Dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Create Version Plan
         run: |

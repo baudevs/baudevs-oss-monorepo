@@ -102,6 +102,9 @@ importers:
       '@playwright/test':
         specifier: ^1.49.1
         version: 1.49.1
+      '@rollup/plugin-terser':
+        specifier: ^0.4.4
+        version: 0.4.4(rollup@4.29.2)
       '@swc-node/register':
         specifier: ^1.10.9
         version: 1.10.9(@swc/core@1.10.4(@swc/helpers@0.5.15))(@swc/types@0.1.17)(typescript@5.7.2)
@@ -568,16 +571,16 @@ importers:
 
   tools/release-tools:
     dependencies:
+      '@nx/rollup':
+        specifier: 20.3.0
+        version: 20.3.0(@babel/core@7.26.0)(@babel/traverse@7.26.4)(@swc-node/register@1.10.9(@swc/core@1.10.4(@swc/helpers@0.5.15))(@swc/types@0.1.17)(typescript@5.7.2))(@swc/core@1.10.4(@swc/helpers@0.5.15))(@types/babel__core@7.20.5)(@types/node@20.17.11)(nx@20.3.0(@swc-node/register@1.10.9(@swc/core@1.10.4(@swc/helpers@0.5.15))(@swc/types@0.1.17)(typescript@5.7.2))(@swc/core@1.10.4(@swc/helpers@0.5.15)))(ts-node@10.9.2(@swc/core@1.10.4(@swc/helpers@0.5.15))(@types/node@20.17.11)(typescript@5.7.2))(typescript@5.7.2)(verdaccio@5.33.0(encoding@0.1.13)(typanion@3.14.0))
       openai:
         specifier: ^4.77.3
         version: 4.77.3(encoding@0.1.13)(zod@3.24.1)
-      tslib:
-        specifier: ^2.8.1
-        version: 2.8.1
+      rollup-plugin-gzip:
+        specifier: 3.1.2
+        version: 3.1.2(rollup@4.29.2)
     devDependencies:
-      '@nx/rollup':
-        specifier: ^20.3.0
-        version: 20.3.0(@babel/core@7.26.0)(@babel/traverse@7.26.4)(@swc-node/register@1.10.9(@swc/core@1.10.4(@swc/helpers@0.5.15))(@swc/types@0.1.17)(typescript@5.7.2))(@swc/core@1.10.4(@swc/helpers@0.5.15))(@types/babel__core@7.20.5)(@types/node@20.17.11)(nx@20.3.0(@swc-node/register@1.10.9(@swc/core@1.10.4(@swc/helpers@0.5.15))(@swc/types@0.1.17)(typescript@5.7.2))(@swc/core@1.10.4(@swc/helpers@0.5.15)))(ts-node@10.9.2(@swc/core@1.10.4(@swc/helpers@0.5.15))(@types/node@20.17.11)(typescript@5.7.2))(typescript@5.7.2)(verdaccio@5.33.0(encoding@0.1.13)(typanion@3.14.0))
       '@rollup/plugin-commonjs':
         specifier: ^23.0.7
         version: 23.0.7(rollup@4.29.2)
@@ -588,7 +591,7 @@ importers:
         specifier: ^0.4.0
         version: 0.4.0(@swc/core@1.10.4(@swc/helpers@0.5.15))(rollup@4.29.2)
       '@rollup/plugin-terser':
-        specifier: ^0.4.4
+        specifier: 0.4.4
         version: 0.4.4(rollup@4.29.2)
       '@rollup/plugin-typescript':
         specifier: ^10.0.1
@@ -596,9 +599,6 @@ importers:
       '@types/node':
         specifier: ^20.17.11
         version: 20.17.11
-      rollup-plugin-gzip:
-        specifier: ^3.1.2
-        version: 3.1.2(rollup@4.29.2)
       typescript:
         specifier: ^5.7.2
         version: 5.7.2
@@ -15693,7 +15693,7 @@ snapshots:
 
   '@types/better-sqlite3@7.6.12':
     dependencies:
-      '@types/node': 20.17.11
+      '@types/node': 22.10.5
     optional: true
 
   '@types/body-parser@1.19.5':
