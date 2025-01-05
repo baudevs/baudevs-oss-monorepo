@@ -1,7 +1,7 @@
 {
   "repoPath": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
   "defaultBranch": "main",
-  "generatedAt": "2025-01-05T09:59:51.347Z",
+  "generatedAt": "2025-01-05T10:31:50.682Z",
   "gitVersion": "git version 2.39.5 (Apple Git-154)",
   "nxVersion": "20.3.0",
   "nodeVersion": "v23.3.0",
@@ -10,8 +10,8 @@
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
       "branch": "main",
-      "commit": "a180159b38b6bba5e2c14f8489cb44b1755d7cdc",
-      "lastActivity": "Sun Jan 5 10:59:38 2025 +0100"
+      "commit": "30014485933961e78e9a070205cb124256b2daf3",
+      "lastActivity": "Sun Jan 5 11:31:38 2025 +0100"
     },
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo.worktrees/bau-cms-cli",
@@ -388,11 +388,28 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "24acb7c7106f9070b7868c098497c7c1ddda4a4c",
+          "author": "Juan Arroyave",
+          "date": "Sun Jan 5 10:59:38 2025 +0100",
+          "message": "chore(metadata): update repository metadata",
+          "branch": "main~1",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "a180159b38b6bba5e2c14f8489cb44b1755d7cdc",
           "author": "Juan Arroyave",
           "date": "Sun Jan 5 10:59:38 2025 +0100",
           "message": "chore(bau-gtm-tracker): refine project configuration and linting setup",
-          "branch": "main",
+          "branch": "main~2",
           "files": [
             "apps/baudevs-dashboard/public/project-graph.json"
           ],
@@ -405,7 +422,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Jan 5 10:59:05 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "main~1",
+          "branch": "main~3",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -527,23 +544,6 @@
           ],
           "nxProjects": [
             "@baudevs/monorepo",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "17f53e03fded3fcebdef8d5d394d611454de0c1a",
-          "author": "Juan Arroyave",
-          "date": "Sat Jan 4 11:15:15 2025 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "staging~10",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
             "baudevs-dashboard"
           ]
         }
@@ -980,7 +980,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Jan 5 10:59:05 2025 +0100",
           "message": "chore(bau-gtm-tracker): update package and project configuration",
-          "branch": "main~2",
+          "branch": "main~4",
           "files": [
             "libs/bau-gtm-tracker/package.json",
             "libs/bau-gtm-tracker/project.json"
@@ -1188,12 +1188,20 @@
             "executor": "@jscutlery/semver:version",
             "options": {
               "preset": "conventional",
-              "tagPrefix": "@baudevs/bau-gtm-tracker@",
+              "tagPrefix": "release/@baudevs/bau-gtm-tracker/",
               "trackDeps": true,
-              "push": false,
+              "push": true,
+              "skipCommitTypes": [
+                "ci",
+                "docs",
+                "test",
+                "style"
+              ],
               "postTargets": [
-                "@baudevs/bau-gtm-tracker:github"
-              ]
+                "@baudevs/bau-gtm-tracker:github",
+                "@baudevs/bau-gtm-tracker:publish"
+              ],
+              "commitMessageFormat": "chore($@baudevs/bau-gtm-tracker): release version ${version} [skip ci]"
             },
             "configurations": {},
             "parallelism": true
@@ -1203,6 +1211,14 @@
             "options": {
               "tag": "${tag}",
               "notes": "${notes}"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "publish": {
+            "executor": "ngx-deploy-npm:deploy",
+            "options": {
+              "access": "public"
             },
             "configurations": {},
             "parallelism": true
@@ -3310,11 +3326,41 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "30014485933961e78e9a070205cb124256b2daf3",
+          "author": "Juan Arroyave",
+          "date": "Sun Jan 5 11:31:38 2025 +0100",
+          "message": "change(workflow name): change CI/CD workflow for bau-log-hero",
+          "branch": "main",
+          "files": [
+            ".github/workflows/bau-log-hero.yml"
+          ],
+          "nxProjects": [
+            "@baudevs/monorepo"
+          ]
+        },
+        {
+          "hash": "24acb7c7106f9070b7868c098497c7c1ddda4a4c",
+          "author": "Juan Arroyave",
+          "date": "Sun Jan 5 10:59:38 2025 +0100",
+          "message": "chore(metadata): update repository metadata",
+          "branch": "main~1",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "a180159b38b6bba5e2c14f8489cb44b1755d7cdc",
           "author": "Juan Arroyave",
           "date": "Sun Jan 5 10:59:38 2025 +0100",
           "message": "chore(bau-gtm-tracker): refine project configuration and linting setup",
-          "branch": "main",
+          "branch": "main~2",
           "files": [
             "apps/baudevs-dashboard/public/project-graph.json"
           ],
@@ -3327,7 +3373,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Jan 5 10:59:05 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "main~1",
+          "branch": "main~3",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -3344,7 +3390,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Jan 5 10:59:05 2025 +0100",
           "message": "chore(bau-gtm-tracker): update package and project configuration",
-          "branch": "main~2",
+          "branch": "main~4",
           "files": [
             "libs/bau-gtm-tracker/package.json",
             "libs/bau-gtm-tracker/project.json"
@@ -3446,34 +3492,6 @@
             "baudevs-dashboard",
             "baudevs-dashboard"
           ]
-        },
-        {
-          "hash": "3e652687f2de477b3973f453b992833df8bd1a1d",
-          "author": "Juan Arroyave",
-          "date": "Sat Jan 4 11:32:30 2025 +0100",
-          "message": "chore(dependencies): update pnpm-lock.yaml to add and update multiple dependencies",
-          "branch": "staging~5",
-          "files": [
-            "pnpm-lock.yaml"
-          ],
-          "nxProjects": []
-        },
-        {
-          "hash": "0a355c2498b86ead009dda621d52e253f5e94506",
-          "author": "Juan Arroyave",
-          "date": "Sat Jan 4 11:29:10 2025 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "staging~6",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
         }
       ],
       "contributors": [],
@@ -3523,7 +3541,7 @@
       "type": "rebase",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 116
+      "divergedCommits": 118
     },
     {
       "from": "develop",
@@ -3571,7 +3589,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 89
+      "divergedCommits": 91
     },
     {
       "from": "feature/bau-cms-cli",
@@ -3619,7 +3637,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 146
+      "divergedCommits": 148
     },
     {
       "from": "feature/bau-cms-core",
@@ -3667,7 +3685,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 157
+      "divergedCommits": 159
     },
     {
       "from": "feature/bau-cms-example",
@@ -3715,7 +3733,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 171
+      "divergedCommits": 173
     },
     {
       "from": "feature/dashboard-app",
@@ -3731,7 +3749,7 @@
       "type": "merge",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 116
+      "divergedCommits": 118
     },
     {
       "from": "main",
@@ -3739,7 +3757,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 89
+      "divergedCommits": 91
     },
     {
       "from": "main",
@@ -3747,7 +3765,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 146
+      "divergedCommits": 148
     },
     {
       "from": "main",
@@ -3755,7 +3773,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 157
+      "divergedCommits": 159
     },
     {
       "from": "main",
@@ -3763,7 +3781,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 171
+      "divergedCommits": 173
     },
     {
       "from": "main",
@@ -3771,7 +3789,7 @@
       "type": "merge",
       "lastSync": "Sat Jan 4 11:38:11 2025 +0100",
       "commonAncestor": "ec3f8b432198203a7d2218e6a9efeed467d855b9",
-      "divergedCommits": 7
+      "divergedCommits": 9
     },
     {
       "from": "staging",
@@ -3819,19 +3837,19 @@
       "type": "rebase",
       "lastSync": "Sat Jan 4 11:38:11 2025 +0100",
       "commonAncestor": "ec3f8b432198203a7d2218e6a9efeed467d855b9",
-      "divergedCommits": 7
+      "divergedCommits": 9
     }
   ],
   "recentActivity": {
     "lastPush": "Sun Dec 22 09:53:48 2024 +0100",
-    "lastPull": "2025-01-05T09:59:53.830Z",
+    "lastPull": "2025-01-05T10:31:52.370Z",
     "lastMerge": "Sun Jan 5 09:33:44 2025 +0100",
     "activeBranches": [
       {
         "name": "main",
-        "lastCommit": "a180159b38b6bba5e2c14f8489cb44b1755d7cdc",
+        "lastCommit": "30014485933961e78e9a070205cb124256b2daf3",
         "author": "Juan Arroyave",
-        "commitCount": 186
+        "commitCount": 188
       },
       {
         "name": "staging",
@@ -3876,7 +3894,7 @@
     "totalLibraries": 8,
     "totalPackages": 0,
     "totalFiles": 206,
-    "totalCommits": 186,
+    "totalCommits": 188,
     "totalContributors": 0
   }
 }
