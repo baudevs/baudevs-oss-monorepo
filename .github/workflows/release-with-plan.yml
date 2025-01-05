@@ -5,7 +5,7 @@ on:
     secrets:
       NPM_TOKEN:
         required: true
-      GITHUB_TOKEN:
+      GH_PAT:
         required: true
       NX_TOKEN:
         required: true
@@ -13,7 +13,7 @@ on:
 env:
   NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_TOKEN || '' }}
   NPM_ACCESS_TOKEN: ${{ secrets.NPM_TOKEN || '' }}
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN || '' }}
+  GITHUB_TOKEN: ${{ secrets.GH_PAT || '' }}
   NX_EXCLUDED_PROJECTS: 'baudevs-dashboard,@baudevs/bauCmsNextExample'
   NODE_VERSION: '23.x'
   PNPM_VERSION: '9.15.1'

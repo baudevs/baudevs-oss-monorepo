@@ -15,7 +15,7 @@ permissions:
 env:
   NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_TOKEN || '' }}
   NPM_ACCESS_TOKEN: ${{ secrets.NPM_TOKEN || '' }}
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN || '' }}
+  GITHUB_TOKEN: ${{ secrets.GH_PAT || '' }}
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY || '' }}
   NX_EXCLUDED_PROJECTS: 'baudevs-dashboard,@baudevs/bauCmsNextExample'
   NODE_VERSION: '23.x'
@@ -116,7 +116,7 @@ jobs:
       - name: Wait for Human Review
         uses: trstringer/manual-approval@v1
         with:
-          secret: ${{ github.token }}
+          secret: ${{ secrets.GH_PAT }}
           approvers: baudevs-team
           minimum-approvals: 1
           issue-title: "Version Type Review Required for ${{ needs.analyze-changes.outputs.project_name }}"
@@ -179,4 +179,7 @@ jobs:
   release:
     needs: create-version-plan
     uses: ./.github/workflows/release-with-plan.yml
-    secrets: inherit
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      GH_PAT: ${{ secrets.GH_PAT }}
+      NX_TOKEN: ${{ secrets.NX_TOKEN }}
