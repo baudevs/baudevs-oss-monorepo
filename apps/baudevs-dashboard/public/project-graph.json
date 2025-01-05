@@ -436,12 +436,20 @@
               "executor": "@jscutlery/semver:version",
               "options": {
                 "preset": "conventional",
-                "tagPrefix": "@baudevs/bau-gtm-tracker@",
+                "tagPrefix": "release/@baudevs/bau-gtm-tracker/",
                 "trackDeps": true,
-                "push": false,
+                "push": true,
+                "skipCommitTypes": [
+                  "ci",
+                  "docs",
+                  "test",
+                  "style"
+                ],
                 "postTargets": [
-                  "@baudevs/bau-gtm-tracker:github"
-                ]
+                  "@baudevs/bau-gtm-tracker:github",
+                  "@baudevs/bau-gtm-tracker:publish"
+                ],
+                "commitMessageFormat": "chore($@baudevs/bau-gtm-tracker): release version ${version} [skip ci]"
               },
               "configurations": {},
               "parallelism": true
@@ -451,6 +459,14 @@
               "options": {
                 "tag": "${tag}",
                 "notes": "${notes}"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "publish": {
+              "executor": "ngx-deploy-npm:deploy",
+              "options": {
+                "access": "public"
               },
               "configurations": {},
               "parallelism": true
