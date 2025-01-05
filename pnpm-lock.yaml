@@ -493,7 +493,7 @@ importers:
         version: 5.7.2
 
   libs/bau-gtm-tracker:
-    dependencies:
+    devDependencies:
       '@nx/rollup':
         specifier: ^20.3.0
         version: 20.3.0(@babel/core@7.26.0)(@babel/traverse@7.26.4)(@swc-node/register@1.10.9(@swc/core@1.10.4(@swc/helpers@0.5.15))(@swc/types@0.1.17)(typescript@5.7.2))(@swc/core@1.10.4(@swc/helpers@0.5.15))(@types/babel__core@7.20.5)(@types/node@22.10.5)(nx@20.3.0(@swc-node/register@1.10.9(@swc/core@1.10.4(@swc/helpers@0.5.15))(@swc/types@0.1.17)(typescript@5.7.2))(@swc/core@1.10.4(@swc/helpers@0.5.15)))(ts-node@10.9.2(@swc/core@1.10.4(@swc/helpers@0.5.15))(@types/node@22.10.5)(typescript@5.7.2))(typescript@5.7.2)(verdaccio@5.33.0(encoding@0.1.13)(typanion@3.14.0))
@@ -509,13 +509,12 @@ importers:
       '@rollup/plugin-terser':
         specifier: ^0.4.4
         version: 0.4.4(rollup@4.29.1)
-      rollup-plugin-gzip:
-        specifier: ^3.1.2
-        version: 3.1.2(rollup@4.29.1)
-    devDependencies:
       '@rollup/plugin-typescript':
         specifier: ^10.0.1
         version: 10.0.1(rollup@4.29.1)(tslib@2.8.1)(typescript@5.7.2)
+      rollup-plugin-gzip:
+        specifier: ^3.1.2
+        version: 3.1.2(rollup@4.29.1)
       typescript:
         specifier: ^5.7.2
         version: 5.7.2

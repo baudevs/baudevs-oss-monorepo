@@ -24,10 +24,12 @@
       "executor": "@jscutlery/semver:version",
       "options": {
         "preset": "conventional",
-        "tagPrefix": "@baudevs/bau-gtm-tracker@",
+        "tagPrefix": "release/@baudevs/bau-gtm-tracker/",
         "trackDeps": true,
-        "push": false,
-        "postTargets": ["@baudevs/bau-gtm-tracker:github"]
+        "push": true,
+        "skipCommitTypes": ["ci", "docs", "test", "style"],
+        "postTargets": ["@baudevs/bau-gtm-tracker:github", "@baudevs/bau-gtm-tracker:publish"],
+        "commitMessageFormat": "chore(${projectName}): release version ${version} [skip ci]"
       }
     },
     "github": {
