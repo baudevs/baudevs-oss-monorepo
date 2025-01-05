@@ -371,45 +371,19 @@
           "root": "libs/bau-gtm-tracker",
           "targets": {
             "lint": {
-              "cache": true,
-              "options": {
-                "cwd": "libs/bau-gtm-tracker",
-                "env": {
-                  "ESLINT_USE_FLAT_CONFIG": "true"
-                },
-                "command": "eslint ."
-              },
-              "inputs": [
-                "default",
-                "^default",
-                "{workspaceRoot}/eslint.config.js",
-                "{workspaceRoot}/tools/eslint-rules/**/*",
-                {
-                  "externalDependencies": [
-                    "eslint"
-                  ]
-                }
-              ],
+              "executor": "@nx/eslint:lint",
               "outputs": [
                 "{options.outputFile}"
               ],
-              "metadata": {
-                "technologies": [
-                  "eslint"
-                ],
-                "description": "Runs ESLint on project",
-                "help": {
-                  "command": "pnpm exec eslint --help",
-                  "example": {
-                    "options": {
-                      "max-warnings": 0
-                    }
-                  }
-                }
+              "options": {
+                "lintFilePatterns": [
+                  "libs/bau-gtm-tracker/**/*.{ts,tsx,js,jsx}",
+                  "libs/bau-gtm-tracker/package.json"
+                ]
               },
-              "executor": "nx:run-commands",
               "configurations": {},
-              "parallelism": true
+              "parallelism": true,
+              "cache": true
             },
             "build": {
               "cache": true,
@@ -449,30 +423,6 @@
               "configurations": {},
               "parallelism": true
             },
-            "version": {
-              "executor": "nx:run-script",
-              "options": {
-                "script": "version"
-              },
-              "metadata": {
-                "scriptContent": "pnpm nx build @baudevs/bau-gtm-tracker",
-                "runCommand": "pnpm run version"
-              },
-              "configurations": {},
-              "parallelism": true
-            },
-            "prepack": {
-              "executor": "nx:run-script",
-              "options": {
-                "script": "prepack"
-              },
-              "metadata": {
-                "scriptContent": "pnpm nx build @baudevs/bau-gtm-tracker",
-                "runCommand": "pnpm run prepack"
-              },
-              "configurations": {},
-              "parallelism": true
-            },
             "nx-release-publish": {
               "executor": "@nx/js:release-publish",
               "dependsOn": [
@@ -482,36 +432,28 @@
               "configurations": {},
               "parallelism": true
             },
-            "release": {
-              "dependsOn": [
-                "build"
-              ],
+            "version": {
+              "executor": "@jscutlery/semver:version",
               "options": {
-                "project": "@baudevs/bau-gtm-tracker",
-                "packageRoot": "dist/libs/@baudevs/bau-gtm-tracker",
-                "publish": false
-              },
-              "changelog": {
-                "projectChangelogs": {
-                  "file": "CHANGELOG.md",
-                  "createRelease": "github"
-                }
+                "preset": "conventional",
+                "tagPrefix": "@baudevs/bau-gtm-tracker@",
+                "trackDeps": true,
+                "push": false,
+                "postTargets": [
+                  "@baudevs/bau-gtm-tracker:github"
+                ]
               },
               "configurations": {},
-              "parallelism": true,
-              "executor": "nx:noop"
+              "parallelism": true
             },
-            "publish": {
-              "dependsOn": [
-                "release"
-              ],
+            "github": {
+              "executor": "@jscutlery/semver:github",
               "options": {
-                "project": "@baudevs/bau-gtm-tracker",
-                "packageRoot": "dist/libs/@baudevs/bau-gtm-tracker"
+                "tag": "${tag}",
+                "notes": "${notes}"
               },
               "configurations": {},
-              "parallelism": true,
-              "executor": "nx:noop"
+              "parallelism": true
             }
           },
           "sourceRoot": "libs/bau-gtm-tracker/src",
@@ -528,12 +470,7 @@
             "npm:websocket"
           ],
           "metadata": {
-            "targetGroups": {
-              "NPM Scripts": [
-                "version",
-                "prepack"
-              ]
-            },
+            "targetGroups": {},
             "description": "A robust library to intercept Fetch, XHR, and WebSocket requests and push events to dataLayer for GTM",
             "js": {
               "packageName": "@baudevs/bau-gtm-tracker"
