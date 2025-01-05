@@ -12,8 +12,7 @@
   "packageManager": "pnpm@9.15.2",
   "dependencies": {
     "@nx/esbuild": "20.3.0",
-    "@typescript-eslint/eslint-plugin": "^8.19.0",
-    "rollup": "^4.29.2"
+    "@typescript-eslint/eslint-plugin": "^8.19.0"
   },
   "keywords": [
     "baudevs",
@@ -80,6 +79,7 @@
     "jsonc-eslint-parser": "^2.4.0",
     "nx": "20.3.0",
     "prettier": "^3.4.2",
+    "rollup": "^4.29.2",
     "swc-loader": "0.1.15",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
