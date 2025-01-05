@@ -4,7 +4,16 @@
 ![Release](https://github.com/baudevs/baudevs-monorepo/actions/workflows/release.yml/badge.svg)
 ![Release with Plan](https://github.com/baudevs/baudevs-monorepo/actions/workflows/release-with-plan.yml/badge.svg)
 
-![BauDevs Logo](./.github/assets/Logo%20full%20colorful%203D.png)
+<style>
+  .baudevs-logo {
+    margin: 0 auto;
+    display: block;
+    width: 50%;
+    height: 50%;
+  }
+</style>
+
+<img src="./.github/assets/Logo%20full%20colorful%203D.png" alt="BauDevs Logo" class="baudevs-logo">
 
 A modern, intelligent monorepo setup powered by Nx, featuring an advanced analytics
 dashboard for real-time repository insights and sophisticated Git worktrees workflow.
