@@ -1,7 +1,4 @@
 import { withNx } from '@nx/rollup/with-nx.js';
-import { nodeResolve } from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import swc from '@rollup/plugin-swc';
 import terser from '@rollup/plugin-terser';
 import gzipPlugin from 'rollup-plugin-gzip';
 
@@ -29,9 +26,6 @@ export default withNx(
     },
     external: [],
     plugins: [
-      nodeResolve(),
-      commonjs(),
-      swc(),
       terser({
         compress: {
           ecma: 2020,
