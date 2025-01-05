@@ -1,0 +1,25 @@
+{
+  "name": "@baudevs/release-tools",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "tools/release-tools/src",
+  "projectType": "library",
+  "type": "module",
+  "main": "src/index.ts",
+  "generators": {
+    "@nx/js:setup-build": {
+      "options": {
+        "main": "src/index.ts"
+      }
+    }
+  },
+  "targets": {
+    "build": {
+      "dependsOn": ["lint", "nx-rollup:build"]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": []
+}

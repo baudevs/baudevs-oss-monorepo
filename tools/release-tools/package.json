@@ -1,0 +1,47 @@
+{
+  "name": "@baudevs/release-tools",
+  "version": "0.0.1",
+  "description": "A tool to analyze changes and create release notes",
+  "keywords": [
+    "release",
+    "tools",
+    "analyze",
+    "changes",
+    "release notes"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/baudevs/baudevs-monorepo.git/tools/release-tools"
+  },
+  "author": "Baudevs",
+  "license": "CC BY-NC 4.0",
+  "private": false,
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "unpkg": "./src/index.umd.js",
+  "jsdelivr": "./src/index.umd.js",
+  "scripts": {
+    "analyze": "node ./src/utils/analyze-changes.js"
+  },
+  "dependencies": {
+    "openai": "^4.77.3",
+    "@nx/rollup": "20.3.0",
+    "@rollup/plugin-node-resolve": "15.3.1",
+    "@rollup/plugin-commonjs": "23.0.7",
+    "@rollup/plugin-swc": "0.4.0",
+    "@rollup/plugin-terser": "0.4.4",
+    "rollup-plugin-gzip": "3.1.2"
+  },
+  "devDependencies": {
+    "@nx/rollup": "^20.3.0",
+    "@rollup/plugin-commonjs": "^23.0.7",
+    "@rollup/plugin-node-resolve": "^15.3.1",
+    "@rollup/plugin-swc": "^0.4.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^10.0.1",
+    "@types/node": "^20.17.11",
+    "rollup-plugin-gzip": "^3.1.2",
+    "typescript": "^5.7.2"
+  }
+}

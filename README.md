@@ -9,8 +9,6 @@
 [![License](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey.svg?style=flat-square)](./libs/bau-gtm-tracker/LICENSE)
 [![Monorepo: Nx](https://img.shields.io/badge/monorepo-nx-brightgreen?style=flat-square)](https://nx.dev)
 
-
-
 <img style="width: 30%; height: auto; margin: 0 auto; display: block;" src="./.github/assets/Logo%20full%20colorful%203D.png" alt="BauDevs Logo" class="baudevs-logo">
 
 A modern, intelligent monorepo setup powered by Nx, featuring an advanced analytics

@@ -94,7 +94,7 @@
     "nx": "20.3.0",
     "postcss": "^8.4.49",
     "prettier": "^3.4.2",
-    "rollup": "^4.29.1",
+    "rollup": "^4.29.2",
     "swc-loader": "0.1.15",
     "tailwindcss": "^3.4.17",
     "ts-jest": "^29.2.5",

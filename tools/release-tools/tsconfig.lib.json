@@ -1,0 +1,23 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist/libs/@baudevs/release-tools/types",
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": false,
+    "module": "ESNext",
+    "target": "ES2017",
+    "lib": ["ES2017", "DOM"],
+    "sourceMap": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "noEmit": false
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"]
+}
