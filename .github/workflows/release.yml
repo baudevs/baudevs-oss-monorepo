@@ -59,7 +59,16 @@ jobs:
           version: ${{ env.PNPM_VERSION }}
 
       - name: Install Dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Install Release Tools Dependencies
+        run: |
+          cd tools/release-tools
+          pnpm install --no-frozen-lockfile
+          cd ../../
+          echo "Release tools dependencies installed"
+          pwd
+
 
       - name: Build Release Tools
         run: pnpm nx build @baudevs/release-tools --verbose
