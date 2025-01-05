@@ -1,4 +1,5 @@
 // libs/bauLogHero/src/lib/logger.spec.ts
+import { fileHasEnabledComment } from '@/lib/utils';
 import {  createLogger } from '@/src/index';
 
 jest.mock('@/lib/utils', () => ({
@@ -6,7 +7,6 @@ jest.mock('@/lib/utils', () => ({
   fileHasEnabledComment: jest.fn().mockReturnValue(true),
 }));
 
-import { fileHasEnabledComment } from '@/lib/utils';
 
 describe('BaudevsLogger', () => {
   let originalLog: typeof console.log;

@@ -431,37 +431,6 @@
               "options": {},
               "configurations": {},
               "parallelism": true
-            },
-            "version": {
-              "executor": "@jscutlery/semver:version",
-              "options": {
-                "preset": "conventional",
-                "tagPrefix": "release/@baudevs/bau-gtm-tracker/",
-                "trackDeps": true,
-                "push": true,
-                "skipCommitTypes": [
-                  "ci",
-                  "docs",
-                  "test",
-                  "style"
-                ],
-                "postTargets": [
-                  "@baudevs/bau-gtm-tracker:github",
-                  "@baudevs/bau-gtm-tracker:publish"
-                ],
-                "commitMessageFormat": "chore($@baudevs/bau-gtm-tracker): release version ${version} [skip ci]"
-              },
-              "configurations": {},
-              "parallelism": true
-            },
-            "github": {
-              "executor": "@jscutlery/semver:github",
-              "options": {
-                "tag": "${tag}",
-                "notes": "${notes}"
-              },
-              "configurations": {},
-              "parallelism": true
             }
           },
           "sourceRoot": "libs/bau-gtm-tracker/src",
@@ -1139,47 +1108,6 @@
               },
               "configurations": {},
               "parallelism": true,
-              "dependsOn": [
-                "^build"
-              ],
-              "inputs": [
-                "production",
-                "^production"
-              ]
-            },
-            "release": {
-              "cache": false,
-              "executor": "@nx/js:tsc",
-              "options": {
-                "project": "@baudevs/bau-log-hero",
-                "packageRoot": "dist/libs/bauLogHero",
-                "publish": false
-              },
-              "changelog": {
-                "projectChangelogs": {
-                  "file": "CHANGELOG.md",
-                  "createRelease": "github"
-                }
-              },
-              "configurations": {},
-              "parallelism": true,
-              "dependsOn": [
-                "^build"
-              ],
-              "inputs": [
-                "production",
-                "^production"
-              ]
-            },
-            "publish": {
-              "executor": "@nx/js:tsc",
-              "options": {
-                "project": "@baudevs/bau-log-hero",
-                "packageRoot": "dist/libs/bauLogHero"
-              },
-              "configurations": {},
-              "parallelism": true,
-              "cache": true,
               "dependsOn": [
                 "^build"
               ],

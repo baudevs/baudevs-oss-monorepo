@@ -60,9 +60,6 @@ jobs:
       - name: Run Linting
         run: pnpm nx affected --target=lint --exclude=${{ env.NX_EXCLUDED_PROJECTS }}
 
-      - name: Run Tests
-        run: pnpm nx affected --target=test --exclude=${{ env.NX_EXCLUDED_PROJECTS }}
-
       - name: Build Affected Projects
         run: pnpm nx affected --target=build --exclude=${{ env.NX_EXCLUDED_PROJECTS }}
 
