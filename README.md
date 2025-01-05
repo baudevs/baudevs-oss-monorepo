@@ -328,12 +328,14 @@ This project is available under a dual license model:
 ### Commercial License
 
 Required for:
+
 * Companies with annual revenue over $1M USD
 * Commercial use in enterprise environments
 * Proprietary modifications or integrations
 * Custom support and implementation assistance
 
 To obtain a commercial license, please contact:
+
 * Email: <license@baudevs.com>
 * Subject: Commercial License Request
 * Include your company details and intended use case
@@ -370,3 +372,150 @@ For any licensing questions or clarifications, please contact <license@baudevs.c
 ---
 
 Built with ❤️ by BauDevs Team
+
+## Release Process
+
+Our monorepo features an intelligent release process that combines Nx's powerful versioning capabilities with OpenAI's analysis for automated version determination.
+
+### Local Development Steps
+
+1. **Prepare Your Environment**
+
+   ```bash
+   # Ensure you're on the main branch and up-to-date
+   git checkout main
+   git pull origin main
+
+   # Create a release branch
+   git checkout -b release/@baudevs/your-project-name
+   ```
+
+2. **Make Your Changes**
+
+   ```bash
+   # Make changes to your project
+   # Stage and commit using conventional commits
+   git add .
+   git commit -m "feat(your-project): add new feature"
+   ```
+
+3. **Push to Remote**
+
+   ```bash
+   git push -u origin release/@baudevs/your-project-name
+   ```
+
+### Automated Release Process
+
+The push to a `release/@baudevs/*` branch triggers our automated release workflow:
+
+1. **AI Analysis Phase**
+   * OpenAI analyzes the git diff
+   * Determines appropriate version bump (patch/minor/major)
+   * Considers:
+     * Breaking changes (API modifications, removals)
+     * New features (backward compatible additions)
+     * Bug fixes and internal changes
+   * Can request human review if unsure
+
+2. **Human Review (if needed)**
+   * Creates a GitHub issue for review
+   * Requires approval from team members
+   * Allows selection of version type
+   * Provides AI reasoning for reference
+
+3. **Version Plan Creation**
+
+   ```bash
+   # Automatically executed by CI
+   pnpm nx release plan [version-type] \
+     --projects=@baudevs/your-project \
+     --only-touched=false
+   ```
+
+4. **Release Execution**
+   * Builds and tests the project
+   * Creates GitHub release
+   * Publishes to npm
+   * Updates CDN links
+
+### Version Types
+
+* **major** (1.0.0 → 2.0.0)
+  * Breaking changes
+  * API modifications
+  * Major dependency updates
+
+* **minor** (1.0.0 → 1.1.0)
+  * New features
+  * Backward compatible changes
+  * Non-breaking updates
+
+* **patch** (1.0.0 → 1.0.1)
+  * Bug fixes
+  * Documentation updates
+  * Internal refactoring
+
+### Example Version Plan
+
+```markdown
+# Version Plan for @baudevs/your-project
+
+## Changes Analysis
+[AI-generated analysis including:
+- Technical impact assessment
+- Performance implications
+- Breaking changes identification
+- Security considerations
+- Dependency analysis]
+
+## Release Type
+minor
+
+## Project
+"@baudevs/your-project"
+```
+
+### Important Notes
+
+1. **Branch Naming Convention**
+   * Must follow: `release/@baudevs/[project-name]`
+   * Example: `release/@baudevs/bau-gtm-tracker`
+
+2. **Required Secrets**
+
+   ```bash
+   OPENAI_API_KEY=sk-xxx    # For AI analysis
+   NPM_TOKEN=npm_xxx        # For publishing
+   GITHUB_TOKEN=ghp_xxx     # For releases
+   NX_TOKEN=nx_xxx          # For Nx Cloud
+   ```
+
+3. **Workflow Files**
+   * `.github/workflows/release.yml`: Main release workflow
+   * `.github/workflows/release-with-plan.yml`: Reusable release workflow
+
+4. **Version Plan Location**
+   * `.nx/version-plans/version-plan-[timestamp].md`
+
+5. **Security Considerations**
+   * AI analysis includes security impact
+   * Automated vulnerability checks
+   * Secure publishing process
+
+### Troubleshooting
+
+1. **Version Plan Not Generated**
+   * Check branch naming
+   * Verify OpenAI API key
+   * Review git diff output
+
+2. **Release Failed**
+   * Check npm authentication
+   * Verify version plan format
+   * Review build logs
+
+3. **Human Review Needed**
+   * Check GitHub issues
+   * Review AI reasoning
+   * Select appropriate version

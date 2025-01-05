@@ -3,11 +3,9 @@ name: "BauDevs CI/CD"
 on:
   push:
     branches:
-      - release/@baudevs/bau-log-hero/v.*.*
-      - release/@baudevs/bau-gtm-tracker/v.*.*
+      - 'release/@baudevs/*'
     tags:
-      - release/@baudevs/bau-log-hero/v*.*.*
-      - release/@baudevs/bau-gtm-tracker/v*.*.*
+      - 'release/@baudevs/*'
 
 permissions:
   contents: write
@@ -18,11 +16,128 @@ env:
   NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_TOKEN || '' }}
   NPM_ACCESS_TOKEN: ${{ secrets.NPM_TOKEN || '' }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN || '' }}
-  NODE_VERSION: '23.x'
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY || '' }}
   NX_EXCLUDED_PROJECTS: 'baudevs-dashboard,@baudevs/bauCmsNextExample'
+  NODE_VERSION: '23.x'
+  PNPM_VERSION: '9.15.1'
 
 jobs:
-  release:
+  analyze-changes:
+    if: startsWith(github.ref, 'refs/heads/release/')
+    runs-on: ubuntu-latest
+    outputs:
+      project_name: ${{ steps.extract-info.outputs.project }}
+      version_type: ${{ steps.analyze-version.outputs.version_type }}
+      needs_human_review: ${{ steps.analyze-version.outputs.needs_review }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extract Project Info
+        id: extract-info
+        run: |
+          BRANCH_NAME="${{ github.ref_name }}"
+          PROJECT_NAME=$(echo $BRANCH_NAME | sed 's/release\/@baudevs\///')
+          echo "project=$PROJECT_NAME" >> $GITHUB_OUTPUT
+
+      - name: Get Git Diff
+        id: git-diff
+        run: |
+          git fetch origin main
+          DIFF=$(git diff origin/main...HEAD)
+          echo "DIFF<<EOF" >> $GITHUB_ENV
+          echo "$DIFF" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Install OpenAI CLI
+        run: npm install -g openai
+
+      - name: Analyze Changes with OpenAI
+        id: analyze-version
+        run: |
+          RESPONSE=$(openai api chat-completions create \
+            -m gpt-4-1106-preview \
+            -p "As a senior developer, analyze this Git diff and determine the appropriate version bump type (patch, minor, or major).
+            Consider:
+            1. Breaking changes (major):
+               - API modifications that break backward compatibility
+               - Removal of public methods/properties
+               - Major dependency updates with breaking changes
+
+            2. New features (minor):
+               - New functionality that maintains backward compatibility
+               - New public methods/properties
+               - Non-breaking dependency updates
+
+            3. Bug fixes (patch):
+               - Bug fixes that don't change the API
+               - Documentation updates
+               - Internal refactoring
+
+            If you're not confident about the version type, indicate that human review is needed.
+
+            Respond in JSON format:
+            {
+              \"version_type\": \"patch|minor|major|unknown\",
+              \"needs_review\": true|false,
+              \"reasoning\": \"detailed explanation\"
+            }
+
+            Git Diff:
+            $DIFF")
+
+          echo "response=$RESPONSE" >> $GITHUB_OUTPUT
+        env:
+          OPENAI_API_KEY: ${{ env.OPENAI_API_KEY }}
+
+      - name: Process OpenAI Response
+        id: process-response
+        run: |
+          RESPONSE='${{ steps.analyze-version.outputs.response }}'
+          VERSION_TYPE=$(echo $RESPONSE | jq -r '.version_type')
+          NEEDS_REVIEW=$(echo $RESPONSE | jq -r '.needs_review')
+
+          echo "version_type=$VERSION_TYPE" >> $GITHUB_OUTPUT
+          echo "needs_review=$NEEDS_REVIEW" >> $GITHUB_OUTPUT
+
+          echo "Analysis Results:"
+          echo "Version Type: $VERSION_TYPE"
+          echo "Needs Review: $NEEDS_REVIEW"
+          echo "Reasoning: $(echo $RESPONSE | jq -r '.reasoning')"
+
+  human-review:
+    needs: analyze-changes
+    if: needs.analyze-changes.outputs.needs_human_review == 'true'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Wait for Human Review
+        uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ github.token }}
+          approvers: baudevs-team
+          minimum-approvals: 1
+          issue-title: "Version Type Review Required for ${{ needs.analyze-changes.outputs.project_name }}"
+          issue-body: |
+            OpenAI analysis needs human review for version type.
+            Please select the appropriate version type:
+            - patch (bug fixes)
+            - minor (new features)
+            - major (breaking changes)
+
+            Project: @baudevs/${{ needs.analyze-changes.outputs.project_name }}
+
+            OpenAI Reasoning:
+            ${{ steps.analyze-version.outputs.response }}
+
+  create-version-plan:
+    needs: [analyze-changes, human-review]
+    if: |
+      always() &&
+      (needs.analyze-changes.outputs.needs_human_review == 'false' ||
+       needs.human-review.result == 'success')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -30,50 +145,38 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Derive SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v4
-        id: setShas
-
-      - run: |
-          echo "BASE: ${{ steps.setShas.outputs.base }}"
-          echo "HEAD: ${{ steps.setShas.outputs.head }}"
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          registry-url: 'https://registry.npmjs.org'
 
       - name: Setup Pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: '9.15.1'
+          version: ${{ env.PNPM_VERSION }}
 
       - name: Install Dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: Install System Dependencies
+      - name: Create Version Plan
         run: |
-          sudo apt-get update
-          sudo apt-get install -y jq
+          VERSION_TYPE="${{ needs.analyze-changes.outputs.version_type }}"
+          PROJECT="@baudevs/${{ needs.analyze-changes.outputs.project_name }}"
 
-      - name: Run Linting
-        run: pnpm nx affected --target=lint --exclude=${{ env.NX_EXCLUDED_PROJECTS }}
+          pnpm nx release plan $VERSION_TYPE \
+            --projects=$PROJECT \
+            --only-touched=false
 
-      - name: Build Affected Projects
-        run: pnpm nx affected --target=build --exclude=${{ env.NX_EXCLUDED_PROJECTS }}
-
-      - name: Configure Git credentials
+      - name: Commit Version Plan
         run: |
           git config --global user.name "baudevs"
           git config --global user.email "tech@baudevs.com"
 
-      - name: Execute Release
-        run: pnpm nx release
-        env:
-          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+          git add .nx/version-plans/
+          git commit -m "chore(${{ needs.analyze-changes.outputs.project_name }}): add version plan [skip ci]"
+          git push
 
-      - name: Publish Packages
-        run: pnpm nx release publish
-        env:
-          NPM_TOKEN: ${{ env.NPM_ACCESS_TOKEN }}
+  release:
+    needs: create-version-plan
+    uses: ./.github/workflows/release-with-plan.yml
+    secrets: inherit
