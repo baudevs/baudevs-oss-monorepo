@@ -21,8 +21,8 @@ env:
   GITHUB_TOKEN: ${{ secrets.GH_PAT || '' }}
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY || '' }}
   NX_EXCLUDED_PROJECTS: 'baudevs-dashboard,@baudevs/bauCmsNextExample'
-  NODE_VERSION: '23.x'
-  PNPM_VERSION: '9.15.1'
+  NODE_VERSION: 23.3.0
+  PNPM_VERSION: 9.15.2
 
 jobs:
   analyze-changes:

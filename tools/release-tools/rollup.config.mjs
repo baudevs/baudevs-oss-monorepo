@@ -1,6 +1,11 @@
 import { withNx } from '@nx/rollup/with-nx.js';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import terser from '@rollup/plugin-terser';
+import gzipPlugin from 'rollup-plugin-gzip';
 
-
+// Check if we're in CI environment
+const isCI = process.env.CI === 'true';
 
 export default withNx(
   {
@@ -16,13 +21,31 @@ export default withNx(
     output: {
       name: 'ReleaseTools',
       sourcemap: true,
-      plugins: [],
+      plugins: [terser()],
       globals: {
         '@baudevs/release-tools': 'ReleaseTools',
       },
     },
     external: [],
     plugins: [
+      nodeResolve(),
+      commonjs(),
+      terser({
+        compress: {
+          ecma: 2020,
+          booleans_as_integers: true,
+          ...isCI && {
+            pure_funcs: ['console.log', 'console.debug'],
+            drop_console: ['debug', 'log'],
+          },
+        },
+        format: {
+          comments: false,
+        },
+      }),
+      gzipPlugin({
+        filter: (file) => file.endsWith('.umd.js'),
+      }),
     ],
   },
 );
