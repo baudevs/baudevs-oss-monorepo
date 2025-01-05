@@ -1,7 +1,7 @@
 {
   "repoPath": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
   "defaultBranch": "release/@baudevs/bau-log-hero@05.01.2025",
-  "generatedAt": "2025-01-05T20:33:32.519Z",
+  "generatedAt": "2025-01-05T20:39:10.905Z",
   "gitVersion": "git version 2.39.5 (Apple Git-154)",
   "nxVersion": "20.3.0",
   "nodeVersion": "v23.3.0",
@@ -10,8 +10,8 @@
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
       "branch": "release/@baudevs/bau-log-hero@05.01.2025",
-      "commit": "d67ff0d4b519027726ac9880e5271b969517e9f7",
-      "lastActivity": "Sun Jan 5 21:33:19 2025 +0100"
+      "commit": "e470719064d9b84c474966f3c6c07975d5b51102",
+      "lastActivity": "Sun Jan 5 21:38:59 2025 +0100"
     },
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo.worktrees/bau-cms-cli",
@@ -388,11 +388,28 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "26debf1187881e1cc2d0b665e3892cafba4a7306",
+          "author": "Juan Arroyave",
+          "date": "Sun Jan 5 21:33:19 2025 +0100",
+          "message": "chore(metadata): update repository metadata",
+          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "b959e3e79adb15223a65c6d8c766de1abc235581",
           "author": "Juan Arroyave",
           "date": "Sun Jan 5 21:29:03 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025",
+          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025~2",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -409,7 +426,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Jan 5 21:24:04 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025~2",
+          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025~4",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -426,7 +443,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Jan 5 21:24:04 2025 +0100",
           "message": "chore(release): update release workflow and add release-tools library",
-          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025~3",
+          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025~5",
           "files": [
             ".github/workflows/release-with-plan.yml",
             ".github/workflows/release.yml",
@@ -445,7 +462,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Jan 5 21:15:23 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025~4",
+          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025~6",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -531,23 +548,6 @@
           "date": "Sun Jan 5 15:31:24 2025 +0100",
           "message": "chore(metadata): update repository metadata",
           "branch": "remotes/origin/HEAD~8",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "2cb383ef2daa43321f807c5a8990d5035730d2a2",
-          "author": "Juan Arroyave",
-          "date": "Sun Jan 5 15:30:36 2025 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/HEAD~10",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -992,7 +992,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Jan 5 21:24:04 2025 +0100",
           "message": "chore(release): update release workflow and add release-tools library",
-          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025~3",
+          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025~5",
           "files": [
             ".github/workflows/release-with-plan.yml",
             ".github/workflows/release.yml",
@@ -2012,11 +2012,26 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "e470719064d9b84c474966f3c6c07975d5b51102",
+          "author": "Juan Arroyave",
+          "date": "Sun Jan 5 21:38:59 2025 +0100",
+          "message": "chore(release-tools): remove unused Rollup plugins from configuration and dependencies",
+          "branch": "release/@baudevs/bau-log-hero@05.01.2025",
+          "files": [
+            "tools/release-tools/package.json",
+            "tools/release-tools/rollup.config.mjs"
+          ],
+          "nxProjects": [
+            "@baudevs/release-tools",
+            "@baudevs/release-tools"
+          ]
+        },
+        {
           "hash": "419fb63b2920e44d720c91d8b784d1975d9a2cdf",
           "author": "Juan Arroyave",
           "date": "Sun Jan 5 21:15:23 2025 +0100",
           "message": "feat(@baudevs/release-tools): add release tools for analyzing changes and generating release notes",
-          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025~5",
+          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025~7",
           "files": [
             "README.md",
             "nx.json",
@@ -3450,11 +3465,43 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "e470719064d9b84c474966f3c6c07975d5b51102",
+          "author": "Juan Arroyave",
+          "date": "Sun Jan 5 21:38:59 2025 +0100",
+          "message": "chore(release-tools): remove unused Rollup plugins from configuration and dependencies",
+          "branch": "release/@baudevs/bau-log-hero@05.01.2025",
+          "files": [
+            "tools/release-tools/package.json",
+            "tools/release-tools/rollup.config.mjs"
+          ],
+          "nxProjects": [
+            "@baudevs/release-tools",
+            "@baudevs/release-tools"
+          ]
+        },
+        {
+          "hash": "26debf1187881e1cc2d0b665e3892cafba4a7306",
+          "author": "Juan Arroyave",
+          "date": "Sun Jan 5 21:33:19 2025 +0100",
+          "message": "chore(metadata): update repository metadata",
+          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "d67ff0d4b519027726ac9880e5271b969517e9f7",
           "author": "Juan Arroyave",
           "date": "Sun Jan 5 21:33:19 2025 +0100",
           "message": "chore(release): update release workflow to install dependencies without frozen lockfile",
-          "branch": "release/@baudevs/bau-log-hero@05.01.2025",
+          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025~1",
           "files": [
             ".github/workflows/release.yml"
           ],
@@ -3467,7 +3514,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Jan 5 21:29:03 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025",
+          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025~2",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -3484,7 +3531,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Jan 5 21:29:03 2025 +0100",
           "message": "chore(release): enable verbose output for release-tools build step in workflow",
-          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025~1",
+          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025~3",
           "files": [
             ".github/workflows/release.yml"
           ],
@@ -3497,7 +3544,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Jan 5 21:24:04 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025~2",
+          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025~4",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -3514,7 +3561,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Jan 5 21:24:04 2025 +0100",
           "message": "chore(release): update release workflow and add release-tools library",
-          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025~3",
+          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025~5",
           "files": [
             ".github/workflows/release-with-plan.yml",
             ".github/workflows/release.yml",
@@ -3533,7 +3580,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Jan 5 21:15:23 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025~4",
+          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025~6",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -3550,7 +3597,7 @@
           "author": "Juan Arroyave",
           "date": "Sun Jan 5 21:15:23 2025 +0100",
           "message": "feat(@baudevs/release-tools): add release tools for analyzing changes and generating release notes",
-          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025~5",
+          "branch": "remotes/origin/release/@baudevs/bau-log-hero@05.01.2025~7",
           "files": [
             "README.md",
             "nx.json",
@@ -3580,34 +3627,6 @@
           "date": "Sun Jan 5 15:38:56 2025 +0100",
           "message": "chore(metadata): update repository metadata",
           "branch": "remotes/origin/HEAD",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "4b8b8bd67a7dd92ebfc5d47d9e9aff9453d8de0b",
-          "author": "Juan Arroyave",
-          "date": "Sun Jan 5 15:38:56 2025 +0100",
-          "message": "chore(readme): update badges and license information in README.md",
-          "branch": "remotes/origin/HEAD~1",
-          "files": [
-            "README.md"
-          ],
-          "nxProjects": []
-        },
-        {
-          "hash": "d08f78191693aa612ab9dbf899b79106b4c7aee3",
-          "author": "Juan Arroyave",
-          "date": "Sun Jan 5 15:35:44 2025 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/HEAD~2",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -3675,7 +3694,7 @@
       "type": "rebase",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 162
+      "divergedCommits": 164
     },
     {
       "from": "develop",
@@ -3731,7 +3750,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 135
+      "divergedCommits": 137
     },
     {
       "from": "feature/bau-cms-cli",
@@ -3787,7 +3806,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 192
+      "divergedCommits": 194
     },
     {
       "from": "feature/bau-cms-core",
@@ -3843,7 +3862,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 203
+      "divergedCommits": 205
     },
     {
       "from": "feature/bau-cms-example",
@@ -3899,7 +3918,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 217
+      "divergedCommits": 219
     },
     {
       "from": "feature/dashboard-app",
@@ -3955,7 +3974,7 @@
       "type": "rebase",
       "lastSync": "Sun Jan 5 15:39:13 2025 +0100",
       "commonAncestor": "d8d627451efa5e86172a45b39b96dfb3eaa38d63",
-      "divergedCommits": 7
+      "divergedCommits": 9
     },
     {
       "from": "main",
@@ -3971,7 +3990,7 @@
       "type": "merge",
       "lastSync": "Mon Dec 23 09:32:03 2024 +0100",
       "commonAncestor": "b507a04f34616976663a76bd5c6301661907b2a4",
-      "divergedCommits": 162
+      "divergedCommits": 164
     },
     {
       "from": "release/@baudevs/bau-log-hero@05.01.2025",
@@ -3979,7 +3998,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 135
+      "divergedCommits": 137
     },
     {
       "from": "release/@baudevs/bau-log-hero@05.01.2025",
@@ -3987,7 +4006,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 192
+      "divergedCommits": 194
     },
     {
       "from": "release/@baudevs/bau-log-hero@05.01.2025",
@@ -3995,7 +4014,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 203
+      "divergedCommits": 205
     },
     {
       "from": "release/@baudevs/bau-log-hero@05.01.2025",
@@ -4003,7 +4022,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 217
+      "divergedCommits": 219
     },
     {
       "from": "release/@baudevs/bau-log-hero@05.01.2025",
@@ -4011,7 +4030,7 @@
       "type": "merge",
       "lastSync": "Sun Jan 5 15:39:13 2025 +0100",
       "commonAncestor": "d8d627451efa5e86172a45b39b96dfb3eaa38d63",
-      "divergedCommits": 7
+      "divergedCommits": 9
     },
     {
       "from": "release/@baudevs/bau-log-hero@05.01.2025",
@@ -4019,7 +4038,7 @@
       "type": "merge",
       "lastSync": "Sat Jan 4 11:38:11 2025 +0100",
       "commonAncestor": "ec3f8b432198203a7d2218e6a9efeed467d855b9",
-      "divergedCommits": 53
+      "divergedCommits": 55
     },
     {
       "from": "staging",
@@ -4075,19 +4094,19 @@
       "type": "rebase",
       "lastSync": "Sat Jan 4 11:38:11 2025 +0100",
       "commonAncestor": "ec3f8b432198203a7d2218e6a9efeed467d855b9",
-      "divergedCommits": 53
+      "divergedCommits": 55
     }
   ],
   "recentActivity": {
     "lastPush": "Sun Dec 22 09:53:48 2024 +0100",
-    "lastPull": "2025-01-05T20:33:34.760Z",
+    "lastPull": "2025-01-05T20:39:13.190Z",
     "lastMerge": "Sun Jan 5 09:33:44 2025 +0100",
     "activeBranches": [
       {
         "name": "release/@baudevs/bau-log-hero@05.01.2025",
-        "lastCommit": "d67ff0d4b519027726ac9880e5271b969517e9f7",
+        "lastCommit": "e470719064d9b84c474966f3c6c07975d5b51102",
         "author": "Juan Arroyave",
-        "commitCount": 232
+        "commitCount": 234
       },
       {
         "name": "main",
@@ -4138,7 +4157,7 @@
     "totalLibraries": 9,
     "totalPackages": 0,
     "totalFiles": 217,
-    "totalCommits": 232,
+    "totalCommits": 234,
     "totalContributors": 0
   }
 }
