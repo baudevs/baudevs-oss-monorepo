@@ -27,6 +27,14 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Derive SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v4
+        id: setShas
+
+      - run: |
+          echo "BASE: ${{ steps.setShas.outputs.base }}"
+          echo "HEAD: ${{ steps.setShas.outputs.head }}"
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
