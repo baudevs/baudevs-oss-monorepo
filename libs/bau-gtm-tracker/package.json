@@ -21,33 +21,30 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./bau-gtm-tracker.cjs.js",
-  "module": "./bau-gtm-tracker.esm.js",
-  "types": "./types/lib/bau-gtm-tracker.d.ts",
-  "unpkg": "./bau-gtm-tracker.umd.min.js",
-  "jsdelivr": "./bau-gtm-tracker.umd.min.js",
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "unpkg": "./src/index.umd.js",
+  "jsdelivr": "./src/index.umd.js",
   "files": [
     "*.js",
     "*.js.map",
-    "types/**/*.d.ts",
+    "src/**/*.d.ts",
     "LICENSE",
     "*.md"
   ],
   "sideEffects": false,
-  "scripts": {
-    "version": "pnpm nx build @baudevs/bau-gtm-tracker",
-    "prepack": "pnpm nx build @baudevs/bau-gtm-tracker"
-  },
   "dependencies": {
+
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^10.0.1",
+    "typescript": "^5.7.2",
     "@nx/rollup": "^20.3.0",
     "@rollup/plugin-commonjs": "^23.0.7",
     "@rollup/plugin-node-resolve": "^15.3.1",
     "@rollup/plugin-swc": "^0.4.0",
     "@rollup/plugin-terser": "^0.4.4",
     "rollup-plugin-gzip": "^3.1.2"
-  },
-  "devDependencies": {
-    "@rollup/plugin-typescript": "^10.0.1",
-    "typescript": "^5.7.2"
   }
 }

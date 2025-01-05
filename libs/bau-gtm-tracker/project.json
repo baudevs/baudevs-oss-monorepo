@@ -1,4 +1,3 @@
-
 {
   "name": "@baudevs/bau-gtm-tracker",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
@@ -17,25 +16,25 @@
     "build": {
       "dependsOn": ["lint", "nx-rollup:build"]
     },
-    "release": {
-      "dependsOn": ["build"],
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
       "options": {
-        "project": "@baudevs/bau-gtm-tracker",
-        "packageRoot": "dist/libs/@baudevs/bau-gtm-tracker",
-        "publish": false
-      },
-      "changelog": {
-        "projectChangelogs": {
-          "file": "CHANGELOG.md",
-          "createRelease": "github"
-        }
+        "preset": "conventional",
+        "tagPrefix": "@baudevs/bau-gtm-tracker@",
+        "trackDeps": true,
+        "push": false,
+        "postTargets": ["@baudevs/bau-gtm-tracker:github"]
       }
     },
-    "publish": {
-      "dependsOn": ["release"],
+    "github": {
+      "executor": "@jscutlery/semver:github",
       "options": {
-        "project": "@baudevs/bau-gtm-tracker",
-        "packageRoot": "dist/libs/@baudevs/bau-gtm-tracker"
+        "tag": "${tag}",
+        "notes": "${notes}"
       }
     }
   }
