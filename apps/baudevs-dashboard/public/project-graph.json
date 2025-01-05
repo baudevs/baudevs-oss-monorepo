@@ -462,14 +462,6 @@
               },
               "configurations": {},
               "parallelism": true
-            },
-            "publish": {
-              "executor": "ngx-deploy-npm:deploy",
-              "options": {
-                "access": "public"
-              },
-              "configurations": {},
-              "parallelism": true
             }
           },
           "sourceRoot": "libs/bau-gtm-tracker/src",
