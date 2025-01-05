@@ -67,7 +67,7 @@ jobs:
 
       - name: Analyze Changes
         id: analyze-version
-        run: node dist/tools/release-tools/index.js
+        run: node dist/tools/@baudevs/release-tools/index.esm.js
         env:
           OPENAI_API_KEY: ${{ env.OPENAI_API_KEY }}
 
