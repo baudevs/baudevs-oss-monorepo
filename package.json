@@ -9,7 +9,7 @@
     "bau:metadata": "pnpm exec tsx scripts/generate-repo-metadata.ts"
   },
   "private": true,
-  "packageManager": "pnpm@9.15.1",
+  "packageManager": "pnpm@9.15.2",
   "dependencies": {
     "@nx/esbuild": "20.3.0",
     "@typescript-eslint/eslint-plugin": "^8.19.0"
