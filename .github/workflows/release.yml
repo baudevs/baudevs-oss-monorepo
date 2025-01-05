@@ -62,7 +62,7 @@ jobs:
         run: pnpm install
 
       - name: Build Release Tools
-        run: pnpm nx build @baudevs/release-tools
+        run: pnpm nx build @baudevs/release-tools --verbose
 
       - name: Analyze Changes
         id: analyze-version
