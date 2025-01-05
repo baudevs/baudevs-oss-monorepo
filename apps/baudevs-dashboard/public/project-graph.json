@@ -703,6 +703,122 @@
           "implicitDependencies": []
         }
       },
+      "@baudevs/release-tools": {
+        "name": "@baudevs/release-tools",
+        "type": "lib",
+        "data": {
+          "root": "tools/release-tools",
+          "targets": {
+            "lint": {
+              "executor": "@nx/eslint:lint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {
+                "lintFilePatterns": [
+                  "tools/release-tools/**/*.{ts,tsx,js,jsx}",
+                  "tools/release-tools/package.json"
+                ]
+              },
+              "configurations": {},
+              "parallelism": true,
+              "cache": true
+            },
+            "build": {
+              "cache": true,
+              "dependsOn": [
+                "lint",
+                "nx-rollup:build"
+              ],
+              "inputs": [
+                "default",
+                "production",
+                "^production"
+              ],
+              "outputs": [
+                "{workspaceRoot}/tools/release-tools/dist/tools/@baudevs/release-tools"
+              ],
+              "metadata": {
+                "technologies": [
+                  "rollup"
+                ],
+                "description": "Run Rollup",
+                "help": {
+                  "command": "pnpm exec rollup --help",
+                  "example": {
+                    "options": {
+                      "sourcemap": true,
+                      "watch": true
+                    }
+                  }
+                }
+              },
+              "executor": "nx:run-commands",
+              "options": {
+                "cwd": "tools/release-tools",
+                "command": "rollup -c rollup.config.mjs",
+                "verbose": true
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "analyze": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "analyze"
+              },
+              "metadata": {
+                "scriptContent": "node ./src/utils/analyze-changes.js",
+                "runCommand": "pnpm run analyze"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "nx-release-publish": {
+              "executor": "@nx/js:release-publish",
+              "dependsOn": [
+                "^nx-release-publish"
+              ],
+              "options": {},
+              "configurations": {},
+              "parallelism": true
+            }
+          },
+          "sourceRoot": "tools/release-tools/src",
+          "name": "@baudevs/release-tools",
+          "tags": [
+            "npm:public",
+            "npm:release",
+            "npm:tools",
+            "npm:analyze",
+            "npm:changes",
+            "npm:release notes"
+          ],
+          "metadata": {
+            "targetGroups": {
+              "NPM Scripts": [
+                "analyze"
+              ]
+            },
+            "description": "A tool to analyze changes and create release notes",
+            "js": {
+              "packageName": "@baudevs/release-tools"
+            }
+          },
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "projectType": "library",
+          "type": "module",
+          "main": "src/index.ts",
+          "generators": {
+            "@nx/js:setup-build": {
+              "options": {
+                "main": "src/index.ts"
+              }
+            }
+          },
+          "implicitDependencies": []
+        }
+      },
       "@baudevs/cmsAdmin": {
         "name": "@baudevs/cmsAdmin",
         "type": "lib",
@@ -1194,6 +1310,7 @@
         }
       ],
       "@baudevs/cmsEditor": [],
+      "@baudevs/release-tools": [],
       "@baudevs/cmsAdmin": [
         {
           "source": "@baudevs/cmsAdmin",

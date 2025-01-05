@@ -6,6 +6,9 @@ on:
       - 'release/@baudevs/*'
     tags:
       - 'release/@baudevs/*'
+  create:
+    tags:
+      - 'release/@baudevs/*'
 
 permissions:
   contents: write
@@ -23,7 +26,10 @@ env:
 
 jobs:
   analyze-changes:
-    if: startsWith(github.ref, 'refs/heads/release/')
+    if: |
+      startsWith(github.ref, 'refs/heads/release/') &&
+      !contains(github.event.head_commit.message, '[skip ci]') &&
+      !contains(github.event.head_commit.message, 'chore: version plan')
     runs-on: ubuntu-latest
     outputs:
       project_name: ${{ steps.extract-info.outputs.project }}
@@ -42,70 +48,27 @@ jobs:
           PROJECT_NAME=$(echo $BRANCH_NAME | sed 's/release\/@baudevs\///')
           echo "project=$PROJECT_NAME" >> $GITHUB_OUTPUT
 
-      - name: Get Git Diff
-        id: git-diff
-        run: |
-          git fetch origin main
-          DIFF=$(git diff origin/main...HEAD)
-          echo "DIFF<<EOF" >> $GITHUB_ENV
-          echo "$DIFF" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
 
-      - name: Install OpenAI CLI
-        run: npm install -g openai
+      - name: Setup Pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
 
-      - name: Analyze Changes with OpenAI
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Build Release Tools
+        run: pnpm nx build @baudevs/release-tools
+
+      - name: Analyze Changes
         id: analyze-version
-        run: |
-          RESPONSE=$(openai api chat-completions create \
-            -m gpt-4-1106-preview \
-            -p "As a senior developer, analyze this Git diff and determine the appropriate version bump type (patch, minor, or major).
-            Consider:
-            1. Breaking changes (major):
-               - API modifications that break backward compatibility
-               - Removal of public methods/properties
-               - Major dependency updates with breaking changes
-
-            2. New features (minor):
-               - New functionality that maintains backward compatibility
-               - New public methods/properties
-               - Non-breaking dependency updates
-
-            3. Bug fixes (patch):
-               - Bug fixes that don't change the API
-               - Documentation updates
-               - Internal refactoring
-
-            If you're not confident about the version type, indicate that human review is needed.
-
-            Respond in JSON format:
-            {
-              \"version_type\": \"patch|minor|major|unknown\",
-              \"needs_review\": true|false,
-              \"reasoning\": \"detailed explanation\"
-            }
-
-            Git Diff:
-            $DIFF")
-
-          echo "response=$RESPONSE" >> $GITHUB_OUTPUT
+        run: node dist/tools/release-tools/analyze-changes.js
         env:
           OPENAI_API_KEY: ${{ env.OPENAI_API_KEY }}
-
-      - name: Process OpenAI Response
-        id: process-response
-        run: |
-          RESPONSE='${{ steps.analyze-version.outputs.response }}'
-          VERSION_TYPE=$(echo $RESPONSE | jq -r '.version_type')
-          NEEDS_REVIEW=$(echo $RESPONSE | jq -r '.needs_review')
-
-          echo "version_type=$VERSION_TYPE" >> $GITHUB_OUTPUT
-          echo "needs_review=$NEEDS_REVIEW" >> $GITHUB_OUTPUT
-
-          echo "Analysis Results:"
-          echo "Version Type: $VERSION_TYPE"
-          echo "Needs Review: $NEEDS_REVIEW"
-          echo "Reasoning: $(echo $RESPONSE | jq -r '.reasoning')"
 
   human-review:
     needs: analyze-changes
@@ -130,7 +93,7 @@ jobs:
             Project: @baudevs/${{ needs.analyze-changes.outputs.project_name }}
 
             OpenAI Reasoning:
-            ${{ steps.analyze-version.outputs.response }}
+            ${{ steps.analyze-version.outputs.reasoning }}
 
   create-version-plan:
     needs: [analyze-changes, human-review]
@@ -183,3 +146,30 @@ jobs:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       GH_PAT: ${{ secrets.GH_PAT }}
       NX_TOKEN: ${{ secrets.NX_TOKEN }}
+
+  merge-to-production:
+    needs: release
+    if: startsWith(github.ref, 'refs/tags/release/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: production
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Merge Tag to Production
+        run: |
+          git config --global user.name "baudevs"
+          git config --global user.email "tech@baudevs.com"
+
+          # Get the tag name
+          TAG_NAME=${GITHUB_REF#refs/tags/}
+
+          # Merge the tag into production
+          git fetch origin tag $TAG_NAME
+          git merge $TAG_NAME --ff-only
+
+          # Push to production
+          git push origin production

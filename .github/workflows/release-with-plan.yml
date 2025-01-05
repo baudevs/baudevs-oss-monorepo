@@ -59,7 +59,7 @@ jobs:
       - name: Execute Release
         run: |
           echo "Releasing project: ${{ steps.get-project.outputs.project }}"
-          pnpm nx release ${{ steps.get-project.outputs.project }}
+          pnpm nx release ${{ steps.get-project.outputs.project }} --skip-publish
         env:
           GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
 
