@@ -1,8 +1,13 @@
 # BauDevs Monorepo
 
-![Dashboard](https://github.com/baudevs/baudevs-monorepo/actions/workflows/dashboard.yml/badge.svg)
-![Release](https://github.com/baudevs/baudevs-monorepo/actions/workflows/release.yml/badge.svg)
-![Release with Plan](https://github.com/baudevs/baudevs-monorepo/actions/workflows/release-with-plan.yml/badge.svg)
+
+![BauLogHeroNPM Downloads](https://img.shields.io/npm/d18m/%40baudevs%2Fbau-log-hero)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/baudevs/baudevs-oss-monorepo/release.yml)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/baudevs/baudevs-oss-monorepo/release-with-plan.yml)
+[![License](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey.svg?style=flat-square)](./LICENSE)
+[![License](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey.svg?style=flat-square)](./libs/bauLogHero/LICENSE)
+[![License](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey.svg?style=flat-square)](./libs/bau-gtm-tracker/LICENSE)
+[![Monorepo: Nx](https://img.shields.io/badge/monorepo-nx-brightgreen?style=flat-square)](https://nx.dev)
 
 
 
