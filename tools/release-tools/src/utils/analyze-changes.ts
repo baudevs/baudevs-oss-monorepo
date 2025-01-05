@@ -10,7 +10,7 @@ export interface AnalysisResponse {
 export async function analyzeChanges(diff?: string): Promise<AnalysisResponse> {
   try {
     // Get git diff
-    diff = diff || execSync('git diff').toString();
+    diff = diff || execSync('git diff origin/main...HEAD').toString();
 
     // Initialize OpenAI client
     const openai = new OpenAI({
