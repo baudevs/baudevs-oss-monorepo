@@ -1,12 +1,13 @@
-name: "bau-gtm-tracker CI/CD"
+name: "BauDevs CI/CD"
 
 on:
   push:
     branches:
-      - main
+      - release/@baudevs/bau-log-hero/v.*.*
+      - release/@baudevs/bau-gtm-tracker/v.*.*
     tags:
-      - 'release/@baudevs/bau-gtm-tracker/*'
-  workflow_dispatch:
+      - release/@baudevs/bau-log-hero/v*.*.*
+      - release/@baudevs/bau-gtm-tracker/v*.*.*
 
 permissions:
   contents: write
@@ -18,7 +19,7 @@ env:
   NPM_ACCESS_TOKEN: ${{ secrets.NPM_TOKEN || '' }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN || '' }}
   NODE_VERSION: '23.x'
-  PROJECT: '@baudevs/bau-gtm-tracker'
+  NX_EXCLUDED_PROJECTS: 'baudevs-dashboard,@baudevs/bauCmsNextExample'
 
 jobs:
   release:
@@ -28,6 +29,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Derive SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v4
+        id: setShas
+
+      - run: |
+          echo "BASE: ${{ steps.setShas.outputs.base }}"
+          echo "HEAD: ${{ steps.setShas.outputs.head }}"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -48,35 +57,26 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y jq
 
-      - name: Set SHAs for Affected Commands
-        run: pnpm nx set-shas
-
       - name: Run Linting
-        run: pnpm nx --project=${{ env.PROJECT }} --target=lint
+        run: pnpm nx affected --target=lint --exclude=${{ env.NX_EXCLUDED_PROJECTS }}
 
       - name: Run Tests
-        run: pnpm nx --project=${{ env.PROJECT }} --target=test
+        run: pnpm nx affected --target=test --exclude=${{ env.NX_EXCLUDED_PROJECTS }}
 
       - name: Build Affected Projects
-        run: pnpm nx --project=${{ env.PROJECT }} --target=build
+        run: pnpm nx affected --target=build --exclude=${{ env.NX_EXCLUDED_PROJECTS }}
 
       - name: Configure Git credentials
         run: |
           git config --global user.name "baudevs"
           git config --global user.email "tech@baudevs.com"
 
-      - name: Version and Release
-        if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, '[skip ci]')
-        run: |
-          git config --global user.name "baudevs"
-          git config --global user.email "tech@baudevs.com"
-          pnpm nx version ${PROJECT}
-          pnpm nx release --skip-nx-cache --skip-publish
-          env:
-            GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+      - name: Execute Release
+        run: pnpm nx release
+        env:
+          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
 
-      - name: Publish Affected Projects
-        if: startsWith(github.ref, 'refs/tags/release/${{ env.PROJECT }}/')
-        run: pnpm nx release --project=${{ env.PROJECT }} --target=publish
+      - name: Publish Packages
+        run: pnpm nx release publish
         env:
           NPM_TOKEN: ${{ env.NPM_ACCESS_TOKEN }}

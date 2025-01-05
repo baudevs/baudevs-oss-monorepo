@@ -20,23 +20,24 @@
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"]
     },
-    "version": {
-      "executor": "@jscutlery/semver:version",
+    "release": {
+      "cache": false,
       "options": {
-        "preset": "conventional",
-        "tagPrefix": "release/@baudevs/bau-gtm-tracker/",
-        "trackDeps": true,
-        "push": true,
-        "skipCommitTypes": ["ci", "docs", "test", "style"],
-        "postTargets": ["@baudevs/bau-gtm-tracker:github", "@baudevs/bau-gtm-tracker:publish"],
-        "commitMessageFormat": "chore(${projectName}): release version ${version} [skip ci]"
+        "project": "@baudevs/bau-gtm-tracker",
+        "packageRoot": "dist/libs/@baudevs/bau-gtm-tracker",
+        "publish": false
+      },
+      "changelog": {
+        "projectChangelogs": {
+          "file": "CHANGELOG.md",
+          "createRelease": "github"
+        }
       }
     },
-    "github": {
-      "executor": "@jscutlery/semver:github",
+    "publish": {
       "options": {
-        "tag": "${tag}",
-        "notes": "${notes}"
+        "project": "@baudevs/bau-gtm-tracker",
+        "packageRoot": "dist/libs/@baudevs/bau-gtm-tracker"
       }
     }
   }

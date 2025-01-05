@@ -53,10 +53,9 @@
     },
     "release": {
       "cache": false,
-      "executor": "@nx/js:tsc",
       "options": {
         "project": "@baudevs/bau-log-hero",
-        "packageRoot": "dist/{projectRoot}",
+        "packageRoot": "dist/libs/@baudevs/bau-log-hero",
         "publish": false
       },
       "changelog": {
@@ -67,10 +66,9 @@
       }
     },
     "publish": {
-      "executor": "@nx/js:tsc",
       "options": {
         "project": "@baudevs/bau-log-hero",
-        "packageRoot": "dist/{projectRoot}"
+        "packageRoot": "dist/libs/@baudevs/bau-log-hero"
       }
     }
   }
