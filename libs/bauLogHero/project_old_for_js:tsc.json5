@@ -23,22 +23,30 @@
         }
       }
     },
-    "lint": {
-      "executor": "@nx/eslint:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/bauLogHero/**/*.ts"]
-      }
-    },
-    "custom:build": {
+    "build": {
       "cache": false,
-      "dependsOn": ["lint"],
-      "executor": "@nrwl/workspace:run-commands",
-      "outputs": ["dist/libs/@baudevs/bau-log-hero"],
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "command": "pnpm --filter @baudevs/bau-log-hero run build",
-        "cwd": "libs/bauLogHero",
-        "parallel": false
+        "outputPath": "dist/libs/@baudevs/bau-log-hero",
+        "main": "libs/bauLogHero/src/index.ts",
+        "tsConfig": "libs/bauLogHero/tsconfig.lib.json",
+        "assets": [
+          "libs/bauLogHero/*.md",
+          "libs/bauLogHero/package.json"
+        ]
+      },
+      "configurations": {
+        "esm": {
+          "tsConfig": "libs/bauLogHero/tsconfig.lib.esm.json",
+          "outputPath": "dist/libs/@baudevs/bau-log-hero/esm",
+          "main": "libs/bauLogHero/src/index.ts"
+        },
+        "cjs": {
+          "tsConfig": "libs/bauLogHero/tsconfig.lib.cjs.json",
+          "outputPath": "dist/libs/@baudevs/bau-log-hero/cjs",
+          "main": "libs/bauLogHero/src/index.ts"
+        }
       }
     },
     "release": {

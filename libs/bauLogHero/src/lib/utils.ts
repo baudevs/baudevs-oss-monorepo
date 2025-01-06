@@ -1,10 +1,27 @@
 // libs/bauLogHero/src/lib/utils.ts
-import { readFileSync, existsSync } from 'fs';
+
+export interface LoggerConfig {
+  level?: 'debug' | 'info' | 'warn' | 'error';
+  enabled: boolean;
+}
+
+const defaultConfig: LoggerConfig = {
+  level: 'info',
+  enabled: true
+};
+
+export function setLoggerConfig(config: Partial<LoggerConfig>): void {
+  Object.assign(defaultConfig, config);
+}
+
+export function getLoggerConfig(): LoggerConfig {
+  return { ...defaultConfig };
+}
 
 /**
  * getTimeString returns a function that when called returns the current ISO timestamp.
  */
-export function getTimeString() {
+export function getTimeString(): () => string {
   return () => {
     const now = new Date();
     return now.toISOString();
@@ -14,32 +31,31 @@ export function getTimeString() {
 /**
  * fileHasEnabledComment checks if the file at `filePath` contains
  * "// baudevs-logger-enabled" comment in the first few lines.
+ * Only works in Node.js environment.
  */
 export function fileHasEnabledComment(filePath: string): boolean {
+  // In browser environments, use the config
   if (typeof window !== 'undefined') {
-    // Client side can't read files
-    return false;
+    return defaultConfig.enabled;
   }
-  if (!existsSync(filePath)) return false;
 
+  // In Node.js environment, try to read the file
   try {
-    const content = readFileSync(filePath, 'utf8');
+    // Dynamically import fs only in Node environment
+    const fs = require('fs');
+    if (!fs.existsSync(filePath)) return defaultConfig.enabled;
+
+    const content = fs.readFileSync(filePath, 'utf8').toString();
     const lines = content.split('\n').slice(0, 5);
-    return lines.some(line => line.includes('// baudevs-logger-enabled'));
+    return lines.some((line: string): boolean => line.includes('// baudevs-logger-enabled'));
   } catch {
-    return false;
+    return defaultConfig.enabled;
   }
 }
 
 /**
  * parseJson5Like
- * A function that attempts to parse a JSON-like string with relaxed JSON5-like rules:
- * - Allows single-line (//) and multi-line (/* ... *\/) comments.
- * - Allows trailing commas in objects and arrays.
- * - Allows unquoted object keys (alphanumeric and underscore).
- *
- * NOTE: This is a heuristic-based parser. It transforms the input into valid JSON
- * and then uses JSON.parse. It won’t handle all JSON5 features perfectly, but covers common cases.
+ * A function that attempts to parse a JSON-like string with relaxed JSON5-like rules.
  */
 export function parseJson5Like(input: string): unknown {
   // Remove single-line comments
@@ -48,18 +64,14 @@ export function parseJson5Like(input: string): unknown {
   // Remove multi-line comments
   withoutComments = withoutComments.replace(/\/\*[\s\S]*?\*\//g, '');
 
-  // Allow trailing commas in objects and arrays by removing them.
+  // Allow trailing commas in objects and arrays
   withoutComments = withoutComments.replace(/,\s*([}\]])/g, '$1');
 
-  // Allow unquoted keys (a simplified approach: keys that are word characters)
-  // This converts something like { foo: "bar", baz: 123 } to { "foo": "bar", "baz": 123 }
+  // Allow unquoted keys
   withoutComments = withoutComments.replace(
     /([{,]\s*)([A-Za-z0-9_]+)\s*:/g,
     '$1"$2":'
   );
 
-  // Trim
-  const trimmed = withoutComments.trim();
-
-  return JSON.parse(trimmed);
+  return JSON.parse(withoutComments.trim());
 }

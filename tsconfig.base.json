@@ -8,15 +8,16 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
+    "target": "es2022",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": ["ES2022", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "@/packages/*": ["packages/*"],
       "@/scripts/*": ["scripts/*"],
+      "@baudevs/bau-log-hero": ["libs/bauLogHero/src/index.ts"],
       "@baudevs/bau-gtm-tracker": ["libs/bau-gtm-tracker/src/index.ts"]
     },
     "typeRoots": ["node_modules/@types", "./types.d.ts"]

@@ -1,9 +1,16 @@
 // libs/bauLogHero/src/logger.ts
 
-import { getTimeString, fileHasEnabledComment, parseJson5Like } from '@/lib/utils';
-import { readFileSync, existsSync } from 'fs';
+import { getTimeString, parseJson5Like } from '@/lib/utils';
+import type { LoggerConfig } from '@/lib/utils';
 
-const colors = {
+
+export type Colors = typeof colors;
+
+
+export type LogLevel = 'debug' | 'info' | 'warn' | 'error';
+export type TagReturn = string | [string, string];
+
+export const colors: Record<string, string> = {
   reset: '\x1b[0m',
   bright: '\x1b[1m',
   dim: '\x1b[2m',
@@ -23,30 +30,28 @@ const colors = {
   bgCyan: '\x1b[46;1m',
   bgWhite: '\x1b[47;1m',
 } as const;
-
-type LogLevel = 'debug' | 'info' | 'warn' | 'error';
-type TagReturn = string | [string, string];
-
-class BaudevsLogger {
+export class BaudevsLoggerInstance {
+  private readonly isBrowser: boolean;
+  private config: LoggerConfig;
+  private readonly filename: string;
   private enabled: boolean;
-  private filename: string;
-  private isBrowser = typeof window !== 'undefined';
-  private config: { level?: LogLevel } = {};
 
   constructor(filename: string, enabled: boolean) {
+    this.isBrowser = typeof window !== 'undefined';
+    this.config = { level: 'info', enabled: true };
     this.filename = filename;
     this.enabled = enabled;
 
-    // Load config if exists
     if (!this.isBrowser) {
       const configFilePath = filename.replace(/\.ts$/, '.config.json5');
-      if (existsSync(configFilePath)) {
-        const rawConfig = readFileSync(configFilePath, 'utf8');
-        try {
-          this.config = parseJson5Like(rawConfig) as unknown as { level?: LogLevel };
-        } catch {
-          // Ignore config parse errors
+      try {
+        const fs = require('fs');
+        if (fs.existsSync(configFilePath)) {
+          const rawConfig = fs.readFileSync(configFilePath, 'utf8');
+          this.config = parseJson5Like(rawConfig) as LoggerConfig;
         }
+      } catch {
+        // Ignore config parse errors
       }
     }
 
@@ -61,7 +66,7 @@ class BaudevsLogger {
   }
 
   private buildInitMessage(timeStr: string): string[] {
-    const fileTag = this.createTag(this.filename, colors.bgBlue, colors.white);
+    const fileTag = this.createTag(this.filename, colors['bgBlue'], colors['white']);
 
     if (this.isBrowser) {
       return [
@@ -71,14 +76,14 @@ class BaudevsLogger {
     }
 
     return [
-      `${colors.cyan}╔════════════════════════════════════════════`,
+      `${colors['cyan']}╔════════════════════════════════════════════`,
       `║ ${fileTag}`,
       `║ BaudevsLogger started at ${timeStr}`,
-      `╚════════════════════════════════════════════${colors.reset}`
+      `╚════════════════════════════════════════════${colors['reset']}`
     ];
   }
 
-  private createTag(text: string, bgColor: string, textColor: string = colors.black): TagReturn {
+  private createTag(text: string, bgColor: string, textColor: string = colors['black']): TagReturn {
     if (this.isBrowser) {
       const bgCSS = bgColor.includes('41') ? 'background: red;' :
                     bgColor.includes('42') ? 'background: green;' :
@@ -95,39 +100,39 @@ class BaudevsLogger {
       return [`%c ${text} `, `${bgCSS}${txtCSS} font-weight: bold;`];
     }
 
-    return `${bgColor}${textColor} ${text} ${colors.reset}`;
+    return `${bgColor}${textColor} ${text} ${colors['reset']}`;
   }
 
-  enable() {
+  enable(): void {
     this.enabled = true;
   }
 
-  disable() {
+  disable(): void {
     this.enabled = false;
   }
 
-  log(message: unknown, ...args: unknown[]) {
+  log(message: unknown, ...args: unknown[]): void {
     this.log_messages(message, 'info', ...args);
   }
 
-  debug(message: unknown, ...args: unknown[]) {
+  debug(message: unknown, ...args: unknown[]): void {
     this.log_messages(message, 'debug', ...args);
   }
 
-  info(message: unknown, ...args: unknown[]) {
+  info(message: unknown, ...args: unknown[]): void {
     this.log_messages(message, 'info', ...args);
   }
 
-  warn(message: unknown, ...args: unknown[]) {
+  warn(message: unknown, ...args: unknown[]): void {
     this.log_messages(message, 'warn', ...args);
   }
 
-  error(message: unknown, ...args: unknown[]) {
+  error(message: unknown, ...args: unknown[]): void {
     this.log_messages(message, 'error', ...args);
   }
 
   private getLevelSymbol(level: LogLevel): string {
-    const symbols = {
+    const symbols: Record<LogLevel, string> = {
       debug: '🔍',
       info: 'ℹ️',
       warn: '⚠️',
@@ -136,23 +141,23 @@ class BaudevsLogger {
     return symbols[level];
   }
 
-  private log_messages(message: unknown, level: LogLevel = 'info', ...args: unknown[]) {
+  private log_messages(message: unknown, level: LogLevel = 'info', ...args: unknown[]): void {
     if (!this.enabled) return;
 
-    const order = ['debug', 'info', 'warn', 'error'];
-    const configLevel = this.config.level || 'debug'; 
+    const order: LogLevel[] = ['debug', 'info', 'warn', 'error'];
+    const configLevel = this.config.level || 'debug';
     if (order.indexOf(level) < order.indexOf(configLevel)) return;
 
     const timestamp = getTimeString()();
-    const tags = {
-      debug: this.createTag('DEBUG', colors.bgCyan, colors.black),
-      info: this.createTag('INFO', colors.bgGreen, colors.black),
-      warn: this.createTag('WARN', colors.bgYellow, colors.black),
-      error: this.createTag('ERROR', colors.bgRed, colors.white),
+    const tags: Record<LogLevel, TagReturn> = {
+      debug: this.createTag('DEBUG', colors['bgCyan'], colors['black']),
+      info: this.createTag('INFO', colors['bgGreen'], colors['black']),
+      warn: this.createTag('WARN', colors['bgYellow'], colors['black']),
+      error: this.createTag('ERROR', colors['bgRed'], colors['white']),
     };
 
-    const fileTag = this.createTag(this.filename, colors.bgBlue, colors.white);
-    const timeTag = this.createTag(timestamp, colors.bgWhite, colors.black);
+    const fileTag = this.createTag(this.filename, colors['bgBlue'], colors['white']);
+    const timeTag = this.createTag(timestamp, colors['bgWhite'], colors['black']);
     const symbol = this.getLevelSymbol(level);
 
     let prefix: string[] = [];
@@ -167,16 +172,15 @@ class BaudevsLogger {
         'background:blue; color:white; font-weight:bold;',
         ''
       ];
-      levelLine = [];
     } else {
-      const levelColors = {
-        debug: colors.cyan,
-        info: colors.green,
-        warn: colors.yellow,
-        error: colors.red,
+      const levelColors: Record<LogLevel, string> = {
+        debug: colors['cyan'],
+        info: colors['green'],
+        warn: colors['yellow'],
+        error: colors['red'],
       };
-      const linePrefix = `${colors.dim}│ ${levelColors[level]}${level.toUpperCase()}${colors.reset}`;
-      const resolveTag = (tag: TagReturn) =>
+      const linePrefix = `${colors['dim']}│ ${levelColors[level]}${level.toUpperCase()}${colors['reset']}`;
+      const resolveTag = (tag: TagReturn): string =>
         Array.isArray(tag) ? tag[0].replace(/%c\s?/, '') : tag;
 
       prefix = [
@@ -186,7 +190,7 @@ class BaudevsLogger {
       levelLine = [linePrefix];
     }
 
-    const consoleMethod = console[level] || console.log;
+    const consoleMethod = (console[level] as Console['log']) || console.log;
     consoleMethod(...prefix, message, ...args);
     if (levelLine.length > 0) {
       consoleMethod(...levelLine);
@@ -194,7 +198,4 @@ class BaudevsLogger {
   }
 }
 
-export const createBaudevsLogger = (filename: string): BaudevsLogger => {
-  const enabled = fileHasEnabledComment(filename);
-  return new BaudevsLogger(filename, enabled);
-};
+
