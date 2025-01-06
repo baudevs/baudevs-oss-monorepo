@@ -3,41 +3,22 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/bauLogHero/src",
   "projectType": "library",
-  "tags": [],
   "type": "module",
+  "tags": [],
   "targets": {
-    "test": {
-      "cache": false,
-      "executor": "@nx/jest:jest",
-      "dependsOn": ["^build"],
-      "inputs": ["default", "production", "^production"],
-      "outputs": [],
-      "options": {
-        "jestConfig": "libs/bauLogHero/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
-    },
     "lint": {
-      "executor": "@nx/eslint:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["libs/bauLogHero/**/*.ts"]
       }
     },
-    "custom:build": {
+    "build": {
       "cache": false,
       "dependsOn": ["lint"],
-      "executor": "@nrwl/workspace:run-commands",
-      "outputs": ["dist/libs/@baudevs/bau-log-hero"],
+      "executor": "nx:run-commands",
       "options": {
         "command": "pnpm --filter @baudevs/bau-log-hero run build",
-        "cwd": "libs/bauLogHero",
         "parallel": false
       }
     },
@@ -60,7 +41,13 @@
         "project": "@baudevs/bau-log-hero",
         "packageRoot": "dist/libs/@baudevs/bau-log-hero"
       }
+    },
+    "printhello": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "echo hello"
+      }
     }
   }
 }
-

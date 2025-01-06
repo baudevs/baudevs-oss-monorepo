@@ -14,8 +14,10 @@ const terser = require('@rollup/plugin-terser');
 const gzip = require('rollup-plugin-gzip');
 const alias = require('@rollup/plugin-alias');
 const analyze = require('rollup-plugin-analyzer');
-const fs = require('fs');
+const fsPromises = require('fs').promises;
 
+
+const tempDistDir = '.temp-dist';
 /**
  * Resolve the nx workspace root directory by searching for the nx.json file.
  * @param {string} basePath - The base path to start searching from.
@@ -28,7 +30,62 @@ function resolveWorkspaceRoot(basePath = process.cwd()) {
     workspaceRoot = path.dirname(workspaceRoot);
     searchLevel++;
   }
+  console.log('Building with workspaceRoot:', workspaceRoot);
   return workspaceRoot;
+}
+
+
+
+
+/**
+ * Process tsconfig and its extends chain
+ * @param {string} projectDir - The path to the project directory
+ * @param {string} workspaceRoot - The path to the workspace root directory
+ * @returns {string} The path to the processed tsconfig file
+ */
+async function processConfigFile(projectDir, workspaceRoot) {
+  try {
+    const files = await fsPromises.readdir(projectDir);
+    const tsconfigFiles = files.filter(file => file.startsWith('tsconfig') && file.endsWith('.json'));
+    for (const file of tsconfigFiles) {
+    const configPath = path.join(projectDir, file);
+    const content = await fsPromises.readFile(configPath, 'utf8');
+    const processedContent = content.replace(/{workspaceRoot}/g, workspaceRoot);
+
+    if (content !== processedContent) {
+      // Rename the original file
+      const originalConfigPath = `${configPath}.original`;
+      await fsPromises.rename(configPath, originalConfigPath);
+
+        // Write the processed content to the original file path
+        await fsPromises.writeFile(configPath, processedContent, 'utf8');
+      }
+    }
+  } catch (error) {
+    console.error('Error processing tsconfig files:', error);
+    return false;
+  }
+  return true
+}
+
+/**
+ * Cleanup the processed tsconfig files
+ * @param {string} projectDir - The path to the project directory
+ */
+async function cleanupConfigFiles(projectDir) {
+  const files = await fsPromises.readdir(projectDir);
+  const tsconfigFiles = files.filter(file => file.startsWith('tsconfig') && file.endsWith('.json.original'));
+
+  for (const file of tsconfigFiles) {
+    const originalConfigPath = path.join(projectDir, file);
+    const configPath = originalConfigPath.replace('.original', '');
+
+    // Delete the processed config file
+    await fsPromises.unlink(configPath);
+
+    // Rename the original file back to its original name
+    await fsPromises.rename(originalConfigPath, configPath);
+  }
 }
 
 /**
@@ -36,9 +93,13 @@ function resolveWorkspaceRoot(basePath = process.cwd()) {
  * @param {string} tsConfigPath - The path to tsconfig
  * @returns {string} The processed tsconfig path
  */
-function processTsConfigPath(tsConfigPath) {
-  const workspaceRoot = resolveWorkspaceRoot();
-  return tsConfigPath.replace(/{workspaceRoot}/g, workspaceRoot);
+async function processTsConfigFiles(tsConfigPath, workspaceRoot) {
+  const projectDir = path.dirname(tsConfigPath);
+  const result = await processConfigFile(projectDir, workspaceRoot);
+  if (!result) {
+    throw new Error('Failed to process tsconfig files');
+  }
+  return result;
 }
 
 /**
@@ -54,7 +115,7 @@ function processTsConfigPath(tsConfigPath) {
  * @param {boolean} options.generateBundleAnalysis - Flag to include bundle analysis.
  * @returns {Object} Rollup configuration object.
  */
-function withCustomNX(options) {
+async function withCustomNX(options) {
   const {
     input,
     outputPath,
@@ -65,19 +126,23 @@ function withCustomNX(options) {
     generateBundleAnalysis = false,
   } = options;
 
-  const processedTsConfig = processTsConfigPath(tsConfig);
   const workspaceRoot = resolveWorkspaceRoot();
+  const processedTsConfig = await processTsConfigFiles(tsConfig, workspaceRoot);
+  if (!processedTsConfig) {
+    throw new Error('Failed to process tsconfig files');
+  }
   const isCI = process.env.CI === 'true';
 
   // Create build directories
-  const projectDir = path.dirname(input);
-  const tempBuildDir = path.join(projectDir, '.temp-dist');
+  const projectDir = path.dirname(tsConfig);
+  // const tempBuildDir = path.join(projectDir, tempDistDir);
+
   const finalOutputPath = path.join(workspaceRoot, 'dist', outputPath);
 
   return {
     input,
     output: formats.map((format) => ({
-      dir: tempBuildDir,
+      dir: finalOutputPath,
       format,
       sourcemap: true,
       preserveModules: true,
@@ -91,10 +156,10 @@ function withCustomNX(options) {
       // Clean output directory plugin
       {
         name: 'clean-output',
-        buildStart() {
+        buildStart: async () => {
           if (existsSync(finalOutputPath)) {
             try {
-              fs.rmSync(finalOutputPath, { recursive: true, force: true });
+              await fsPromises.rm(finalOutputPath, { recursive: true, force: true });
               console.log(`Cleaned output directory: ${finalOutputPath}`);
             } catch (error) {
               console.warn(`Warning: Could not clean ${finalOutputPath}:`, error);
@@ -115,12 +180,12 @@ function withCustomNX(options) {
 
       // TypeScript Plugin
       typescript({
-        tsconfig: processedTsConfig,
-        outDir: tempBuildDir,
+        tsconfig: tsConfig, // we use the original tsconfig file because we already to replace the {workspaceRoot} with the actual path and saved a backup as tsconfig.lib.json.original
+        outDir: finalOutputPath,
         sourceMap: true,
         inlineSources: true,
         declaration: true,
-        declarationDir: path.join(tempBuildDir, 'types'),
+        declarationDir: path.join(finalOutputPath, 'types'),
         emitDeclarationOnly: false,
       }),
 
@@ -143,7 +208,7 @@ function withCustomNX(options) {
       // PostCSS Plugin
       postcss({
         inject: true,
-        extract: path.join(tempBuildDir, 'styles.css'),
+        extract: path.join(finalOutputPath, 'styles.css'),
         modules: true,
         plugins: [autoprefixer()],
         use: {
@@ -178,7 +243,7 @@ function withCustomNX(options) {
 
       // Gzip Plugin for Compression
       gzip.default({
-        filter: (file) => file.endsWith('.js'),
+        filter: (file) => file.endsWith('umd.js'),
       }),
 
       // Copy Plugin for Asset Management
@@ -187,15 +252,9 @@ function withCustomNX(options) {
           // First copy the assets to the temp directory
           ...assets.map((asset) => ({
             src: asset.glob.startsWith('/') ? asset.glob : path.join('src', asset.glob),
-            dest: tempBuildDir,
+            dest: finalOutputPath,
             flatten: false,
           })),
-          // Then copy everything from temp directory to final output path
-          {
-            src: path.join(tempBuildDir, '**/*'),
-            dest: finalOutputPath,
-            hook: 'writeBundle'
-          },
         ],
       }),
 
@@ -211,15 +270,23 @@ function withCustomNX(options) {
           sequential: true,
           order: 'post',
           async handler() {
+            try {
+              await cleanupConfigFiles(path.dirname(tsConfig));
+              console.log('restored tsconfig files');
+            } catch (error) {
+              console.error('Error cleaning up tsconfig files:', error);
+            }
             // Clean up temp directory
-            if (existsSync(tempBuildDir)) {
+            /* if (existsSync(tempBuildDir)) {
               try {
-                fs.rmSync(tempBuildDir, { recursive: true, force: true });
+                //await fsPromises.rm(tempBuildDir, { recursive: true, force: true });
+
                 console.log(`Cleaned temporary directory: ${tempBuildDir}`);
               } catch (error) {
                 console.warn(`Warning: Could not clean temporary directory ${tempBuildDir}:`, error);
               }
-            }
+            } */
+
           }
         }
       }

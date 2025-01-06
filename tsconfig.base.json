@@ -17,8 +17,8 @@
     "paths": {
       "@/packages/*": ["packages/*"],
       "@/scripts/*": ["scripts/*"],
-      "@baudevs/bau-log-hero": ["libs/bauLogHero/src/index.ts"],
-      "@baudevs/bau-gtm-tracker": ["libs/bau-gtm-tracker/src/index.ts"]
+      "@baudevs/bau-gtm-tracker": ["libs/bau-gtm-tracker/src/index.ts"],
+      "@baudevs/bau-log-hero": ["libs/bauLogHero/src/index.ts"]
     },
     "typeRoots": ["node_modules/@types", "./types.d.ts"]
   },

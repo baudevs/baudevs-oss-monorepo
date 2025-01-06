@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 
 export default withCustomNX({
   input: path.resolve(__dirname, 'src/index.ts'),
-  outputPath: '@baudevs/bau-log-hero',
+  outputPath: 'libs/@baudevs/bau-log-hero',
   formats: ['esm', 'cjs'],
   tsConfig: path.resolve(__dirname, 'tsconfig.lib.json'),
   assets: [
