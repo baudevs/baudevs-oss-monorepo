@@ -17,6 +17,11 @@ export default withCustomNX({
       glob: '**/*.md',
     },
   ],
-  external: ['fs', 'path', 'os'],
+  external: [
+    'fs',
+    'path',
+    'os',
+    /^@baudevs\/.*/  // This will make all @baudevs packages external
+  ],
   generateBundleAnalysis: false,
 });
