@@ -1,4 +1,3 @@
-
 # BauLogHero
 
 ![BauLogHero Logo](../../assets/bauLogHero/BauLogHero.png)
@@ -24,16 +23,82 @@
 npm install @baudevs/bau-log-hero
 ```
 
+## ESM Support
+
+BauLogHero now supports ESM (ECMAScript Modules) out of the box. You can import it using either CommonJS or ESM syntax:
+
+```typescript
+// ESM
+import { createLogger } from '@baudevs/bau-log-hero';
+
+// CommonJS
+const { createLogger } = require('@baudevs/bau-log-hero');
+```
+
 ## Usage
 
 To use BauLogHero, simply import it into your project and configure it as needed.
 
 ```typescript
-import { createBaudevsLogger } from '@baudevs-monorepo/bauLogHero';
+import { createLogger } from '@baudevs/bau-log-hero';
 
-const logger = createBaudevsLogger(__filename);
+const logger = createLogger(__filename);
 logger.info('This is an info message!');
 logger.debug('Debugging info here...');
+```
+
+## Building the Library
+
+### Prerequisites
+
+- Node.js 18.x or higher
+- pnpm (recommended) or npm
+- Nx CLI installed globally (optional but recommended)
+
+### Development Build
+
+```bash
+# Install dependencies
+pnpm install
+
+# Build the library
+nx build @baudevs/bau-log-hero --configurations=esm
+
+# Run tests
+nx test @baudevs/bau-log-hero
+```
+
+### Production Build
+
+For production builds, you can use different configurations:
+
+```bash
+# Standard production build
+nx build bauLogHero --prod
+
+# ESM-specific build
+nx build bauLogHero --configuration=esm
+
+# Build with watch mode for development
+nx build bauLogHero --watch
+```
+
+The build outputs will be available in:
+
+
+- Default build: `dist/libs/@baudevs/bau-log-hero`
+- ESM build: `dist/libs/@baudevs/bau-log-hero/esm`
+
+### Build Configuration
+
+The library can be built in different module formats using Nx commands:
+
+```bash
+# Default build
+nx build bauLogHero
+
+# ESM specific build
+nx build bauLogHero --configuration=esm
 ```
 
 ## Configuration

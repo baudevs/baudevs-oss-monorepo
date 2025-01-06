@@ -30,6 +30,17 @@
         "outputPath": "dist/libs/@baudevs/bau-log-hero",
         "main": "{projectRoot}/src/index.ts",
         "tsConfig": "{projectRoot}/tsconfig.lib.json",
+        "configurations": {
+            "esm": {
+              "tsConfig": "libs/bau-log-hero/tsconfig.esm.json",
+              "main": "{projectRoot}/src/index.ts",
+              "outputPath": "dist/libs/@baudevs/bau-log-hero/esm",
+              "declaration": true,
+              "target": "es6",
+              "module": "ES2022",
+              "types": ["node"]
+          }
+        },
         "assets": [
           "{projectRoot}//**/*.md",
           "{projectRoot}//**/*.json",
