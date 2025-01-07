@@ -77,7 +77,21 @@ jobs:
         id: analyze-version
         run: |
           cd tools/release-tools
+          echo "Running analysis..."
           RESULT=$(pnpm tsx src/index.ts --realtime)
+          echo "Raw output: $RESULT"
+
+          if [ -z "$RESULT" ]; then
+            echo "Error: No output from analysis command"
+            exit 1
+          fi
+
+          if ! echo "$RESULT" | jq . >/dev/null 2>&1; then
+            echo "Error: Invalid JSON output"
+            echo "Output was: $RESULT"
+            exit 1
+          fi
+
           VERSION_TYPE=$(echo "$RESULT" | jq -r '.version_type')
           NEEDS_REVIEW=$(echo "$RESULT" | jq -r '.needs_review')
           REASONING=$(echo "$RESULT" | jq -r '.reasoning')
