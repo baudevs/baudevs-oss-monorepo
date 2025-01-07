@@ -6,9 +6,7 @@ on:
       - 'release/@baudevs/*'
     tags:
       - 'release/@baudevs/*'
-  create:
-    tags:
-      - 'release/@baudevs/*'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -61,12 +59,20 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build Release Tools
-        run: pnpm nx build @baudevs/release-tools --verbose
+      - name: Install tsx globally
+        run: pnpm add -g tsx
 
       - name: Analyze Changes
         id: analyze-version
-        run: node dist/tools/@baudevs/release-tools/index.cjs.js
+        run: |
+          RESULT=$(pnpm tsx tools/release-tools/src/index.ts --realtime)
+          VERSION_TYPE=$(echo "$RESULT" | jq -r '.version_type')
+          NEEDS_REVIEW=$(echo "$RESULT" | jq -r '.needs_review')
+          REASONING=$(echo "$RESULT" | jq -r '.reasoning')
+
+          echo "version_type=$VERSION_TYPE" >> $GITHUB_OUTPUT
+          echo "needs_review=$NEEDS_REVIEW" >> $GITHUB_OUTPUT
+          echo "reasoning=$REASONING" >> $GITHUB_OUTPUT
         env:
           OPENAI_API_KEY: ${{ env.OPENAI_API_KEY }}
 
@@ -93,7 +99,7 @@ jobs:
             Project: @baudevs/${{ needs.analyze-changes.outputs.project_name }}
 
             OpenAI Reasoning:
-            ${{ steps.analyze-version.outputs.reasoning }}
+            ${{ needs.analyze-changes.outputs.reasoning }}
 
   create-version-plan:
     needs: [analyze-changes, human-review]
