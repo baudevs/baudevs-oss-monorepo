@@ -78,42 +78,7 @@ jobs:
         run: |
           cd tools/release-tools
           echo "Running analysis..."
-          RESULT=$(pnpm tsx src/index.ts --realtime)
-          echo "Raw output: $RESULT"
-
-          if [ -z "$RESULT" ]; then
-            echo "Error: No output from analysis command"
-            exit 1
-          fi
-
-          # Validate JSON and extract values
-          if ! echo "$RESULT" | jq . >/dev/null 2>&1; then
-            echo "Error: Invalid JSON output"
-            echo "Output was: $RESULT"
-            exit 1
-          fi
-
-          # Extract values using jq
-          VERSION_TYPE=$(echo "$RESULT" | jq -r '.version_type')
-          NEEDS_REVIEW=$(echo "$RESULT" | jq -r '.needs_review')
-          REASONING=$(echo "$RESULT" | jq -r '.reasoning')
-
-          # Validate required fields
-          if [ "$VERSION_TYPE" = "null" ] || [ "$NEEDS_REVIEW" = "null" ] || [ "$REASONING" = "null" ]; then
-            echo "Error: Missing required fields in JSON output"
-            echo "Output was: $RESULT"
-            exit 1
-          fi
-
-          echo "Extracted values:"
-          echo "Version type: $VERSION_TYPE"
-          echo "Needs review: $NEEDS_REVIEW"
-          echo "Reasoning: $REASONING"
-
-          # Set outputs
-          echo "version_type=$VERSION_TYPE" >> $GITHUB_OUTPUT
-          echo "needs_review=$NEEDS_REVIEW" >> $GITHUB_OUTPUT
-          echo "reasoning=$REASONING" >> $GITHUB_OUTPUT
+          pnpm tsx src/cli.ts analyze
           cd ../../
         env:
           OPENAI_API_KEY: ${{ env.OPENAI_API_KEY }}
@@ -171,12 +136,12 @@ jobs:
 
       - name: Create Version Plan
         run: |
-          VERSION_TYPE="${{ needs.analyze-changes.outputs.version_type }}"
-          PROJECT="@baudevs/${{ needs.analyze-changes.outputs.project_name }}"
-
-          pnpm nx release plan $VERSION_TYPE \
-            --projects=$PROJECT \
+          cd tools/release-tools
+          pnpm tsx src/cli.ts create-version-plan \
+            --project="${{ needs.analyze-changes.outputs.project_name }}" \
+            --version-type="${{ needs.analyze-changes.outputs.version_type }}" \
             --only-touched=false
+          cd ../../
 
       - name: Commit Version Plan
         run: |

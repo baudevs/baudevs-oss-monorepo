@@ -1,95 +1,28 @@
-import { analyzeChanges } from './utils/analyze-changes';
-import { analyzeGitDiffForVersion, VersionAnalysisResult } from './utils/real-time-version-bump';
-import { createLogger } from '@baudevs/bau-log-hero';
+import { analyzeGitDiffForVersion } from './utils/real-time-version-bump';
 
-// Create a robust logger with both console and file output
-const logHero = createLogger({
-  name: 'release-tools',
-  level: 'debug',
-  output: {
-    console: {
-      enabled: true,
-      truncateJson: {
-        enabled: true,
-        firstLines: 4,
-        lastLines: 4
-      }
-    },
-    file: {
-      enabled: true,
-      path: './logs/release-tools/main',
-      format: 'json',
-      rotation: {
-        enabled: true,
-        maxSize: 5 * 1024 * 1024, // 5MB
-        maxFiles: 5,
-        compress: true
-      }
-    },
-    prettyPrint: true,
-    maxDepth: 5
-  }
-});
-
-// Log startup information
-logHero.info('🚀 Release Tools Starting', {
-  version: '0.0.1',
-  environment: process.env['NODE_ENV'] || 'development',
-  timestamp: new Date().toISOString()
-});
-
-interface AnalyzeOptions {
-  /**
-   * If true, uses the realtime approach (WebSocket).
-   * If false, uses the normal approach (OpenAI ChatCompletion).
-   */
-  realtime?: boolean;
-}
-
-async function analyzeChangesNow(options: AnalyzeOptions = {}): Promise<void> {
+async function main() {
   try {
-    if (options.realtime) {
-      logHero.info('🔄 Starting Realtime API analysis');
-      const result: VersionAnalysisResult = await analyzeGitDiffForVersion();
-      logHero.info('✅ Analysis complete', { result });
+    const result = await analyzeGitDiffForVersion();
+    // Write result to a file that GitHub Actions can read
+    if (process.env['GITHUB_OUTPUT']) {
+      const fs = await import('fs');
+      const resultObj = JSON.parse(result);
+      const { version_type, needs_review, reasoning } = resultObj;
+
+      fs.appendFileSync(process.env['GITHUB_OUTPUT'], `version_type=${version_type}\n`);
+      fs.appendFileSync(process.env['GITHUB_OUTPUT'], `needs_review=${needs_review}\n`);
+      fs.appendFileSync(process.env['GITHUB_OUTPUT'], `reasoning=${reasoning}\n`);
+
+      // Also print for debugging
+      console.log('Analysis complete. Results written to GITHUB_OUTPUT');
     } else {
-      logHero.info('🔄 Starting Standard API analysis');
-      await analyzeChanges();
-      logHero.info('✅ Analysis complete');
+      // If not in GitHub Actions, just print the result
+      console.log(result);
     }
-  } catch (err) {
-    const error = err instanceof Error ? err : new Error(String(err));
-    logHero.error('❌ Error analyzing changes', {
-      error: {
-        name: error.name,
-        message: error.message,
-        stack: error.stack
-      }
-    });
+  } catch (error) {
+    console.error('Error:', error);
     process.exit(1);
   }
 }
 
-// Handle CLI execution
-if (import.meta.url === new URL(process.argv[1], 'file://').href) {
-  const args = process.argv.slice(2);
-  const useRealtime = args.includes('--realtime');
-
-  logHero.info('🛠️ Processing CLI arguments', {
-    args,
-    useRealtime,
-    command: useRealtime ? 'realtime' : 'standard'
-  });
-
-  analyzeChangesNow({ realtime: useRealtime }).catch((err) => {
-    const error = err instanceof Error ? err : new Error(String(err));
-    logHero.error('❌ Fatal error in analyzeChangesNow', {
-      error: {
-        name: error.name,
-        message: error.message,
-        stack: error.stack
-      }
-    });
-    process.exit(1);
-  });
-}
+main();

@@ -58,14 +58,19 @@ jobs:
 
       - name: Execute Release
         run: |
+          cd tools/release-tools
           echo "Releasing project: ${{ steps.get-project.outputs.project }}"
-          pnpm nx release ${{ steps.get-project.outputs.project }} --skip-publish
-        env:
-          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+          pnpm tsx src/cli.ts release \
+            --project="${{ steps.get-project.outputs.project }}" \
+            --skip-publish
+          cd ../../
 
       - name: Publish Package
         run: |
+          cd tools/release-tools
           echo "Publishing project: ${{ steps.get-project.outputs.project }}"
-          pnpm nx release publish ${{ steps.get-project.outputs.project }}
+          pnpm tsx src/cli.ts release \
+            --project="${{ steps.get-project.outputs.project }}"
+          cd ../../
         env:
           NPM_TOKEN: ${{ env.NPM_ACCESS_TOKEN }}
