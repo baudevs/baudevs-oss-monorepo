@@ -23,24 +23,25 @@
   "jsdelivr": "./src/index.umd.js.gz",
   "type": "module",
   "scripts": {
-    "analyze": "node ./src/utils/analyze-changes.js"
+    "build": "rollup -c",
+    "dev": "tsx src/index.ts",
+    "dev:realtime": "tsx src/index.ts --realtime"
   },
   "dependencies": {
-    "@nx/rollup": "20.3.0",
-    "@rollup/plugin-commonjs": "^23.0.7",
-    "@rollup/plugin-node-resolve": "^15.3.1",
-    "@rollup/plugin-terser": "0.4.4",
+    "ajv": "^8.12.0",
+    "minimatch": "^10.0.1",
     "openai": "^4.77.3",
-    "rollup-plugin-gzip": "^3.1.2"
+    "ws": "^8.18.0",
+    "@baudevs/bau-log-hero": "workspace:*"
   },
   "devDependencies": {
     "@nx/rollup": "^20.3.0",
     "@rollup/plugin-commonjs": "^23.0.7",
     "@rollup/plugin-node-resolve": "^15.3.1",
-    "@rollup/plugin-terser": "0.4.4",
     "@rollup/plugin-typescript": "^10.0.1",
     "@types/node": "^20.17.11",
-    "rollup-plugin-gzip": "^3.1.2",
-    "typescript": "^5.7.2"
+    "@types/ws": "^8.5.13",
+    "typescript": "^5.7.2",
+    "tsx": "^4.7.0"
   }
 }
