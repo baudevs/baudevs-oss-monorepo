@@ -24,6 +24,7 @@ log-hero-logger
 logger
 logging
 magicusprime
+ndjson
 nipc
 NIPC
 npmjs
