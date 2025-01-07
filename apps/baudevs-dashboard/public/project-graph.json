@@ -1128,46 +1128,6 @@
               "parallelism": true,
               "cache": true
             },
-            "test": {
-              "options": {
-                "cwd": "libs/bauLogHero",
-                "env": {
-                  "TS_NODE_COMPILER_OPTIONS": "{\"moduleResolution\":\"node10\"}"
-                },
-                "command": "jest"
-              },
-              "metadata": {
-                "technologies": [
-                  "jest"
-                ],
-                "description": "Run Jest Tests",
-                "help": {
-                  "command": "pnpm exec jest --help",
-                  "example": {
-                    "options": {
-                      "coverage": true
-                    }
-                  }
-                }
-              },
-              "cache": true,
-              "inputs": [
-                "default",
-                "^production",
-                "{workspaceRoot}/jest.preset.js",
-                {
-                  "externalDependencies": [
-                    "jest"
-                  ]
-                }
-              ],
-              "outputs": [
-                "{workspaceRoot}/coverage/{projectName}"
-              ],
-              "executor": "nx:run-commands",
-              "configurations": {},
-              "parallelism": true
-            },
             "build": {
               "cache": false,
               "dependsOn": [
@@ -1217,15 +1177,6 @@
                 "^nx-release-publish"
               ],
               "options": {},
-              "configurations": {},
-              "parallelism": true
-            },
-            "printhello": {
-              "executor": "nx:run-commands",
-              "outputs": [],
-              "options": {
-                "command": "echo hello"
-              },
               "configurations": {},
               "parallelism": true
             }
