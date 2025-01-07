@@ -716,8 +716,7 @@
               ],
               "options": {
                 "lintFilePatterns": [
-                  "tools/release-tools/**/*.{ts,tsx,js,jsx}",
-                  "tools/release-tools/package.json"
+                  "tools/release-tools/**/*.ts"
                 ]
               },
               "configurations": {},
@@ -727,8 +726,7 @@
             "build": {
               "cache": true,
               "dependsOn": [
-                "lint",
-                "nx-rollup:build"
+                "lint"
               ],
               "inputs": [
                 "default",
@@ -736,7 +734,7 @@
                 "^production"
               ],
               "outputs": [
-                "{workspaceRoot}/tools/release-tools/dist/tools/@baudevs/release-tools"
+                "{workspaceRoot}/tools/release-tools/Users/juandavidarroyave/Developer/baudevs-monorepo/tools/release-tools/src/.temp-dist"
               ],
               "metadata": {
                 "technologies": [
@@ -768,7 +766,7 @@
                 "script": "analyze"
               },
               "metadata": {
-                "scriptContent": "node ./src/utils/analyze-changes.js",
+                "scriptContent": "node ./src/index.cjs.js",
                 "runCommand": "pnpm run analyze"
               },
               "configurations": {},
@@ -1122,68 +1120,100 @@
           "root": "libs/bauLogHero",
           "targets": {
             "lint": {
-              "cache": true,
-              "options": {
-                "cwd": "libs/bauLogHero",
-                "env": {
-                  "ESLINT_USE_FLAT_CONFIG": "true"
-                },
-                "command": "eslint ."
-              },
-              "inputs": [
-                "default",
-                "^default",
-                "{workspaceRoot}/eslint.config.js",
-                "{workspaceRoot}/tools/eslint-rules/**/*",
-                {
-                  "externalDependencies": [
-                    "eslint"
-                  ]
-                }
-              ],
+              "executor": "@nx/eslint:lint",
               "outputs": [
                 "{options.outputFile}"
               ],
+              "options": {
+                "lintFilePatterns": [
+                  "libs/bauLogHero/**/*.ts"
+                ]
+              },
+              "configurations": {},
+              "parallelism": true,
+              "cache": true
+            },
+            "test": {
+              "options": {
+                "cwd": "libs/bauLogHero",
+                "env": {
+                  "TS_NODE_COMPILER_OPTIONS": "{\"moduleResolution\":\"node10\"}"
+                },
+                "command": "jest"
+              },
               "metadata": {
                 "technologies": [
-                  "eslint"
+                  "jest"
                 ],
-                "description": "Runs ESLint on project",
+                "description": "Run Jest Tests",
                 "help": {
-                  "command": "pnpm exec eslint --help",
+                  "command": "pnpm exec jest --help",
                   "example": {
                     "options": {
-                      "max-warnings": 0
+                      "coverage": true
                     }
                   }
                 }
               },
+              "cache": true,
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/jest.preset.js",
+                {
+                  "externalDependencies": [
+                    "jest"
+                  ]
+                }
+              ],
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectName}"
+              ],
               "executor": "nx:run-commands",
               "configurations": {},
               "parallelism": true
             },
-            "test": {
+            "build": {
               "cache": false,
-              "executor": "@nx/jest:jest",
               "dependsOn": [
-                "^build"
+                "lint"
               ],
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "pnpm --filter @baudevs/bau-log-hero run build",
+                "parallel": false,
+                "verbose": true
+              },
+              "configurations": {},
+              "parallelism": true,
               "inputs": [
                 "default",
                 "production",
                 "^production"
-              ],
-              "outputs": [],
+              ]
+            },
+            "clean": {
+              "executor": "nx:run-script",
               "options": {
-                "jestConfig": "libs/bauLogHero/jest.config.ts",
-                "passWithNoTests": true
+                "script": "clean"
               },
-              "configurations": {
-                "ci": {
-                  "ci": true,
-                  "codeCoverage": true
-                }
+              "metadata": {
+                "scriptContent": "rimraf ../../dist/libs/@baudevs/bau-log-hero",
+                "runCommand": "pnpm run clean"
               },
+              "configurations": {},
+              "parallelism": true
+            },
+            "pwd": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "pwd"
+              },
+              "metadata": {
+                "scriptContent": "exec -- pwd",
+                "runCommand": "pnpm run pwd"
+              },
+              "configurations": {},
               "parallelism": true
             },
             "nx-release-publish": {
@@ -1195,54 +1225,47 @@
               "configurations": {},
               "parallelism": true
             },
-            "build": {
-              "cache": false,
-              "executor": "@nx/js:tsc",
+            "printhello": {
+              "executor": "nx:run-commands",
+              "outputs": [],
               "options": {
-                "outputPath": "dist/libs/@baudevs/bau-log-hero",
-                "main": "libs/bauLogHero/src/index.ts",
-                "tsConfig": "libs/bauLogHero/tsconfig.lib.json",
-                "assets": [
-                  "libs/bauLogHero//**/*.md",
-                  "libs/bauLogHero//**/*.json",
-                  "!libs/bauLogHero//**/*.test.ts",
-                  "!libs/bauLogHero//**/*.test.tsx",
-                  "!libs/bauLogHero//**/*.spec.ts",
-                  "!libs/bauLogHero//**/*.spec.tsx",
-                  "!libs/bauLogHero//**/project.json",
-                  "!libs/bauLogHero//**/nx.json",
-                  "!libs/bauLogHero//**/tsconfig.json",
-                  "!libs/bauLogHero//**/tsconfig.lib.json",
-                  "!libs/bauLogHero//**/*.spec.json",
-                  "!libs/bauLogHero//**/*.spec.ts",
-                  "!libs/bauLogHero//**/*.spec.tsx",
-                  "!libs/bauLogHero//**/*.spec.tsx",
-                  "!libs/bauLogHero//**/*.eslintrc.json",
-                  "!libs/bauLogHero//**/*.eslintignore",
-                  "!libs/bauLogHero//**/*.eslintrc.js"
-                ]
+                "command": "echo hello"
               },
               "configurations": {},
-              "parallelism": true,
-              "dependsOn": [
-                "^build"
-              ],
-              "inputs": [
-                "production",
-                "^production"
-              ]
+              "parallelism": true
             }
           },
           "sourceRoot": "libs/bauLogHero/src",
           "name": "@baudevs/bau-log-hero",
           "projectType": "library",
           "tags": [
-            "npm:public"
+            "npm:public",
+            "npm:logging",
+            "npm:browser",
+            "npm:node",
+            "npm:colors",
+            "npm:timestamp",
+            "npm:baudevs",
+            "npm:baudevs-monorepo"
           ],
           "metadata": {
-            "targetGroups": {},
+            "targetGroups": {
+              "NPM Scripts": [
+                "clean",
+                "pwd"
+              ]
+            },
+            "description": "A simple, no dependencies logging library for browser and node, with colors, timestamp, and easy to activate/deactivate by file and compatible with tree-shakeable",
             "js": {
-              "packageName": "@baudevs/bau-log-hero"
+              "packageName": "@baudevs/bau-log-hero",
+              "packageExports": {
+                ".": {
+                  "types": "./types/index.d.ts",
+                  "import": "./esm/index.js",
+                  "require": "./cjs/index.js",
+                  "default": "./esm/index.js"
+                }
+              }
             }
           },
           "$schema": "../../node_modules/nx/schemas/project-schema.json",
@@ -1310,7 +1333,13 @@
         }
       ],
       "@baudevs/cmsEditor": [],
-      "@baudevs/release-tools": [],
+      "@baudevs/release-tools": [
+        {
+          "source": "@baudevs/release-tools",
+          "target": "@baudevs/bau-log-hero",
+          "type": "static"
+        }
+      ],
       "@baudevs/cmsAdmin": [
         {
           "source": "@baudevs/cmsAdmin",
@@ -1320,7 +1349,13 @@
       ],
       "@baudevs/bau-cms-core": [],
       "@baudevs/bau-log-hero": [],
-      "@baudevs/monorepo": []
+      "@baudevs/monorepo": [
+        {
+          "source": "@baudevs/monorepo",
+          "target": "@baudevs/bau-log-hero",
+          "type": "static"
+        }
+      ]
     }
   }
 }

@@ -101,6 +101,45 @@ The repository includes a sophisticated metadata generation system that:
     * AI-powered change analysis
     * Interactive version comparison
 
+4. **Custom Build System** (`tools/rollup/`):
+    * Custom Nx helper for Rollup configuration
+    * Automatic workspace path resolution
+    * ESM/CJS dual bundle generation
+    * Smart dependency management
+
+### Build System Architecture
+
+#### Custom Nx Helper
+
+Located in `tools/rollup/withCustomNx.cjs`, our custom build helper:
+
+1. **Path Resolution**:
+   * Replaces `{workspaceRoot}` tokens in paths
+   * Handles relative paths for dependencies
+   * Maintains monorepo structure integrity
+
+2. **Bundle Configuration**:
+   * Configures ESM/CJS output formats
+   * Manages external dependencies
+   * Optimizes build output
+
+3. **Dependency Management**:
+   * Handles workspace package references
+   * Manages external vs internal dependencies
+   * Ensures correct bundle resolution
+
+Example usage in a project's rollup.config.mjs:
+```javascript
+import { withCustomNX } from '../rollup/withCustomNx.cjs';
+
+export default withCustomNX({
+  input: 'src/index.ts',
+  outputPath: 'dist/libs/@baudevs/my-lib',
+  formats: ['esm', 'cjs'],
+  // ... other options
+});
+```
+
 ### Data Flow
 
 ```mermaid
