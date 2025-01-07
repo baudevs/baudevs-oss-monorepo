@@ -724,50 +724,44 @@
               "cache": true
             },
             "build": {
-              "cache": true,
+              "cache": false,
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "pnpm --filter @baudevs/release-tools run build",
+                "parallel": false,
+                "verbose": true
+              },
               "dependsOn": [
                 "lint"
               ],
+              "configurations": {},
+              "parallelism": true,
               "inputs": [
                 "default",
                 "production",
                 "^production"
-              ],
-              "outputs": [
-                "{workspaceRoot}/tools/release-tools/Users/juandavidarroyave/Developer/baudevs-monorepo/tools/release-tools/src/.temp-dist"
-              ],
-              "metadata": {
-                "technologies": [
-                  "rollup"
-                ],
-                "description": "Run Rollup",
-                "help": {
-                  "command": "pnpm exec rollup --help",
-                  "example": {
-                    "options": {
-                      "sourcemap": true,
-                      "watch": true
-                    }
-                  }
-                }
-              },
-              "executor": "nx:run-commands",
+              ]
+            },
+            "dev": {
+              "executor": "nx:run-script",
               "options": {
-                "cwd": "tools/release-tools",
-                "command": "rollup -c rollup.config.mjs",
-                "verbose": true
+                "script": "dev"
+              },
+              "metadata": {
+                "scriptContent": "tsx src/index.ts",
+                "runCommand": "pnpm run dev"
               },
               "configurations": {},
               "parallelism": true
             },
-            "analyze": {
+            "dev:realtime": {
               "executor": "nx:run-script",
               "options": {
-                "script": "analyze"
+                "script": "dev:realtime"
               },
               "metadata": {
-                "scriptContent": "node ./src/index.cjs.js",
-                "runCommand": "pnpm run analyze"
+                "scriptContent": "tsx src/index.ts --realtime",
+                "runCommand": "pnpm run dev:realtime"
               },
               "configurations": {},
               "parallelism": true
@@ -795,7 +789,8 @@
           "metadata": {
             "targetGroups": {
               "NPM Scripts": [
-                "analyze"
+                "dev",
+                "dev:realtime"
               ]
             },
             "description": "A tool to analyze changes and create release notes",
