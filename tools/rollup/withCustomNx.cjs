@@ -30,7 +30,6 @@ function resolveWorkspaceRoot(basePath = process.cwd()) {
     workspaceRoot = path.dirname(workspaceRoot);
     searchLevel++;
   }
-  console.log('Building with workspaceRoot:', workspaceRoot);
   return workspaceRoot;
 }
 
@@ -127,16 +126,8 @@ async function withCustomNX(options) {
   } = options;
 
   const workspaceRoot = resolveWorkspaceRoot();
-  const processedTsConfig = await processTsConfigFiles(tsConfig, workspaceRoot);
-  if (!processedTsConfig) {
-    throw new Error('Failed to process tsconfig files');
-  }
   const isCI = process.env.CI === 'true';
-
-  // Create build directories
   const projectDir = path.dirname(tsConfig);
-  // const tempBuildDir = path.join(projectDir, tempDistDir);
-
   const finalOutputPath = path.join(workspaceRoot, 'dist', outputPath);
 
   return {
@@ -153,6 +144,16 @@ async function withCustomNX(options) {
     })),
     external: (id) => external.some((dep) => id === dep || id.startsWith(`${dep}/`)),
     plugins: [
+      // Process tsconfig files before build starts
+      {
+        name: 'process-tsconfig',
+        async buildStart() {
+          const processedTsConfig = await processTsConfigFiles(tsConfig, workspaceRoot);
+          if (!processedTsConfig) {
+            throw new Error('Failed to process tsconfig files');
+          }
+        }
+      },
       // Clean output directory plugin
       {
         name: 'clean-output',
