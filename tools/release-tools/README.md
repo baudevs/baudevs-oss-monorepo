@@ -1,6 +1,6 @@
 # @baudevs/release-tools
 
-A tool to analyze git changes and determine version bumps using OpenAI's API.
+A tool to analyze git changes and determine version bumps using OpenAI's Realtime API.
 
 ## Prerequisites
 
@@ -14,7 +14,7 @@ export OPENAI_API_KEY="your-key-here"
 
 2. Required dependencies built:
    - `@baudevs/bau-log-hero` must be built in the workspace root's dist folder
-   - OpenAI package installed in the workspace where you're running the tool
+   - WebSocket (`ws`) package installed for realtime communication
 
 ## Installation
 
@@ -22,90 +22,133 @@ export OPENAI_API_KEY="your-key-here"
 # Install in your workspace
 pnpm add @baudevs/release-tools
 
-# Ensure OpenAI is installed (required as external dependency)
-pnpm add openai
+# Ensure WebSocket is installed (required for realtime)
+pnpm add ws
 ```
 
 ## Usage
 
-The tool can be run in two modes:
+The tool uses OpenAI's Realtime API for efficient analysis:
 
-### 1. Realtime Mode (Recommended)
+```typescript
+import { analyzeGitDiffForVersion } from '@baudevs/release-tools';
 
-Uses OpenAI's realtime API for faster analysis:
-
-```bash
-pnpm --filter @baudevs/release-tools run dev:realtime
+const result = await analyzeGitDiffForVersion();
+// Returns: { 
+//   version_type: 'patch' | 'minor' | 'major' | 'unknown',
+//   needs_review: boolean,
+//   reasoning: string 
+// }
 ```
 
-### 2. Standard Mode
+## How It Works
 
-Uses regular OpenAI API:
+1. **Git Diff Analysis**
+   - Retrieves and filters relevant git changes
+   - Chunks large diffs into manageable pieces
 
-```bash
-pnpm --filter @baudevs/release-tools run dev
-```
+2. **Realtime Processing**
+   - Establishes WebSocket connection with OpenAI
+   - Maintains session state throughout analysis
+   - Processes chunks incrementally with AI feedback
 
-## Build Configuration
+3. **Structured Analysis**
+   - Uses function calling for consistent responses
+   - Validates all responses against JSON schemas
+   - Provides detailed reasoning for version decisions
 
-This package uses a custom Nx build configuration with Rollup:
+## Debugging
 
-### 1. Custom Nx Helper
+The tool includes comprehensive logging using `@baudevs/bau-log-hero`:
 
-We use a custom Nx helper (`withCustomNx`) that:
+### Log Configuration
 
-- Handles workspace path replacements
-- Manages external dependencies
-- Configures Rollup for ESM output
-
-Location: `tools/rollup/withCustomNx.cjs`:
-
-```javascript
-// Example of key functionality:
-const withCustomNX = (config) => ({
-  ...config,
-  output: {
-    ...config.output,
-    // Replace {workspaceRoot} in paths
-    dir: config.outputPath.replace('{workspaceRoot}', process.cwd()),
+```typescript
+{
+  console: {
+    enabled: true,
+    truncateJson: {
+      enabled: true,
+      firstLines: 4,
+      lastLines: 4
+    }
   },
-  // ... other customizations
-});
+  file: {
+    enabled: true,
+    path: './logs/release-tools/realtime',
+    format: 'json',
+    rotation: {
+      enabled: true,
+      maxSize: 5 * 1024 * 1024, // 5MB
+      maxFiles: 5,
+      compress: true
+    }
+  }
+}
 ```
 
-### 2. Build Output
+### Log Events
 
-The build process:
+- WebSocket connection events
+- Chunk processing progress
+- Response validations
+- Final analysis results
 
-- Generates ESM modules by default
-- Replaces workspace paths in the output
-- Handles external dependencies properly
-- Creates both ESM and CJS bundles
+## Configuration
 
-### 3. Workspace Path Replacement
+Key constants that can be adjusted:
 
-The build system automatically replaces:
+```typescript
+const REALTIME_MODEL = 'gpt-4o-realtime-preview-2024-12-17';
+const MAX_CHUNKS = 10;
+const CHUNK_SIZE = 8000;
+```
 
-- `{workspaceRoot}` with the actual workspace path
-- Handles relative paths for dependencies
-- Manages workspace-local package references
+## Error Handling
+
+The tool handles various error scenarios:
+
+- WebSocket connection failures
+- JSON parsing errors
+- Schema validation errors
+- API response errors
+
+## Dependencies
+
+- `ws`: WebSocket client for realtime communication
+- `ajv`: JSON Schema validation
+- `@baudevs/bau-log-hero`: Structured logging
+
+## Important Notes
+
+1. **API Access**:
+   - Requires OpenAI API key with access to realtime models
+   - Uses WebSocket protocol for efficient communication
+
+2. **Performance**:
+   - Processes diffs in chunks to handle large changes
+   - Uses incremental processing for faster results
+   - Maintains session state for context
+
+3. **Validation**:
+   - All responses are schema-validated
+   - Structured output ensures reliable version decisions
+   - Detailed reasoning provided for each decision
 
 ## Development
 
 When developing:
 
-1. Build dependencies first:
+1. Build dependencies:
 
 ```bash
-# Build bauLogHero (required dependency)
 pnpm nx build @baudevs/bau-log-hero
 ```
 
-2. Run in development mode:
+2. Run tests:
 
 ```bash
-# Use realtime mode for faster feedback
-pnpm --filter @baudevs/release-tools run dev:realtime
+pnpm nx test @baudevs/release-tools
 ```
 
 3. Build for production:
@@ -113,35 +156,3 @@ pnpm --filter @baudevs/release-tools run dev:realtime
 ```bash
 pnpm nx build @baudevs/release-tools
 ```
-
-## Architecture
-
-The tool:
-
-1. Analyzes git diff between branches
-2. Filters out irrelevant files (tests, docs, etc.)
-3. Sends the diff to OpenAI for analysis
-4. Returns suggested version bump (patch/minor/major)
-
-## Dependencies
-
-- `@baudevs/bau-log-hero`: For structured logging
-- `openai`: For AI analysis (external dependency)
-- `ws`: For realtime API communication
-- `minimatch`: For file pattern matching
-
-## Important Notes
-
-1. ESM Configuration:
-   - Built as ESM modules
-   - Uses `type: "module"` in package.json
-   - Requires ESM-compatible imports
-
-2. External Dependencies:
-   - OpenAI must be installed separately
-   - bauLogHero must be built in dist
-
-3. Path Resolution:
-   - Uses workspace-relative paths
-   - Handles {workspaceRoot} replacement
-   - Maintains monorepo structure

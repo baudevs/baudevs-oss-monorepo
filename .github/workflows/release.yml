@@ -61,13 +61,12 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
-
       - name: Build Release Tools
         run: pnpm nx build @baudevs/release-tools --verbose
 
       - name: Analyze Changes
         id: analyze-version
-        run: node dist/tools/@baudevs/release-tools/index.esm.js
+        run: node dist/tools/@baudevs/release-tools/index.cjs.js
         env:
           OPENAI_API_KEY: ${{ env.OPENAI_API_KEY }}
 

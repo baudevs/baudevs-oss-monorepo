@@ -1,0 +1,4 @@
+# Debug logs
+debug-logs/
+.logs/
+ws-*.json

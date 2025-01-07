@@ -2,14 +2,20 @@
 
 import { spawn } from 'child_process';
 import { minimatch } from 'minimatch';
-import fs from 'fs';
-import path from 'path';
 import { createLogger } from '@baudevs/bau-log-hero';
 
-const logger = createLogger('git-diff-filter');
+const logger = createLogger({
+  name: 'git-diff-filter',
+  output: {
+    console: false,
+    file: {
+      enabled: true,
+      path: './logs/git-diff',
+      format: 'text'
+    }
+  }
+});
 
-logger.info('This is an info message!');
-logger.debug('Debugging info here...');
 /**
  * Filters out irrelevant files from the Git diff based on predefined patterns.
  * @param diff The raw Git diff string.
@@ -29,19 +35,17 @@ export function filterGitDiff(diff: string): string {
     '**/*.lock',              // Lock files
     '**/*.svg', '**/*.png', '**/*.jpg', // Images
     '**/dist/**',             // Build directories
-
-    // Add more patterns as needed
   ];
+
   const relevantLines = diff.split('\n').filter(line => {
     if (line.startsWith('diff --git a/')) {
       const filePath = line.split(' ')[2].substring(2); // Remove 'a/' prefix
       // Check if the file matches any irrelevant patterns
-      console.log('filePath', filePath);
       const isRelevant = !irrelevantFilePatterns.some(pattern => minimatch(filePath, pattern));
       if (isRelevant) {
-        console.log(`Including file: ${filePath}`);
+        logger.debug('Including file:', { file: filePath });
       } else {
-        console.log(`Filtering out file: ${filePath}`);
+        logger.debug('Filtering out file:', { file: filePath });
       }
       return isRelevant;
     }
@@ -49,19 +53,11 @@ export function filterGitDiff(diff: string): string {
   });
 
   const filteredDiff = relevantLines.join('\n');
-  //console.log('\nFiltered diff:\n', filteredDiff);
+  logger.info('Filtered diff created', { length: filteredDiff.length });
+  logger.debug('Writing filtered diff to log file');
 
-  // Write filtered diff to file
-  const outputDir = path.join(process.cwd(), 'tmp');
-
-  // Create tmp directory if it doesn't exist
-  if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir, { recursive: true });
-  }
-
-  const outputPath = path.join(outputDir, 'filtered-diff.txt');
-  fs.writeFileSync(outputPath, filteredDiff);
-  console.log(`Filtered diff written to: ${outputPath}`);
+  // Log the filtered diff to a file
+  logger.info('filtered-diff', { diff: filteredDiff });
 
   return filteredDiff;
 }

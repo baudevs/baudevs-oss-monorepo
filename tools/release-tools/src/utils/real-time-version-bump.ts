@@ -2,18 +2,7 @@ import WebSocket from 'ws';
 import Ajv, { ValidateFunction } from 'ajv';
 import { getFilteredGitDiff } from './git-diff-filter';
 import { chunkString, limitChunks } from './chunk-helpers';
-
-
-/**
- * Make sure you've set OPENAI_API_KEY in your environment
- * or in GitHub Actions secrets.
- */
-const OPENAI_API_KEY = process.env['OPENAI_API_KEY'] || '';
-
-if (!OPENAI_API_KEY) {
-  console.error('ERROR: Missing OPENAI_API_KEY environment variable.');
-  process.exit(1);
-}
+import { createLogger } from '@baudevs/bau-log-hero';
 
 /**
  * The Realtime model to use. Example: "gpt-4o-realtime-preview-2024-12-17"
@@ -31,11 +20,52 @@ const MAX_CHUNKS = 10;
  */
 const CHUNK_SIZE = 8000;
 
+// Create a single logger with enhanced configuration
+const logger = createLogger({
+  name: 'real-time-version-bump',
+  level: 'debug',
+  output: {
+    console: {
+      enabled: true,
+      truncateJson: {
+        enabled: true,
+        firstLines: 4,
+        lastLines: 4
+      }
+    },
+    file: {
+      enabled: true,
+      path: './logs/release-tools/realtime',
+      format: 'json',
+      rotation: {
+        enabled: true,
+        maxSize: 5 * 1024 * 1024, // 5MB
+        maxFiles: 5,
+        compress: true
+      }
+    },
+    prettyPrint: true,
+    maxDepth: 10
+  }
+});
 
+// Log initialization
+logger.info('🚀 Real-time version bump initialized', {
+  model: REALTIME_MODEL,
+  maxChunks: MAX_CHUNKS,
+  chunkSize: CHUNK_SIZE
+});
 
+/**
+ * Make sure you've set OPENAI_API_KEY in your environment
+ * or in GitHub Actions secrets.
+ */
+const OPENAI_API_KEY = process.env['OPENAI_API_KEY'] ?? '';
 
-
-
+if (!OPENAI_API_KEY) {
+  logger.error('❌ Missing OPENAI_API_KEY environment variable');
+  process.exit(1);
+}
 
 /**
  * Interface for the final JSON result we expect:
@@ -67,6 +97,66 @@ interface RequestEvent {
   };
 }
 
+interface SummarySchema {
+  type: 'object';
+  properties: {
+    summary: { type: 'string' };
+    count_of_breaking_changes: { type: 'number' };
+    count_of_fixes: { type: 'number' };
+    count_of_features: { type: 'number' };
+    count_of_other_changes: { type: 'number' };
+    reasoning: { type: 'string' };
+  };
+  required?: string[];
+  additionalProperties?: boolean;
+}
+
+interface FinalAnalysisSchema {
+  type: 'object';
+  properties: {
+    version_type: { type: 'string' };
+    needs_review: { type: 'boolean' };
+    reasoning: { type: 'string' };
+  };
+  required?: string[];
+  additionalProperties?: boolean;
+}
+
+interface SessionUpdateEvent {
+  event_id: string;
+  type: 'session.update';
+  session: {
+      modalities: string[];
+      instructions: string;
+      voice?: string;
+      input_audio_format?: string;
+      output_audio_format?: string;
+      input_audio_transcription?: {
+          model: string;
+      };
+      turn_detection?: {
+        type: string;
+        threshold: number;
+        prefix_padding_ms: number;
+        silence_duration_ms: number;
+        create_response: boolean;
+      };
+      tools?: {
+        type: string;
+        name: string;
+        description: string;
+        parameters: {
+          type: string;
+          properties: SummarySchema['properties'] | FinalAnalysisSchema['properties'];
+          required: string[];
+        }
+      }[]
+      tool_choice?: string;
+      temperature?: number;
+      max_response_output_tokens?: string;
+  }
+}
+
 /**
  * Interface for potential errors from Realtime API.
  */
@@ -79,19 +169,24 @@ interface RealtimeError extends Error {
  */
 const ajv = new Ajv();
 
-const summarySchema = {
+const summarySchema: SummarySchema = {
   type: 'object',
   properties: {
-    summary: { type: 'string' }
+    summary: { type: 'string' },
+    count_of_breaking_changes: { type: 'number' },
+    count_of_fixes: { type: 'number' },
+    count_of_features: { type: 'number' },
+    count_of_other_changes: { type: 'number' },
+    reasoning: { type: 'string' }
   },
-  required: ['summary'],
+  required: ['summary', 'count_of_breaking_changes', 'count_of_fixes', 'count_of_features', 'count_of_other_changes', 'reasoning'],
   additionalProperties: true
 };
 
-const finalAnalysisSchema = {
+const finalAnalysisSchema: FinalAnalysisSchema = {
   type: 'object',
   properties: {
-    version_type: { type: 'string', enum: ['patch', 'minor', 'major', 'unknown'] },
+    version_type: { type: 'string' },
     needs_review: { type: 'boolean' },
     reasoning: { type: 'string' }
   },
@@ -149,71 +244,86 @@ function createRealtimeConnection(): WebSocket {
  */
 function waitForFinalResponse(ws: WebSocket): Promise<string> {
   return new Promise((resolve, reject) => {
-    let partialText = '';
     let finished = false;
+    let functionCallArguments = '';
+    let partialText = '';
 
     const onMessage = (data: WebSocket.Data) => {
-      let serverEvent: ServerEvent;
-
       try {
-        const message = typeof data === 'string' ? data : data.toString();
-        console.log('Received message:', message);
-        serverEvent = JSON.parse(message);
-      } catch {
-        console.error('Failed to parse server event:', data);
-        return;
-      }
+        const rawMessage = typeof data === 'string' ? data : data.toString();
+        const event = JSON.parse(rawMessage);
+        logger.debug('Received event', { type: event.type, event });
 
-      switch (serverEvent.type) {
-        case 'response.partial':
-          if (serverEvent.response?.text) {
-            partialText += serverEvent.response.text;
-            console.log('Partial text:', partialText);
+        switch (event.type) {
+          case 'response.function_call_arguments.delta':
+            functionCallArguments += event.delta;
+            break;
+
+          case 'response.function_call_arguments.done':
+            finished = true;
+            resolve(event.arguments);
+            break;
+
+          case 'response.partial':
+            if (event.response?.text) {
+              partialText += event.response.text;
+            }
+            break;
+
+          case 'response.final':
+            if (event.response?.text) {
+              partialText += event.response.text;
+            }
+            break;
+
+          case 'response.done':
+            if (!finished) {
+              finished = true;
+              resolve(partialText);
+            }
+            break;
+
+          case 'response.error': {
+            const error = new Error(`Model error: ${JSON.stringify(event)}`);
+            logger.error('WebSocket error response', { event });
+            reject(error);
+            break;
           }
-          break;
 
-        case 'response.final':
-          if (serverEvent.response?.text) {
-            partialText += serverEvent.response.text;
-            console.log('Final text:', partialText);
-          }
-          finished = true;
-          cleanup();
-          resolve(partialText);
-          break;
+          case 'response.output_item.done':
+            // Handle output item completion if needed
+            break;
 
-        case 'response.done':
-          // Some models send "done" with no additional text
-          finished = true;
-          cleanup();
-          resolve(partialText);
-          break;
-
-        case 'response.error':
-          finished = true;
-          cleanup();
-          reject(new Error(`Model error: ${JSON.stringify(serverEvent)}`));
-          break;
-
-        default:
-          // Possibly partial tokens or other event types
-          break;
+          default:
+            logger.debug('Unhandled event type', { type: event.type });
+            break;
+        }
+      } catch (err) {
+        const error = `Failed to parse server event: ${data}`;
+        logger.error('WebSocket parse error', { error, data });
+        reject(new Error(error));
       }
     };
 
     const onClose = () => {
       if (!finished) {
+        const error = 'WebSocket closed before final response';
+        logger.error('❌ WebSocket closed prematurely', { partialText });
+        logError(new Error(error));
         cleanup();
-        reject(new Error('WebSocket closed before final response.'));
+        reject(new Error(error));
       }
     };
 
     const onError = (err: Error) => {
+      logger.error('❌ WebSocket error', { error: err });
+      logError(err);
       cleanup();
       reject(err);
     };
 
     function cleanup() {
+      logger.debug('Cleaning up WebSocket listeners');
       ws.off('message', onMessage);
       ws.off('close', onClose);
       ws.off('error', onError);
@@ -225,17 +335,41 @@ function waitForFinalResponse(ws: WebSocket): Promise<string> {
   });
 }
 
+
+async function sendSessionUpdateEvent(ws: WebSocket, eventObj: SessionUpdateEvent): Promise<string> {
+  const serializedEvent = JSON.stringify(eventObj);
+  logger.debug('Sending session update', { event: eventObj });
+  ws.send(serializedEvent);
+  return await setupWebSocketListeners(ws);
+}
+
 /**
  * Send one "response.create" event to the Realtime model,
  * and wait for the final text using `waitForFinalResponse()`.
  */
-async function sendEventAndAwait(ws: WebSocket, eventObj: RequestEvent): Promise<string> {
+async function sendEventAndAwait(ws: WebSocket, eventObj: RequestEvent | SessionUpdateEvent): Promise<string> {
   return new Promise((resolve, reject) => {
     try {
-      console.log('Sending event:', JSON.stringify(eventObj, null, 2));
-      ws.send(JSON.stringify(eventObj));
-      waitForFinalResponse(ws).then(resolve).catch(reject);
+      const serializedEvent = JSON.stringify(eventObj);
+      logger.debug('Sending WebSocket event', {
+        event: eventObj,
+        serialized: serializedEvent
+      });
+      logWebSocketEvent('send', {
+        event: eventObj,
+        serialized: serializedEvent
+      });
+
+      ws.send(serializedEvent);
+      waitForFinalResponse(ws).then(response => {
+        if (!response.trim()) {
+          logger.warn('⚠️ Received empty response from WebSocket');
+        }
+        resolve(response);
+      }).catch(reject);
     } catch (err) {
+      logger.error('❌ Error sending WebSocket event', { error: err });
+      logError(err);
       reject(err);
     }
   });
@@ -248,7 +382,7 @@ async function sendEventAndAwait(ws: WebSocket, eventObj: RequestEvent): Promise
  * @returns The secondary summarized text.
  */
 async function secondarySummarize(ws: WebSocket, summary: string): Promise<string> {
-  console.log('Performing secondary summarization...');
+  logger.info('Performing secondary summarization...');
 
   const secSummaryEvent: RequestEvent = {
     type: 'response.create',
@@ -258,15 +392,15 @@ async function secondarySummarize(ws: WebSocket, summary: string): Promise<strin
     }
   };
 
-  console.log('Sending secondary summarization request:', JSON.stringify(secSummaryEvent, null, 2));
+  logger.debug('Sending secondary summarization request', { event: secSummaryEvent });
 
   try {
     const secSummary = await sendEventAndAwait(ws, secSummaryEvent);
-    console.log('Secondary summarization complete.');
+    logger.info('Secondary summarization complete');
     return secSummary.trim();
   } catch (err: unknown) {
-    const error = err as RealtimeError;
-    console.error('Error during secondary summarization:', error.message || error);
+    const error = err instanceof Error ? err : new Error(String(err));
+    logger.error('❌ Error during secondary summarization', { error });
     ws.close();
     throw error;
   }
@@ -290,33 +424,153 @@ async function sendEventWithRetries<T>(
     try {
       const responseText = await sendEventAndAwait(ws, eventObj);
       if (!responseText.trim()) {
-        throw new Error('Empty response received.');
+        throw new Error('Empty response received from OpenAI Realtime API');
       }
       return parseAndValidateJSON<T>(responseText, schemaValidator);
     } catch (err: unknown) {
-      const error = err as RealtimeError;
-      console.error(`Attempt ${attempt} failed:`, error.message || error);
+      const error = err instanceof Error ? err : new Error(String(err));
+      logger.error(`❌ Attempt ${attempt} failed`, {
+        error: error.message,
+        attempt,
+        maxRetries,
+        requestType: eventObj.type
+      });
+
       if (attempt === maxRetries) {
-        throw new Error(`All ${maxRetries} attempts failed.`);
+        throw new Error(`All ${maxRetries} attempts failed: ${error.message}`);
       }
-      console.log(`Retrying... (${attempt + 1}/${maxRetries})`);
+
+      logger.warn(`⚠️ Retrying... (${attempt + 1}/${maxRetries})`);
     }
   }
-  throw new Error('Unexpected error in sendEventWithRetries.');
+  throw new Error('Unexpected error in sendEventWithRetries');
 }
 
-/**
- * Analyze the Git diff using the Realtime API.
- * @returns The version analysis result.
- */
+async function logGitDiff(diff: string): Promise<void> {
+  await logger.debug('📄 Git Diff Content', { diff });
+}
+
+async function logChunk(chunkIndex: number, content: string): Promise<void> {
+  await logger.debug(`🔍 Chunk ${chunkIndex} Content`, { content });
+}
+
+async function logChunkSummary(chunkIndex: number, summary: string): Promise<void> {
+  await logger.info(`📝 Chunk ${chunkIndex} Summary`, { summary });
+}
+
+async function logWebSocketEvent(eventType: string, content: unknown): Promise<void> {
+  await logger.debug(`🔌 WebSocket Event: ${eventType}`, { content });
+}
+
+async function logFinalAnalysis(analysis: unknown): Promise<void> {
+  await logger.info('✅ Final Analysis', { analysis });
+}
+
+async function logError(error: Error | unknown): Promise<void> {
+  if (error instanceof Error) {
+    await logger.error('❌ Error occurred', {
+      error: {
+        name: error.name,
+        message: error.message,
+        stack: error.stack
+      }
+    });
+  } else {
+    await logger.error('❌ Unknown error occurred', { error });
+  }
+}
+
+async function setupWebSocketListeners(ws: WebSocket): Promise<string> {
+  return new Promise((resolve, reject) => {
+    let sessionId: string | null = null;
+
+    const onMessage = (data: WebSocket.Data) => {
+      try {
+        const rawMessage = typeof data === 'string' ? data : data.toString();
+        logger.debug('Raw WebSocket message received', { data: rawMessage });
+
+        const event = JSON.parse(rawMessage);
+        logger.debug('Parsed WebSocket event', { event });
+
+        switch (event.type) {
+          case 'session.created':
+            sessionId = event.session.id;
+            logger.info('Session created', { sessionId });
+            break;
+
+          case 'session.updated':
+            sessionId = event.session.id;
+            logger.info('Session updated', { sessionId });
+            if (sessionId) {
+              resolve(sessionId);
+            }
+            break;
+
+          case 'response.partial':
+            if (event.response?.text) {
+              logger.debug('Partial response received', {
+                text: event.response.text,
+                sessionId
+              });
+            }
+            break;
+
+          case 'response.final':
+            if (event.response?.text) {
+              logger.debug('Final response received', {
+                text: event.response.text,
+                sessionId
+              });
+            }
+            break;
+
+          case 'response.done':
+            logger.debug('Done response received', { sessionId });
+            break;
+
+          case 'response.error': {
+            const error = new Error(`Model error: ${JSON.stringify(event)}`);
+            logger.error('WebSocket error response', { event });
+            reject(error);
+            break;
+          }
+
+          default:
+            logger.debug('Received event', { type: event.type, event });
+            break;
+        }
+      } catch (err) {
+        const error = `Failed to parse server event: ${data}`;
+        logger.error('WebSocket parse error', { error, data });
+        reject(new Error(error));
+      }
+    };
+
+    const onError = (err: Error) => {
+      logger.error('WebSocket error', { error: err });
+      reject(err);
+    };
+
+    const onClose = () => {
+      if (!sessionId) {
+        logger.warn('WebSocket closed before session was established');
+        reject(new Error('WebSocket closed before session was established'));
+      }
+    };
+
+    ws.on('message', onMessage);
+    ws.on('error', onError);
+    ws.on('close', onClose);
+  });
+}
+
 export async function analyzeGitDiffForVersion(): Promise<VersionAnalysisResult> {
   // 1. Get the filtered Git diff
   const diff = await getFilteredGitDiff();
-  console.info('Filtered Git diff:', diff);
   if (!diff) {
-    console.info('No relevant changes found in the Git diff.');
+    logger.info('No relevant changes found in the Git diff');
     return {
-      version_type: 'unknown',
+      version_type: 'unknown' as const,
       needs_review: false,
       reasoning: 'No relevant changes detected.',
     };
@@ -325,131 +579,131 @@ export async function analyzeGitDiffForVersion(): Promise<VersionAnalysisResult>
   // 2. Chunk the diff
   const rawChunks = chunkString(diff, CHUNK_SIZE);
   const limitedChunks = limitChunks(rawChunks, MAX_CHUNKS);
-  console.log(`Sending ${limitedChunks.length} chunk(s) to OpenAI Realtime API for summarization.`);
+  logger.info(`Processing ${limitedChunks.length} chunk(s) for analysis`);
 
   // 3. Connect to Realtime API
   const ws = createRealtimeConnection();
 
-  // Wait for the connection to open
+  // Wait for connection
   await new Promise<void>((resolve, reject) => {
-    ws.once('open', () => {
-      resolve();
-    });
-    ws.once('error', (err) => {
-      reject(err);
-    });
+    ws.once('open', resolve);
+    ws.once('error', reject);
   });
 
-  console.log('Connected to Realtime API.');
-
-  const chunkSummaries: string[] = [];
-
-  // 4. Summarize each chunk
-  for (let i = 0; i < limitedChunks.length; i++) {
-    const chunk = limitedChunks[i];
-    console.log(`Summarizing chunk ${i + 1} of ${limitedChunks.length}...`);
-
-    const summaryEvent: RequestEvent = {
-      type: 'response.create',
-      response: {
+  try {
+    // 4. Initialize session with initial instructions
+    const initialSessionEvent: SessionUpdateEvent = {
+      type: 'session.update',
+      event_id: crypto.randomUUID(),
+      session: {
         modalities: ['text'],
         instructions: `
-          Summarize the following Git diff chunk in a concise, developer-focused manner.
-          Focus on breaking changes, new features, and bug fixes.
-          Format your response as a JSON object with the structure: {"summary": "Your summarized text here."}
-
-          Git Diff Chunk:
-          ${chunk}
-        `
+          You are a senior developer analyzing Git diffs.
+          You will receive chunks of Git diff content and should summarize the changes,
+          focusing on identifying breaking changes, new features, and bug fixes.
+          Please provide structured summaries that can be used to determine version bumps.
+        `,
+        tools: [{
+          type: 'function',
+          name: 'summary_response',
+          description: 'Summarize the given chunk of text',
+          parameters: {
+            type: 'object',
+            properties: {
+              summary: { type: 'string' },
+              count_of_breaking_changes: { type: 'number' },
+              count_of_fixes: { type: 'number' },
+              count_of_features: { type: 'number' },
+              count_of_other_changes: { type: 'number' },
+              reasoning: { type: 'string' }
+            },
+            required: ['summary', 'count_of_breaking_changes', 'count_of_fixes', 'count_of_features', 'count_of_other_changes', 'reasoning']
+          }
+        }],
+        tool_choice: "auto",
+        temperature: 0.7
       }
     };
 
-    try {
-      console.log(`Sending chunk ${i + 1} summary request.`);
-      const summary = await sendEventWithRetries<{ summary: string }>(
-        ws,
-        summaryEvent,
-        validateSummary,
-        3 // Number of retries
-      );
-      if (!summary.summary.trim()) {
-        console.warn(`⚠️ Chunk ${i + 1} returned an empty summary.`);
-      } else {
-        chunkSummaries.push(summary.summary.trim());
-        console.log(`✔ Chunk ${i + 1} summarized.`);
-      }
-    } catch (err: unknown) {
-      const error = err as RealtimeError;
-      console.error(`Error summarizing chunk ${i + 1}:`, error.message || error);
-      ws.close();
-      throw error;
-    }
-  }
+    // Send initial session update and wait for session ID
+    const sessionId = await sendSessionUpdateEvent(ws, initialSessionEvent);
+    logger.info('Session initialized', { sessionId });
 
-  // 5. Combine summaries
-  let combinedSummary = chunkSummaries.join('\n\n');
-  console.log('All chunks summarized. Checking combined summary size...');
+    // 5. Process chunks incrementally
+    const chunkSummaries: string[] = [];
+    for (let i = 0; i < limitedChunks.length; i++) {
+      const chunk = limitedChunks[i];
+      logger.info(`Processing chunk ${i + 1} of ${limitedChunks.length}`);
 
-  // 6. If combined summary is too large, perform secondary summarization
-  const MAX_SUMMARY_LENGTH = 5000; // Adjust based on OpenAI token limits
-
-  if (combinedSummary.length > MAX_SUMMARY_LENGTH) {
-    console.log(`Combined summary length (${combinedSummary.length}) exceeds ${MAX_SUMMARY_LENGTH}. Performing secondary summarization.`);
-    combinedSummary = await secondarySummarize(ws, combinedSummary);
-    console.log('Secondary summarization complete.');
-  } else {
-    console.log('Combined summary is within acceptable length.');
-  }
-
-  // 7. Final version analysis request with retries
-  const finalEvent: RequestEvent = {
-    type: 'response.create',
-    response: {
-      modalities: ['text'],
-      instructions: `
-        Based on the following summarized Git changes, determine the appropriate version bump:
-          - "patch" for bug fixes or small improvements
-          - "minor" for new features that do not break backward compatibility
-          - "major" for breaking changes
-
-        Provide detailed reasoning and indicate if a human review is needed.
-        Format your response as JSON with the structure:
-        {
-          "version_type": "minor",
-          "needs_review": false,
-          "reasoning": "Added new authentication feature without breaking existing endpoints."
+      // Send chunk for analysis
+      const chunkEvent: RequestEvent = {
+        type: 'response.create',
+        response: {
+          modalities: ['text'],
+          instructions: `Analyze this Git diff chunk and provide a structured summary:\n\n${chunk}`
         }
+      };
 
-        Summaries:
-        ${combinedSummary}
-      `
+      const summary = await sendEventAndAwait(ws, chunkEvent);
+      const validatedSummary = parseAndValidateJSON(summary, validateSummary);
+      chunkSummaries.push(JSON.stringify(validatedSummary));
+      logger.info(`Chunk ${i + 1} processed`);
     }
-  };
 
-  console.log('Sending final version analysis request.');
-  console.log('Final Event:', JSON.stringify(finalEvent, null, 2));
+    // 6. Update session for final version analysis
+    const finalSessionEvent: SessionUpdateEvent = {
+      type: 'session.update',
+      event_id: sessionId,
+      session: {
+        modalities: ['text'],
+        instructions: `
+          You are now a version control expert.
+          Based on the previous summaries of Git changes, determine the appropriate version bump:
+          - Use "patch" for bug fixes and minor improvements
+          - Use "minor" for new features that maintain backward compatibility
+          - Use "major" for breaking changes
 
-  let parsed: VersionAnalysisResult;
-  try {
-    parsed = await sendEventWithRetries<VersionAnalysisResult>(
-      ws,
-      finalEvent,
-      validateFinalAnalysis,
-      3 // Number of retries
-    );
-  } catch (err: unknown) {
-    const error = err as RealtimeError;
-    console.error('Error during final version analysis:', error.message || error);
+          Analyze the summaries and provide your decision in a structured format.
+        `,
+        tools: [{
+          type: 'function',
+          name: 'version_analysis',
+          description: 'Analyze version bump based on changes',
+          parameters: {
+            type: 'object',
+            properties: {
+              version_type: { type: 'string' },
+              needs_review: { type: 'boolean' },
+              reasoning: { type: 'string' }
+            },
+            required: ['version_type', 'needs_review', 'reasoning']
+          }
+        }],
+        tool_choice: "auto",
+        temperature: 0.7
+      }
+    };
+
+    await sendSessionUpdateEvent(ws, finalSessionEvent);
+
+    // 7. Send final analysis request
+    const finalAnalysisEvent: RequestEvent = {
+      type: 'response.create',
+      response: {
+        modalities: ['text'],
+        instructions: `Based on these summaries, determine the version bump:\n\n${chunkSummaries.join('\n\n')}`
+      }
+    };
+
+    const finalAnalysis = await sendEventAndAwait(ws, finalAnalysisEvent);
+    const result = parseAndValidateJSON(finalAnalysis, validateFinalAnalysis);
+
+    logger.info('Analysis complete', { result });
+    return result as VersionAnalysisResult;
+
+  } finally {
     ws.close();
-    throw error;
   }
-
-  // 8. Close the WebSocket connection
-  ws.close();
-
-  // 9. Log and return the final analysis
-  console.log('\nFinal Version Analysis:\n', JSON.stringify(parsed, null, 2));
-  return parsed;
 }
 
 /**
