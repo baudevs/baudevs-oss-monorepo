@@ -2,6 +2,15 @@ export type LogLevel = 'debug' | 'info' | 'warn' | 'error';
 export type TimestampFormat = 'iso' | 'short' | 'none';
 export type TagReturn = string | [string, string];
 
+export interface CIConfig {
+  enabled?: boolean;
+  minLevel?: LogLevel;
+  filterPatterns?: string[];
+  showFullObjects?: boolean;
+  truncateLength?: number;
+  excludeMetadata?: boolean;
+}
+
 export interface LogEntry {
   timestamp: string;
   level: LogLevel;
@@ -37,6 +46,7 @@ export interface OutputConfig {
   file?: FileOutputConfig;
   prettyPrint?: boolean;
   maxDepth?: number;
+  ci?: CIConfig;
 }
 
 export interface LoggerConfig {
