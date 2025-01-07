@@ -16,14 +16,8 @@
   "author": "Baudevs",
   "license": "CC BY-NC 4.0",
   "private": false,
-  "main": "./src/index.cjs.js",
-  "module": "./src/index.esm.js",
-  "types": "./src/index.d.ts",
-  "unpkg": "./src/index.umd.js",
-  "jsdelivr": "./src/index.umd.js.gz",
   "type": "module",
   "scripts": {
-    "build": "rollup -c",
     "dev": "tsx src/index.ts",
     "dev:realtime": "tsx src/index.ts --realtime"
   },
@@ -35,10 +29,6 @@
     "@baudevs/bau-log-hero": "workspace:*"
   },
   "devDependencies": {
-    "@nx/rollup": "^20.3.0",
-    "@rollup/plugin-commonjs": "^23.0.7",
-    "@rollup/plugin-node-resolve": "^15.3.1",
-    "@rollup/plugin-typescript": "^10.0.1",
     "@types/node": "^20.17.11",
     "@types/ws": "^8.5.13",
     "typescript": "^5.7.2",

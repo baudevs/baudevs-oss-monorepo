@@ -266,27 +266,35 @@ async function withCustomNX(options) {
       // Cleanup hook
       {
         name: 'cleanup-temp',
-        closeBundle: {
+        buildEnd: {
           sequential: true,
           order: 'post',
-          async handler() {
+          async handler(error) {
             try {
               await cleanupConfigFiles(path.dirname(tsConfig));
-              console.log('restored tsconfig files');
-            } catch (error) {
-              console.error('Error cleaning up tsconfig files:', error);
+              console.log('✅ Restored tsconfig files');
+            } catch (cleanupError) {
+              console.error('❌ Error cleaning up tsconfig files:', cleanupError);
+              // If there was an original error, we want to throw that instead
+              if (error) throw error;
+              // Otherwise throw the cleanup error
+              throw cleanupError;
             }
-            // Clean up temp directory
-            /* if (existsSync(tempBuildDir)) {
-              try {
-                //await fsPromises.rm(tempBuildDir, { recursive: true, force: true });
-
-                console.log(`Cleaned temporary directory: ${tempBuildDir}`);
-              } catch (error) {
-                console.warn(`Warning: Could not clean temporary directory ${tempBuildDir}:`, error);
-              }
-            } */
-
+          }
+        },
+        // Add a second hook to ensure cleanup runs even if build fails
+        buildError: {
+          sequential: true,
+          order: 'post',
+          async handler(error) {
+            try {
+              await cleanupConfigFiles(path.dirname(tsConfig));
+              console.log('✅ Restored tsconfig files after error');
+            } catch (cleanupError) {
+              console.error('❌ Error cleaning up tsconfig files after build error:', cleanupError);
+              // Always throw the original error in this case
+              throw error;
+            }
           }
         }
       }
