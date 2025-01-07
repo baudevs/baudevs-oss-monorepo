@@ -1,15 +1,15 @@
 // libs/logger/src/index.ts
-import { BrowserLogger } from './browser/logger';
-import { NodeLogger } from './node/logger';
-import type { LoggerConfig, LogLevel } from './types';
+import type { LoggerConfig } from './types';
+import { Logger } from './lib/logger';
 
-export type { LoggerConfig, LogLevel };
+export { Logger } from './lib/logger';
+export { OutputHandler } from './lib/output-handler';
+export * from './types';
 
-const isBrowser = typeof window !== 'undefined';
+// Factory function to create a new logger instance
+export function createLogger(config: LoggerConfig = {}): Logger {
+  return new Logger(config);
+}
 
-export const createLogger = (filename: string): BrowserLogger | NodeLogger => {
-  const enabled = true; // Default to enabled, can be configured via config
-  return isBrowser
-    ? new BrowserLogger(filename, enabled)
-    : new NodeLogger(filename, enabled);
-};
+// Utility functions
+export { getTimeString, ensureError, sanitizeFilename, formatBytes } from './lib/utils';

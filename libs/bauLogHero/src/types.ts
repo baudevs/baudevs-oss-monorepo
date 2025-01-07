@@ -1,10 +1,51 @@
-export interface LoggerConfig {
-  level?: LogLevel;
-  enabled: boolean;
+export type LogLevel = 'debug' | 'info' | 'warn' | 'error';
+export type TimestampFormat = 'iso' | 'short' | 'none';
+export type TagReturn = string | [string, string];
+
+export interface LogEntry {
+  timestamp: string;
+  level: LogLevel;
+  message: unknown;
+  args: unknown[];
+  filename: string;
 }
 
-export type LogLevel = 'debug' | 'info' | 'warn' | 'error';
-export type TagReturn = string | [string, string];
+export interface RotationConfig {
+  enabled?: boolean;
+  maxSize?: number; // in bytes
+  maxFiles?: number;
+  compress?: boolean;
+}
+
+export interface FileOutputConfig {
+  enabled?: boolean;
+  path?: string;
+  format?: 'json' | 'text';
+  browserFallback?: 'download' | 'localStorage' | 'console' | 'none';
+  rotation?: RotationConfig;
+}
+
+export interface OutputConfig {
+  console?: boolean;
+  file?: FileOutputConfig;
+  prettyPrint?: boolean;
+  maxDepth?: number;
+}
+
+export interface LoggerConfig {
+  name?: string;
+  level?: LogLevel;
+  timestamp?: boolean;
+  timestampFormat?: TimestampFormat;
+  output?: OutputConfig;
+}
+
+export interface LogContext {
+  ip?: string;
+  url?: string;
+  statusCode?: number;
+  [key: string]: unknown;
+}
 
 export const colors = {
   reset: '\x1b[0m',

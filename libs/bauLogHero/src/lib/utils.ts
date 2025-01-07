@@ -1,77 +1,41 @@
 // libs/bauLogHero/src/lib/utils.ts
 
-export interface LoggerConfig {
-  level?: 'debug' | 'info' | 'warn' | 'error';
-  enabled: boolean;
-}
+import type { LoggerConfig } from '../types';
 
-const defaultConfig: LoggerConfig = {
-  level: 'info',
-  enabled: true
-};
-
-export function setLoggerConfig(config: Partial<LoggerConfig>): void {
-  Object.assign(defaultConfig, config);
-}
-
-export function getLoggerConfig(): LoggerConfig {
-  return { ...defaultConfig };
-}
-
-/**
- * getTimeString returns a function that when called returns the current ISO timestamp.
- */
-export function getTimeString(): () => string {
+export const getTimeString = (config?: Pick<LoggerConfig, 'timestampFormat'>) => {
   return () => {
     const now = new Date();
-    return now.toISOString();
+
+    switch (config?.timestampFormat) {
+      case 'short':
+        return now.toLocaleTimeString();
+      case 'none':
+        return '';
+      case 'iso':
+      default:
+        return now.toISOString();
+    }
   };
-}
+};
 
-/**
- * fileHasEnabledComment checks if the file at `filePath` contains
- * "// baudevs-logger-enabled" comment in the first few lines.
- * Only works in Node.js environment.
- */
-export function fileHasEnabledComment(filePath: string): boolean {
-  // In browser environments, use the config
-  if (typeof window !== 'undefined') {
-    return defaultConfig.enabled;
+export const ensureError = (error: unknown): Error => {
+  if (error instanceof Error) return error;
+  return new Error(String(error));
+};
+
+export const sanitizeFilename = (name: string): string => {
+  return name.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+};
+
+export const formatBytes = (bytes: number): string => {
+  const units = ['B', 'KB', 'MB', 'GB', 'TB'];
+  let size = bytes;
+  let unitIndex = 0;
+
+  while (size >= 1024 && unitIndex < units.length - 1) {
+    size /= 1024;
+    unitIndex++;
   }
 
-  // In Node.js environment, try to read the file
-  try {
-    // Dynamically import fs only in Node environment
-    const fs = require('fs');
-    if (!fs.existsSync(filePath)) return defaultConfig.enabled;
-
-    const content = fs.readFileSync(filePath, 'utf8').toString();
-    const lines = content.split('\n').slice(0, 5);
-    return lines.some((line: string): boolean => line.includes('// baudevs-logger-enabled'));
-  } catch {
-    return defaultConfig.enabled;
-  }
-}
-
-/**
- * parseJson5Like
- * A function that attempts to parse a JSON-like string with relaxed JSON5-like rules.
- */
-export function parseJson5Like(input: string): unknown {
-  // Remove single-line comments
-  let withoutComments = input.replace(/\/\/[^\n]*\n/g, '\n');
-
-  // Remove multi-line comments
-  withoutComments = withoutComments.replace(/\/\*[\s\S]*?\*\//g, '');
-
-  // Allow trailing commas in objects and arrays
-  withoutComments = withoutComments.replace(/,\s*([}\]])/g, '$1');
-
-  // Allow unquoted keys
-  withoutComments = withoutComments.replace(
-    /([{,]\s*)([A-Za-z0-9_]+)\s*:/g,
-    '$1"$2":'
-  );
-
-  return JSON.parse(withoutComments.trim());
-}
+  return `${size.toFixed(2)}${units[unitIndex]}`;
+};

@@ -4,18 +4,19 @@ import { colors } from '../types';
 export class BrowserLogger {
   private config: LoggerConfig;
   private readonly filename: string;
-  private enabled: boolean;
 
-  constructor(filename: string, enabled: boolean) {
-    this.config = { level: 'info', enabled: true };
+  constructor(filename: string, config: LoggerConfig) {
+    this.config = config;
     this.filename = filename;
-    this.enabled = enabled;
+    const isEnabled = config.output?.console ?? true;
 
-    if (this.enabled && process.env['NODE_ENV'] !== 'test') {
+    if (isEnabled && process.env['NODE_ENV'] !== 'test') {
       const timeString = new Date().toISOString();
       console.log(
-        `%cBaudevsLogger initialized for ${this.filename} at ${timeString}`,
-        'color: blue; font-weight: bold;'
+        '%cBaudevsLogger initialized for %s at %s',
+        'color: blue; font-weight: bold;',
+        filename,
+        timeString
       );
     }
   }
@@ -37,11 +38,15 @@ export class BrowserLogger {
   }
 
   enable(): void {
-    this.enabled = true;
+    this.setConfig({ output: { console: true } });
   }
 
   disable(): void {
-    this.enabled = false;
+    this.setConfig({ output: { console: false } });
+  }
+
+  setConfig(config: Partial<LoggerConfig>): void {
+    this.config = { ...this.config, ...config };
   }
 
   log(message: unknown, ...args: unknown[]): void {
@@ -74,21 +79,33 @@ export class BrowserLogger {
     return symbols[level];
   }
 
+  private formatTimestamp(timestamp: string): string {
+    switch (this.config.timestampFormat) {
+      case 'short':
+        return new Date(timestamp).toLocaleTimeString();
+      case 'none':
+        return '';
+      case 'iso':
+      default:
+        return timestamp;
+    }
+  }
+
   private log_messages(message: unknown, level: LogLevel = 'info', ...args: unknown[]): void {
-    if (!this.enabled) return;
+    if (!this.config.output?.console) return;
 
     const order: LogLevel[] = ['debug', 'info', 'warn', 'error'];
     const configLevel = this.config.level || 'debug';
     if (order.indexOf(level) < order.indexOf(configLevel)) return;
 
     const timestamp = new Date().toISOString();
+    const formattedTimestamp = this.formatTimestamp(timestamp);
     const symbol = this.getLevelSymbol(level);
     const levelText = level.toUpperCase();
 
     const prefix = [
-      `${symbol} %c${timestamp}%c ${levelText} %c${this.filename}%c → `,
-      'background:white; color:black; font-weight:bold;',
-      '',
+      `${symbol} ${this.config.timestamp ? `%c${formattedTimestamp}%c ` : ''}${levelText} %c${this.filename}%c → `,
+      ...(this.config.timestamp ? ['background:white; color:black; font-weight:bold;', ''] : []),
       'background:blue; color:white; font-weight:bold;',
       ''
     ];

@@ -1,3 +1,46 @@
+# Changelog
+
+## [Unreleased]
+
+### Breaking Changes
+
+- Removed `enabled` property from `LoggerConfig` interface
+- Removed direct console logging in favor of configurable output handlers
+- Changed logger initialization to use named configuration instead of filename
+- Removed JSON5-like config file support
+- Removed automatic logger enabling via file comments
+
+### Added
+
+- 🧠 New Smart Analysis feature for AI-powered log insights
+  - Automatic pattern detection and grouping
+  - Context extraction (IPs, URLs, status codes)
+  - Real-time log analysis with configurable thresholds
+  - Intelligent summaries and pattern reporting
+- New `OutputHandler` class for managing different output methods
+- File output support with rotation and compression capabilities
+- Browser-specific output options (download, localStorage, console)
+- Configurable object serialization depth with `maxDepth` option
+- Pretty printing support for objects and JSON output
+- Static utility methods for managing localStorage logs
+- Comprehensive error handling with stack trace preservation
+
+### Changed
+
+- Restructured configuration interface for better type safety
+- Enhanced timestamp formatting options
+- Improved browser environment detection
+- Updated error handling to preserve stack traces
+- Made all logging methods asynchronous
+- Simplified logger instantiation with factory function
+
+### Fixed
+
+- Improved type safety across the library
+- Better handling of circular references in object serialization
+- More reliable browser environment detection
+- Proper cleanup of resources in browser downloads
+
 ## 1.3.0 (2024-12-13)
 
 ### 🚀 Features

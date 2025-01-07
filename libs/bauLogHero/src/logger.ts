@@ -1,16 +1,11 @@
 // libs/bauLogHero/src/logger.ts
 
-import { getTimeString, parseJson5Like } from '@/lib/utils';
-import type { LoggerConfig } from '@/lib/utils';
+import { getTimeString } from './lib/utils';
+import type { LoggerConfig, LogLevel } from './types';
 
-
-export type Colors = typeof colors;
-
-
-export type LogLevel = 'debug' | 'info' | 'warn' | 'error';
 export type TagReturn = string | [string, string];
 
-export const colors: Record<string, string> = {
+export const colors = {
   reset: '\x1b[0m',
   bright: '\x1b[1m',
   dim: '\x1b[2m',
@@ -30,33 +25,34 @@ export const colors: Record<string, string> = {
   bgCyan: '\x1b[46;1m',
   bgWhite: '\x1b[47;1m',
 } as const;
+
+export type Colors = typeof colors;
+
 export class BaudevsLoggerInstance {
   private readonly isBrowser: boolean;
   private config: LoggerConfig;
   private readonly filename: string;
-  private enabled: boolean;
 
-  constructor(filename: string, enabled: boolean) {
+  constructor(filename: string, config?: Partial<LoggerConfig>) {
     this.isBrowser = typeof window !== 'undefined';
-    this.config = { level: 'info', enabled: true };
-    this.filename = filename;
-    this.enabled = enabled;
-
-    if (!this.isBrowser) {
-      const configFilePath = filename.replace(/\.ts$/, '.config.json5');
-      try {
-        const fs = require('fs');
-        if (fs.existsSync(configFilePath)) {
-          const rawConfig = fs.readFileSync(configFilePath, 'utf8');
-          this.config = parseJson5Like(rawConfig) as LoggerConfig;
+    this.config = {
+      level: 'info',
+      timestamp: true,
+      timestampFormat: 'iso',
+      output: {
+        console: true,
+        file: {
+          enabled: false,
+          format: 'text',
+          browserFallback: this.isBrowser ? 'console' : undefined
         }
-      } catch {
-        // Ignore config parse errors
-      }
-    }
+      },
+      ...config
+    };
+    this.filename = filename;
 
     // Only print initialization outside of test environment
-    if (this.enabled && process.env['NODE_ENV'] !== 'test') {
+    if (this.config.output?.console && process.env['NODE_ENV'] !== 'test') {
       const timeString = getTimeString();
       const initMessage = this.buildInitMessage(timeString());
       if (initMessage) {
@@ -104,11 +100,15 @@ export class BaudevsLoggerInstance {
   }
 
   enable(): void {
-    this.enabled = true;
+    this.setConfig({ output: { console: true } });
   }
 
   disable(): void {
-    this.enabled = false;
+    this.setConfig({ output: { console: false } });
+  }
+
+  setConfig(config: Partial<LoggerConfig>): void {
+    this.config = { ...this.config, ...config };
   }
 
   log(message: unknown, ...args: unknown[]): void {
@@ -141,14 +141,27 @@ export class BaudevsLoggerInstance {
     return symbols[level];
   }
 
+  private formatTimestamp(timestamp: string): string {
+    switch (this.config.timestampFormat) {
+      case 'short':
+        return new Date(timestamp).toLocaleTimeString();
+      case 'none':
+        return '';
+      case 'iso':
+      default:
+        return timestamp;
+    }
+  }
+
   private log_messages(message: unknown, level: LogLevel = 'info', ...args: unknown[]): void {
-    if (!this.enabled) return;
+    if (!this.config.output?.console) return;
 
     const order: LogLevel[] = ['debug', 'info', 'warn', 'error'];
     const configLevel = this.config.level || 'debug';
     if (order.indexOf(level) < order.indexOf(configLevel)) return;
 
     const timestamp = getTimeString()();
+    const formattedTimestamp = this.formatTimestamp(timestamp);
     const tags: Record<LogLevel, TagReturn> = {
       debug: this.createTag('DEBUG', colors['bgCyan'], colors['black']),
       info: this.createTag('INFO', colors['bgGreen'], colors['black']),
@@ -157,7 +170,7 @@ export class BaudevsLoggerInstance {
     };
 
     const fileTag = this.createTag(this.filename, colors['bgBlue'], colors['white']);
-    const timeTag = this.createTag(timestamp, colors['bgWhite'], colors['black']);
+    const timeTag = this.config.timestamp ? this.createTag(formattedTimestamp, colors['bgWhite'], colors['black']) : '';
     const symbol = this.getLevelSymbol(level);
 
     let prefix: string[] = [];
@@ -166,9 +179,8 @@ export class BaudevsLoggerInstance {
     if (this.isBrowser) {
       const levelText = level.toUpperCase();
       prefix = [
-        `${symbol} %c${timestamp}%c ${levelText} %c${this.filename}%c → `,
-        'background:white; color:black; font-weight:bold;',
-        '',
+        `${symbol} ${this.config.timestamp ? `%c${formattedTimestamp}%c ` : ''}${levelText} %c${this.filename}%c → `,
+        ...(this.config.timestamp ? ['background:white; color:black; font-weight:bold;', ''] : []),
         'background:blue; color:white; font-weight:bold;',
         ''
       ];
@@ -184,7 +196,7 @@ export class BaudevsLoggerInstance {
         Array.isArray(tag) ? tag[0].replace(/%c\s?/, '') : tag;
 
       prefix = [
-        `${symbol} ${resolveTag(timeTag)} ${resolveTag(tags[level])} ${resolveTag(fileTag)}`,
+        `${symbol} ${this.config.timestamp ? `${resolveTag(timeTag)} ` : ''}${resolveTag(tags[level])} ${resolveTag(fileTag)}`,
         '→'
       ];
       levelLine = [linePrefix];
