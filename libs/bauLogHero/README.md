@@ -124,11 +124,43 @@ When running in a browser, file output falls back to one of these options:
 
 ### JSON Lines Format
 
-Each log entry is a single line of JSON:
+Each log entry is written as a complete JSON object on a single line. Lines are separated by newlines, not commas. To read these files:
 
-```json
-{"timestamp":"2024-01-07T12:34:56.789Z","level":"info","logger":"my-app","message":"Application started","metadata":{"filename":"app.ts","pid":1234,"hostname":"my-machine"}}
-{"timestamp":"2024-01-07T12:34:57.123Z","level":"debug","logger":"my-app","message":"Processing request","data":["GET /api/users"],"metadata":{"filename":"api.ts","pid":1234,"hostname":"my-machine"}}
+```typescript
+// Node.js example
+import { createReadStream } from 'node:fs';
+import { createInterface } from 'node:readline';
+
+const readLogs = async (filePath: string) => {
+  const fileStream = createReadStream(filePath);
+  const rl = createInterface({
+    input: fileStream,
+    crlfDelay: Infinity
+  });
+
+  for await (const line of rl) {
+    const logEntry = JSON.parse(line);
+    // Process log entry
+  }
+};
+```
+
+❌ Don't try to parse the entire file as JSON:
+```typescript
+// This will fail
+const logs = JSON.parse(fs.readFileSync('logs.jsonl', 'utf8'));
+```
+
+✅ Process one line at a time:
+```typescript
+// This is correct
+const lines = fs.readFileSync('logs.jsonl', 'utf8').split('\n');
+for (const line of lines) {
+  if (line.trim()) {
+    const logEntry = JSON.parse(line);
+    // Process log entry
+  }
+}
 ```
 
 ### Console Output

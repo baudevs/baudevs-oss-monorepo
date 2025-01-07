@@ -1,5 +1,5 @@
 import type { LogLevel, OutputConfig, FileOutputConfig } from '../types';
-import { getTimeString } from './utils';
+import { getTimeString, findRelevantEmoji } from './utils';
 
 // TypeScript declarations for File System Access API
 declare global {
@@ -133,10 +133,15 @@ export class OutputHandler {
     if (consoleConfig?.enabled) {
       const consoleMethod = (console[level] as Console['log']) || console.log;
       const formattedMessage = this.#formatConsoleMessage(entry);
-      const truncatedArgs = args.map(arg =>
-        this.#shouldTruncateJson(arg) ? this.#truncateJson(arg) : arg
-      );
-      consoleMethod(formattedMessage, ...truncatedArgs);
+
+      if (args.length > 0) {
+        const formattedArgs = args.map(arg =>
+          this.#shouldTruncateJson(arg) ? this.#truncateJson(arg) : arg
+        );
+        consoleMethod(formattedMessage, ...formattedArgs);
+      } else {
+        consoleMethod(formattedMessage);
+      }
     }
 
     // File output if enabled
@@ -152,7 +157,7 @@ export class OutputHandler {
    * @internal
    */
   #formatConsoleMessage(entry: LogEntry): string {
-    const { timestamp, level, filename } = entry;
+    const { timestamp, level, message, filename } = entry;
     const levelSymbols: Record<LogLevel, string> = {
       debug: '🔍',
       info: 'ℹ️',
@@ -171,7 +176,10 @@ export class OutputHandler {
     const dim = '\x1b[2m';
     const bright = '\x1b[1m';
 
-    return `${levelSymbols[level]} ${dim}[${timestamp}]${reset} ${levelColors[level]}${level.toUpperCase()}${reset} ${bright}[${filename}]${reset} →`;
+    // Get contextual emoji based on message content
+    const contextEmoji = typeof message === 'string' ? findRelevantEmoji(message) : levelSymbols[level];
+
+    return `${contextEmoji} ${dim}[${timestamp}]${reset} ${levelColors[level]}${level.toUpperCase()}${reset} ${bright}[${filename}]${reset} → ${message}`;
   }
 
   /**
