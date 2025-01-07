@@ -107,7 +107,10 @@
     ".env.local",
     ".env.development",
     ".env.production",
-    ".env.test"
+    ".env.test",
+    "debug-logs/**/*",
+    "tools/release-tools/debug-logs/",
+    "ws-*.json"
 		],
 		"cSpell.languageSettings": [
       {
