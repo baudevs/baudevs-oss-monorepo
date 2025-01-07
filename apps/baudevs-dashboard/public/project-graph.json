@@ -727,7 +727,7 @@
               "cache": false,
               "executor": "nx:run-commands",
               "options": {
-                "command": "pnpm --filter @baudevs/release-tools run build",
+                "command": "pnpm add -g tsx && tsx tools/release-tools/src/index.ts",
                 "parallel": false,
                 "verbose": true
               },
