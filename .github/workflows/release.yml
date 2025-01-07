@@ -86,20 +86,35 @@ jobs:
             exit 1
           fi
 
+          # Validate JSON and extract values
           if ! echo "$RESULT" | jq . >/dev/null 2>&1; then
             echo "Error: Invalid JSON output"
             echo "Output was: $RESULT"
             exit 1
           fi
 
+          # Extract values using jq
           VERSION_TYPE=$(echo "$RESULT" | jq -r '.version_type')
           NEEDS_REVIEW=$(echo "$RESULT" | jq -r '.needs_review')
           REASONING=$(echo "$RESULT" | jq -r '.reasoning')
-          cd ../../
 
+          # Validate required fields
+          if [ "$VERSION_TYPE" = "null" ] || [ "$NEEDS_REVIEW" = "null" ] || [ "$REASONING" = "null" ]; then
+            echo "Error: Missing required fields in JSON output"
+            echo "Output was: $RESULT"
+            exit 1
+          fi
+
+          echo "Extracted values:"
+          echo "Version type: $VERSION_TYPE"
+          echo "Needs review: $NEEDS_REVIEW"
+          echo "Reasoning: $REASONING"
+
+          # Set outputs
           echo "version_type=$VERSION_TYPE" >> $GITHUB_OUTPUT
           echo "needs_review=$NEEDS_REVIEW" >> $GITHUB_OUTPUT
           echo "reasoning=$REASONING" >> $GITHUB_OUTPUT
+          cd ../../
         env:
           OPENAI_API_KEY: ${{ env.OPENAI_API_KEY }}
 

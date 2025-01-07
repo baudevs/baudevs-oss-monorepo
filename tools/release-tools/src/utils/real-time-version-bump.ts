@@ -569,16 +569,25 @@ async function setupWebSocketListeners(ws: WebSocket): Promise<string> {
   });
 }
 
-export async function analyzeGitDiffForVersion(): Promise<VersionAnalysisResult> {
+export async function analyzeGitDiffForVersion(): Promise<string> {
   // 1. Get the filtered Git diff
   const diff = await getFilteredGitDiff();
   if (!diff) {
-    logger.info('No relevant changes found in the Git diff');
-    return {
-      version_type: 'unknown' as const,
-      needs_review: false,
-      reasoning: 'No relevant changes detected.',
-    };
+    logger.warn('No Git diff found');
+    return JSON.stringify({
+      version_type: 'unknown',
+      needs_review: true,
+      reasoning: 'No Git diff found to analyze'
+    });
+  }
+
+  if (diff.length < 10) {
+    logger.warn('Git diff too small to analyze');
+    return JSON.stringify({
+      version_type: 'unknown',
+      needs_review: true,
+      reasoning: 'Git diff too small to analyze meaningfully'
+    });
   }
 
   // 2. Chunk the diff
@@ -704,7 +713,7 @@ export async function analyzeGitDiffForVersion(): Promise<VersionAnalysisResult>
     const result = parseAndValidateJSON(finalAnalysis, validateFinalAnalysis);
 
     logger.info('Analysis complete', { result });
-    return result as VersionAnalysisResult;
+    return JSON.stringify(result);
 
   } finally {
     ws.close();
