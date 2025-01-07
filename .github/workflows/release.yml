@@ -69,16 +69,19 @@ jobs:
 
           echo "Installing built package..."
           cd tools/release-tools
-          pnpm add ../../dist/libs/@baudevs/bau-log-hero
+          pnpm uninstall @baudevs/bau-log-hero || true
+          pnpm add "file:../../dist/libs/@baudevs/bau-log-hero"
           cd ../../
 
       - name: Analyze Changes
         id: analyze-version
         run: |
-          RESULT=$(pnpm tsx tools/release-tools/src/index.ts --realtime)
+          cd tools/release-tools
+          RESULT=$(pnpm tsx src/index.ts --realtime)
           VERSION_TYPE=$(echo "$RESULT" | jq -r '.version_type')
           NEEDS_REVIEW=$(echo "$RESULT" | jq -r '.needs_review')
           REASONING=$(echo "$RESULT" | jq -r '.reasoning')
+          cd ../../
 
           echo "version_type=$VERSION_TYPE" >> $GITHUB_OUTPUT
           echo "needs_review=$NEEDS_REVIEW" >> $GITHUB_OUTPUT
