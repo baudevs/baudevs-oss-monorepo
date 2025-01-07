@@ -45,10 +45,7 @@ export class Logger {
 
   async error(error: unknown, ...args: unknown[]): Promise<void> {
     const err = ensureError(error);
-    await this.log('error', err.message, {
-      stack: err.stack,
-      ...args
-    });
+    await this.log('error', err, ...args);
   }
 
   getConfig(): LoggerConfig {
@@ -74,7 +71,7 @@ export class Logger {
     }
   }
 
-  static getLogsFromStorage(): unknown[] {
+  static getLogsFromStorage(): string {
     return OutputHandler.getLogsFromStorage();
   }
 

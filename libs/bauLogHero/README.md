@@ -1,84 +1,44 @@
 # BauLogHero
 
-A powerful and flexible logging library for both Node.js and browser environments, featuring built-in intelligent log analysis. Built with modern ES2024 features and best practices.
+A powerful, modern logging library for both Node.js and browser environments, with support for structured logging, file rotation, and smart console output.
 
 ## Features
 
-- 🧠 **Smart Log Analysis**: Zero-dependency intelligent pattern detection and log grouping
-- 🌍 **Universal Support**: Works in both Node.js and browser environments
-- 📝 **Multiple Output Formats**: Console, file, and browser-specific outputs
-- 🔄 **File Rotation**: Automatic log file rotation with compression support
-- 💾 **Modern Storage**: File System Access API with localStorage fallback
-- 🎨 **Flexible Formatting**: JSON or text format with customizable timestamps
-- 🔍 **Deep Object Inspection**: Smart object serialization with Map/Set support
-- 🚦 **Log Levels**: Support for debug, info, warn, and error levels
-- 🔒 **Privacy-First**: All analysis happens locally
-- ⚡️ **Modern JavaScript**: Built with ES2024 features
-- 🎯 **Zero Dependencies**: No external runtime dependencies
+- 🌐 **Universal Support**: Works in both Node.js and browser environments
+- 📝 **JSON Lines Format**: Structured logging for better analytics
+- 🔄 **File Rotation**: Size-based rotation with compression
+- 🎨 **Smart Console Output**: Truncated JSON for better readability
+- 💾 **Browser Storage**: Multiple storage options (download, localStorage, console)
+- 🎯 **Type Safety**: Written in TypeScript with full type definitions
+- 🚀 **Modern APIs**: Uses latest Node.js and browser APIs
 
 ## Installation
 
 ```bash
 npm install @baudevs/bau-log-hero
+# or
+pnpm add @baudevs/bau-log-hero
+# or
+yarn add @baudevs/bau-log-hero
 ```
 
-### Node.js Requirements
-
-The library uses modern Node.js built-in modules (`node:fs/promises`, `node:path`, `node:zlib`) for file operations in Node.js environments. These are:
-
-- Only loaded when needed (dynamic imports)
-- Only used in Node.js environment (not in browsers)
-- Not bundled with the library (they're built-in Node.js modules)
-
-When building applications using this library, you might see warnings about "Unresolved dependencies" for these Node.js modules - this is expected and not a problem, as they're handled correctly at runtime.
-
-## Basic Usage
+## Quick Start
 
 ```typescript
 import { createLogger } from '@baudevs/bau-log-hero';
 
 const logger = createLogger({
   name: 'my-app',
-  level: 'debug'
-});
-
-logger.info('Hello world');
-logger.debug('Debug message', { data: 123 });
-logger.error(new Error('Something went wrong'));
-
-// Smart object logging
-const myMap = new Map([['key', 'value']]);
-const mySet = new Set([1, 2, 3]);
-logger.info('Data structures:', { myMap, mySet });
-// Output: Data structures: { myMap: Map(1) { key => value }, mySet: Set(3) { 1, 2, 3 } }
-```
-
-## Modern Features
-
-### File System Access API (Browser)
-
-```typescript
-const logger = createLogger({
-  name: 'my-app',
+  level: 'debug',
   output: {
-    file: {
+    console: {
       enabled: true,
-      format: 'json',
-      browserFallback: 'download' // Uses modern File System Access API
-    }
-  }
-});
-
-// Logs will be saved using the native file picker
-// Falls back to legacy download if not supported
-```
-
-### ESM Node.js Features
-
-```typescript
-const logger = createLogger({
-  name: 'my-app',
-  output: {
+      truncateJson: {
+        enabled: true,
+        firstLines: 4,
+        lastLines: 4
+      }
+    },
     file: {
       enabled: true,
       path: './logs',
@@ -87,172 +47,199 @@ const logger = createLogger({
         enabled: true,
         maxSize: 5 * 1024 * 1024, // 5MB
         maxFiles: 5,
-        compress: true // Uses Node.js zlib for compression
-      }
-    }
-  }
-});
-```
-
-### Smart Object Serialization
-
-The library intelligently handles various JavaScript data types:
-
-```typescript
-// Error objects with stack traces
-logger.error(new Error('Failed to process'));
-
-// Maps and Sets
-const userRoles = new Map([['admin', ['read', 'write']]]);
-logger.info('User roles:', userRoles);
-
-// Circular references
-const circular = { self: null };
-circular.self = circular;
-logger.info('Handled gracefully:', circular);
-
-// Deep objects with customizable depth
-logger.info('Deep object:', complexObj, { maxDepth: 5 });
-```
-
-### Browser Storage Options
-
-```typescript
-const logger = createLogger({
-  name: 'my-app',
-  output: {
-    file: {
-      enabled: true,
-      format: 'json',
-      browserFallback: 'localStorage' // or 'download', 'console', 'none'
-    }
-  }
-});
-
-// Access stored logs
-const logs = Logger.getLogsFromStorage();
-Logger.clearLogsFromStorage();
-```
-
-### Modern Configuration
-
-```typescript
-const logger = createLogger({
-  name: 'my-app',
-  timestamp: true,
-  timestampFormat: 'iso', // 'short' | 'none'
-  output: {
-    console: true,
-    file: {
-      enabled: true,
-      format: 'json',
-      path: './logs',
-      rotation: {
-        enabled: true,
-        maxSize: 5 * 1024 * 1024,
-        maxFiles: 5,
         compress: true
       }
-    },
-    prettyPrint: true,
-    maxDepth: 3
+    }
+  }
+});
+
+// Basic logging
+logger.info('Application started');
+
+// Structured logging
+logger.info('User action', {
+  userId: '123',
+  action: 'login',
+  metadata: {
+    ip: '127.0.0.1',
+    userAgent: 'Chrome'
   }
 });
 ```
 
-## Configuration Options
+## Configuration
 
-### LoggerConfig
+### Console Output
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| name | string | 'default' | Logger instance name |
-| level | 'debug' \| 'info' \| 'warn' \| 'error' | 'info' | Minimum log level |
-| timestamp | boolean | true | Include timestamps in logs |
-| timestampFormat | 'iso' \| 'short' \| 'none' | 'iso' | Timestamp format |
-| output | OutputConfig | - | Output configuration |
+```typescript
+{
+  console: {
+    enabled: true,
+    truncateJson: {
+      enabled: true,     // Enable JSON truncation in console
+      firstLines: 4,     // Show first 4 lines
+      lastLines: 4       // Show last 4 lines
+    }
+  }
+}
+```
 
-### OutputConfig
+### File Output
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| console | boolean | true | Enable console output |
-| file | FileOutputConfig | - | File output configuration |
-| prettyPrint | boolean | true | Pretty print objects/JSON |
-| maxDepth | number | 3 | Maximum depth for object serialization |
+```typescript
+{
+  file: {
+    enabled: true,
+    path: './logs',
+    format: 'json',      // 'json' or 'text'
+    rotation: {
+      enabled: true,
+      maxSize: 5 * 1024 * 1024,  // 5MB
+      maxFiles: 5,
+      compress: true     // Compress rotated files
+    }
+  }
+}
+```
 
-### FileOutputConfig
+### Browser Fallbacks
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| enabled | boolean | false | Enable file output |
-| path | string | './logs' | Log directory path (Node.js) |
-| format | 'json' \| 'text' | 'text' | Log format |
-| browserFallback | 'download' \| 'localStorage' \| 'console' \| 'none' | 'none' | Browser storage strategy |
-| rotation | RotationConfig | - | File rotation settings |
+When running in a browser, file output falls back to one of these options:
 
-### RotationConfig
+```typescript
+{
+  file: {
+    browserFallback: 'download'    // Save as .jsonl file
+    // or
+    browserFallback: 'localStorage' // Store in localStorage
+    // or
+    browserFallback: 'console'     // Output to console
+    // or
+    browserFallback: 'none'        // Disable file output
+  }
+}
+```
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| enabled | boolean | false | Enable file rotation |
-| maxSize | number | 5MB | Maximum file size before rotation |
-| maxFiles | number | 5 | Maximum number of backup files |
-| compress | boolean | false | Compress rotated files |
+## Log Format
 
-## Modern JavaScript Features Used
+### JSON Lines Format
 
-- Private class fields (`#property`)
-- Nullish coalescing (`??`)
-- Optional chaining (`?.`)
-- Modern Node.js imports (`node:fs/promises`)
-- File System Access API
-- Dynamic imports
-- Top-level await
-- Modern error handling
-- ESM modules
-- Template literals
-- Block-scoped declarations
-- Arrow functions
-- Async/await
-- Structured error handling
-- Modern browser APIs
+Each log entry is a single line of JSON:
 
-## Browser Support
+```json
+{"timestamp":"2024-01-07T12:34:56.789Z","level":"info","logger":"my-app","message":"Application started","metadata":{"filename":"app.ts","pid":1234,"hostname":"my-machine"}}
+{"timestamp":"2024-01-07T12:34:57.123Z","level":"debug","logger":"my-app","message":"Processing request","data":["GET /api/users"],"metadata":{"filename":"api.ts","pid":1234,"hostname":"my-machine"}}
+```
 
-In browser environments, file output is handled according to the `browserFallback` setting:
+### Console Output
 
-- `'download'`: Uses File System Access API with legacy download fallback
-- `'localStorage'`: Stores logs in localStorage (limited to last 1000 entries)
-- `'console'`: Outputs file logs to console
-- `'none'`: Disables file output
+Console output includes:
 
-## Smart Log Analysis
+- Emoji indicators (🔍 debug, ℹ️ info, ⚠️ warn, ❌ error)
+- Timestamps in dim color
+- Log level in appropriate color
+- Source filename
+- Truncated JSON for better readability
 
-BauLogHero includes a powerful smart analysis feature that helps you make sense of your logs by automatically grouping and analyzing patterns. The analysis runs entirely locally with zero external dependencies - no API keys or cloud services required!
+Example:
 
-Key benefits:
+```json
+ℹ️ [2024-01-07T12:34:56.789Z] INFO [app.ts] → User logged in
+{
+  userId: "123",
+  action: "login",
+  ...
+  metadata: {
+    ip: "127.0.0.1"
+  }
+}
+```
 
-- 🔒 **Privacy-First**: All analysis happens locally in your application
-- 🚀 **Real-Time**: Instant analysis without network latency
-- 💨 **Lightweight**: Zero external dependencies
-- 🔌 **Offline-Capable**: Works without internet connection
-- 💰 **Cost-Effective**: No usage fees or API costs
+## Browser Storage
 
-The analyzer automatically:
+### LocalStorage
 
-- Groups similar log messages using efficient string similarity algorithms
-- Detects patterns and anomalies in real-time
-- Extracts contextual information (IPs, URLs, status codes)
-- Provides intelligent summaries
+- Uses size-based rotation like Node.js
+- Default 5MB limit
+- Stores in JSON Lines format
+- Automatically removes oldest entries when full
 
-### Basic Smart Analysis
+### Download
+
+- Saves immediately as `.jsonl` file
+- Uses File System Access API when available
+- Falls back to legacy download for older browsers
+- Includes timestamp in filename
+
+## Best Practices
+
+1. Use structured logging:
+
+```typescript
+// Good
+logger.info('User action', { userId, action, data });
+
+// Avoid
+logger.info(`User ${userId} performed ${action}`);
+```
+
+2. Use appropriate log levels:
+
+```typescript
+logger.debug('Detailed debugging info');
+logger.info('Normal operation events');
+logger.warn('Warning conditions');
+logger.error('Error conditions');
+```
+
+3. Include context in logs:
+
+```typescript
+logger.info('API request', {
+  method: 'GET',
+  path: '/api/users',
+  duration: 123,
+  status: 200
+});
+```
+
+4. Configure rotation limits based on your needs:
+
+```typescript
+{
+  rotation: {
+    maxSize: 10 * 1024 * 1024,  // 10MB per file
+    maxFiles: 7,                 // Keep 1 week of logs
+    compress: true              // Save disk space
+  }
+}
+```
+
+## Smart Analysis
+
+BauLogHero includes a powerful smart analysis feature that helps you make sense of your logs by automatically grouping and analyzing patterns in real-time.
+
+### Features
+
+- 🔍 **Pattern Detection**: Automatically groups similar log messages using efficient string similarity algorithms
+- 🎯 **Context Extraction**: Extracts and tracks IPs, URLs, status codes, and other contextual information
+- ⚡️ **Real-time Analysis**: Analyzes logs as they come in, with configurable thresholds
+- 📊 **Intelligent Summaries**: Generates insights about log patterns and their frequencies
+
+### Usage
 
 ```typescript
 import { createLogger, SmartAnalyzer } from '@baudevs/bau-log-hero';
 
-// Create a logger with smart analysis
-const analyzer = new SmartAnalyzer();
+// Create analyzer with custom options
+const analyzer = new SmartAnalyzer({
+  groupingSimilarityThreshold: 0.8,  // How similar messages should be to group (0-1)
+  timeWindowMinutes: 60,             // Time window for analysis
+  maxGroups: 100,                    // Maximum number of pattern groups to track
+  minGroupSize: 3                    // Minimum entries to form a group
+});
+
+// Create logger and connect to analyzer
 const logger = createLogger({
   name: 'my-app',
   level: 'debug'
@@ -273,9 +260,55 @@ setInterval(() => {
   // - "Failed to connect to database" (23 times)
   // - "Request timeout for /api/users" (15 times)
   // - "Invalid authentication token" (12 times)
+  
+  // Access detailed group information
+  groups.forEach(group => {
+    console.log(`Pattern: ${group.pattern}`);
+    console.log(`Frequency: ${group.frequency}`);
+    console.log(`Severity: ${group.severity}`);
+    console.log(`First seen: ${group.firstSeen}`);
+    console.log(`Last seen: ${group.lastSeen}`);
+    console.log(`Context:`, group.context);
+  });
 }, 60000);
 ```
 
-## Contributing
+### Configuration Options
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| groupingSimilarityThreshold | number | 0.8 | How similar messages should be to be grouped (0-1) |
+| timeWindowMinutes | number | 60 | Time window for analysis in minutes |
+| maxGroups | number | 100 | Maximum number of pattern groups to track |
+| minGroupSize | number | 3 | Minimum entries required to form a group |
+
+### Pattern Detection
+
+The analyzer uses string similarity algorithms to group logs, with features like:
+
+- Variable data normalization (timestamps, UUIDs, numbers)
+- Token-based similarity matching
+- Configurable similarity thresholds
+- Automatic pattern extraction
+
+### Context Tracking
+
+Automatically extracts and tracks contextual information:
+
+- IP addresses
+- URLs and endpoints
+- HTTP status codes
+- Custom context from log metadata
+- Frequency analysis of values
+
+### Privacy and Performance
+
+- 🔒 All analysis happens locally in your application
+- 💨 Zero external dependencies
+- 🚀 Efficient string matching algorithms
+- 💾 Configurable memory usage limits
+- ⚡️ Real-time processing with minimal overhead
+
+## License
+
+MIT

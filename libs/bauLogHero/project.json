@@ -41,13 +41,6 @@
         "project": "@baudevs/bau-log-hero",
         "packageRoot": "dist/libs/@baudevs/bau-log-hero"
       }
-    },
-    "printhello": {
-      "executor": "nx:run-commands",
-      "outputs": [],
-      "options": {
-        "command": "echo hello"
-      }
     }
   }
 }

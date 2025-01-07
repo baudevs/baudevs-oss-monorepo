@@ -26,7 +26,14 @@ export interface FileOutputConfig {
 }
 
 export interface OutputConfig {
-  console?: boolean;
+  console?: boolean | {
+    enabled?: boolean;
+    truncateJson?: {
+      enabled?: boolean;
+      firstLines?: number;
+      lastLines?: number;
+    };
+  };
   file?: FileOutputConfig;
   prettyPrint?: boolean;
   maxDepth?: number;
