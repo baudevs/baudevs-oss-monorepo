@@ -28,11 +28,11 @@
     "pwd": "exec -- pwd"
   },
   "type": "module",
-  "main": "./cjs/index.js",
-  "module": "./esm/index.js",
-  "types": "./types/index.d.ts",
-  "unpkg": "./umd/index.js",
-  "jsdelivr": "./umd/index.js.gz",
+  "main": "./index.cjs.js",
+  "module": "./index.esm.js",
+  "types": "./index.d.ts",
+  "unpkg": "./index.js",
+  "jsdelivr": "./index.js.gz",
   "exports": {
     ".": {
       "types": "./types/index.d.ts",
