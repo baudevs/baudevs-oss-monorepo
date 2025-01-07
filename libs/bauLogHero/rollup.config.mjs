@@ -16,11 +16,14 @@ export default withCustomNX({
     {
       glob: '**/*.md',
     },
+    {
+      glob: 'package.json',
+    }
   ],
   external: [
-    'fs',
-    'path',
-    'os',
+    'node:fs/promises',
+    'node:path',
+    'node:zlib',
     /^@baudevs\/.*/  // This will make all @baudevs packages external
   ],
   generateBundleAnalysis: false,

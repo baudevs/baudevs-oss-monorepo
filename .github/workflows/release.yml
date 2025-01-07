@@ -62,19 +62,14 @@ jobs:
       - name: Install tsx globally
         run: pnpm add -g tsx
 
-      - name: Build and link bau-log-hero
+      - name: Build and install bau-log-hero
         run: |
           echo "Building bau-log-hero for local use..."
           pnpm nx build @baudevs/bau-log-hero --skip-nx-cache
 
-          echo "Creating package link..."
-          cd dist/libs/@baudevs/bau-log-hero
-          pnpm link --global
-          cd ../../../../
-
-          echo "Linking package to release-tools..."
+          echo "Installing built package..."
           cd tools/release-tools
-          pnpm link --global @baudevs/bau-log-hero
+          pnpm add ../../dist/libs/@baudevs/bau-log-hero
           cd ../../
 
       - name: Analyze Changes
