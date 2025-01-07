@@ -62,6 +62,11 @@ jobs:
       - name: Install tsx globally
         run: pnpm add -g tsx
 
+      - name: Build bau-log-hero
+        run: |
+          echo "Building bau-log-hero for local use..."
+          pnpm nx build @baudevs/bau-log-hero --skip-nx-cache
+
       - name: Analyze Changes
         id: analyze-version
         run: |
