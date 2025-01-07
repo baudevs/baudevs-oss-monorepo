@@ -29,23 +29,28 @@ const logger = createLogger({
       enabled: true,
       truncateJson: {
         enabled: true,
-        firstLines: 4,
-        lastLines: 4
+        firstLines: 2,
+        lastLines: 2
       }
     },
-    file: {
-      enabled: true,
-      path: './logs/release-tools/realtime',
-      format: 'json',
-      rotation: {
-        enabled: true,
-        maxSize: 5 * 1024 * 1024, // 5MB
-        maxFiles: 5,
-        compress: true
-      }
-    },
-    prettyPrint: true,
-    maxDepth: 10
+    ci: {
+      enabled: process.env['CI'] === 'true',
+      minLevel: 'info',
+      filterPatterns: [
+        // Key events we want to see
+        'Analyzing Git diff',
+        'Creating session',
+        'Session created:',
+        'Processing chunk',
+        'Final analysis:',
+        'version_type',
+        'needs_review',
+        'reasoning'
+      ],
+      showFullObjects: false,
+      truncateLength: 150,
+      excludeMetadata: true
+    }
   }
 });
 
