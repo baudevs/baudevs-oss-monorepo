@@ -1,6 +1,6 @@
 # BauLogHero
 
-A powerful and flexible logging library for both Node.js and browser environments, featuring built-in intelligent log analysis.
+A powerful and flexible logging library for both Node.js and browser environments, featuring built-in intelligent log analysis. Built with modern ES2024 features and best practices.
 
 ## Features
 
@@ -8,16 +8,29 @@ A powerful and flexible logging library for both Node.js and browser environment
 - 🌍 **Universal Support**: Works in both Node.js and browser environments
 - 📝 **Multiple Output Formats**: Console, file, and browser-specific outputs
 - 🔄 **File Rotation**: Automatic log file rotation with compression support
-- 💾 **Browser Storage**: Multiple storage options for browser environments
+- 💾 **Modern Storage**: File System Access API with localStorage fallback
 - 🎨 **Flexible Formatting**: JSON or text format with customizable timestamps
-- 🔍 **Deep Object Inspection**: Configurable depth for object serialization
+- 🔍 **Deep Object Inspection**: Smart object serialization with Map/Set support
 - 🚦 **Log Levels**: Support for debug, info, warn, and error levels
+- 🔒 **Privacy-First**: All analysis happens locally
+- ⚡️ **Modern JavaScript**: Built with ES2024 features
+- 🎯 **Zero Dependencies**: No external runtime dependencies
 
 ## Installation
 
 ```bash
 npm install @baudevs/bau-log-hero
 ```
+
+### Node.js Requirements
+
+The library uses modern Node.js built-in modules (`node:fs/promises`, `node:path`, `node:zlib`) for file operations in Node.js environments. These are:
+
+- Only loaded when needed (dynamic imports)
+- Only used in Node.js environment (not in browsers)
+- Not bundled with the library (they're built-in Node.js modules)
+
+When building applications using this library, you might see warnings about "Unresolved dependencies" for these Node.js modules - this is expected and not a problem, as they're handled correctly at runtime.
 
 ## Basic Usage
 
@@ -32,11 +45,35 @@ const logger = createLogger({
 logger.info('Hello world');
 logger.debug('Debug message', { data: 123 });
 logger.error(new Error('Something went wrong'));
+
+// Smart object logging
+const myMap = new Map([['key', 'value']]);
+const mySet = new Set([1, 2, 3]);
+logger.info('Data structures:', { myMap, mySet });
+// Output: Data structures: { myMap: Map(1) { key => value }, mySet: Set(3) { 1, 2, 3 } }
 ```
 
-## Advanced Configuration
+## Modern Features
 
-### File Output (Node.js)
+### File System Access API (Browser)
+
+```typescript
+const logger = createLogger({
+  name: 'my-app',
+  output: {
+    file: {
+      enabled: true,
+      format: 'json',
+      browserFallback: 'download' // Uses modern File System Access API
+    }
+  }
+});
+
+// Logs will be saved using the native file picker
+// Falls back to legacy download if not supported
+```
+
+### ESM Node.js Features
 
 ```typescript
 const logger = createLogger({
@@ -50,14 +87,35 @@ const logger = createLogger({
         enabled: true,
         maxSize: 5 * 1024 * 1024, // 5MB
         maxFiles: 5,
-        compress: true
+        compress: true // Uses Node.js zlib for compression
       }
     }
   }
 });
 ```
 
-### Browser Storage
+### Smart Object Serialization
+
+The library intelligently handles various JavaScript data types:
+
+```typescript
+// Error objects with stack traces
+logger.error(new Error('Failed to process'));
+
+// Maps and Sets
+const userRoles = new Map([['admin', ['read', 'write']]]);
+logger.info('User roles:', userRoles);
+
+// Circular references
+const circular = { self: null };
+circular.self = circular;
+logger.info('Handled gracefully:', circular);
+
+// Deep objects with customizable depth
+logger.info('Deep object:', complexObj, { maxDepth: 5 });
+```
+
+### Browser Storage Options
 
 ```typescript
 const logger = createLogger({
@@ -76,22 +134,28 @@ const logs = Logger.getLogsFromStorage();
 Logger.clearLogsFromStorage();
 ```
 
-### Timestamp Configuration
+### Modern Configuration
 
 ```typescript
 const logger = createLogger({
+  name: 'my-app',
   timestamp: true,
-  timestampFormat: 'iso' // 'short' | 'none'
-});
-```
-
-### Pretty Printing
-
-```typescript
-const logger = createLogger({
+  timestampFormat: 'iso', // 'short' | 'none'
   output: {
+    console: true,
+    file: {
+      enabled: true,
+      format: 'json',
+      path: './logs',
+      rotation: {
+        enabled: true,
+        maxSize: 5 * 1024 * 1024,
+        maxFiles: 5,
+        compress: true
+      }
+    },
     prettyPrint: true,
-    maxDepth: 3 // Maximum depth for object serialization
+    maxDepth: 3
   }
 });
 ```
@@ -124,7 +188,7 @@ const logger = createLogger({
 | enabled | boolean | false | Enable file output |
 | path | string | './logs' | Log directory path (Node.js) |
 | format | 'json' \| 'text' | 'text' | Log format |
-| browserFallback | 'download' \| 'localStorage' \| 'console' \| 'none' | 'none' | Browser fallback strategy |
+| browserFallback | 'download' \| 'localStorage' \| 'console' \| 'none' | 'none' | Browser storage strategy |
 | rotation | RotationConfig | - | File rotation settings |
 
 ### RotationConfig
@@ -136,27 +200,32 @@ const logger = createLogger({
 | maxFiles | number | 5 | Maximum number of backup files |
 | compress | boolean | false | Compress rotated files |
 
+## Modern JavaScript Features Used
+
+- Private class fields (`#property`)
+- Nullish coalescing (`??`)
+- Optional chaining (`?.`)
+- Modern Node.js imports (`node:fs/promises`)
+- File System Access API
+- Dynamic imports
+- Top-level await
+- Modern error handling
+- ESM modules
+- Template literals
+- Block-scoped declarations
+- Arrow functions
+- Async/await
+- Structured error handling
+- Modern browser APIs
+
 ## Browser Support
 
 In browser environments, file output is handled according to the `browserFallback` setting:
 
-- `'download'`: Downloads logs as JSON files (batched every 100 entries)
+- `'download'`: Uses File System Access API with legacy download fallback
 - `'localStorage'`: Stores logs in localStorage (limited to last 1000 entries)
 - `'console'`: Outputs file logs to console
 - `'none'`: Disables file output
-
-## Error Handling
-
-The library includes built-in error handling and formatting:
-
-```typescript
-logger.error(new Error('Something went wrong'));
-// Automatically captures stack trace and formats error
-```
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Smart Log Analysis
 
@@ -207,69 +276,6 @@ setInterval(() => {
 }, 60000);
 ```
 
-### Advanced Configuration
+## Contributing
 
-```typescript
-const analyzer = new SmartAnalyzer({
-  groupingSimilarityThreshold: 0.8, // How similar messages need to be to group (0-1)
-  timeWindowMinutes: 60,           // How long to keep groups in memory
-  maxGroups: 100,                  // Maximum number of groups to track
-  minGroupSize: 3                  // Minimum entries to consider a pattern
-});
-```
-
-### Pattern Detection
-
-The smart analyzer automatically:
-
-- Normalizes timestamps, UUIDs, and numbers in messages
-- Groups similar message patterns together
-- Tracks frequency and severity of patterns
-- Extracts contextual information like IPs, URLs, and status codes
-
-### Context Extraction
-
-```typescript
-logger.error('Failed to connect to database at 192.168.1.100:5432', {
-  attempt: 3,
-  timeout: 5000
-});
-
-// The analyzer will automatically extract and group:
-// - IP address: 192.168.1.100
-// - Port number: 5432
-// - Additional context from the metadata object
-```
-
-### Real-world Use Cases
-
-1. **Error Pattern Detection**
-
-   ```typescript
-   const { groups } = analyzer.getInsights();
-   const errorPatterns = groups
-     .filter(g => g.severity === 'high')
-     .map(g => ({
-       pattern: g.pattern,
-       frequency: g.frequency,
-       lastSeen: g.lastSeen,
-       context: g.context
-     }));
-   ```
-
-2. **API Health Monitoring**
-
-   ```typescript
-   const healthCheck = groups
-     .filter(g => g.context.statusCode >= 500)
-     .reduce((acc, g) => acc + g.frequency, 0);
-   ```
-
-3. **Security Analysis**
-
-   ```typescript
-   const suspiciousIPs = groups
-     .filter(g => g.context.statusCode === 401)
-     .flatMap(g => g.context.ip)
-     .filter(Boolean);
-   ```
+Contributions are welcome! Please feel free to submit a Pull Request.
