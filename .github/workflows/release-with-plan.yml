@@ -2,25 +2,30 @@ name: "Release with Version Plan"
 
 on:
   workflow_call:
+    inputs:
+      projects:
+        description: "List of project names"
+        required: true
+        type: string
     secrets:
+      NX_TOKEN:
+        required: true
       NPM_TOKEN:
         required: true
       GH_PAT:
         required: true
-      NX_TOKEN:
-        required: true
 
 env:
-  NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_TOKEN || '' }}
-  NPM_ACCESS_TOKEN: ${{ secrets.NPM_TOKEN || '' }}
-  GITHUB_TOKEN: ${{ secrets.GH_PAT || '' }}
   NX_EXCLUDED_PROJECTS: 'baudevs-dashboard,@baudevs/bauCmsNextExample'
   NODE_VERSION: 23.3.0
   PNPM_VERSION: 9.15.2
 
 jobs:
-  release:
+  release-projects:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project: ${{ fromJson(inputs.projects) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -41,31 +46,21 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Set SHAs for Affected Commands
-        run: pnpm nx set-shas
-
-      - name: Get Project from Version Plan
-        id: get-project
-        run: |
-          PLAN_FILE=$(ls -t .nx/version-plans/version-plan-*.md | head -n1)
-          PROJECT=$(grep -m1 "^## Project" "$PLAN_FILE" | cut -d'"' -f2)
-          echo "project=$PROJECT" >> $GITHUB_OUTPUT
-
       - name: Execute Release
         run: |
           cd tools/release-tools
-          echo "Releasing project: ${{ steps.get-project.outputs.project }}"
+          echo "Releasing project: ${{ matrix.project }}"
           pnpm tsx src/cli.ts release \
-            --project="${{ steps.get-project.outputs.project }}" \
+            --project="${{ matrix.project }}" \
             --skip-publish
           cd ../../
 
       - name: Publish Package
         run: |
           cd tools/release-tools
-          echo "Publishing project: ${{ steps.get-project.outputs.project }}"
+          echo "Publishing project: ${{ matrix.project }}"
           pnpm tsx src/cli.ts release \
-            --project="${{ steps.get-project.outputs.project }}"
+            --project="${{ matrix.project }}"
           cd ../../
         env:
-          NPM_TOKEN: ${{ env.NPM_ACCESS_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

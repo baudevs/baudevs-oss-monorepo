@@ -109,12 +109,11 @@ jobs:
             ${{ needs.analyze-changes.outputs.reasoning }}
 
   create-version-plan:
-    needs: [analyze-changes]
+    needs: [analyze-changes, human-review]
     if: |
-      success() && (
-        (needs.analyze-changes.outputs.needs_human_review == 'false') ||
-        (needs.analyze-changes.outputs.needs_human_review == 'true' && needs.human-review.result == 'success')
-      )
+      always() &&
+      (needs.analyze-changes.outputs.needs_human_review == 'false' ||
+       needs.human-review.result == 'success')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -144,28 +143,37 @@ jobs:
             --only-touched=false
           cd ../../
 
+      - name: Commit Version Plan
+        run: |
+          git config --global user.name "baudevs"
+          git config --global user.email "tech@baudevs.com"
+
+          git add .nx/version-plans/
+          git commit -m "chore(${{ needs.analyze-changes.outputs.project_name }}): add version plan [skip ci]"
+          git push
+
   release:
-    needs: create-version-plan
+    needs: analyze-changes
     if: |
       success() &&
-      (needs.create-version-plan.result == 'success' ||
-       needs.analyze-changes.outputs.needs_human_review == 'true' && needs.human-review.result == 'success')
+      needs.analyze-changes.outputs.needs_human_review == 'false' &&
+      needs.analyze-changes.outputs.version_type != 'none'
     runs-on: ubuntu-latest
     steps:
-      - name: Run Release
+      - name: Start Release
         run: |
-          echo "Running release..."
-          echo "Project: ${{ needs.analyze-changes.outputs.project_name }}"
-          echo "Version Type: ${{ needs.analyze-changes.outputs.version_type }}"
-          echo "Needs Human Review: ${{ needs.analyze-changes.outputs.needs_human_review }}"
+          echo "Releasing project: ${{ needs.analyze-changes.outputs.project_name }}"
+          ls -la  .nx/version-plans/
+          cat .nx/version-plans/version-plan-*.md
 
       - name: Run Release
         uses: ./.github/workflows/release-with-plan.yml
+        with:
+          projects: ${{ needs.analyze-changes.outputs.project_name }}
         secrets:
+          NX_TOKEN: ${{ secrets.NX_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      GH_PAT: ${{ secrets.GH_PAT }}
-      NX_TOKEN: ${{ secrets.NX_TOKEN }}
-
+          GH_PAT: ${{ secrets.GH_PAT }}
   merge-to-production:
     needs: release
     if: startsWith(github.ref, 'refs/tags/release/')
