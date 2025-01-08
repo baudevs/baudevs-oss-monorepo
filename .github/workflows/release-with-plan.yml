@@ -3,9 +3,10 @@ name: "Release with Version Plan"
 on:
   workflow_call:
     inputs:
-      projects:
+      project:
         description: "List of project names"
-        required: true
+        required: false
+        default: "affected"
         type: string
     secrets:
       NX_TOKEN:
@@ -23,9 +24,6 @@ env:
 jobs:
   release-projects:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        project: ${{ fromJson(inputs.projects) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -49,18 +47,18 @@ jobs:
       - name: Execute Release
         run: |
           cd tools/release-tools
-          echo "Releasing project: ${{ matrix.project }}"
+          echo "Releasing project: ${{ inputs.project }}"
           pnpm tsx src/cli.ts release \
-            --project="${{ matrix.project }}" \
+            --project="${{ inputs.project }}" \
             --skip-publish
           cd ../../
 
       - name: Publish Package
         run: |
           cd tools/release-tools
-          echo "Publishing project: ${{ matrix.project }}"
+          echo "Publishing project: ${{ inputs.project }}"
           pnpm tsx src/cli.ts release \
-            --project="${{ matrix.project }}"
+            --project="${{ inputs.project }}"
           cd ../../
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

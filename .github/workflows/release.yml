@@ -156,7 +156,7 @@ jobs:
       (needs.create-version-plan.result == 'success')
     uses: ./.github/workflows/release-with-plan.yml
     with:
-      projects: "[${{ needs.analyze-changes.outputs.project_name }}]"
+      project: "${{ needs.analyze-changes.outputs.project_name }}"
     secrets:
       NX_TOKEN: ${{ secrets.NX_TOKEN }}
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
