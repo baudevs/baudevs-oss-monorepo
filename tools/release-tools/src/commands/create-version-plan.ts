@@ -35,20 +35,37 @@ export async function createVersionPlan(options: VersionPlanOptions): Promise<vo
   logger.info('Creating version plan', { versionType, projectName, onlyTouched });
 
   try {
+    const command = `pnpm nx release plan ${versionType} --projects=@baudevs/${projectName} --only-touched=${onlyTouched}`;
+    logger.info('Running command', { command });
+
     // Run nx release plan command
-    execSync(
-      `pnpm nx release plan ${versionType} --projects=@baudevs/${projectName} --only-touched=${onlyTouched}`,
-      { stdio: 'inherit' }
-    );
+    try {
+      execSync(command, { stdio: 'inherit' });
+    } catch (error) {
+      logger.error('Failed to run nx release plan', { error, command });
+      throw error;
+    }
 
     // Configure git
-    execSync('git config --global user.name "baudevs"', { stdio: 'inherit' });
-    execSync('git config --global user.email "tech@baudevs.com"', { stdio: 'inherit' });
+    try {
+      logger.info('Configuring git');
+      execSync('git config --global user.name "baudevs"', { stdio: 'inherit' });
+      execSync('git config --global user.email "tech@baudevs.com"', { stdio: 'inherit' });
+    } catch (error) {
+      logger.error('Failed to configure git', { error });
+      throw error;
+    }
 
     // Add and commit version plan
-    execSync('git add .nx/version-plans/', { stdio: 'inherit' });
-    execSync(`git commit -m "chore(${projectName}): add version plan [skip ci]"`, { stdio: 'inherit' });
-    execSync('git push', { stdio: 'inherit' });
+    try {
+      logger.info('Committing version plan');
+      execSync('git add .nx/version-plans/', { stdio: 'inherit' });
+      execSync(`git commit -m "chore(${projectName}): add version plan [skip ci]"`, { stdio: 'inherit' });
+      execSync('git push', { stdio: 'inherit' });
+    } catch (error) {
+      logger.error('Failed to commit version plan', { error });
+      throw error;
+    }
 
     logger.info('Version plan created and committed successfully');
   } catch (error) {

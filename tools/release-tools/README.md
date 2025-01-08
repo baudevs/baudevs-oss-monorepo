@@ -41,6 +41,11 @@ const result = await analyzeGitDiffForVersion();
 // }
 ```
 
+## Documentation
+
+- For basic usage and setup, refer to this README
+- For detailed technical documentation, including advanced concepts and implementation details, see [TECHNICAL_DOCS.md](./TECHNICAL_DOCS.md)
+
 ## How It Works
 
 1. **Git Diff Analysis**
@@ -51,48 +56,39 @@ const result = await analyzeGitDiffForVersion();
    - Establishes WebSocket connection with OpenAI
    - Maintains session state throughout analysis
    - Processes chunks incrementally with AI feedback
+   - Handles rate limiting and backoff events automatically
+   - Implements smart retry mechanisms with dynamic delays
 
-3. **Structured Analysis**
+3. **Connection Management**
+   - Robust WebSocket lifecycle handling
+   - Automatic connection cleanup and timeouts
+   - State tracking and monitoring
+   - Graceful connection termination
+   - Connection health checks and logging
+
+4. **Rate Limiting & Backoff**
+   - Dynamic rate limit tracking
+   - Smart backoff implementation:
+     - Respects OpenAI's rate limits
+     - Handles backoff requests automatically
+     - Implements exponential backoff when needed
+   - Rate limit state management:
+     - Tracks remaining requests
+     - Monitors reset timestamps
+     - Manages retry delays
+     - Handles backoff intervals
+
+5. **Error Recovery**
+   - Automatic retry on transient failures
+   - Smart timeout handling
+   - Connection state recovery
+   - Graceful degradation
+   - Comprehensive error logging
+
+6. **Structured Analysis**
    - Uses function calling for consistent responses
    - Validates all responses against JSON schemas
    - Provides detailed reasoning for version decisions
-
-## Debugging
-
-The tool includes comprehensive logging using `@baudevs/bau-log-hero`:
-
-### Log Configuration
-
-```typescript
-{
-  console: {
-    enabled: true,
-    truncateJson: {
-      enabled: true,
-      firstLines: 4,
-      lastLines: 4
-    }
-  },
-  file: {
-    enabled: true,
-    path: './logs/release-tools/realtime',
-    format: 'json',
-    rotation: {
-      enabled: true,
-      maxSize: 5 * 1024 * 1024, // 5MB
-      maxFiles: 5,
-      compress: true
-    }
-  }
-}
-```
-
-### Log Events
-
-- WebSocket connection events
-- Chunk processing progress
-- Response validations
-- Final analysis results
 
 ## Configuration
 
@@ -104,6 +100,14 @@ const MAX_CHUNKS = 10;
 const CHUNK_SIZE = 8000;
 ```
 
+Connection timeouts:
+
+```typescript
+const CONNECTION_TIMEOUT = 30000;  // 30 seconds for initial connection
+const RESPONSE_TIMEOUT = 30000;    // 30 seconds for responses
+const CLEANUP_TIMEOUT = 5000;      // 5 seconds for cleanup
+```
+
 ## Error Handling
 
 The tool handles various error scenarios:
@@ -112,6 +116,11 @@ The tool handles various error scenarios:
 - JSON parsing errors
 - Schema validation errors
 - API response errors
+- Rate limit exceeded errors
+- Backoff request handling
+- Connection timeouts
+- State transition errors
+- Cleanup failures
 
 ## Dependencies
 
@@ -124,16 +133,27 @@ The tool handles various error scenarios:
 1. **API Access**:
    - Requires OpenAI API key with access to realtime models
    - Uses WebSocket protocol for efficient communication
+   - Implements rate limiting best practices
+   - Handles API versioning and beta features
 
 2. **Performance**:
    - Processes diffs in chunks to handle large changes
    - Uses incremental processing for faster results
    - Maintains session state for context
+   - Smart rate limit handling for optimal throughput
+   - Efficient connection management
 
 3. **Validation**:
    - All responses are schema-validated
    - Structured output ensures reliable version decisions
    - Detailed reasoning provided for each decision
+   - Connection state validation
+
+4. **Rate Limiting**:
+   - Automatically handles OpenAI's rate limits
+   - Implements exponential backoff when needed
+   - Provides detailed logging of rate limit events
+   - Gracefully handles API throttling
 
 ## Development
 
@@ -156,3 +176,25 @@ pnpm nx test @baudevs/release-tools
 ```bash
 pnpm nx build @baudevs/release-tools
 ```
+
+## Troubleshooting
+
+Common issues and solutions:
+
+1. **Connection Timeouts**
+   - Check network connectivity
+   - Verify API key permissions
+   - Review rate limit status
+   - Check for system resource constraints
+
+2. **Rate Limiting**
+   - Monitor rate limit logs
+   - Adjust request timing
+   - Implement request batching
+   - Review quota usage
+
+3. **State Management**
+   - Check connection state logs
+   - Verify cleanup procedures
+   - Monitor resource usage
+   - Review error logs

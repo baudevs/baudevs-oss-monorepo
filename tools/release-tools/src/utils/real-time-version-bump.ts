@@ -24,20 +24,20 @@ const CHUNK_SIZE = 8000;
 const logger = createLogger({
   name: 'real-time-version-bump',
   level: 'debug',
-  output: {
+  output: process.env['CI'] === 'true' ? {
+    // CI-specific configuration - minimal but clear output
     console: {
       enabled: true,
       truncateJson: {
         enabled: true,
-        firstLines: 2,
-        lastLines: 2
+        firstLines: 3,
+        lastLines: 3
       }
     },
     ci: {
-      enabled: process.env['CI'] === 'true',
+      enabled: true,
       minLevel: 'info',
       filterPatterns: [
-        // Key events we want to see
         'Analyzing Git diff',
         'Creating session',
         'Session created:',
@@ -47,9 +47,29 @@ const logger = createLogger({
         'needs_review',
         'reasoning'
       ],
-      showFullObjects: false,
-      truncateLength: 150,
-      excludeMetadata: true
+      showFullObjects: true,
+      truncateLength: 0,
+      excludeMetadata: true,
+      formatJson: {
+        enabled: true,
+        indent: 2,
+        maxDepth: 3
+      }
+    }
+  } : {
+    // Local development configuration - rich and detailed output
+    console: {
+      enabled: true,
+      truncateJson: {
+        enabled: true,
+        firstLines: 10,
+        lastLines: 5
+      },
+      formatJson: {
+        enabled: true,
+        indent: 2,
+        maxDepth: 5
+      }
     }
   }
 });
@@ -85,10 +105,14 @@ export interface VersionAnalysisResult {
  * Interface for server events received from OpenAI Realtime API.
  */
 interface ServerEvent {
-  type: 'response.partial' | 'response.final' | 'response.done' | 'response.error';
+  type: 'response.partial' | 'response.final' | 'response.done' | 'response.error' | 'rate_limit' | 'backoff';
   response?: {
     text?: string;
   };
+  remaining_requests?: number;
+  reset_at?: string;
+  retry_after?: number;
+  wait_ms?: number;
 }
 
 /**
@@ -252,21 +276,54 @@ function waitForFinalResponse(ws: WebSocket): Promise<string> {
     let finished = false;
     let functionCallArguments = '';
     let partialText = '';
+    let timeoutId: NodeJS.Timeout;
+
+    const cleanup = () => {
+      logger.debug('Cleaning up WebSocket listeners');
+      clearTimeout(timeoutId);
+      ws.off('message', onMessage);
+      ws.off('close', onClose);
+      ws.off('error', onError);
+      logWebSocketState(ws, 'waitForFinalResponse cleanup');
+    };
+
+    // Set a timeout to prevent hanging
+    timeoutId = setTimeout(() => {
+      if (!finished) {
+        logger.warn('⚠️ Response timeout - resolving with current data');
+        finished = true;
+        cleanup();
+        resolve(partialText || functionCallArguments);
+      }
+    }, 30000); // 30 second timeout
 
     const onMessage = (data: WebSocket.Data) => {
       try {
         const rawMessage = typeof data === 'string' ? data : data.toString();
+        logger.debug('Raw WebSocket message received', { data: rawMessage });
+
         const event = JSON.parse(rawMessage);
-        logger.debug('Received event', { type: event.type, event });
+        logger.debug('Parsed WebSocket event', { event });
 
         switch (event.type) {
+          case 'rate_limit':
+            updateRateLimitState(event as RateLimitEvent);
+            break;
+
+          case 'backoff':
+            updateRateLimitState(event as BackoffEvent);
+            break;
+
           case 'response.function_call_arguments.delta':
             functionCallArguments += event.delta;
             break;
 
           case 'response.function_call_arguments.done':
-            finished = true;
-            resolve(event.arguments);
+            if (!finished) {
+              finished = true;
+              cleanup();
+              resolve(functionCallArguments);
+            }
             break;
 
           case 'response.partial':
@@ -276,36 +333,58 @@ function waitForFinalResponse(ws: WebSocket): Promise<string> {
             break;
 
           case 'response.final':
-            if (event.response?.text) {
+            if (!finished && event.response?.text) {
               partialText += event.response.text;
+              finished = true;
+              cleanup();
+              resolve(partialText);
             }
             break;
 
           case 'response.done':
             if (!finished) {
               finished = true;
-              resolve(partialText);
+              cleanup();
+              resolve(partialText || functionCallArguments);
             }
             break;
 
           case 'response.error': {
             const error = new Error(`Model error: ${JSON.stringify(event)}`);
             logger.error('WebSocket error response', { event });
+            cleanup();
             reject(error);
             break;
           }
 
           case 'response.output_item.done':
-            // Handle output item completion if needed
+            if (event.item?.arguments) {
+              try {
+                const args = JSON.parse(event.item.arguments);
+                if (!finished) {
+                  finished = true;
+                  cleanup();
+                  resolve(JSON.stringify(args));
+                }
+              } catch (err) {
+                logger.warn('Failed to parse output item arguments', { error: err });
+              }
+            }
+            break;
+
+          case 'session.created':
+          case 'session.updated':
+            // These events are handled by setupWebSocketListeners
             break;
 
           default:
-            logger.debug('Unhandled event type', { type: event.type });
+            logger.debug('Unhandled event type', { type: event.type, event });
             break;
         }
       } catch (err) {
         const error = `Failed to parse server event: ${data}`;
         logger.error('WebSocket parse error', { error, data });
+        cleanup();
         reject(new Error(error));
       }
     };
@@ -326,13 +405,6 @@ function waitForFinalResponse(ws: WebSocket): Promise<string> {
       cleanup();
       reject(err);
     };
-
-    function cleanup() {
-      logger.debug('Cleaning up WebSocket listeners');
-      ws.off('message', onMessage);
-      ws.off('close', onClose);
-      ws.off('error', onError);
-    }
 
     ws.on('message', onMessage);
     ws.on('close', onClose);
@@ -355,24 +427,24 @@ async function sendSessionUpdateEvent(ws: WebSocket, eventObj: SessionUpdateEven
 async function sendEventAndAwait(ws: WebSocket, eventObj: RequestEvent | SessionUpdateEvent): Promise<string> {
   return new Promise((resolve, reject) => {
     try {
+      logWebSocketState(ws, 'sendEventAndAwait start');
       const serializedEvent = JSON.stringify(eventObj);
-      logger.debug('Sending WebSocket event', {
-        event: eventObj,
-        serialized: serializedEvent
-      });
-      logWebSocketEvent('send', {
-        event: eventObj,
-        serialized: serializedEvent
-      });
+      logger.debug('Sending WebSocket event', { event: eventObj });
 
-      ws.send(serializedEvent);
-      waitForFinalResponse(ws).then(response => {
-        if (!response.trim()) {
-          logger.warn('⚠️ Received empty response from WebSocket');
-        }
-        resolve(response);
+      // Wait for any rate limits or backoff before sending
+      waitIfNeeded().then(() => {
+        logWebSocketState(ws, 'pre-send');
+        ws.send(serializedEvent);
+        waitForFinalResponse(ws).then(response => {
+          logWebSocketState(ws, 'post-response');
+          if (!response.trim()) {
+            logger.warn('⚠️ Received empty response from WebSocket');
+          }
+          resolve(response);
+        }).catch(reject);
       }).catch(reject);
     } catch (err) {
+      logWebSocketState(ws, 'sendEventAndAwait error');
       logger.error('❌ Error sending WebSocket event', { error: err });
       logError(err);
       reject(err);
@@ -464,30 +536,48 @@ async function logChunkSummary(chunkIndex: number, summary: string): Promise<voi
 }
 
 async function logWebSocketEvent(eventType: string, content: unknown): Promise<void> {
-  await logger.debug(`🔌 WebSocket Event: ${eventType}`, { content });
+  return logger.debug(`🔌 WebSocket Event: ${eventType}`, { content });
 }
 
 async function logFinalAnalysis(analysis: unknown): Promise<void> {
-  await logger.info('✅ Final Analysis', { analysis });
+  return logger.info('✅ Final Analysis', { analysis });
 }
 
 async function logError(error: Error | unknown): Promise<void> {
   if (error instanceof Error) {
-    await logger.error('❌ Error occurred', {
+    return logger.error('❌ Error occurred', {
       error: {
         name: error.name,
         message: error.message,
         stack: error.stack
       }
     });
-  } else {
-    await logger.error('❌ Unknown error occurred', { error });
   }
+  return logger.error('❌ Unknown error occurred', { error });
 }
 
 async function setupWebSocketListeners(ws: WebSocket): Promise<string> {
   return new Promise((resolve, reject) => {
     let sessionId: string | null = null;
+    let timeoutId: NodeJS.Timeout;
+
+    const cleanup = () => {
+      logger.debug('Cleaning up session listeners');
+      clearTimeout(timeoutId);
+      ws.off('message', onMessage);
+      ws.off('error', onError);
+      ws.off('close', onClose);
+      logWebSocketState(ws, 'setupWebSocketListeners cleanup');
+    };
+
+    // Set a timeout to prevent hanging
+    timeoutId = setTimeout(() => {
+      if (!sessionId) {
+        logger.warn('⚠️ Session setup timeout');
+        cleanup();
+        reject(new Error('Session setup timeout'));
+      }
+    }, 30000); // 30 second timeout
 
     const onMessage = (data: WebSocket.Data) => {
       try {
@@ -499,43 +589,27 @@ async function setupWebSocketListeners(ws: WebSocket): Promise<string> {
 
         switch (event.type) {
           case 'session.created':
-            sessionId = event.session.id;
-            logger.info('Session created', { sessionId });
+            if (event.session?.id) {
+              sessionId = event.session.id;
+              logger.info('Session created', { sessionId: event.session.id });
+              cleanup();
+              resolve(event.session.id);
+            }
             break;
 
           case 'session.updated':
-            sessionId = event.session.id;
-            logger.info('Session updated', { sessionId });
-            if (sessionId) {
-              resolve(sessionId);
+            if (event.session?.id) {
+              sessionId = event.session.id;
+              logger.info('Session updated', { sessionId: event.session.id });
+              cleanup();
+              resolve(event.session.id);
             }
-            break;
-
-          case 'response.partial':
-            if (event.response?.text) {
-              logger.debug('Partial response received', {
-                text: event.response.text,
-                sessionId
-              });
-            }
-            break;
-
-          case 'response.final':
-            if (event.response?.text) {
-              logger.debug('Final response received', {
-                text: event.response.text,
-                sessionId
-              });
-            }
-            break;
-
-          case 'response.done':
-            logger.debug('Done response received', { sessionId });
             break;
 
           case 'response.error': {
             const error = new Error(`Model error: ${JSON.stringify(event)}`);
             logger.error('WebSocket error response', { event });
+            cleanup();
             reject(error);
             break;
           }
@@ -547,18 +621,21 @@ async function setupWebSocketListeners(ws: WebSocket): Promise<string> {
       } catch (err) {
         const error = `Failed to parse server event: ${data}`;
         logger.error('WebSocket parse error', { error, data });
+        cleanup();
         reject(new Error(error));
       }
     };
 
     const onError = (err: Error) => {
       logger.error('WebSocket error', { error: err });
+      cleanup();
       reject(err);
     };
 
     const onClose = () => {
       if (!sessionId) {
         logger.warn('WebSocket closed before session was established');
+        cleanup();
         reject(new Error('WebSocket closed before session was established'));
       }
     };
@@ -569,42 +646,163 @@ async function setupWebSocketListeners(ws: WebSocket): Promise<string> {
   });
 }
 
+interface RateLimitEvent {
+  type: 'rate_limit';
+  remaining_requests: number;
+  reset_at: string;
+  retry_after: number;
+}
+
+interface BackoffEvent {
+  type: 'backoff';
+  wait_ms: number;
+}
+
+// Rate limiting state management
+interface RateLimitState {
+  remainingRequests: number;
+  resetAt: Date | null;
+  retryAfter: number;
+  backoffMs: number;
+}
+
+const rateLimitState: RateLimitState = {
+  remainingRequests: Infinity,
+  resetAt: null,
+  retryAfter: 0,
+  backoffMs: 0
+};
+
+/**
+ * Updates the rate limit state based on events from the API
+ */
+function updateRateLimitState(event: RateLimitEvent | BackoffEvent): void {
+  if (event.type === 'rate_limit') {
+    rateLimitState.remainingRequests = event.remaining_requests;
+    rateLimitState.resetAt = new Date(event.reset_at);
+    rateLimitState.retryAfter = event.retry_after;
+    logger.warn('⚠️ Rate limit update', {
+      remainingRequests: event.remaining_requests,
+      resetAt: event.reset_at,
+      retryAfter: event.retry_after
+    });
+  } else if (event.type === 'backoff') {
+    rateLimitState.backoffMs = event.wait_ms;
+    logger.warn('⚠️ Backoff requested', { waitMs: event.wait_ms });
+  }
+}
+
+/**
+ * Checks if we need to wait before making the next request
+ * @returns The number of milliseconds to wait, or 0 if no wait is needed
+ */
+function getWaitTime(): number {
+  if (rateLimitState.remainingRequests <= 0 && rateLimitState.resetAt) {
+    const now = new Date();
+    if (now < rateLimitState.resetAt) {
+      return rateLimitState.resetAt.getTime() - now.getTime();
+    }
+  }
+  return Math.max(rateLimitState.retryAfter * 1000, rateLimitState.backoffMs);
+}
+
+/**
+ * Waits for the appropriate time based on rate limits and backoff
+ */
+async function waitIfNeeded(): Promise<void> {
+  const waitTime = getWaitTime();
+  if (waitTime > 0) {
+    logger.info(`⏳ Waiting ${waitTime}ms before next request`);
+    await new Promise(resolve => setTimeout(resolve, waitTime));
+  }
+}
+
 export async function analyzeGitDiffForVersion(): Promise<string> {
-  // 1. Get the filtered Git diff
-  const diff = await getFilteredGitDiff();
-  if (!diff) {
-    logger.warn('No Git diff found');
-    return JSON.stringify({
-      version_type: 'unknown',
-      needs_review: true,
-      reasoning: 'No Git diff found to analyze'
-    });
-  }
-
-  if (diff.length < 10) {
-    logger.warn('Git diff too small to analyze');
-    return JSON.stringify({
-      version_type: 'unknown',
-      needs_review: true,
-      reasoning: 'Git diff too small to analyze meaningfully'
-    });
-  }
-
-  // 2. Chunk the diff
-  const rawChunks = chunkString(diff, CHUNK_SIZE);
-  const limitedChunks = limitChunks(rawChunks, MAX_CHUNKS);
-  logger.info(`Processing ${limitedChunks.length} chunk(s) for analysis`);
-
-  // 3. Connect to Realtime API
-  const ws = createRealtimeConnection();
-
-  // Wait for connection
-  await new Promise<void>((resolve, reject) => {
-    ws.once('open', resolve);
-    ws.once('error', reject);
-  });
+  let ws: WebSocket | null = null;
+  let closeTimeout: NodeJS.Timeout;
 
   try {
+    // 1. Get the filtered Git diff
+    const diff = await getFilteredGitDiff();
+    if (!diff) {
+      logger.warn('No Git diff found');
+      return JSON.stringify({
+        version_type: 'unknown',
+        needs_review: true,
+        reasoning: 'No Git diff found to analyze'
+      });
+    }
+
+    if (diff.length < 10) {
+      logger.warn('Git diff too small to analyze');
+      return JSON.stringify({
+        version_type: 'unknown',
+        needs_review: true,
+        reasoning: 'Git diff too small to analyze meaningfully'
+      });
+    }
+
+    // 2. Chunk the diff
+    const rawChunks = chunkString(diff, CHUNK_SIZE);
+    const limitedChunks = limitChunks(rawChunks, MAX_CHUNKS);
+    logger.info(`Processing ${limitedChunks.length} chunk(s) for analysis`);
+
+    // 3. Connect to Realtime API
+    ws = createRealtimeConnection();
+    logWebSocketState(ws, 'initial connection');
+
+    // Create an AbortController for timeout management
+    const abortController = new AbortController();
+    const { signal } = abortController;
+
+    // Wait for connection with timeout
+    try {
+      await Promise.race([
+        new Promise<void>((resolve, reject) => {
+          const connectionTimeout = setTimeout(() => {
+            logWebSocketState(ws, 'connection timeout');
+            reject(new Error('WebSocket connection timeout'));
+          }, 30000);
+
+          ws!.once('open', () => {
+            logWebSocketState(ws, 'connection open');
+            clearTimeout(connectionTimeout);
+            resolve();
+          });
+
+          ws!.once('error', (error) => {
+            logWebSocketState(ws, 'connection error');
+            clearTimeout(connectionTimeout);
+            reject(error);
+          });
+
+          // Clean up on abort
+          signal.addEventListener('abort', () => {
+            clearTimeout(connectionTimeout);
+            reject(new Error('Connection aborted'));
+          });
+        }),
+        new Promise<never>((_, reject) => {
+          const globalTimeout = setTimeout(() => {
+            logWebSocketState(ws, 'global timeout');
+            abortController.abort();
+            reject(new Error('Global connection timeout'));
+          }, 30000);
+
+          // Clean up on success
+          signal.addEventListener('abort', () => {
+            clearTimeout(globalTimeout);
+          });
+        })
+      ]);
+    } catch (error) {
+      abortController.abort(); // Ensure all timeouts are cleaned up
+      throw error;
+    }
+
+    // Cleanup the abort controller
+    abortController.abort();
+
     // 4. Initialize session with initial instructions
     const initialSessionEvent: SessionUpdateEvent = {
       type: 'session.update',
@@ -712,12 +910,93 @@ export async function analyzeGitDiffForVersion(): Promise<string> {
     const finalAnalysis = await sendEventAndAwait(ws, finalAnalysisEvent);
     const result = parseAndValidateJSON(finalAnalysis, validateFinalAnalysis);
 
-    logger.info('Analysis complete', { result });
-    return JSON.stringify(result);
+    logger.info('✅ Analysis complete', { result });
 
+    // Ensure proper connection cleanup
+    return await new Promise((resolve, reject) => {
+      const cleanup = () => {
+        clearTimeout(closeTimeout);
+        if (ws?.readyState === WebSocket.OPEN) {
+          // Remove all listeners before closing to prevent race conditions
+          ws.removeAllListeners();
+          ws.close();
+        }
+      };
+
+      // Set a timeout for the close operation
+      closeTimeout = setTimeout(() => {
+        logger.warn('⚠️ WebSocket close timeout - forcing cleanup');
+        cleanup();
+        resolve(JSON.stringify(result, null, 2));
+      }, 5000);
+
+      if (ws?.readyState === WebSocket.OPEN) {
+        logger.debug('Initiating graceful WebSocket shutdown');
+
+        // Add close listener after removing all others
+        ws.once('close', () => {
+          logger.debug('WebSocket closed successfully');
+          clearTimeout(closeTimeout);
+          resolve(JSON.stringify(result, null, 2));
+        });
+
+        ws.once('error', (err) => {
+          logger.error('Error during WebSocket shutdown', { error: err });
+          cleanup();
+          resolve(JSON.stringify(result, null, 2)); // Still resolve as we have the result
+        });
+
+        // Close with a more specific code and reason
+        ws.close(1000, 'Analysis complete - normal closure');
+      } else {
+        cleanup();
+        resolve(JSON.stringify(result, null, 2));
+      }
+    });
+
+  } catch (err) {
+    logWebSocketState(ws, 'analyzeGitDiffForVersion error');
+    const error = err instanceof Error ? err : new Error(String(err));
+    logger.error('❌ Fatal error during analysis', {
+      error: {
+        name: error.name,
+        message: error.message,
+        stack: error.stack
+      }
+    });
+    throw error;
   } finally {
-    ws.close();
+    logWebSocketState(ws, 'analyzeGitDiffForVersion finally');
+    if (ws?.readyState === WebSocket.OPEN) {
+      try {
+        logger.debug('Ensuring WebSocket cleanup in finally block');
+        ws.removeAllListeners(); // Remove all listeners before final close
+        ws.close(1000, 'Final cleanup');
+      } catch (err) {
+        logger.warn('Error during final WebSocket cleanup', { error: err });
+      }
+    }
   }
+}
+
+// Add a helper function for WebSocket state logging
+function logWebSocketState(ws: WebSocket | null, context: string): void {
+  if (!ws) {
+    logger.debug(`WebSocket state [${context}]: null`);
+    return;
+  }
+
+  const states = {
+    [WebSocket.CONNECTING]: 'CONNECTING',
+    [WebSocket.OPEN]: 'OPEN',
+    [WebSocket.CLOSING]: 'CLOSING',
+    [WebSocket.CLOSED]: 'CLOSED'
+  };
+
+  logger.debug(`WebSocket state [${context}]`, {
+    state: states[ws.readyState],
+    readyState: ws.readyState
+  });
 }
 
 /**

@@ -73,9 +73,13 @@ async function main() {
           const resultObj = JSON.parse(result);
           const { version_type, needs_review, reasoning } = resultObj;
 
+          logger.info('Analysis result', { version_type, needs_review, reasoning });
+
           fs.appendFileSync(process.env['GITHUB_OUTPUT'], `version_type=${version_type}\n`);
           fs.appendFileSync(process.env['GITHUB_OUTPUT'], `needs_review=${needs_review}\n`);
           fs.appendFileSync(process.env['GITHUB_OUTPUT'], `reasoning=${reasoning}\n`);
+
+          logger.info('Wrote outputs to GITHUB_OUTPUT');
         } else {
           console.log(result);
         }
