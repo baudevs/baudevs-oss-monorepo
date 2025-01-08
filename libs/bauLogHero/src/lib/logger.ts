@@ -1,125 +1,89 @@
-import type { LogLevel, LoggerConfig } from '../types';
+import type { LoggerConfig, LogEntry, LogContext } from '../types';
 import { OutputHandler } from './output-handler';
+import { SmartAnalyzer } from './smart-analysis';
+
+interface AnalysisInsights {
+  groups: Array<{
+    id: string;
+    pattern: string;
+    entries: LogEntry[];
+    frequency: number;
+    firstSeen: Date;
+    lastSeen: Date;
+    severity: 'low' | 'medium' | 'high';
+    context?: LogContext;
+  }>;
+  summary: string;
+}
 
 export class Logger {
-  private outputHandler: OutputHandler;
   private config: LoggerConfig;
-  private isCI: boolean;
+  private outputHandler: OutputHandler;
+  private analyzer: SmartAnalyzer | null = null;
 
   constructor(config: LoggerConfig = {}) {
     this.config = config;
     this.outputHandler = new OutputHandler(config.output);
-    this.isCI = this.detectCI();
+
+    if (config.smartAnalysis?.enabled) {
+      this.analyzer = new SmartAnalyzer({
+        groupingSimilarityThreshold: config.smartAnalysis.groupingSimilarityThreshold,
+        timeWindowMinutes: config.smartAnalysis.timeWindowMinutes,
+        maxGroups: config.smartAnalysis.maxGroups,
+        minGroupSize: config.smartAnalysis.minGroupSize
+      });
+    }
   }
 
-  private detectCI(): boolean {
-    return Boolean(
-      process.env['CI'] ||
-      process.env['GITHUB_ACTIONS'] ||
-      process.env['GITLAB_CI'] ||
-      process.env['CIRCLECI'] ||
-      process.env['JENKINS_URL'] ||
-      process.env['TRAVIS']
-    );
-  }
-
-  private shouldLog(level: LogLevel, message: unknown, args: unknown[]): boolean {
-    if (!this.isCI || !this.config.output?.ci?.enabled) {
-      return true;
-    }
-
-    const ciConfig = this.config.output.ci;
-
-    // Check minimum level
-    if (ciConfig.minLevel) {
-      const levels: LogLevel[] = ['debug', 'info', 'warn', 'error'];
-      const minLevelIndex = levels.indexOf(ciConfig.minLevel);
-      const currentLevelIndex = levels.indexOf(level);
-      if (currentLevelIndex < minLevelIndex) {
-        return false;
-      }
-    }
-
-    // Check filter patterns
-    if (ciConfig.filterPatterns?.length) {
-      const messageStr = String(message);
-      return ciConfig.filterPatterns.some(pattern =>
-        messageStr.includes(pattern)
-      );
-    }
-
-    return true;
-  }
-
-  private formatForCI(message: unknown, args: unknown[]): [unknown, unknown[]] {
-    if (!this.isCI || !this.config.output?.ci?.enabled) {
-      return [message, args];
-    }
-
-    const ciConfig = this.config.output.ci;
-
-    const formatValue = (value: unknown): unknown => {
-      if (!value || typeof value !== 'object') {
-        return value;
-      }
-
-      if (!ciConfig.showFullObjects) {
-        if (Array.isArray(value)) {
-          return `Array(${value.length})`;
-        }
-        return `${value.constructor.name}`;
-      }
-
-      if (ciConfig.truncateLength && typeof value === 'object') {
-        const str = JSON.stringify(value);
-        if (str.length > ciConfig.truncateLength) {
-          return str.substring(0, ciConfig.truncateLength) + '...';
-        }
-      }
-
-      if (ciConfig.excludeMetadata && typeof value === 'object') {
-        const obj = value as Record<string, unknown>;
-        const cleaned = { ...obj };
-        if ('metadata' in cleaned) {
-          delete cleaned['metadata'];
-        }
-        return cleaned;
-      }
-
-      return value;
-    };
-
-    const formattedMessage = formatValue(message);
-    const formattedArgs = args.map(formatValue);
-
-    return [formattedMessage, formattedArgs];
+  log(message: unknown, ...args: unknown[]): void {
+    this.logWithLevel('info', message, ...args);
   }
 
   debug(message: unknown, ...args: unknown[]): void {
-    if (this.shouldLog('debug', message, args)) {
-      const [formattedMessage, formattedArgs] = this.formatForCI(message, args);
-      this.outputHandler.log('debug', String(formattedMessage), formattedArgs);
-    }
+    this.logWithLevel('debug', message, ...args);
   }
 
   info(message: unknown, ...args: unknown[]): void {
-    if (this.shouldLog('info', message, args)) {
-      const [formattedMessage, formattedArgs] = this.formatForCI(message, args);
-      this.outputHandler.log('info', String(formattedMessage), formattedArgs);
-    }
+    this.logWithLevel('info', message, ...args);
   }
 
   warn(message: unknown, ...args: unknown[]): void {
-    if (this.shouldLog('warn', message, args)) {
-      const [formattedMessage, formattedArgs] = this.formatForCI(message, args);
-      this.outputHandler.log('warn', String(formattedMessage), formattedArgs);
-    }
+    this.logWithLevel('warn', message, ...args);
   }
 
   error(message: unknown, ...args: unknown[]): void {
-    if (this.shouldLog('error', message, args)) {
-      const [formattedMessage, formattedArgs] = this.formatForCI(message, args);
-      this.outputHandler.log('error', String(formattedMessage), formattedArgs);
+    this.logWithLevel('error', message, ...args);
+  }
+
+  getAnalysisInsights(): AnalysisInsights {
+    if (!this.analyzer) {
+      return {
+        groups: [],
+        summary: 'Smart analysis is not enabled. Enable it in the logger configuration.'
+      };
+    }
+    return this.analyzer.getInsights();
+  }
+
+  private logWithLevel(level: 'debug' | 'info' | 'warn' | 'error', message: unknown, ...args: unknown[]): void {
+    const entry = {
+      timestamp: new Date().toISOString(),
+      level,
+      message,
+      args,
+      filename: this.config.name || 'unknown'
+    };
+
+    // Send to output handler
+    this.outputHandler.log(level, this.config.name || 'unknown', message, ...args);
+
+    // Send to analyzer if enabled
+    if (this.analyzer) {
+      this.analyzer.analyze(entry);
     }
   }
+}
+
+export function createLogger(config: LoggerConfig = {}): Logger {
+  return new Logger(config);
 }

@@ -146,12 +146,14 @@ const readLogs = async (filePath: string) => {
 ```
 
 ❌ Don't try to parse the entire file as JSON:
+
 ```typescript
 // This will fail
 const logs = JSON.parse(fs.readFileSync('logs.jsonl', 'utf8'));
 ```
 
 ✅ Process one line at a time:
+
 ```typescript
 // This is correct
 const lines = fs.readFileSync('logs.jsonl', 'utf8').split('\n');
@@ -344,3 +346,123 @@ Automatically extracts and tracks contextual information:
 ## License
 
 MIT
+
+## Log File Reading
+
+BauLogHero provides several utilities for reading log files efficiently:
+
+### Stream Reading (for large files)
+
+```typescript
+import { readLogsStream } from '@baudevs/bau-log-hero';
+
+// Process large files efficiently with streams
+for await (const entry of readLogsStream('./logs/app.jsonl')) {
+  // Process each log entry
+  console.log(entry.timestamp, entry.message);
+}
+```
+
+### Sync Reading (for small files)
+
+```typescript
+import { readLogsSync } from '@baudevs/bau-log-hero';
+
+// Read all logs at once
+const entries = await readLogsSync('./logs/app.jsonl');
+entries.forEach(entry => {
+  console.log(entry.timestamp, entry.message);
+});
+```
+
+### Reading Last N Entries
+
+```typescript
+import { readLastLogs } from '@baudevs/bau-log-hero';
+
+// Get the last 100 log entries
+const recentLogs = await readLastLogs('./logs/app.jsonl', 100);
+```
+
+### Reading by Time Range
+
+```typescript
+import { readLogsInRange } from '@baudevs/bau-log-hero';
+
+const startTime = new Date('2024-01-01T00:00:00Z');
+const endTime = new Date('2024-01-02T00:00:00Z');
+
+// Get logs within a specific time range
+const logs = await readLogsInRange('./logs/app.jsonl', startTime, endTime);
+```
+
+## Validation Utilities
+
+BauLogHero includes validation utilities to ensure proper logging practices:
+
+### Log Level Validation
+
+```typescript
+import { isValidLogLevel } from '@baudevs/bau-log-hero';
+
+if (isValidLogLevel(level)) {
+  logger.log(level, message);
+}
+```
+
+### Structured Logging Validation
+
+```typescript
+import { validateStructuredLog } from '@baudevs/bau-log-hero';
+
+const { isValid, error } = validateStructuredLog(message, data);
+if (!isValid) {
+  console.warn(`Invalid log format: ${error}`);
+  return;
+}
+
+// Good: Structured logging
+logger.info('User action', { userId, action, data });
+
+// Bad: Will fail validation
+logger.info(`User ${userId} performed ${action}`); // Template literals not allowed
+```
+
+### Context Validation
+
+```typescript
+import { validateLogContext } from '@baudevs/bau-log-hero';
+
+const context = {
+  ip: '127.0.0.1',
+  method: 'GET',
+  path: '/api/users',
+  status: 200
+};
+
+const { isValid, error } = validateLogContext(context);
+if (!isValid) {
+  console.warn(`Invalid context: ${error}`);
+  return;
+}
+
+logger.info('API request', context);
+```
+
+### Log Entry Validation
+
+```typescript
+import { validateLogEntry } from '@baudevs/bau-log-hero';
+
+// Validate log entries when reading from file
+for await (const line of readLines('./logs/app.jsonl')) {
+  try {
+    const entry = JSON.parse(line);
+    if (validateLogEntry(entry)) {
+      // Process valid log entry
+    }
+  } catch (error) {
+    console.warn('Invalid log entry:', error);
+  }
+}
+```

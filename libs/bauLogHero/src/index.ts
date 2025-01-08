@@ -1,15 +1,21 @@
 // libs/logger/src/index.ts
-import type { LoggerConfig } from './types';
 import { Logger } from './lib/logger';
 
-export { Logger } from './lib/logger';
-export { OutputHandler } from './lib/output-handler';
 export * from './types';
+export { createLogger } from './lib/logger';
+export { SmartAnalyzer } from './lib/smart-analysis';
+export { findRelevantEmoji } from './lib/utils';
+export { Logger };
+export {
+  readLogsStream,
+  readLogsSync,
+  readLastLogs,
+  readLogsInRange
+} from './utils/file-reader';
+export {
+  isValidLogLevel,
+  validateLogEntry,
+  validateStructuredLog,
+  validateLogContext
+} from './utils/validation';
 
-// Factory function to create a new logger instance
-export function createLogger(config: LoggerConfig = {}): Logger {
-  return new Logger(config);
-}
-
-// Utility functions
-export { getTimeString, ensureError, sanitizeFilename, formatBytes } from './lib/utils';

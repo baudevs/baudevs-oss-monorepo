@@ -2,6 +2,12 @@ export type LogLevel = 'debug' | 'info' | 'warn' | 'error';
 export type TimestampFormat = 'iso' | 'short' | 'none';
 export type TagReturn = string | [string, string];
 
+export interface JsonFormatConfig {
+  enabled?: boolean;
+  indent?: number;
+  maxDepth?: number;
+}
+
 export interface CIConfig {
   enabled?: boolean;
   minLevel?: LogLevel;
@@ -9,6 +15,7 @@ export interface CIConfig {
   showFullObjects?: boolean;
   truncateLength?: number;
   excludeMetadata?: boolean;
+  formatJson?: JsonFormatConfig;
 }
 
 export interface LogEntry {
@@ -17,6 +24,13 @@ export interface LogEntry {
   message: unknown;
   args: unknown[];
   filename: string;
+}
+
+export interface LogContext {
+  ip?: string;
+  url?: string;
+  statusCode?: number;
+  [key: string]: unknown;
 }
 
 export interface RotationConfig {
@@ -42,6 +56,7 @@ export interface OutputConfig {
       firstLines?: number;
       lastLines?: number;
     };
+    formatJson?: JsonFormatConfig;
   };
   file?: FileOutputConfig;
   prettyPrint?: boolean;
@@ -55,13 +70,13 @@ export interface LoggerConfig {
   timestamp?: boolean;
   timestampFormat?: TimestampFormat;
   output?: OutputConfig;
-}
-
-export interface LogContext {
-  ip?: string;
-  url?: string;
-  statusCode?: number;
-  [key: string]: unknown;
+  smartAnalysis?: {
+    enabled?: boolean;
+    groupingSimilarityThreshold?: number;
+    timeWindowMinutes?: number;
+    maxGroups?: number;
+    minGroupSize?: number;
+  };
 }
 
 export const colors = {
