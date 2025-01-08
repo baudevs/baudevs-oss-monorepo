@@ -47,23 +47,11 @@ jobs:
         run: pnpm install
 
       - name: Execute Release
-        run: |
-          cd tools/release-tools
-          echo "Releasing project: ${{ inputs.project }}"
-          pnpm tsx src/cli.ts release \
-            --project="${{ inputs.project }}" \
-            --skip-publish
-          cd ../../
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: pnpm nx release --skip-publish --verbose
 
       - name: Publish Package
-        run: |
-          cd tools/release-tools
-          echo "Publishing project: ${{ inputs.project }}"
-          pnpm tsx src/cli.ts release \
-            --project="${{ inputs.project }}"
-          cd ../../
+        run: pnpm nx release publish @baudevs/${{ inputs.project }} --verbose
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          NX_TOKEN: ${{ secrets.NX_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
