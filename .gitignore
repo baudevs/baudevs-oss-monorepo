@@ -56,7 +56,6 @@ vitest.config.*.timestamp*
 .env.*
 node_modules/
 CLOUD_REQUIREMENTS.md
-.npmrc
 tools/release-tools/logs/git-diff/app.jsonl
 tools/release-tools/logs/release-tools/main/app.jsonl
 tools/release-tools/logs/release-tools/realtime/app.jsonl
