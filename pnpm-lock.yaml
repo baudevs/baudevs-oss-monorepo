@@ -610,6 +610,9 @@ importers:
 
   tools/release-tools:
     dependencies:
+      '@baudevs/bau-log-hero':
+        specifier: ^1.4.0
+        version: 1.5.0
       ajv:
         specifier: ^8.12.0
         version: 8.17.1
@@ -1303,6 +1306,10 @@ packages:
       next: ^15.1.2
       react: ^19.0.0
       react-dom: ^19.0.0
+
+  '@baudevs/bau-log-hero@1.5.0':
+    resolution: {integrity: sha512-X8o+y00RUS7l988HvWyczH2tAF2JyeFDtoRYIU8F7B3oolYLa5cVd21Q140q6ag3JHx5oTDsIs/fcoL6YDespQ==}
+    engines: {node: '>=18'}
 
   '@bcoe/v8-coverage@0.2.3':
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
@@ -12617,6 +12624,8 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
       - supports-color
+
+  '@baudevs/bau-log-hero@1.5.0': {}
 
   '@bcoe/v8-coverage@0.2.3': {}
 
