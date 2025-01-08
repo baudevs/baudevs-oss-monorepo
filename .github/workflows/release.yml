@@ -166,7 +166,7 @@ jobs:
           cat .nx/version-plans/version-plan-*.md
 
       - name: Run Release
-        uses: baudevs/baudevs-oss-monorepo/.github/workflows/release-with-plan.yml
+        uses: ./.github/workflows/release-with-plan.yml
         with:
           projects: ${{ needs.analyze-changes.outputs.project_name }}
           secrets:
