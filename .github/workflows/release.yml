@@ -158,6 +158,7 @@ jobs:
     steps:
       - name: Start Release
         run: |
+          pwd
           echo "Releasing project: ${{ needs.analyze-changes.outputs.project_name }}"
           ls -la  .nx/version-plans/
           cat .nx/version-plans/version-plan-*.md
