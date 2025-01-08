@@ -154,7 +154,10 @@
       "push": true
     },
     "version": {
-      "conventionalCommits": true
+      "conventionalCommits": true,
+      "generatorOptions": {
+        "preserveLocalDependencyProtocols": true
+      }
     }
   },
   "useDaemonProcess": false,

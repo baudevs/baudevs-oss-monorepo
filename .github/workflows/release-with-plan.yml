@@ -50,6 +50,8 @@ jobs:
         run: |
           git config --global user.name "baudevs"
           git config --global user.email "tech@baudevs.com"
+          git fetch origin tag $GITHUB_REF
+          git merge $GITHUB_REF --ff-only
 
       - name: Execute Release
         run: pnpm nx release --skip-publish --verbose
