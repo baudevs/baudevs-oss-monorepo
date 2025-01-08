@@ -85,7 +85,10 @@ jobs:
 
   human-review:
     needs: analyze-changes
-    if: needs.analyze-changes.outputs.needs_human_review == 'true'
+    if: |
+      needs.analyze-changes.outputs.needs_human_review == 'true' ||
+      needs.analyze-changes.outputs.version_type == 'none' ||
+      needs.analyze-changes.outputs.version_type == 'other'
     runs-on: ubuntu-latest
     environment: production
     steps:
