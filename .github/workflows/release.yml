@@ -150,6 +150,10 @@ jobs:
           cd ../../
 
   release:
+    needs: [create-version-plan]
+    if: |
+      always() &&
+      (needs.create-version-plan.result == 'success')
     runs-on: ubuntu-latest
     steps:
       - name: Start Release
