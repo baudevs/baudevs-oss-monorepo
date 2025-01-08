@@ -166,7 +166,7 @@ jobs:
           ls -la  .nx/version-plans/
           cat .nx/version-plans/version-plan-*.md
       - name: Run Release
-        uses: ./.github/workflows/release-with-plan.yml
+        uses: ./.github/workflows/release-with-plan
         with:
           projects: ${{ needs.analyze-changes.outputs.project_name }}
           secrets: |
