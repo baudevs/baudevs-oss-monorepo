@@ -146,7 +146,11 @@ jobs:
 
   release:
     needs: create-version-plan
-    if: success() && needs.create-version-plan.result == 'success'
+    if: |
+      success() &&
+      (needs.create-version-plan.result == 'success' ||
+       needs.analyze-changes.outputs.needs_human_review == 'true' && needs.human-review.result == 'success')
+    runs-on: ubuntu-latest
     steps:
       - name: Run Release
         run: |
