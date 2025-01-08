@@ -150,29 +150,19 @@ jobs:
           cd ../../
 
   release:
-    needs: [create-version-plan]
+    needs: [create-version-plan, analyze-changes]
     if: |
       always() &&
       (needs.create-version-plan.result == 'success')
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: test
-        run: |
-          pwd
-          ls -la  .nx/version-plans/
-          cat .nx/version-plans/version-plan-*.md
-      - name: Run Release
-        uses: ./.github/workflows/release-with-plan
-        with:
-          projects: ${{ needs.analyze-changes.outputs.project_name }}
-          secrets: |
-            NX_TOKEN: ${{ secrets.NX_TOKEN }}
-            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-            GH_PAT: ${{ secrets.GH_PAT }}
+    uses: ./.github/workflows/release-with-plan.yml
+    with:
+      projects: "[${{ needs.analyze-changes.outputs.project_name }}]"
+    secrets:
+      NX_TOKEN: ${{ secrets.NX_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      GH_PAT: ${{ secrets.GH_PAT }}
+
+
   merge-to-production:
     needs: release
     if: startsWith(github.ref, 'refs/tags/release/')
