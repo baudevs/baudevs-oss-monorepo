@@ -256,7 +256,7 @@ const cleanup = () => {
 
 The WebSocket connection implements a state machine pattern:
 
-```
+```bash
 CONNECTING → OPEN → CLOSING → CLOSED
      ↑         |        ↑
      |         |        |

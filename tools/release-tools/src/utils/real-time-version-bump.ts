@@ -104,16 +104,6 @@ export interface VersionAnalysisResult {
 /**
  * Interface for server events received from OpenAI Realtime API.
  */
-interface ServerEvent {
-  type: 'response.partial' | 'response.final' | 'response.done' | 'response.error' | 'rate_limit' | 'backoff';
-  response?: {
-    text?: string;
-  };
-  remaining_requests?: number;
-  reset_at?: string;
-  retry_after?: number;
-  wait_ms?: number;
-}
 
 /**
  * Interface for request events sent to OpenAI Realtime API.
@@ -186,12 +176,6 @@ interface SessionUpdateEvent {
   }
 }
 
-/**
- * Interface for potential errors from Realtime API.
- */
-interface RealtimeError extends Error {
-  message: string;
-}
 
 /**
  * JSON Schemas for validation.
@@ -276,6 +260,7 @@ function waitForFinalResponse(ws: WebSocket): Promise<string> {
     let finished = false;
     let functionCallArguments = '';
     let partialText = '';
+    // eslint-disable-next-line prefer-const
     let timeoutId: NodeJS.Timeout;
 
     const cleanup = () => {
@@ -381,6 +366,7 @@ function waitForFinalResponse(ws: WebSocket): Promise<string> {
             logger.debug('Unhandled event type', { type: event.type, event });
             break;
         }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (err) {
         const error = `Failed to parse server event: ${data}`;
         logger.error('WebSocket parse error', { error, data });
@@ -452,93 +438,29 @@ async function sendEventAndAwait(ws: WebSocket, eventObj: RequestEvent | Session
   });
 }
 
-/**
- * Performs a secondary summarization on large combined summaries.
- * @param ws The WebSocket connection.
- * @param summary The combined summary text.
- * @returns The secondary summarized text.
- */
-async function secondarySummarize(ws: WebSocket, summary: string): Promise<string> {
-  logger.info('Performing secondary summarization...');
 
-  const secSummaryEvent: RequestEvent = {
-    type: 'response.create',
-    response: {
-      modalities: ['text'],
-      instructions: `Summarize the following text in a concise manner:\n\n${summary}`
-    }
-  };
 
-  logger.debug('Sending secondary summarization request', { event: secSummaryEvent });
-
-  try {
-    const secSummary = await sendEventAndAwait(ws, secSummaryEvent);
-    logger.info('Secondary summarization complete');
-    return secSummary.trim();
-  } catch (err: unknown) {
-    const error = err instanceof Error ? err : new Error(String(err));
-    logger.error('❌ Error during secondary summarization', { error });
-    ws.close();
-    throw error;
-  }
-}
-
-/**
- * Attempts to send a request and parse JSON with retries.
- * @param ws The WebSocket connection.
- * @param eventObj The request event to send.
- * @param schemaValidator The AJV compiled schema validator.
- * @param maxRetries The maximum number of retry attempts.
- * @returns The parsed JSON object.
- */
-async function sendEventWithRetries<T>(
-  ws: WebSocket,
-  eventObj: RequestEvent,
-  schemaValidator: ValidateFunction,
-  maxRetries = 3
-): Promise<T> {
-  for (let attempt = 1; attempt <= maxRetries; attempt++) {
-    try {
-      const responseText = await sendEventAndAwait(ws, eventObj);
-      if (!responseText.trim()) {
-        throw new Error('Empty response received from OpenAI Realtime API');
-      }
-      return parseAndValidateJSON<T>(responseText, schemaValidator);
-    } catch (err: unknown) {
-      const error = err instanceof Error ? err : new Error(String(err));
-      logger.error(`❌ Attempt ${attempt} failed`, {
-        error: error.message,
-        attempt,
-        maxRetries,
-        requestType: eventObj.type
-      });
-
-      if (attempt === maxRetries) {
-        throw new Error(`All ${maxRetries} attempts failed: ${error.message}`);
-      }
-
-      logger.warn(`⚠️ Retrying... (${attempt + 1}/${maxRetries})`);
-    }
-  }
-  throw new Error('Unexpected error in sendEventWithRetries');
-}
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function logGitDiff(diff: string): Promise<void> {
   await logger.debug('📄 Git Diff Content', { diff });
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function logChunk(chunkIndex: number, content: string): Promise<void> {
   await logger.debug(`🔍 Chunk ${chunkIndex} Content`, { content });
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function logChunkSummary(chunkIndex: number, summary: string): Promise<void> {
   await logger.info(`📝 Chunk ${chunkIndex} Summary`, { summary });
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function logWebSocketEvent(eventType: string, content: unknown): Promise<void> {
   return logger.debug(`🔌 WebSocket Event: ${eventType}`, { content });
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function logFinalAnalysis(analysis: unknown): Promise<void> {
   return logger.info('✅ Final Analysis', { analysis });
 }
@@ -559,6 +481,7 @@ async function logError(error: Error | unknown): Promise<void> {
 async function setupWebSocketListeners(ws: WebSocket): Promise<string> {
   return new Promise((resolve, reject) => {
     let sessionId: string | null = null;
+    // eslint-disable-next-line prefer-const
     let timeoutId: NodeJS.Timeout;
 
     const cleanup = () => {
@@ -618,6 +541,7 @@ async function setupWebSocketListeners(ws: WebSocket): Promise<string> {
             logger.debug('Received event', { type: event.type, event });
             break;
         }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (err) {
         const error = `Failed to parse server event: ${data}`;
         logger.error('WebSocket parse error', { error, data });
@@ -764,13 +688,13 @@ export async function analyzeGitDiffForVersion(): Promise<string> {
             reject(new Error('WebSocket connection timeout'));
           }, 30000);
 
-          ws!.once('open', () => {
+          ws?.once('open', () => {
             logWebSocketState(ws, 'connection open');
             clearTimeout(connectionTimeout);
             resolve();
           });
 
-          ws!.once('error', (error) => {
+          ws?.once('error', (error) => {
             logWebSocketState(ws, 'connection error');
             clearTimeout(connectionTimeout);
             reject(error);
