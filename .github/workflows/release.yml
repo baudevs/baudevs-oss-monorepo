@@ -161,6 +161,7 @@ jobs:
       NX_TOKEN: ${{ secrets.NX_TOKEN }}
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       GH_PAT: ${{ secrets.GH_PAT }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
 
   merge-to-production:

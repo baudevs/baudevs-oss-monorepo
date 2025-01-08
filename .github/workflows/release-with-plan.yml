@@ -15,6 +15,8 @@ on:
         required: true
       GH_PAT:
         required: true
+      OPENAI_API_KEY:
+        required: true
 
 env:
   NX_EXCLUDED_PROJECTS: 'baudevs-dashboard,@baudevs/bauCmsNextExample'
@@ -52,6 +54,8 @@ jobs:
             --project="${{ inputs.project }}" \
             --skip-publish
           cd ../../
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
       - name: Publish Package
         run: |
@@ -62,3 +66,4 @@ jobs:
           cd ../../
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
