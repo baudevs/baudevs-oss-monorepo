@@ -146,8 +146,7 @@ jobs:
   release:
     needs: create-version-plan
     if: |
-      success() &&
-      needs.create-version-plan.result == 'success'
+      success()
     runs-on: ubuntu-latest
     steps:
       - name: Start Release
