@@ -43,12 +43,25 @@ function parseArgs(): CommandOptions {
   for (let i = 1; i < args.length; i++) {
     const arg = args[i];
     if (arg.startsWith('--')) {
-      const value = args[i + 1];
-      if (value && !value.startsWith('--')) {
-        argPairs[arg] = value;
-        i++; // Skip the value in next iteration
-      } else {
-        argPairs[arg] = 'true';
+      logger.info('Parsing argument', { arg });
+
+      // Handle --key=value format
+      if (arg.includes('=')) {
+        const [key, value] = arg.split('=');
+        logger.info('Parsed key-value pair', { key, value });
+        argPairs[key] = value;
+      }
+      // Handle --key value format
+      else {
+        const value = args[i + 1];
+        if (value && !value.startsWith('--')) {
+          logger.info('Parsed space-separated pair', { key: arg, value });
+          argPairs[arg] = value;
+          i++; // Skip the value in next iteration
+        } else {
+          logger.info('Parsed flag', { key: arg });
+          argPairs[arg] = 'true';
+        }
       }
     }
   }
@@ -67,7 +80,7 @@ function parseArgs(): CommandOptions {
 
   // Parse only-touched
   if ('--only-touched' in argPairs) {
-    options.onlyTouched = argPairs['--only-touched'] === 'true';
+    options.onlyTouched = argPairs['--only-touched'].toLowerCase() === 'true';
   }
 
   // Parse skip-publish
@@ -75,7 +88,7 @@ function parseArgs(): CommandOptions {
     options.skipPublish = true;
   }
 
-  logger.debug('Parsed arguments', { options });
+  logger.info('Parsed arguments', { options });
   return options;
 }
 
@@ -106,9 +119,11 @@ async function main() {
         break;
 
       case 'create-version-plan':
+        logger.info('Creating version plan with options', { options });
         if (!options.projectName || !options.versionType) {
           throw new Error('Missing required arguments: --project and --version-type');
         }
+
         await createVersionPlan({
           projectName: options.projectName,
           versionType: options.versionType,

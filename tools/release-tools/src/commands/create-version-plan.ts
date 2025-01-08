@@ -43,13 +43,29 @@ export async function createVersionPlan(options: VersionPlanOptions): Promise<vo
   logger.info('Creating version plan', { versionType, projectName, onlyTouched });
 
   try {
-    // Ensure we're in the right directory
-    const cwd = process.cwd();
-    logger.debug('Current working directory', { cwd });
+    // Get current directory and monorepo root
+    const currentDir = process.cwd();
+    const monorepoRoot = currentDir.includes('/tools/release-tools')
+      ? currentDir.split('/tools/release-tools')[0]
+      : currentDir;
+
+    logger.debug('Directory information', { currentDir, monorepoRoot });
+
+    // Change to monorepo root
+    process.chdir(monorepoRoot);
+    logger.debug('Changed to monorepo root', { newCwd: process.cwd() });
 
     // Ensure project name has @baudevs/ prefix but not duplicated
     const normalizedProjectName = projectName.startsWith('@baudevs/') ? projectName : `@baudevs/${projectName}`;
-    const command = `pnpm nx release plan ${versionType} --projects=${normalizedProjectName} --only-touched=${onlyTouched}`;
+
+    // Create a conventional commit style message based on version type
+    const changelogMessage = versionType === 'major'
+      ? `feat!: major version release for ${normalizedProjectName}`
+      : versionType === 'minor'
+      ? `feat: minor version release for ${normalizedProjectName}`
+      : `fix: patch version release for ${normalizedProjectName}`;
+
+    const command = `pnpm nx release plan ${versionType} --projects=${normalizedProjectName} --only-touched=${onlyTouched} --message="${changelogMessage}"`;
     logger.info('Running command', { command });
 
     // Run nx release plan command
@@ -102,6 +118,10 @@ export async function createVersionPlan(options: VersionPlanOptions): Promise<vo
     }
 
     logger.info('Version plan created and committed successfully');
+
+    // Change back to original directory
+    process.chdir(currentDir);
+    logger.debug('Changed back to original directory', { cwd: process.cwd() });
   } catch (error) {
     logger.error('Failed to create version plan', { error });
     throw error;
