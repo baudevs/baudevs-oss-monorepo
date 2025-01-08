@@ -611,7 +611,7 @@ importers:
   tools/release-tools:
     dependencies:
       '@baudevs/bau-log-hero':
-        specifier: 1.7.0
+        specifier: workspace:*
         version: link:../../libs/bauLogHero
       ajv:
         specifier: ^8.12.0
@@ -8160,7 +8160,6 @@ packages:
 
   libsql@0.4.7:
     resolution: {integrity: sha512-T9eIRCs6b0J1SHKYIvD8+KCJMcWZ900iZyxdnSCdqxN12Z1ijzT+jY5nrk72Jw4B0HGzms2NgpryArlJqvc3Lw==}
-    cpu: [x64, arm64, wasm32]
     os: [darwin, linux, win32]
 
   license-webpack-plugin@4.0.2:
