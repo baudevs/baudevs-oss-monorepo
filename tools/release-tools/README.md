@@ -41,6 +41,52 @@ const result = await analyzeGitDiffForVersion();
 // }
 ```
 
+## CLI Commands
+
+The tool provides several CLI commands for version management:
+
+### Version Analysis
+```bash
+pnpm tsx src/cli.ts analyze
+```
+Analyzes git changes to determine version bump type using OpenAI's Realtime API.
+Returns: 
+- version_type: major/minor/patch
+- needs_review: whether human review is needed
+- reasoning: detailed explanation of the decision
+
+### Create Version Plan
+```bash
+pnpm tsx src/cli.ts create-version-plan \
+  --project=<project-name> \
+  --version-type=<major|minor|patch> \
+  --only-touched=<true|false>
+```
+Creates an NX version plan for the specified project:
+- Automatically generates conventional commit style changelog messages
+- Handles project name normalization (adds @baudevs/ prefix if needed)
+- Creates and commits the version plan to .nx/version-plans/
+- Supports both space-separated and equals-sign argument formats
+
+Example:
+```bash
+pnpm tsx src/cli.ts create-version-plan \
+  --project=bau-log-hero \
+  --version-type=minor \
+  --only-touched=false
+```
+
+### Release
+```bash
+pnpm tsx src/cli.ts release \
+  --project=<project-name> \
+  [--skip-publish]
+```
+Executes the release process for a project:
+- Runs linting and building on affected projects
+- Executes the release with the version plan
+- Optionally skips publishing with --skip-publish flag
+
 ## Documentation
 
 - For basic usage and setup, refer to this README
@@ -54,40 +100,33 @@ const result = await analyzeGitDiffForVersion();
 
 2. **Realtime Processing**
    - Establishes WebSocket connection with OpenAI
-   - Maintains session state throughout analysis
    - Processes chunks incrementally with AI feedback
-   - Handles rate limiting and backoff events automatically
-   - Implements smart retry mechanisms with dynamic delays
+   - Basic rate limit handling
+   - Basic retry mechanism
 
 3. **Connection Management**
-   - Robust WebSocket lifecycle handling
-   - Automatic connection cleanup and timeouts
-   - State tracking and monitoring
+   - Basic WebSocket lifecycle handling
+   - Connection cleanup and timeouts
    - Graceful connection termination
-   - Connection health checks and logging
 
-4. **Rate Limiting & Backoff**
-   - Dynamic rate limit tracking
-   - Smart backoff implementation:
+4. **Rate Limiting**
+   - Basic rate limit tracking
+   - Simple backoff implementation:
      - Respects OpenAI's rate limits
-     - Handles backoff requests automatically
-     - Implements exponential backoff when needed
-   - Rate limit state management:
-     - Tracks remaining requests
-     - Monitors reset timestamps
-     - Manages retry delays
-     - Handles backoff intervals
+     - Handles basic backoff requests
+   - Rate limit state tracking:
+     - Monitors remaining requests
+     - Basic retry handling
 
-5. **Error Recovery**
-   - Automatic retry on transient failures
-   - Smart timeout handling
-   - Connection state recovery
-   - Graceful degradation
-   - Comprehensive error logging
+5. **Error Handling**
+   - Basic error recovery
+   - Timeout handling
+   - Connection cleanup
+   - Error logging with bau-log-hero
 
 6. **Structured Analysis**
    - Uses function calling for consistent responses
-   - Validates all responses against JSON schemas
+   - Basic JSON schema validation
    - Provides detailed reasoning for version decisions
 
 ## Configuration
@@ -110,16 +149,14 @@ const CLEANUP_TIMEOUT = 5000;      // 5 seconds for cleanup
 
 ## Error Handling
 
-The tool handles various error scenarios:
+The tool handles these error scenarios:
 
 - WebSocket connection failures
-- JSON parsing errors
+- Basic JSON parsing errors
 - Schema validation errors
 - API response errors
-- Rate limit exceeded errors
-- Backoff request handling
+- Basic rate limit handling
 - Connection timeouts
-- State transition errors
 - Cleanup failures
 
 ## Dependencies
@@ -132,28 +169,24 @@ The tool handles various error scenarios:
 
 1. **API Access**:
    - Requires OpenAI API key with access to realtime models
-   - Uses WebSocket protocol for efficient communication
-   - Implements rate limiting best practices
-   - Handles API versioning and beta features
+   - Uses WebSocket protocol for communication
+   - Basic rate limiting implementation
+   - Handles API versioning
 
 2. **Performance**:
-   - Processes diffs in chunks to handle large changes
-   - Uses incremental processing for faster results
-   - Maintains session state for context
-   - Smart rate limit handling for optimal throughput
-   - Efficient connection management
+   - Processes diffs in chunks
+   - Basic incremental processing
+   - Simple connection management
 
 3. **Validation**:
-   - All responses are schema-validated
-   - Structured output ensures reliable version decisions
+   - Basic response schema validation
+   - Structured output for version decisions
    - Detailed reasoning provided for each decision
-   - Connection state validation
 
 4. **Rate Limiting**:
-   - Automatically handles OpenAI's rate limits
-   - Implements exponential backoff when needed
-   - Provides detailed logging of rate limit events
-   - Gracefully handles API throttling
+   - Basic handling of OpenAI's rate limits
+   - Simple backoff implementation
+   - Basic logging of rate limit events
 
 ## Development
 
@@ -165,13 +198,7 @@ When developing:
 pnpm nx build @baudevs/bau-log-hero
 ```
 
-2. Run tests:
-
-```bash
-pnpm nx test @baudevs/release-tools
-```
-
-3. Build for production:
+2. Build for production:
 
 ```bash
 pnpm nx build @baudevs/release-tools
@@ -181,20 +208,15 @@ pnpm nx build @baudevs/release-tools
 
 Common issues and solutions:
 
-1. **Connection Timeouts**
+1. **Connection Issues**
    - Check network connectivity
    - Verify API key permissions
-   - Review rate limit status
    - Check for system resource constraints
 
 2. **Rate Limiting**
    - Monitor rate limit logs
-   - Adjust request timing
-   - Implement request batching
    - Review quota usage
 
 3. **State Management**
    - Check connection state logs
-   - Verify cleanup procedures
-   - Monitor resource usage
    - Review error logs
