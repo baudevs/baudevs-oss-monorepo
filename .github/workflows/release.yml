@@ -156,6 +156,11 @@ jobs:
       (needs.create-version-plan.result == 'success')
     runs-on: ubuntu-latest
     steps:
+      steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Run Release
         uses: ./.github/workflows/release-with-plan.yml
         with:
