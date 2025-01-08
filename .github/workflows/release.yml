@@ -137,6 +137,9 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
+      - name: Git pull
+        run: git pull -X theirs
+
       - name: Create Version Plan
         run: |
           cd tools/release-tools
@@ -147,7 +150,6 @@ jobs:
           cd ../../
 
   release:
-    needs: create-version-plan
     runs-on: ubuntu-latest
     steps:
       - name: Start Release
