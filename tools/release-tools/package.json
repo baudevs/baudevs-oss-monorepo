@@ -1,6 +1,6 @@
 {
   "name": "@baudevs/release-tools",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "A tool to analyze changes and create release notes",
   "keywords": [
     "release",
@@ -26,7 +26,7 @@
     "minimatch": "^10.0.1",
     "openai": "^4.77.3",
     "ws": "^8.18.0",
-    "@baudevs/bau-log-hero": "1.6.0"
+    "@baudevs/bau-log-hero": "1.7.0"
   },
   "devDependencies": {
     "@types/node": "^20.17.11",

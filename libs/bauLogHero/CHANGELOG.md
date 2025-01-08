@@ -1,3 +1,9 @@
+## 1.7.0 (2025-01-08)
+
+### 🚀 Features
+
+- minor release ([](https://github.com/baudevs/baudevs-oss-monorepo/commit/))
+
 ## 1.6.0 (2025-01-08)
 
 ### 🚀 Features

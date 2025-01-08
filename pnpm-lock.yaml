@@ -611,7 +611,7 @@ importers:
   tools/release-tools:
     dependencies:
       '@baudevs/bau-log-hero':
-        specifier: 1.6.0
+        specifier: 1.7.0
         version: link:../../libs/bauLogHero
       ajv:
         specifier: ^8.12.0
