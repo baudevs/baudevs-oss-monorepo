@@ -35,16 +35,17 @@ export async function release(options: ReleaseOptions): Promise<void> {
 
   try {
     // Set SHAs for affected commands
-    logger.info('Setting SHAs for affected commands');
-    execSync('pnpm nx set-shas', { stdio: 'inherit' });
+    // logger.info('Setting SHAs for affected commands');
+    // execSync('pnpm nx set-shas', { stdio: 'inherit' });
 
     // Run lint and build on affected projects
-    const excludedProjects = process.env['NX_EXCLUDED_PROJECTS'] || '';
-    logger.info('Running lint and build', { excludedProjects });
+    // const excludedProjects = process.env['NX_EXCLUDED_PROJECTS'] || '';
+    // logger.info('Running lint and build', { excludedProjects });
 
-    execSync(`pnpm nx affected --target=lint --exclude=${excludedProjects}`, { stdio: 'inherit' });
-    execSync(`pnpm nx affected --target=build --exclude=${excludedProjects}`, { stdio: 'inherit' });
-
+    // execSync(`pnpm nx affected --target=lint --exclude=${excludedProjects}`, { stdio: 'inherit' });
+    // execSync(`pnpm nx affected --target=build --exclude=${excludedProjects}`, { stdio: 'inherit' });
+    execSync(`pnpm nx ${projectName} --target=lint`, { stdio: 'inherit' });
+    execSync(`pnpm nx ${projectName} --target=build`, { stdio: 'inherit' });
     // Execute release
     logger.info('Executing release', { projectName });
     execSync(`pnpm nx release ${projectName} --skip-publish`, { stdio: 'inherit' });
