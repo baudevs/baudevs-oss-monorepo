@@ -32,17 +32,51 @@ interface VersionPlanOptions {
 export async function createVersionPlan(options: VersionPlanOptions): Promise<void> {
   const { versionType, projectName, onlyTouched = false } = options;
 
+  if (!projectName) {
+    throw new Error('Project name is required but was empty');
+  }
+
+  if (!versionType) {
+    throw new Error('Version type is required but was empty');
+  }
+
   logger.info('Creating version plan', { versionType, projectName, onlyTouched });
 
   try {
-    const command = `pnpm nx release plan ${versionType} --projects=@baudevs/${projectName} --only-touched=${onlyTouched}`;
+    // Ensure we're in the right directory
+    const cwd = process.cwd();
+    logger.debug('Current working directory', { cwd });
+
+    // Ensure project name has @baudevs/ prefix but not duplicated
+    const normalizedProjectName = projectName.startsWith('@baudevs/') ? projectName : `@baudevs/${projectName}`;
+    const command = `pnpm nx release plan ${versionType} --projects=${normalizedProjectName} --only-touched=${onlyTouched}`;
     logger.info('Running command', { command });
 
     // Run nx release plan command
     try {
-      execSync(command, { stdio: 'inherit' });
+      logger.debug('Executing nx release plan command');
+      execSync(command, {
+        stdio: 'inherit',
+        encoding: 'utf-8',
+        maxBuffer: 10 * 1024 * 1024 // 10MB buffer
+      });
+      logger.debug('nx release plan command completed successfully');
     } catch (error) {
-      logger.error('Failed to run nx release plan', { error, command });
+      const errorObj = error as Error & { status?: number, stderr?: string };
+      logger.error('Failed to run nx release plan', {
+        error: {
+          message: errorObj.message,
+          status: errorObj.status,
+          stderr: errorObj.stderr
+        },
+        command,
+        cwd: process.cwd(),
+        env: {
+          PATH: process.env['PATH'],
+          NODE_ENV: process.env['NODE_ENV'],
+          CI: process.env['CI']
+        }
+      });
       throw error;
     }
 

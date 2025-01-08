@@ -38,24 +38,44 @@ function parseArgs(): CommandOptions {
   const command = args[0] || 'analyze';
   const options: CommandOptions = { command };
 
+  // Convert array arguments to key-value pairs for easier parsing
+  const argPairs: Record<string, string> = {};
   for (let i = 1; i < args.length; i++) {
     const arg = args[i];
-    switch (arg) {
-      case '--project':
-        options.projectName = args[++i];
-        break;
-      case '--version-type':
-        options.versionType = args[++i];
-        break;
-      case '--skip-publish':
-        options.skipPublish = true;
-        break;
-      case '--only-touched':
-        options.onlyTouched = true;
-        break;
+    if (arg.startsWith('--')) {
+      const value = args[i + 1];
+      if (value && !value.startsWith('--')) {
+        argPairs[arg] = value;
+        i++; // Skip the value in next iteration
+      } else {
+        argPairs[arg] = 'true';
+      }
     }
   }
 
+  logger.debug('Raw arguments', { args, argPairs });
+
+  // Parse project name
+  if (argPairs['--project']) {
+    options.projectName = argPairs['--project'].split('@')[0];
+  }
+
+  // Parse version type
+  if (argPairs['--version-type']) {
+    options.versionType = argPairs['--version-type'];
+  }
+
+  // Parse only-touched
+  if ('--only-touched' in argPairs) {
+    options.onlyTouched = argPairs['--only-touched'] === 'true';
+  }
+
+  // Parse skip-publish
+  if ('--skip-publish' in argPairs) {
+    options.skipPublish = true;
+  }
+
+  logger.debug('Parsed arguments', { options });
   return options;
 }
 
@@ -110,7 +130,7 @@ async function main() {
         throw new Error(`Unknown command: ${options.command}`);
     }
   } catch (error) {
-    logger.error('Command failed', { error });
+    logger.error('Command failed', { error: error instanceof Error ? error.message : error });
     process.exit(1);
   }
 }
