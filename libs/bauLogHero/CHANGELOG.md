@@ -1,3 +1,13 @@
+## 1.5.0 (2025-01-08)
+
+### 🚀 Features
+
+- feat: minor version release for @baudevs/bau-log-hero ([9daa381](https://github.com/baudevs/baudevs-oss-monorepo/commit/9daa381))
+
+### ❤️ Thank You
+
+- baudevs
+
 ## 1.4.0 (2025-01-08)
 
 ### 🚀 Features
