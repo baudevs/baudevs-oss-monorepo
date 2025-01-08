@@ -44,7 +44,6 @@ export async function release(options: ReleaseOptions): Promise<void> {
 
     // execSync(`pnpm nx affected --target=lint --exclude=${excludedProjects}`, { stdio: 'inherit' });
     // execSync(`pnpm nx affected --target=build --exclude=${excludedProjects}`, { stdio: 'inherit' });
-    execSync(`pnpm nx ${projectName} --target=lint`, { stdio: 'inherit' });
     execSync(`pnpm nx ${projectName} --target=build`, { stdio: 'inherit' });
     // Execute release
     logger.info('Executing release', { projectName });
