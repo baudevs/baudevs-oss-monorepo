@@ -46,6 +46,7 @@ const result = await analyzeGitDiffForVersion();
 The tool provides several CLI commands for version management:
 
 ### Version Analysis
+
 ```bash
 pnpm tsx src/cli.ts analyze
 ```
@@ -56,19 +57,23 @@ Returns:
 - reasoning: detailed explanation of the decision
 
 ### Create Version Plan
+
 ```bash
 pnpm tsx src/cli.ts create-version-plan \
   --project=<project-name> \
   --version-type=<major|minor|patch> \
   --only-touched=<true|false>
 ```
+
 Creates an NX version plan for the specified project:
+
 - Automatically generates conventional commit style changelog messages
 - Handles project name normalization (adds @baudevs/ prefix if needed)
 - Creates and commits the version plan to .nx/version-plans/
 - Supports both space-separated and equals-sign argument formats
 
 Example:
+
 ```bash
 pnpm tsx src/cli.ts create-version-plan \
   --project=bau-log-hero \
@@ -77,12 +82,15 @@ pnpm tsx src/cli.ts create-version-plan \
 ```
 
 ### Release
+
 ```bash
 pnpm tsx src/cli.ts release \
   --project=<project-name> \
   [--skip-publish]
 ```
+
 Executes the release process for a project:
+
 - Runs linting and building on affected projects
 - Executes the release with the version plan
 - Optionally skips publishing with --skip-publish flag

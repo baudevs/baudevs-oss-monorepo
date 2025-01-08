@@ -111,9 +111,8 @@ jobs:
   create-version-plan:
     needs: [analyze-changes, human-review]
     if: |
-      always() &&
-      (needs.analyze-changes.outputs.needs_human_review == 'false' ||
-       needs.human-review.result == 'success')
+      needs.analyze-changes.outputs.needs_human_review == 'false' ||
+      needs.human-review.result == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -145,6 +144,7 @@ jobs:
 
   release:
     needs: create-version-plan
+    if: success() && needs.create-version-plan.result == 'success'
     uses: ./.github/workflows/release-with-plan.yml
     secrets:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
