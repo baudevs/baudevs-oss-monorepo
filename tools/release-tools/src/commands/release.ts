@@ -44,15 +44,15 @@ export async function release(options: ReleaseOptions): Promise<void> {
 
     // execSync(`pnpm nx affected --target=lint --exclude=${excludedProjects}`, { stdio: 'inherit' });
     // execSync(`pnpm nx affected --target=build --exclude=${excludedProjects}`, { stdio: 'inherit' });
-    execSync(`pnpm nx ${projectName} --target=build`, { stdio: 'inherit' });
+    execSync(`pnpm nx build @baudevs/${projectName}`, { stdio: 'inherit' });
     // Execute release
     logger.info('Executing release', { projectName });
-    execSync(`pnpm nx release ${projectName} --skip-publish`, { stdio: 'inherit' });
+    execSync(`pnpm nx release --skip-publish`, { stdio: 'inherit' });
 
     // Publish if not skipped
     if (!skipPublish) {
       logger.info('Publishing package', { projectName });
-      execSync(`pnpm nx release publish ${projectName}`, { stdio: 'inherit' });
+      execSync(`pnpm nx release publish @baudevs/${projectName}`, { stdio: 'inherit' });
     }
 
     logger.info('Release completed successfully');

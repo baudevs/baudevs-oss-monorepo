@@ -1295,13 +1295,7 @@
       ],
       "@baudevs/bau-cms-core": [],
       "@baudevs/bau-log-hero": [],
-      "@baudevs/monorepo": [
-        {
-          "source": "@baudevs/monorepo",
-          "target": "@baudevs/bau-log-hero",
-          "type": "static"
-        }
-      ]
+      "@baudevs/monorepo": []
     }
   }
 }

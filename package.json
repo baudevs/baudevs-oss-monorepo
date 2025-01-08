@@ -1,6 +1,6 @@
 {
   "name": "@baudevs/monorepo",
-  "version": "0.0.0",
+  "version": "0.0.10",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -11,7 +11,6 @@
   "private": true,
   "packageManager": "pnpm@9.15.2",
   "dependencies": {
-    "@baudevs/bau-log-hero": "workspace:*",
     "@nx/esbuild": "20.3.0",
     "@rollup/plugin-alias": "^5.1.1",
     "@rollup/plugin-babel": "^6.0.4",

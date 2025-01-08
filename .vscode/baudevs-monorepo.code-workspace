@@ -9,7 +9,7 @@
 		}
 	],
 	"settings": {
-    "npm.packageManager": "bun",
+    "npm.packageManager": "pnpm",
     "terminal.integrated.env.osx": {
       "PATH": "${env:PATH}:/Users/juandavidarroyave/.bun/bin"
     },
