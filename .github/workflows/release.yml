@@ -109,10 +109,12 @@ jobs:
             ${{ needs.analyze-changes.outputs.reasoning }}
 
   create-version-plan:
-    needs: [analyze-changes, human-review]
+    needs: [analyze-changes]
     if: |
-      needs.analyze-changes.outputs.needs_human_review == 'false' ||
-      needs.human-review.result == 'success'
+      success() && (
+        (needs.analyze-changes.outputs.needs_human_review == 'false') ||
+        (needs.analyze-changes.outputs.needs_human_review == 'true' && needs.human-review.result == 'success')
+      )
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -145,9 +147,18 @@ jobs:
   release:
     needs: create-version-plan
     if: success() && needs.create-version-plan.result == 'success'
-    uses: ./.github/workflows/release-with-plan.yml
-    secrets:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    steps:
+      - name: Run Release
+        run: |
+          echo "Running release..."
+          echo "Project: ${{ needs.analyze-changes.outputs.project_name }}"
+          echo "Version Type: ${{ needs.analyze-changes.outputs.version_type }}"
+          echo "Needs Human Review: ${{ needs.analyze-changes.outputs.needs_human_review }}"
+
+      - name: Run Release
+        uses: ./.github/workflows/release-with-plan.yml
+        secrets:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       GH_PAT: ${{ secrets.GH_PAT }}
       NX_TOKEN: ${{ secrets.NX_TOKEN }}
 
