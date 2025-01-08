@@ -1,6 +1,6 @@
 {
   "name": "@baudevs/bau-log-hero",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "A simple, no dependencies logging library for browser and node, with colors, timestamp, and easy to activate/deactivate by file and compatible with tree-shakeable",
   "keywords": [
     "logging",
