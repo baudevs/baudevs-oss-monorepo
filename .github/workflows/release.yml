@@ -148,8 +148,6 @@ jobs:
 
   release:
     needs: create-version-plan
-    if: |
-      success()
     runs-on: ubuntu-latest
     steps:
       - name: Start Release
