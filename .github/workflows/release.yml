@@ -160,6 +160,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: test
+        run: |
+          pwd
+          ls -la  .nx/version-plans/
+          cat .nx/version-plans/version-plan-*.md
       - name: Run Release
         uses: ./.github/workflows/release-with-plan.yml
         with:
