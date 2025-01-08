@@ -143,15 +143,6 @@ jobs:
             --only-touched=false
           cd ../../
 
-      - name: Commit Version Plan
-        run: |
-          git config --global user.name "baudevs"
-          git config --global user.email "tech@baudevs.com"
-
-          git add .nx/version-plans/
-          git commit -m "chore(${{ needs.analyze-changes.outputs.project_name }}): add version plan [skip ci]"
-          git push
-
   release:
     needs: create-version-plan
     uses: ./.github/workflows/release-with-plan.yml

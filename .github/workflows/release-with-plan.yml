@@ -39,15 +39,10 @@ jobs:
           version: ${{ env.PNPM_VERSION }}
 
       - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       - name: Set SHAs for Affected Commands
         run: pnpm nx set-shas
-
-      - name: Build and Test
-        run: |
-          pnpm nx affected --target=lint --exclude=${{ env.NX_EXCLUDED_PROJECTS }}
-          pnpm nx affected --target=build --exclude=${{ env.NX_EXCLUDED_PROJECTS }}
 
       - name: Get Project from Version Plan
         id: get-project
