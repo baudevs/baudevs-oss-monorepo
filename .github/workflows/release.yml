@@ -156,13 +156,6 @@ jobs:
       (needs.create-version-plan.result == 'success')
     runs-on: ubuntu-latest
     steps:
-      - name: Start Release
-        run: |
-          pwd
-          echo "Releasing project: ${{ needs.analyze-changes.outputs.project_name }}"
-          ls -la  .nx/version-plans/
-          cat .nx/version-plans/version-plan-*.md
-
       - name: Run Release
         uses: ./.github/workflows/release-with-plan.yml
         with:
