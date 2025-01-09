@@ -92,7 +92,8 @@ jobs:
     if: |
       needs.analyze-changes.outputs.needs_human_review == 'true' ||
       needs.analyze-changes.outputs.version_type == 'none' ||
-      needs.analyze-changes.outputs.version_type == 'other'
+      needs.analyze-changes.outputs.version_type == 'other' ||
+      needs.analyze-changes.outputs.version_type == 'unknown'
     runs-on: ubuntu-latest
     environment: production
     outputs:
@@ -109,15 +110,17 @@ jobs:
           issue-title: "Version Type Review Required for ${{ needs.analyze-changes.outputs.project_name }}"
           issue-body: |
             Automatic Versioning System needs human review for version type.
-            Please answer this issue with the appropriate version type:
-            - patch (bug fixes)
-            - minor (new features)
-            - major (breaking changes)
+            Please answer this issue with ONLY ONE of these exact words:
+            - patch (for bug fixes)
+            - minor (for new features)
+            - major (for breaking changes)
 
             Project: @baudevs/${{ needs.analyze-changes.outputs.project_name }}
 
-            Automatic Versioning System Reasoning:
+            Automatic Versioning System Status:
             ${{ needs.analyze-changes.outputs.reasoning }}
+
+            Note: Your response must be exactly one of: patch, minor, or major
 
   create-version-plan:
     needs: [analyze-changes, human-review]
@@ -151,9 +154,27 @@ jobs:
       - name: Create Version Plan
         run: |
           cd tools/release-tools
+
+          # Always prefer human review response if available
+          VERSION_TYPE="${{ needs.human-review.outputs.version_type }}"
+
+          # Only use analyze-changes output if human review wasn't needed
+          if [ "${{ needs.analyze-changes.outputs.needs_human_review }}" = "false" ]; then
+            VERSION_TYPE="${{ needs.analyze-changes.outputs.version_type }}"
+          fi
+
+          # Validate version type
+          if [ -z "$VERSION_TYPE" ] || [ "$VERSION_TYPE" = "unknown" ] || [ "$VERSION_TYPE" = "none" ] || [ "$VERSION_TYPE" = "other" ]; then
+            echo "Error: Invalid version type: $VERSION_TYPE"
+            echo "Version type must be one of: patch, minor, major"
+            echo "Setting version type to 'patch' by default"
+            VERSION_TYPE="patch"
+          fi
+
+          echo "Using version type: $VERSION_TYPE"
           pnpm tsx src/cli.ts create-version-plan \
             --project="${{ needs.analyze-changes.outputs.project_name }}" \
-            --version-type="${{ needs.human-review.outputs.version_type || needs.analyze-changes.outputs.version_type }}" \
+            --version-type="$VERSION_TYPE" \
             --only-touched=false
           cd ../../
 
