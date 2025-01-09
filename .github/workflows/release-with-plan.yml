@@ -13,12 +13,18 @@ on:
         required: true
       NPM_TOKEN:
         required: true
+      GH_PAT:
+        required: true
       OPENAI_API_KEY:
         required: true
-      GH_TOKEN:       # Added GH_TOKEN
-        required: true
+      # GITHUB_TOKEN removed to avoid collision
+
+permissions:
+  contents: write       # Allows pushing commits and tags
+  releases: write      # Allows creating and modifying releases
 
 env:
+  GITHUB_TOKEN: ${{ github.token }}
   NX_EXCLUDED_PROJECTS: 'baudevs-dashboard,@baudevs/bauCmsNextExample'
   NODE_VERSION: 23.3.0
   PNPM_VERSION: 9.15.2
@@ -31,7 +37,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GH_TOKEN }}  # Use the passed GH_TOKEN
+          token: ${{ env.GITHUB_TOKEN }}  # Use the environment variable
           ref: ${{ github.ref }}
 
       - name: Setup Node.js
@@ -63,4 +69,4 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NX_TOKEN: ${{ secrets.NX_TOKEN }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}  # Use the passed GITHUB_TOKEN
+          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}  # Inherit from global env
