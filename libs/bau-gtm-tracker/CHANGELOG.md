@@ -1,3 +1,13 @@
+## 1.0.4 (2025-01-09)
+
+### 🩹 Fixes
+
+- fix: patch version release for @baudevs/bau-gtm-tracker ([b2b5daa](https://github.com/baudevs/baudevs-oss-monorepo/commit/b2b5daa))
+
+### ❤️ Thank You
+
+- baudevs
+
 ## 1.0.3 (2025-01-09)
 
 ### 🩹 Fixes
