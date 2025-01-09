@@ -46,7 +46,7 @@ export default withNx(
         },
       }),
       gzipPlugin({
-        filter: (file) => file.endsWith('.umd.min.js'),
+        filter: (file) => file.endsWith('.umd.js'),
       }),
     ],
   },
