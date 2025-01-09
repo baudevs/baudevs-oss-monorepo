@@ -1,6 +1,6 @@
 {
   "name": "@baudevs/release-tools",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "A tool to analyze changes and create release notes",
   "keywords": [
     "release",
