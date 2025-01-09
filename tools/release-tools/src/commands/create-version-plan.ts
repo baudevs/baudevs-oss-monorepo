@@ -56,7 +56,7 @@ export async function createVersionPlan(options: VersionPlanOptions): Promise<vo
     logger.debug('Changed to monorepo root', { newCwd: process.cwd() });
 
     // Ensure project name has @baudevs/ prefix but not duplicated
-    const normalizedProjectName = projectName.startsWith('@baudevs/') ? projectName : `@baudevs/${projectName}`;
+    const normalizedProjectName = projectName // we clean it in github actions //projectName.startsWith('@baudevs/') ? projectName : `@baudevs/${projectName}`;
 
     // Create a conventional commit style message based on version type
     const changelogMessage = versionType === 'major'

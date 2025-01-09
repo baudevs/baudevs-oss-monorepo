@@ -44,7 +44,8 @@ export async function release(options: ReleaseOptions): Promise<void> {
 
     // execSync(`pnpm nx affected --target=lint --exclude=${excludedProjects}`, { stdio: 'inherit' });
     // execSync(`pnpm nx affected --target=build --exclude=${excludedProjects}`, { stdio: 'inherit' });
-    execSync(`pnpm nx build @baudevs/${projectName} --verbose`, { stdio: 'inherit' });
+    //execSync(`pnpm nx build @baudevs/${projectName} --verbose`, { stdio: 'inherit' });
+    execSync(`pnpm nx build ${projectName} --verbose`, { stdio: 'inherit' });
     // Execute release
     logger.info('Executing release', { projectName });
     execSync(`pnpm nx release --skip-publish --verbose`, { stdio: 'inherit' });
@@ -52,7 +53,8 @@ export async function release(options: ReleaseOptions): Promise<void> {
     // Publish if not skipped
     if (!skipPublish) {
       logger.info('Publishing package', { projectName });
-      execSync(`pnpm nx release publish @baudevs/${projectName} --verbose`, { stdio: 'inherit' });
+      //execSync(`pnpm nx release publish @baudevs/${projectName} --verbose`, { stdio: 'inherit' });
+      execSync(`pnpm nx release publish ${projectName} --verbose`, { stdio: 'inherit' });
     }
 
     logger.info('Release completed successfully');

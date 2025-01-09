@@ -47,7 +47,7 @@ jobs:
         id: extract-info
         run: |
           BRANCH_NAME="${{ github.ref_name }}"
-          PROJECT_NAME=$(echo $BRANCH_NAME | sed 's/release\/@baudevs\///')
+          PROJECT_NAME=$(echo $BRANCH_NAME | sed -E 's#^release/(@baudevs/)?([^@/]+)[@/].*$#\1\2#')
           echo "project=$PROJECT_NAME" >> $GITHUB_OUTPUT
 
       - name: Setup Node.js

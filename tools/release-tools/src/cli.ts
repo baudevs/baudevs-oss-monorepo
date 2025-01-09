@@ -70,7 +70,8 @@ function parseArgs(): CommandOptions {
 
   // Parse project name
   if (argPairs['--project']) {
-    options.projectName = argPairs['--project'].split('@')[0];
+    // options.projectName = argPairs['--project'].split('@')[0]; // we already clenaning the projectName in Github so this is not needed ?
+    options.projectName = argPairs['--project'];
   }
 
   // Parse version type
