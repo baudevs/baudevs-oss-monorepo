@@ -95,24 +95,31 @@ jobs:
       needs.analyze-changes.outputs.version_type == 'other'
     runs-on: ubuntu-latest
     environment: production
+    outputs:
+      version_type: ${{ steps.approval.outputs.approved_word }}
     steps:
       - name: Wait for Human Review
+        id: approval
         uses: trstringer/manual-approval@v1
         with:
           secret: ${{ secrets.GITHUB_TOKEN }}
           approvers: qtagtech
           minimum-approvals: 1
+          additional-approved-words: |
+            patch
+            minor
+            major
           issue-title: "Version Type Review Required for ${{ needs.analyze-changes.outputs.project_name }}"
           issue-body: |
-            OpenAI analysis needs human review for version type.
-            Please select the appropriate version type:
+            Automatic Versioning System needs human review for version type.
+            Please answer this issue with the appropriate version type:
             - patch (bug fixes)
             - minor (new features)
             - major (breaking changes)
 
             Project: @baudevs/${{ needs.analyze-changes.outputs.project_name }}
 
-            OpenAI Reasoning:
+            Automatic Versioning System Reasoning:
             ${{ needs.analyze-changes.outputs.reasoning }}
 
   create-version-plan:
@@ -149,7 +156,7 @@ jobs:
           cd tools/release-tools
           pnpm tsx src/cli.ts create-version-plan \
             --project="${{ needs.analyze-changes.outputs.project_name }}" \
-            --version-type="${{ needs.analyze-changes.outputs.version_type }}" \
+            --version-type="${{ needs.human-review.outputs.version_type || needs.analyze-changes.outputs.version_type }}" \
             --only-touched=false
           cd ../../
 
