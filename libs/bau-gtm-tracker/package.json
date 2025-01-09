@@ -1,6 +1,6 @@
 {
   "name": "@baudevs/bau-gtm-tracker",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A robust library to intercept Fetch, XHR, and WebSocket requests and push events to dataLayer for GTM",
   "keywords": [
     "gtm",
