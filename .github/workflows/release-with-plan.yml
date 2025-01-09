@@ -65,7 +65,7 @@ jobs:
 
       - name: Publish Package
         run: |
-          cd dist/libs/@baudevs/${{ inputs.project }}
+          cd dist/libs/${{ inputs.project }}
           echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
           pnpm publish --no-git-checks --access public
           cd ../../../../
