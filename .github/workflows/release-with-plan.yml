@@ -13,9 +13,9 @@ on:
         required: true
       NPM_TOKEN:
         required: true
-      GH_PAT:
-        required: true
       OPENAI_API_KEY:
+        required: true
+      GITHUB_TOKEN:       # Added GITHUB_TOKEN
         required: true
 
 env:
@@ -27,10 +27,12 @@ jobs:
   release-projects:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}  # Use the passed GITHUB_TOKEN
+          ref: ${{ github.ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -46,12 +48,12 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Set Git User
+      - name: Set Git User and Update Branch
         run: |
           git config --global user.name "baudevs"
           git config --global user.email "tech@baudevs.com"
-          git fetch origin $GITHUB_REF
-          git merge $GITHUB_REF --ff-only
+          git fetch origin ${{ github.ref }}
+          git rebase origin/${{ github.ref_name }}
 
       - name: Execute Release
         run: pnpm nx release --skip-publish --verbose
@@ -61,4 +63,4 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NX_TOKEN: ${{ secrets.NX_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use the passed GITHUB_TOKEN
