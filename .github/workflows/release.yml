@@ -100,7 +100,7 @@ jobs:
         uses: trstringer/manual-approval@v1
         with:
           secret: ${{ secrets.GITHUB_TOKEN }}
-          approvers: baudevs-team
+          approvers: qtagtech
           minimum-approvals: 1
           issue-title: "Version Type Review Required for ${{ needs.analyze-changes.outputs.project_name }}"
           issue-body: |
