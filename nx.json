@@ -141,7 +141,7 @@
   "release": {
     "versionPlans": true,
     "projectsRelationship": "independent",
-    "projects": ["@baudevs/bau-log-hero", "bau-gtm-tracker"],
+    "projects": ["@baudevs/bau-log-hero", "@baudevs/bau-gtm-tracker"],
     "releaseTagPattern": "release/{projectName}/{version}",
     "changelog": {
       "projectChangelogs": {

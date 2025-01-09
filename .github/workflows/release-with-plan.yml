@@ -21,7 +21,6 @@ on:
 
 permissions:
   contents: write       # Allows pushing commits and tags
-  releases: write      # Allows creating and modifying releases
 
 env:
   GITHUB_TOKEN: ${{ github.token }}
