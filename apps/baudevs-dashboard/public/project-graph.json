@@ -454,14 +454,6 @@
             }
           },
           "$schema": "../../node_modules/nx/schemas/project-schema.json",
-          "release": {
-            "version": {
-              "generatorOptions": {
-                "packageRoot": "dist/{projectRoot}",
-                "currentVersionResolver": "git-tag"
-              }
-            }
-          },
           "implicitDependencies": []
         }
       },
