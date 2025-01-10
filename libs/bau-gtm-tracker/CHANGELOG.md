@@ -1,3 +1,13 @@
+## 1.0.15 (2025-01-10)
+
+### 🩹 Fixes
+
+- fix: patch version release for @baudevs/bau-gtm-tracker ([fc59d0e](https://github.com/baudevs/baudevs-oss-monorepo/commit/fc59d0e))
+
+### ❤️ Thank You
+
+- baudevs
+
 ## 1.0.14 (2025-01-10)
 
 ### 🩹 Fixes
