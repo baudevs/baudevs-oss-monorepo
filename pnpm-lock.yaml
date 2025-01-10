@@ -8160,7 +8160,6 @@ packages:
 
   libsql@0.4.7:
     resolution: {integrity: sha512-T9eIRCs6b0J1SHKYIvD8+KCJMcWZ900iZyxdnSCdqxN12Z1ijzT+jY5nrk72Jw4B0HGzms2NgpryArlJqvc3Lw==}
-    cpu: [x64, arm64, wasm32]
     os: [darwin, linux, win32]
 
   license-webpack-plugin@4.0.2:
@@ -11315,7 +11314,6 @@ packages:
   verdaccio@5.33.0:
     resolution: {integrity: sha512-mZWTt/k3KyprhS9IriUEHfKSV4lqB9P1aTVhw5GcNgu4533GSsJRwlBwrFijnoBbWDVarjZoIf+t8wq0iv+5jg==}
     engines: {node: '>=14'}
-    deprecated: this version is deprecated, please migrate to 6.x versions
     hasBin: true
 
   verror@1.10.0:
