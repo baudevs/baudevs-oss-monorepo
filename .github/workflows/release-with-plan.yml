@@ -63,12 +63,7 @@ jobs:
       - name: Execute Release
         run: |
           echo "Publishing ${{inputs.project}}"
-          echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > .npmrc
-          echo "@baudevs:registry=https://registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
-          pnpm nx release --skip-publish --verbose
-
-      - name: Publish Package
-        run: pnpm nx release publish ${{ inputs.project }} --verbose
+          pnpm nx release ${{inputs.project}} --verbose
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NX_TOKEN: ${{ secrets.NX_TOKEN }}
