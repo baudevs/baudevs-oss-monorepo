@@ -1,3 +1,9 @@
+## 1.0.12 (2025-01-10)
+
+### 🩹 Fixes
+
+- patched the library to bump ([](https://github.com/baudevs/baudevs-oss-monorepo/commit/))
+
 ## 1.0.11 (2025-01-10)
 
 ### 🩹 Fixes
