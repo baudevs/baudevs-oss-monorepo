@@ -79,10 +79,22 @@ jobs:
         run: |
           echo "Publishing ${{inputs.project}}"
           if [ -z "$NPM_OTP" ]; then
-            echo "Error: NPM_OTP is empty or not set"
+            echo "Error: NPM_OTP is empty or not set afte OP Action ran..."
+            echo "Getting NPM_OTP from 1Password CLI..."
+            export NPM_OTP=$(op item get "npm" --otp --vault "BauDevs")
+            if [ -z "$NPM_OTP" ]; then
+              echo "Error: NPM_OTP is still empty or not set. Exiting."
+              exit 1
+            fi
+          fi
+          if [ -z "$NPM_TOKEN" ]; then
+            echo "Error: NPM_TOKEN is empty or not set. Exiting."
             exit 1
           fi
           echo "NPM_OTP: $NPM_OTP"
+          echo "Setting NPM_TOKEN in .npmrc"
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+          echo "Publishing ${{ inputs.project }}"
           pnpm nx release publish ${{ inputs.project }} --verbose --otp=$NPM_OTP
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
