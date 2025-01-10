@@ -17,6 +17,8 @@ on:
         required: true
       OPENAI_API_KEY:
         required: true
+      OP_SERVICE_ACCOUNT_TOKEN:
+        required: true
       # GITHUB_TOKEN removed to avoid collision
 
 permissions:
@@ -60,11 +62,21 @@ jobs:
           git fetch origin ${{ github.ref }}
           git rebase origin/${{ github.ref_name }}
 
+      - name: Install 1Password CLI
+        uses: 1password/install-cli-action@v1
+
+      - name: Configure 1Password CLI
+        run: |
+          echo "${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}" | op account add --raw
+          op signin
+
       - name: Execute Release
         run: |
           echo "Publishing ${{inputs.project}}"
-          pnpm nx release -y --verbose
+          NPM_OTP=$(op item get npm --otp)
+          pnpm nx release -y --verbose --otp=$NPM_OTP
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NX_TOKEN: ${{ secrets.NX_TOKEN }}
           GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}  # Inherit from global env
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}

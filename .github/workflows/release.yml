@@ -22,6 +22,7 @@ env:
   NPM_ACCESS_TOKEN: ${{ secrets.NPM_TOKEN || '' }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Pass the GITHUB_TOKEN
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY || '' }}
+  OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN || '' }}
   NX_EXCLUDED_PROJECTS: 'baudevs-dashboard,@baudevs/bauCmsNextExample'
   NODE_VERSION: 23.3.0
   PNPM_VERSION: 9.15.2
@@ -190,6 +191,7 @@ jobs:
       NX_TOKEN: ${{ secrets.NX_TOKEN }}
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       GH_PAT: ${{ secrets.GITHUB_TOKEN }}
+      OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
 
