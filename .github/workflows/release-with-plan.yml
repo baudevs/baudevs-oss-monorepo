@@ -61,7 +61,13 @@ jobs:
           git rebase origin/${{ github.ref_name }}
 
       - name: Execute Release
-        run: pnpm nx release --skip-publish --verbose
+        run: |
+          echo "Publishing ${{inputs.project}}"
+          echo "${{ secrets.NPM_TOKEN }}"
+          cd dist/libs/${{ inputs.project }}
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+          echo "@baudevs:registry=https://registry.npmjs.org/" >> .npmrc
+          pnpm nx release --skip-publish --verbose
 
       - name: Publish Package
         run: pnpm nx release publish ${{ inputs.project }} --verbose
