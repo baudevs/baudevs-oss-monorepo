@@ -72,8 +72,18 @@ jobs:
 
       - name: Execute Release
         run: |
+          echo "Releasing ${{inputs.project}}"
+          pnpm nx release -y --verbose
+      - name: Publish Package
+
+        run: |
           echo "Publishing ${{inputs.project}}"
-          pnpm nx release -y --verbose --otp=$NPM_OTP
+          if [ -z "$NPM_OTP" ]; then
+            echo "Error: NPM_OTP is empty or not set"
+            exit 1
+          fi
+          echo "NPM_OTP: $NPM_OTP"
+          pnpm nx release publish ${{ inputs.project }} --verbose --otp=$NPM_OTP
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NX_TOKEN: ${{ secrets.NX_TOKEN }}
