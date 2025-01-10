@@ -11315,7 +11315,6 @@ packages:
   verdaccio@5.33.0:
     resolution: {integrity: sha512-mZWTt/k3KyprhS9IriUEHfKSV4lqB9P1aTVhw5GcNgu4533GSsJRwlBwrFijnoBbWDVarjZoIf+t8wq0iv+5jg==}
     engines: {node: '>=14'}
-    deprecated: this version is deprecated, please migrate to 6.x versions
     hasBin: true
 
   verror@1.10.0:
