@@ -65,7 +65,6 @@ jobs:
 
       - name: Publish Package
         run: |
-          echo "Publishing ${inputs.project}"
           pwd
           ls -la
           cd dist/libs/${{ inputs.project }}
