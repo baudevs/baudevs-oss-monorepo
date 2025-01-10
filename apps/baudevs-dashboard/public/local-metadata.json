@@ -1,7 +1,7 @@
 {
   "repoPath": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
   "defaultBranch": "release/@baudevs/bau-gtm-tracker@09.01.2025",
-  "generatedAt": "2025-01-10T06:07:31.528Z",
+  "generatedAt": "2025-01-10T06:16:48.538Z",
   "gitVersion": "git version 2.39.5 (Apple Git-154)",
   "nxVersion": "20.3.0",
   "nodeVersion": "v23.3.0",
@@ -10,8 +10,8 @@
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
       "branch": "release/@baudevs/bau-gtm-tracker@09.01.2025",
-      "commit": "26643ceb931f409c1c65a27a82125b6501a2ce13",
-      "lastActivity": "Fri Jan 10 07:06:59 2025 +0100"
+      "commit": "f1e3fc4ecd15151559240c9a64b5add9c31a202f",
+      "lastActivity": "Fri Jan 10 07:16:16 2025 +0100"
     },
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo.worktrees/bau-cms-cli",
@@ -388,11 +388,28 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "8304b4147e745e243c9ec8cebecb860141012604",
+          "author": "baudevs",
+          "date": "Fri Jan 10 07:06:59 2025 +0100",
+          "message": "chore(metadata): update repository metadata",
+          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.9~3",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "287e2534c8c1d855c3e68b83bc8c62dc7431d732",
           "author": "baudevs",
           "date": "Fri Jan 10 07:01:11 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/release/@baudevs/bau-gtm-tracker@09.01.2025~2",
+          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.9~6",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -529,23 +546,6 @@
           "date": "Thu Jan 9 13:21:08 2025 +0100",
           "message": "chore(metadata): update repository metadata",
           "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.1~2",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "1251dd0edd942e539ba44f6f3b7b238d0268d85b",
-          "author": "baudevs",
-          "date": "Thu Jan 9 13:11:44 2025 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.1~4",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -3547,13 +3547,65 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "f1e3fc4ecd15151559240c9a64b5add9c31a202f",
+          "author": "baudevs",
+          "date": "Fri Jan 10 07:16:16 2025 +0100",
+          "message": "chore(workflow): update release script to use pnpm nx release command",
+          "branch": "release/@baudevs/bau-gtm-tracker@09.01.2025",
+          "files": [
+            ".github/workflows/release-with-plan.yml"
+          ],
+          "nxProjects": [
+            "@baudevs/monorepo"
+          ]
+        },
+        {
+          "hash": "5cc632600af14ae0359dd700c4dd50f10dcdba02",
+          "author": "baudevs",
+          "date": "Fri Jan 10 07:07:38 2025 +0100",
+          "message": "Merge branch 'release/@baudevs/bau-gtm-tracker@09.01.2025' of https://github.com/baudevs/baudevs-oss-monorepo into release/@baudevs/bau-gtm-tracker@09.01.2025",
+          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.9~2",
+          "files": [],
+          "nxProjects": []
+        },
+        {
+          "hash": "8304b4147e745e243c9ec8cebecb860141012604",
+          "author": "baudevs",
+          "date": "Fri Jan 10 07:06:59 2025 +0100",
+          "message": "chore(metadata): update repository metadata",
+          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.9~3",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "26643ceb931f409c1c65a27a82125b6501a2ce13",
           "author": "baudevs",
           "date": "Fri Jan 10 07:06:59 2025 +0100",
           "message": "chore(workflow): update release script to use pnpm nx release publish command",
-          "branch": "release/@baudevs/bau-gtm-tracker@09.01.2025",
+          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.9~4",
           "files": [
             ".github/workflows/release-with-plan.yml"
+          ],
+          "nxProjects": [
+            "@baudevs/monorepo"
+          ]
+        },
+        {
+          "hash": "0e36e086502d11671df01ce7bdc9da3e74793e01",
+          "author": "baudevs",
+          "date": "Fri Jan 10 06:04:37 2025 +0000",
+          "message": "chore(@baudevs/bau-gtm-tracker): add version plan [skip ci]",
+          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.9~2^2",
+          "files": [
+            ".nx/version-plans/version-plan-1736489076864.md"
           ],
           "nxProjects": [
             "@baudevs/monorepo"
@@ -3564,7 +3616,7 @@
           "author": "baudevs",
           "date": "Fri Jan 10 07:01:55 2025 +0100",
           "message": "Merge branch 'release/@baudevs/bau-gtm-tracker@09.01.2025' of https://github.com/baudevs/baudevs-oss-monorepo into release/@baudevs/bau-gtm-tracker@09.01.2025",
-          "branch": "remotes/origin/release/@baudevs/bau-gtm-tracker@09.01.2025~1",
+          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.9~5",
           "files": [],
           "nxProjects": []
         },
@@ -3573,7 +3625,7 @@
           "author": "baudevs",
           "date": "Fri Jan 10 07:01:11 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/release/@baudevs/bau-gtm-tracker@09.01.2025~2",
+          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.9~6",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -3590,7 +3642,7 @@
           "author": "baudevs",
           "date": "Fri Jan 10 07:01:11 2025 +0100",
           "message": "chore(workflow): update release script to use pnpm nx release publish command",
-          "branch": "remotes/origin/release/@baudevs/bau-gtm-tracker@09.01.2025~3",
+          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.9~7",
           "files": [
             ".github/workflows/release-with-plan.yml"
           ],
@@ -3626,62 +3678,6 @@
           ],
           "nxProjects": [
             "@baudevs/monorepo"
-          ]
-        },
-        {
-          "hash": "9e375288e02875e13787edb1e95ab636d78e3066",
-          "author": "baudevs",
-          "date": "Fri Jan 10 06:49:18 2025 +0100",
-          "message": "Merge branch 'release/@baudevs/bau-gtm-tracker@09.01.2025' of https://github.com/baudevs/baudevs-oss-monorepo into release/@baudevs/bau-gtm-tracker@09.01.2025",
-          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.8~2",
-          "files": [],
-          "nxProjects": []
-        },
-        {
-          "hash": "e8b5a8f27bed367daca6f81e4cbd9cd8309690e7",
-          "author": "baudevs",
-          "date": "Fri Jan 10 06:48:39 2025 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.8~3",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "93ae56bb092913fdd21ec3d9fb2f77b9bba99bfd",
-          "author": "baudevs",
-          "date": "Fri Jan 10 06:48:39 2025 +0100",
-          "message": "chore(workflow): update release script to use pnpm nx release publish command",
-          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.8~4",
-          "files": [
-            ".github/workflows/release-with-plan.yml"
-          ],
-          "nxProjects": [
-            "@baudevs/monorepo"
-          ]
-        },
-        {
-          "hash": "73866b667ab7bedd7569f1a907ac9695cf0bc8d0",
-          "author": "baudevs",
-          "date": "Fri Jan 10 05:46:14 2025 +0000",
-          "message": "chore(release):",
-          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.7^0",
-          "files": [
-            ".nx/version-plans/version-plan-1736487905763.md",
-            "libs/bau-gtm-tracker/CHANGELOG.md",
-            "libs/bau-gtm-tracker/package.json"
-          ],
-          "nxProjects": [
-            "@baudevs/monorepo",
-            "@baudevs/bau-gtm-tracker",
-            "@baudevs/bau-gtm-tracker"
           ]
         }
       ],
@@ -3740,7 +3736,7 @@
       "type": "rebase",
       "lastSync": "Thu Jan 9 10:09:36 2025 +0100",
       "commonAncestor": "d71a8ec7cc3aa905318bc694d3d4f0796a2051e6",
-      "divergedCommits": 53
+      "divergedCommits": 57
     },
     {
       "from": "develop",
@@ -3804,7 +3800,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 437
+      "divergedCommits": 441
     },
     {
       "from": "feature/bau-cms-cli",
@@ -3868,7 +3864,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 494
+      "divergedCommits": 498
     },
     {
       "from": "feature/bau-cms-core",
@@ -3932,7 +3928,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 505
+      "divergedCommits": 509
     },
     {
       "from": "feature/bau-cms-example",
@@ -3996,7 +3992,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 519
+      "divergedCommits": 523
     },
     {
       "from": "feature/dashboard-app",
@@ -4060,7 +4056,7 @@
       "type": "rebase",
       "lastSync": "Thu Jan 9 10:09:36 2025 +0100",
       "commonAncestor": "d71a8ec7cc3aa905318bc694d3d4f0796a2051e6",
-      "divergedCommits": 53
+      "divergedCommits": 57
     },
     {
       "from": "main",
@@ -4084,7 +4080,7 @@
       "type": "merge",
       "lastSync": "Thu Jan 9 10:09:36 2025 +0100",
       "commonAncestor": "d71a8ec7cc3aa905318bc694d3d4f0796a2051e6",
-      "divergedCommits": 53
+      "divergedCommits": 57
     },
     {
       "from": "release/@baudevs/bau-gtm-tracker@09.01.2025",
@@ -4092,7 +4088,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 437
+      "divergedCommits": 441
     },
     {
       "from": "release/@baudevs/bau-gtm-tracker@09.01.2025",
@@ -4100,7 +4096,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 494
+      "divergedCommits": 498
     },
     {
       "from": "release/@baudevs/bau-gtm-tracker@09.01.2025",
@@ -4108,7 +4104,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 505
+      "divergedCommits": 509
     },
     {
       "from": "release/@baudevs/bau-gtm-tracker@09.01.2025",
@@ -4116,7 +4112,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 519
+      "divergedCommits": 523
     },
     {
       "from": "release/@baudevs/bau-gtm-tracker@09.01.2025",
@@ -4124,7 +4120,7 @@
       "type": "merge",
       "lastSync": "Thu Jan 9 10:09:36 2025 +0100",
       "commonAncestor": "d71a8ec7cc3aa905318bc694d3d4f0796a2051e6",
-      "divergedCommits": 53
+      "divergedCommits": 57
     },
     {
       "from": "release/@baudevs/bau-gtm-tracker@09.01.2025",
@@ -4132,7 +4128,7 @@
       "type": "merge",
       "lastSync": "Thu Jan 9 08:51:43 2025 +0000",
       "commonAncestor": "8f82af5332f9a1e7c77809598b32f93ed980f3b3",
-      "divergedCommits": 55
+      "divergedCommits": 59
     },
     {
       "from": "release/@baudevs/bau-gtm-tracker@09.01.2025",
@@ -4140,7 +4136,7 @@
       "type": "merge",
       "lastSync": "Thu Jan 9 12:36:41 2025 +0100",
       "commonAncestor": "ddc9a2bbcbeee87399fcad664f82f0d21f48e398",
-      "divergedCommits": 51
+      "divergedCommits": 55
     },
     {
       "from": "release/@baudevs/bau-log-hero@05.01.2025",
@@ -4196,7 +4192,7 @@
       "type": "rebase",
       "lastSync": "Thu Jan 9 08:51:43 2025 +0000",
       "commonAncestor": "8f82af5332f9a1e7c77809598b32f93ed980f3b3",
-      "divergedCommits": 55
+      "divergedCommits": 59
     },
     {
       "from": "release/@baudevs/bau-log-hero@05.01.2025",
@@ -4260,7 +4256,7 @@
       "type": "rebase",
       "lastSync": "Thu Jan 9 12:36:41 2025 +0100",
       "commonAncestor": "ddc9a2bbcbeee87399fcad664f82f0d21f48e398",
-      "divergedCommits": 51
+      "divergedCommits": 55
     },
     {
       "from": "staging",
@@ -4273,14 +4269,14 @@
   ],
   "recentActivity": {
     "lastPush": "Sun Dec 22 09:53:48 2024 +0100",
-    "lastPull": "2025-01-10T06:07:36.171Z",
-    "lastMerge": "Fri Jan 10 07:01:55 2025 +0100",
+    "lastPull": "2025-01-10T06:16:53.176Z",
+    "lastMerge": "Fri Jan 10 07:07:38 2025 +0100",
     "activeBranches": [
       {
         "name": "release/@baudevs/bau-gtm-tracker@09.01.2025",
-        "lastCommit": "26643ceb931f409c1c65a27a82125b6501a2ce13",
+        "lastCommit": "f1e3fc4ecd15151559240c9a64b5add9c31a202f",
         "author": "baudevs",
-        "commitCount": 534
+        "commitCount": 538
       },
       {
         "name": "staging",
@@ -4336,8 +4332,8 @@
     "totalApps": 2,
     "totalLibraries": 9,
     "totalPackages": 0,
-    "totalFiles": 232,
-    "totalCommits": 534,
+    "totalFiles": 233,
+    "totalCommits": 538,
     "totalContributors": 0
   }
 }
