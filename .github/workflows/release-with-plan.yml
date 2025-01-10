@@ -64,13 +64,7 @@ jobs:
         run: pnpm nx release --skip-publish --verbose
 
       - name: Publish Package
-        run: |
-          pwd
-          ls -la
-          cd dist/libs/${{ inputs.project }}
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-          pnpm publish --no-git-checks --access public
-          cd ../../../../
+        run: pnpm nx release publish ${{ inputs.project }} --verbose
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NX_TOKEN: ${{ secrets.NX_TOKEN }}
