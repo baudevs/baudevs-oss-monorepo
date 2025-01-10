@@ -97,6 +97,7 @@ jobs:
           echo "Publishing ${{ inputs.project }}"
           pnpm nx release publish ${{ inputs.project }} --verbose --otp=$NPM_OTP
         env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NX_TOKEN: ${{ secrets.NX_TOKEN }}
           GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}  # Inherit from global env
