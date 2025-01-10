@@ -63,7 +63,7 @@ jobs:
       - name: Execute Release
         run: |
           echo "Publishing ${{inputs.project}}"
-          pnpm nx release ${{inputs.project}} --verbose
+          pnpm nx release --verbose
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NX_TOKEN: ${{ secrets.NX_TOKEN }}
