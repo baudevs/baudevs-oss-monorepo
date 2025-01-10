@@ -65,6 +65,8 @@ jobs:
 
       - name: Publish Package
         run: |
+          echo "Publishing ${inputs.project}"
+          pwd
           cd dist/libs/${{ inputs.project }}
           echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
           pnpm publish --no-git-checks --access public
