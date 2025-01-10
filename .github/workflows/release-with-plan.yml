@@ -55,7 +55,7 @@ jobs:
 
       - name: Set Git User and Update Branch
         run: |
-          git config --global user.name "baudevs"
+          git config --global user.name "baudevs_tech"
           git config --global user.email "tech@baudevs.com"
           git fetch origin ${{ github.ref }}
           git rebase origin/${{ github.ref_name }}
