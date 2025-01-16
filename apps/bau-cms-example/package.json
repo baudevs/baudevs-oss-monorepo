@@ -14,7 +14,6 @@
   "dependencies": {
     "next": "^15.1.2",
     "@baudevs/bau-cms-core": "workspace:*",
-    "@clerk/nextjs": "^6.9.6",
     "clsx": "^2.1.0",
     "lucide-react": "^0.309.0",
     "next-intl": "^3.26.3",
