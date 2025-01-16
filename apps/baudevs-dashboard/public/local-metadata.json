@@ -1,7 +1,7 @@
 {
   "repoPath": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
   "defaultBranch": "release/yolo/web",
-  "generatedAt": "2025-01-16T20:52:47.989Z",
+  "generatedAt": "2025-01-16T21:01:58.865Z",
   "gitVersion": "git version 2.39.5 (Apple Git-154)",
   "nxVersion": "20.3.0",
   "nodeVersion": "v23.3.0",
@@ -10,8 +10,8 @@
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
       "branch": "release/yolo/web",
-      "commit": "5b6ce95adfdfcc0496926614f3ada3dc038975f0",
-      "lastActivity": "Thu Jan 16 21:52:18 2025 +0100"
+      "commit": "fa4219a617f2934e331ff25ea5bc6595e7d1278e",
+      "lastActivity": "Thu Jan 16 22:01:30 2025 +0100"
     },
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo.worktrees/bau-cms-cli",
@@ -388,11 +388,28 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "b8e51d87198cb8f54dcad5cb235f636ddf46e027",
+          "author": "baudevs",
+          "date": "Thu Jan 16 21:52:18 2025 +0100",
+          "message": "chore(metadata): update repository metadata",
+          "branch": "remotes/origin/release/yolo/web",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "b36b9bc68cfaaa2146e232352b3682ea5c6e7a58",
           "author": "baudevs",
           "date": "Thu Jan 16 21:47:19 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/release/yolo/web",
+          "branch": "remotes/origin/release/yolo/web~2",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -409,7 +426,7 @@
           "author": "baudevs",
           "date": "Thu Jan 16 21:47:19 2025 +0100",
           "message": "fix(workflow): update build process and Dockerfile for getting the correct uploaded artifact",
-          "branch": "remotes/origin/release/yolo/web~1",
+          "branch": "remotes/origin/release/yolo/web~3",
           "files": [
             ".github/workflows/yolo.yml",
             "apps/baudevs-dashboard/public/project-graph.json"
@@ -424,7 +441,7 @@
           "author": "baudevs",
           "date": "Thu Jan 16 21:38:15 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/release/yolo/web~2",
+          "branch": "remotes/origin/release/yolo/web~4",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -527,23 +544,6 @@
           "date": "Fri Jan 10 08:49:15 2025 +0100",
           "message": "chore(metadata): update repository metadata",
           "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.14~9",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "e7fcf15d20e6fb60fe3a5e389e5ad8a455cd675a",
-          "author": "baudevs",
-          "date": "Fri Jan 10 08:07:25 2025 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.14~12",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -3632,11 +3632,26 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "fa4219a617f2934e331ff25ea5bc6595e7d1278e",
+          "author": "baudevs",
+          "date": "Thu Jan 16 22:01:30 2025 +0100",
+          "message": "debug(workflow): add logs to see where folders are",
+          "branch": "release/yolo/web",
+          "files": [
+            ".github/workflows/yolo.yml",
+            "apps/yolo.dev/Dockerfile"
+          ],
+          "nxProjects": [
+            "@baudevs/monorepo",
+            "yolo.dev"
+          ]
+        },
+        {
           "hash": "5b6ce95adfdfcc0496926614f3ada3dc038975f0",
           "author": "baudevs",
           "date": "Thu Jan 16 21:52:18 2025 +0100",
           "message": "fix(workflow): copy assets in dockerfile . Added debug steps to find where Next.js is actually outputting the build files Updated paths from dist/apps/yolo.dev to apps/yolo.dev since Next.js appears to be building in-place Added more detailed logging to help diagnose any issues Updated both the artifact paths and Dockerfile paths to match the actual build output location The workflow should now: Build the Next.js app in its source directory Find and upload the build artifacts from the correct location Download them to the right place for the Docker build Copy them correctly in the Dockerfile",
-          "branch": "release/yolo/web",
+          "branch": "remotes/origin/release/yolo/web~1",
           "files": [
             ".github/workflows/yolo.yml",
             "apps/yolo.dev/Dockerfile"
@@ -3651,7 +3666,7 @@
           "author": "baudevs",
           "date": "Thu Jan 16 21:38:15 2025 +0100",
           "message": "fix(workflow): update build process and Dockerfile paths for yolo.dev",
-          "branch": "remotes/origin/release/yolo/web~3",
+          "branch": "remotes/origin/release/yolo/web~5",
           "files": [
             ".github/workflows/yolo.yml",
             "apps/yolo.dev/Dockerfile"
@@ -3666,7 +3681,7 @@
           "author": "baudevs",
           "date": "Thu Jan 16 21:25:07 2025 +0100",
           "message": "refactor(workflow): streamline CI/CD process and update Dockerfile",
-          "branch": "remotes/origin/release/yolo/web~5",
+          "branch": "remotes/origin/release/yolo/web~7",
           "files": [
             ".github/workflows/yolo.yml",
             "apps/yolo.dev/Dockerfile"
@@ -3903,11 +3918,43 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "fa4219a617f2934e331ff25ea5bc6595e7d1278e",
+          "author": "baudevs",
+          "date": "Thu Jan 16 22:01:30 2025 +0100",
+          "message": "debug(workflow): add logs to see where folders are",
+          "branch": "release/yolo/web",
+          "files": [
+            ".github/workflows/yolo.yml",
+            "apps/yolo.dev/Dockerfile"
+          ],
+          "nxProjects": [
+            "@baudevs/monorepo",
+            "yolo.dev"
+          ]
+        },
+        {
+          "hash": "b8e51d87198cb8f54dcad5cb235f636ddf46e027",
+          "author": "baudevs",
+          "date": "Thu Jan 16 21:52:18 2025 +0100",
+          "message": "chore(metadata): update repository metadata",
+          "branch": "remotes/origin/release/yolo/web",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "5b6ce95adfdfcc0496926614f3ada3dc038975f0",
           "author": "baudevs",
           "date": "Thu Jan 16 21:52:18 2025 +0100",
           "message": "fix(workflow): copy assets in dockerfile . Added debug steps to find where Next.js is actually outputting the build files Updated paths from dist/apps/yolo.dev to apps/yolo.dev since Next.js appears to be building in-place Added more detailed logging to help diagnose any issues Updated both the artifact paths and Dockerfile paths to match the actual build output location The workflow should now: Build the Next.js app in its source directory Find and upload the build artifacts from the correct location Download them to the right place for the Docker build Copy them correctly in the Dockerfile",
-          "branch": "release/yolo/web",
+          "branch": "remotes/origin/release/yolo/web~1",
           "files": [
             ".github/workflows/yolo.yml",
             "apps/yolo.dev/Dockerfile"
@@ -3922,7 +3969,7 @@
           "author": "baudevs",
           "date": "Thu Jan 16 21:47:19 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/release/yolo/web",
+          "branch": "remotes/origin/release/yolo/web~2",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -3939,7 +3986,7 @@
           "author": "baudevs",
           "date": "Thu Jan 16 21:47:19 2025 +0100",
           "message": "fix(workflow): update build process and Dockerfile for getting the correct uploaded artifact",
-          "branch": "remotes/origin/release/yolo/web~1",
+          "branch": "remotes/origin/release/yolo/web~3",
           "files": [
             ".github/workflows/yolo.yml",
             "apps/baudevs-dashboard/public/project-graph.json"
@@ -3954,7 +4001,7 @@
           "author": "baudevs",
           "date": "Thu Jan 16 21:38:15 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/release/yolo/web~2",
+          "branch": "remotes/origin/release/yolo/web~4",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -3971,7 +4018,7 @@
           "author": "baudevs",
           "date": "Thu Jan 16 21:38:15 2025 +0100",
           "message": "fix(workflow): update build process and Dockerfile paths for yolo.dev",
-          "branch": "remotes/origin/release/yolo/web~3",
+          "branch": "remotes/origin/release/yolo/web~5",
           "files": [
             ".github/workflows/yolo.yml",
             "apps/yolo.dev/Dockerfile"
@@ -3986,7 +4033,7 @@
           "author": "baudevs",
           "date": "Thu Jan 16 21:26:24 2025 +0100",
           "message": "chore(pnpm-lock): remove unused react-dom entry and update libsql cpu configuration",
-          "branch": "remotes/origin/release/yolo/web~4",
+          "branch": "remotes/origin/release/yolo/web~6",
           "files": [
             "pnpm-lock.yaml"
           ],
@@ -3997,7 +4044,7 @@
           "author": "baudevs",
           "date": "Thu Jan 16 21:25:07 2025 +0100",
           "message": "refactor(workflow): streamline CI/CD process and update Dockerfile",
-          "branch": "remotes/origin/release/yolo/web~5",
+          "branch": "remotes/origin/release/yolo/web~7",
           "files": [
             ".github/workflows/yolo.yml",
             "apps/yolo.dev/Dockerfile"
@@ -4012,110 +4059,13 @@
           "author": "baudevs",
           "date": "Thu Jan 16 21:17:41 2025 +0100",
           "message": "feat(version-plan): add initial version plan for YOLO website release",
-          "branch": "remotes/origin/release/yolo/web~6",
+          "branch": "remotes/origin/release/yolo/web~8",
           "files": [
             ".nx/version-plans/version-plan-1737058603623.md"
           ],
           "nxProjects": [
             "@baudevs/monorepo"
           ]
-        },
-        {
-          "hash": "e47075c800c81392272b475067cd448a84118d93",
-          "author": "baudevs",
-          "date": "Thu Jan 16 21:13:36 2025 +0100",
-          "message": "feat(yolo.dev): introduce YOLO landing page with Next.js, Three.js, and Framer Motion",
-          "branch": "staging",
-          "files": [
-            ".github/workflows/yolo.yml",
-            ".gitignore",
-            "apps/bau-cms-example/package.json",
-            "apps/yolo.dev/.dockerignore",
-            "apps/yolo.dev/.gitignore",
-            "apps/yolo.dev/Dockerfile",
-            "apps/yolo.dev/LICENSE",
-            "apps/yolo.dev/README.md",
-            "apps/yolo.dev/eslint.config.mjs",
-            "apps/yolo.dev/index.d.ts",
-            "apps/yolo.dev/next.config.mjs",
-            "apps/yolo.dev/next.config.ts",
-            "apps/yolo.dev/package.json",
-            "apps/yolo.dev/postcss.config.js",
-            "apps/yolo.dev/postcss.config.mjs",
-            "apps/yolo.dev/project.json",
-            "apps/yolo.dev/public/.gitkeep",
-            "apps/yolo.dev/public/favicon.ico",
-            "apps/yolo.dev/src/app/components/3d/ProjectGraph.tsx",
-            "apps/yolo.dev/src/app/components/3d/R3FCanvas.tsx",
-            "apps/yolo.dev/src/app/components/3d/Scene.tsx",
-            "apps/yolo.dev/src/app/components/sections/3d/Scene.tsx",
-            "apps/yolo.dev/src/app/components/sections/Community.tsx",
-            "apps/yolo.dev/src/app/components/sections/Features.tsx",
-            "apps/yolo.dev/src/app/components/sections/Hero.tsx",
-            "apps/yolo.dev/src/app/components/sections/Installation.tsx",
-            "apps/yolo.dev/src/app/components/ui/Header.tsx",
-            "apps/yolo.dev/src/app/favicon.ico",
-            "apps/yolo.dev/src/app/layout.tsx",
-            "apps/yolo.dev/src/app/page.tsx",
-            "apps/yolo.dev/src/styles/globals.css",
-            "apps/yolo.dev/src/types/next.d.ts",
-            "apps/yolo.dev/src/types/react-three-fiber.d.ts",
-            "apps/yolo.dev/src/types/three-jsx.d.ts",
-            "apps/yolo.dev/tailwind.config.ts",
-            "apps/yolo.dev/tsconfig.json",
-            "eslint.config.js",
-            "package.json",
-            "pnpm-lock.yaml"
-          ],
-          "nxProjects": [
-            "@baudevs/monorepo",
-            "@baudevs/monorepo",
-            "@baudevs/bauCmsNextExample",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev"
-          ]
-        },
-        {
-          "hash": "847d7cc26c152788ec9d72a9fc2a379ec7434a49",
-          "author": "baudevs",
-          "date": "Fri Jan 10 14:06:14 2025 +0100",
-          "message": "chore(pnpm-lock): remove deprecated entries and update package configurations",
-          "branch": "remotes/origin/HEAD~1",
-          "files": [
-            "pnpm-lock.yaml"
-          ],
-          "nxProjects": []
         }
       ],
       "contributors": [],
@@ -4189,7 +4139,7 @@
       "type": "rebase",
       "lastSync": "Thu Jan 9 10:09:36 2025 +0100",
       "commonAncestor": "d71a8ec7cc3aa905318bc694d3d4f0796a2051e6",
-      "divergedCommits": 117
+      "divergedCommits": 119
     },
     {
       "from": "develop",
@@ -4261,7 +4211,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 501
+      "divergedCommits": 503
     },
     {
       "from": "feature/bau-cms-cli",
@@ -4333,7 +4283,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 558
+      "divergedCommits": 560
     },
     {
       "from": "feature/bau-cms-core",
@@ -4405,7 +4355,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 569
+      "divergedCommits": 571
     },
     {
       "from": "feature/bau-cms-example",
@@ -4477,7 +4427,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 583
+      "divergedCommits": 585
     },
     {
       "from": "feature/dashboard-app",
@@ -4549,7 +4499,7 @@
       "type": "merge",
       "lastSync": "Fri Jan 10 14:06:14 2025 +0100",
       "commonAncestor": "847d7cc26c152788ec9d72a9fc2a379ec7434a49",
-      "divergedCommits": 10
+      "divergedCommits": 12
     },
     {
       "from": "main",
@@ -4621,7 +4571,7 @@
       "type": "rebase",
       "lastSync": "Fri Jan 10 11:53:14 2025 +0000",
       "commonAncestor": "4e713e4186915369646cd13ecbaebaf8ad36f201",
-      "divergedCommits": 10
+      "divergedCommits": 12
     },
     {
       "from": "release/@baudevs/bau-gtm-tracker@09.01.2025",
@@ -4693,7 +4643,7 @@
       "type": "rebase",
       "lastSync": "Thu Jan 9 08:51:43 2025 +0000",
       "commonAncestor": "8f82af5332f9a1e7c77809598b32f93ed980f3b3",
-      "divergedCommits": 119
+      "divergedCommits": 121
     },
     {
       "from": "release/@baudevs/bau-log-hero@05.01.2025",
@@ -4709,7 +4659,7 @@
       "type": "merge",
       "lastSync": "Thu Jan 9 10:09:36 2025 +0100",
       "commonAncestor": "d71a8ec7cc3aa905318bc694d3d4f0796a2051e6",
-      "divergedCommits": 117
+      "divergedCommits": 119
     },
     {
       "from": "release/yolo/web",
@@ -4717,7 +4667,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 501
+      "divergedCommits": 503
     },
     {
       "from": "release/yolo/web",
@@ -4725,7 +4675,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 558
+      "divergedCommits": 560
     },
     {
       "from": "release/yolo/web",
@@ -4733,7 +4683,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 569
+      "divergedCommits": 571
     },
     {
       "from": "release/yolo/web",
@@ -4741,7 +4691,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 583
+      "divergedCommits": 585
     },
     {
       "from": "release/yolo/web",
@@ -4749,7 +4699,7 @@
       "type": "merge",
       "lastSync": "Fri Jan 10 14:06:14 2025 +0100",
       "commonAncestor": "847d7cc26c152788ec9d72a9fc2a379ec7434a49",
-      "divergedCommits": 10
+      "divergedCommits": 12
     },
     {
       "from": "release/yolo/web",
@@ -4757,7 +4707,7 @@
       "type": "merge",
       "lastSync": "Fri Jan 10 11:53:14 2025 +0000",
       "commonAncestor": "4e713e4186915369646cd13ecbaebaf8ad36f201",
-      "divergedCommits": 10
+      "divergedCommits": 12
     },
     {
       "from": "release/yolo/web",
@@ -4765,7 +4715,7 @@
       "type": "merge",
       "lastSync": "Thu Jan 9 08:51:43 2025 +0000",
       "commonAncestor": "8f82af5332f9a1e7c77809598b32f93ed980f3b3",
-      "divergedCommits": 119
+      "divergedCommits": 121
     },
     {
       "from": "release/yolo/web",
@@ -4773,7 +4723,7 @@
       "type": "merge",
       "lastSync": "Thu Jan 16 21:13:36 2025 +0100",
       "commonAncestor": "e47075c800c81392272b475067cd448a84118d93",
-      "divergedCommits": 8
+      "divergedCommits": 10
     },
     {
       "from": "staging",
@@ -4845,19 +4795,19 @@
       "type": "rebase",
       "lastSync": "Thu Jan 16 21:13:36 2025 +0100",
       "commonAncestor": "e47075c800c81392272b475067cd448a84118d93",
-      "divergedCommits": 8
+      "divergedCommits": 10
     }
   ],
   "recentActivity": {
     "lastPush": "Sun Dec 22 09:53:48 2024 +0100",
-    "lastPull": "2025-01-16T20:52:53.121Z",
+    "lastPull": "2025-01-16T21:02:04.534Z",
     "lastMerge": "Fri Jan 10 12:42:02 2025 +0100",
     "activeBranches": [
       {
         "name": "release/yolo/web",
-        "lastCommit": "5b6ce95adfdfcc0496926614f3ada3dc038975f0",
+        "lastCommit": "fa4219a617f2934e331ff25ea5bc6595e7d1278e",
         "author": "baudevs",
-        "commitCount": 598
+        "commitCount": 600
       },
       {
         "name": "staging",
@@ -4920,7 +4870,7 @@
     "totalLibraries": 9,
     "totalPackages": 0,
     "totalFiles": 267,
-    "totalCommits": 598,
+    "totalCommits": 600,
     "totalContributors": 0
   }
 }
