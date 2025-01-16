@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const config = {
   output: 'standalone',
+  reactStrictMode: true,
+  swcMinify: true,
   images: {
     remotePatterns: [
       {
@@ -40,4 +42,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig; 
+export default config;
