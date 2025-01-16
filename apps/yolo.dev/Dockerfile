@@ -9,9 +9,9 @@ RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
 
 # Copy pre-built application
-COPY dist/apps/yolo.dev/public ./public
-COPY dist/apps/yolo.dev/.next/standalone ./
-COPY dist/apps/yolo.dev/.next/static ./.next/static
+COPY apps/yolo.dev/public ./public
+COPY apps/yolo.dev/.next/standalone ./
+COPY apps/yolo.dev/.next/static ./.next/static
 
 USER nextjs
 
