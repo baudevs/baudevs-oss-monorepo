@@ -1,7 +1,7 @@
 {
   "repoPath": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
-  "defaultBranch": "release/@baudevs/bau-gtm-tracker@09.01.2025",
-  "generatedAt": "2025-01-10T11:44:02.655Z",
+  "defaultBranch": "release/yolo/web",
+  "generatedAt": "2025-01-16T20:38:50.836Z",
   "gitVersion": "git version 2.39.5 (Apple Git-154)",
   "nxVersion": "20.3.0",
   "nodeVersion": "v23.3.0",
@@ -9,9 +9,9 @@
   "worktrees": [
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
-      "branch": "release/@baudevs/bau-gtm-tracker@09.01.2025",
-      "commit": "5febe5b797210bf99de2cf024f402aaac92a0a3e",
-      "lastActivity": "Fri Jan 10 12:43:25 2025 +0100"
+      "branch": "release/yolo/web",
+      "commit": "4dad29bd16aa8dc7d1c25755320da51c594cfe5b",
+      "lastActivity": "Thu Jan 16 21:38:15 2025 +0100"
     },
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo.worktrees/bau-cms-cli",
@@ -388,11 +388,28 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "d116b53c82c4c3206683224a43cf05721e34d2d9",
+          "author": "baudevs",
+          "date": "Fri Jan 10 12:43:25 2025 +0100",
+          "message": "chore(metadata): update repository metadata",
+          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.16~2",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "7d6bd0bbb4d7d84618ada9e40febe3fab5e288e9",
           "author": "baudevs",
           "date": "Fri Jan 10 12:41:24 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/release/@baudevs/bau-gtm-tracker@09.01.2025~1",
+          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.16~5",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -529,23 +546,6 @@
           "date": "Fri Jan 10 07:27:56 2025 +0100",
           "message": "chore(metadata): update repository metadata",
           "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.11~3",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "3357935f40bdfb7f3392d7d30b08b499e5afb240",
-          "author": "baudevs",
-          "date": "Fri Jan 10 07:21:35 2025 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.10~3",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -986,6 +986,23 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "4e713e4186915369646cd13ecbaebaf8ad36f201",
+          "author": "baudevs_tech",
+          "date": "Fri Jan 10 11:53:14 2025 +0000",
+          "message": "chore(release):",
+          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.16^0",
+          "files": [
+            ".nx/version-plans/version-plan-1736509929462.md",
+            "libs/bau-gtm-tracker/CHANGELOG.md",
+            "libs/bau-gtm-tracker/package.json"
+          ],
+          "nxProjects": [
+            "@baudevs/monorepo",
+            "@baudevs/bau-gtm-tracker",
+            "@baudevs/bau-gtm-tracker"
+          ]
+        },
+        {
           "hash": "8bc2e350caa9c8b29e55af31bb427e84b9859caa",
           "author": "baudevs_tech",
           "date": "Fri Jan 10 11:38:20 2025 +0000",
@@ -1146,23 +1163,6 @@
             "@baudevs/bau-gtm-tracker",
             "@baudevs/bau-gtm-tracker"
           ]
-        },
-        {
-          "hash": "5fd353f1593c9ec2f66555dda634282d22dd4953",
-          "author": "baudevs",
-          "date": "Fri Jan 10 05:39:29 2025 +0000",
-          "message": "chore(release):",
-          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.6^0",
-          "files": [
-            ".nx/version-plans/version-plan-1736487506332.md",
-            "libs/bau-gtm-tracker/CHANGELOG.md",
-            "libs/bau-gtm-tracker/package.json"
-          ],
-          "nxProjects": [
-            "@baudevs/monorepo",
-            "@baudevs/bau-gtm-tracker",
-            "@baudevs/bau-gtm-tracker"
-          ]
         }
       ],
       "contributors": [],
@@ -1248,6 +1248,92 @@
         "@baudevs/cmsEditor"
       ],
       "lastCommits": [
+        {
+          "hash": "e47075c800c81392272b475067cd448a84118d93",
+          "author": "baudevs",
+          "date": "Thu Jan 16 21:13:36 2025 +0100",
+          "message": "feat(yolo.dev): introduce YOLO landing page with Next.js, Three.js, and Framer Motion",
+          "branch": "staging",
+          "files": [
+            ".github/workflows/yolo.yml",
+            ".gitignore",
+            "apps/bau-cms-example/package.json",
+            "apps/yolo.dev/.dockerignore",
+            "apps/yolo.dev/.gitignore",
+            "apps/yolo.dev/Dockerfile",
+            "apps/yolo.dev/LICENSE",
+            "apps/yolo.dev/README.md",
+            "apps/yolo.dev/eslint.config.mjs",
+            "apps/yolo.dev/index.d.ts",
+            "apps/yolo.dev/next.config.mjs",
+            "apps/yolo.dev/next.config.ts",
+            "apps/yolo.dev/package.json",
+            "apps/yolo.dev/postcss.config.js",
+            "apps/yolo.dev/postcss.config.mjs",
+            "apps/yolo.dev/project.json",
+            "apps/yolo.dev/public/.gitkeep",
+            "apps/yolo.dev/public/favicon.ico",
+            "apps/yolo.dev/src/app/components/3d/ProjectGraph.tsx",
+            "apps/yolo.dev/src/app/components/3d/R3FCanvas.tsx",
+            "apps/yolo.dev/src/app/components/3d/Scene.tsx",
+            "apps/yolo.dev/src/app/components/sections/3d/Scene.tsx",
+            "apps/yolo.dev/src/app/components/sections/Community.tsx",
+            "apps/yolo.dev/src/app/components/sections/Features.tsx",
+            "apps/yolo.dev/src/app/components/sections/Hero.tsx",
+            "apps/yolo.dev/src/app/components/sections/Installation.tsx",
+            "apps/yolo.dev/src/app/components/ui/Header.tsx",
+            "apps/yolo.dev/src/app/favicon.ico",
+            "apps/yolo.dev/src/app/layout.tsx",
+            "apps/yolo.dev/src/app/page.tsx",
+            "apps/yolo.dev/src/styles/globals.css",
+            "apps/yolo.dev/src/types/next.d.ts",
+            "apps/yolo.dev/src/types/react-three-fiber.d.ts",
+            "apps/yolo.dev/src/types/three-jsx.d.ts",
+            "apps/yolo.dev/tailwind.config.ts",
+            "apps/yolo.dev/tsconfig.json",
+            "eslint.config.js",
+            "package.json",
+            "pnpm-lock.yaml"
+          ],
+          "nxProjects": [
+            "@baudevs/monorepo",
+            "@baudevs/monorepo",
+            "@baudevs/bauCmsNextExample",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev"
+          ]
+        },
         {
           "hash": "84c8d8d270ee977d0577fae9426305e16d78ed6e",
           "author": "Juan Arroyave",
@@ -3538,6 +3624,248 @@
       }
     },
     {
+      "name": "yolo.dev",
+      "type": "application",
+      "root": "apps/yolo.dev",
+      "sourceRoot": "apps/yolo.dev",
+      "tags": [
+        "npm:public"
+      ],
+      "dependencies": [],
+      "lastCommits": [
+        {
+          "hash": "4dad29bd16aa8dc7d1c25755320da51c594cfe5b",
+          "author": "baudevs",
+          "date": "Thu Jan 16 21:38:15 2025 +0100",
+          "message": "fix(workflow): update build process and Dockerfile paths for yolo.dev",
+          "branch": "release/yolo/web",
+          "files": [
+            ".github/workflows/yolo.yml",
+            "apps/yolo.dev/Dockerfile"
+          ],
+          "nxProjects": [
+            "@baudevs/monorepo",
+            "yolo.dev"
+          ]
+        },
+        {
+          "hash": "c7226e288abf2b6875cb071cb847b650844de371",
+          "author": "baudevs",
+          "date": "Thu Jan 16 21:25:07 2025 +0100",
+          "message": "refactor(workflow): streamline CI/CD process and update Dockerfile",
+          "branch": "remotes/origin/release/yolo/web~1",
+          "files": [
+            ".github/workflows/yolo.yml",
+            "apps/yolo.dev/Dockerfile"
+          ],
+          "nxProjects": [
+            "@baudevs/monorepo",
+            "yolo.dev"
+          ]
+        },
+        {
+          "hash": "e47075c800c81392272b475067cd448a84118d93",
+          "author": "baudevs",
+          "date": "Thu Jan 16 21:13:36 2025 +0100",
+          "message": "feat(yolo.dev): introduce YOLO landing page with Next.js, Three.js, and Framer Motion",
+          "branch": "staging",
+          "files": [
+            ".github/workflows/yolo.yml",
+            ".gitignore",
+            "apps/bau-cms-example/package.json",
+            "apps/yolo.dev/.dockerignore",
+            "apps/yolo.dev/.gitignore",
+            "apps/yolo.dev/Dockerfile",
+            "apps/yolo.dev/LICENSE",
+            "apps/yolo.dev/README.md",
+            "apps/yolo.dev/eslint.config.mjs",
+            "apps/yolo.dev/index.d.ts",
+            "apps/yolo.dev/next.config.mjs",
+            "apps/yolo.dev/next.config.ts",
+            "apps/yolo.dev/package.json",
+            "apps/yolo.dev/postcss.config.js",
+            "apps/yolo.dev/postcss.config.mjs",
+            "apps/yolo.dev/project.json",
+            "apps/yolo.dev/public/.gitkeep",
+            "apps/yolo.dev/public/favicon.ico",
+            "apps/yolo.dev/src/app/components/3d/ProjectGraph.tsx",
+            "apps/yolo.dev/src/app/components/3d/R3FCanvas.tsx",
+            "apps/yolo.dev/src/app/components/3d/Scene.tsx",
+            "apps/yolo.dev/src/app/components/sections/3d/Scene.tsx",
+            "apps/yolo.dev/src/app/components/sections/Community.tsx",
+            "apps/yolo.dev/src/app/components/sections/Features.tsx",
+            "apps/yolo.dev/src/app/components/sections/Hero.tsx",
+            "apps/yolo.dev/src/app/components/sections/Installation.tsx",
+            "apps/yolo.dev/src/app/components/ui/Header.tsx",
+            "apps/yolo.dev/src/app/favicon.ico",
+            "apps/yolo.dev/src/app/layout.tsx",
+            "apps/yolo.dev/src/app/page.tsx",
+            "apps/yolo.dev/src/styles/globals.css",
+            "apps/yolo.dev/src/types/next.d.ts",
+            "apps/yolo.dev/src/types/react-three-fiber.d.ts",
+            "apps/yolo.dev/src/types/three-jsx.d.ts",
+            "apps/yolo.dev/tailwind.config.ts",
+            "apps/yolo.dev/tsconfig.json",
+            "eslint.config.js",
+            "package.json",
+            "pnpm-lock.yaml"
+          ],
+          "nxProjects": [
+            "@baudevs/monorepo",
+            "@baudevs/monorepo",
+            "@baudevs/bauCmsNextExample",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev"
+          ]
+        }
+      ],
+      "contributors": [],
+      "metadata": {
+        "targets": {
+          "build": {
+            "dependsOn": [
+              "^build",
+              "lint"
+            ],
+            "cache": true,
+            "inputs": [
+              "default",
+              "production",
+              "^production"
+            ],
+            "outputs": [
+              "{workspaceRoot}/apps/yolo.dev/.next",
+              "{workspaceRoot}/apps/yolo.dev/.next/!(cache)"
+            ],
+            "executor": "nx:run-commands",
+            "options": {
+              "cwd": "apps/yolo.dev",
+              "tty": false,
+              "command": "next build",
+              "verbose": true
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "dev": {
+            "executor": "nx:run-commands",
+            "options": {
+              "cwd": "apps/yolo.dev",
+              "command": "next dev"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "start": {
+            "dependsOn": [
+              "build"
+            ],
+            "executor": "nx:run-commands",
+            "options": {
+              "cwd": "apps/yolo.dev",
+              "command": "next start"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "serve-static": {
+            "executor": "@nx/web:file-server",
+            "options": {
+              "buildTarget": "build",
+              "staticFilePath": "apps/yolo.dev/out",
+              "port": 3000,
+              "spa": false
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "lint": {
+            "cache": true,
+            "options": {
+              "cwd": "apps/yolo.dev",
+              "env": {
+                "ESLINT_USE_FLAT_CONFIG": "true"
+              },
+              "command": "eslint ."
+            },
+            "inputs": [
+              "default",
+              "^default",
+              "{workspaceRoot}/eslint.config.js",
+              "{workspaceRoot}/tools/eslint-rules/**/*",
+              {
+                "externalDependencies": [
+                  "eslint"
+                ]
+              }
+            ],
+            "outputs": [
+              "{options.outputFile}"
+            ],
+            "metadata": {
+              "technologies": [
+                "eslint"
+              ],
+              "description": "Runs ESLint on project",
+              "help": {
+                "command": "pnpm exec eslint --help",
+                "example": {
+                  "options": {
+                    "max-warnings": 0
+                  }
+                }
+              }
+            },
+            "executor": "nx:run-commands",
+            "configurations": {},
+            "parallelism": true
+          },
+          "nx-release-publish": {
+            "executor": "@nx/js:release-publish",
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "options": {},
+            "configurations": {},
+            "parallelism": true
+          }
+        },
+        "packageName": "yolo.web",
+        "targetGroups": {}
+      }
+    },
+    {
       "name": "@baudevs/monorepo",
       "type": "library",
       "root": ".",
@@ -3562,147 +3890,214 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "4dad29bd16aa8dc7d1c25755320da51c594cfe5b",
+          "author": "baudevs",
+          "date": "Thu Jan 16 21:38:15 2025 +0100",
+          "message": "fix(workflow): update build process and Dockerfile paths for yolo.dev",
+          "branch": "release/yolo/web",
+          "files": [
+            ".github/workflows/yolo.yml",
+            "apps/yolo.dev/Dockerfile"
+          ],
+          "nxProjects": [
+            "@baudevs/monorepo",
+            "yolo.dev"
+          ]
+        },
+        {
+          "hash": "8a87e144e0d680fb9d93a48d8d08f41ec336c5f0",
+          "author": "baudevs",
+          "date": "Thu Jan 16 21:26:24 2025 +0100",
+          "message": "chore(pnpm-lock): remove unused react-dom entry and update libsql cpu configuration",
+          "branch": "remotes/origin/release/yolo/web",
+          "files": [
+            "pnpm-lock.yaml"
+          ],
+          "nxProjects": []
+        },
+        {
+          "hash": "c7226e288abf2b6875cb071cb847b650844de371",
+          "author": "baudevs",
+          "date": "Thu Jan 16 21:25:07 2025 +0100",
+          "message": "refactor(workflow): streamline CI/CD process and update Dockerfile",
+          "branch": "remotes/origin/release/yolo/web~1",
+          "files": [
+            ".github/workflows/yolo.yml",
+            "apps/yolo.dev/Dockerfile"
+          ],
+          "nxProjects": [
+            "@baudevs/monorepo",
+            "yolo.dev"
+          ]
+        },
+        {
+          "hash": "f69780d6164dae016819c9d322b96cf84cb823f6",
+          "author": "baudevs",
+          "date": "Thu Jan 16 21:17:41 2025 +0100",
+          "message": "feat(version-plan): add initial version plan for YOLO website release",
+          "branch": "remotes/origin/release/yolo/web~2",
+          "files": [
+            ".nx/version-plans/version-plan-1737058603623.md"
+          ],
+          "nxProjects": [
+            "@baudevs/monorepo"
+          ]
+        },
+        {
+          "hash": "e47075c800c81392272b475067cd448a84118d93",
+          "author": "baudevs",
+          "date": "Thu Jan 16 21:13:36 2025 +0100",
+          "message": "feat(yolo.dev): introduce YOLO landing page with Next.js, Three.js, and Framer Motion",
+          "branch": "staging",
+          "files": [
+            ".github/workflows/yolo.yml",
+            ".gitignore",
+            "apps/bau-cms-example/package.json",
+            "apps/yolo.dev/.dockerignore",
+            "apps/yolo.dev/.gitignore",
+            "apps/yolo.dev/Dockerfile",
+            "apps/yolo.dev/LICENSE",
+            "apps/yolo.dev/README.md",
+            "apps/yolo.dev/eslint.config.mjs",
+            "apps/yolo.dev/index.d.ts",
+            "apps/yolo.dev/next.config.mjs",
+            "apps/yolo.dev/next.config.ts",
+            "apps/yolo.dev/package.json",
+            "apps/yolo.dev/postcss.config.js",
+            "apps/yolo.dev/postcss.config.mjs",
+            "apps/yolo.dev/project.json",
+            "apps/yolo.dev/public/.gitkeep",
+            "apps/yolo.dev/public/favicon.ico",
+            "apps/yolo.dev/src/app/components/3d/ProjectGraph.tsx",
+            "apps/yolo.dev/src/app/components/3d/R3FCanvas.tsx",
+            "apps/yolo.dev/src/app/components/3d/Scene.tsx",
+            "apps/yolo.dev/src/app/components/sections/3d/Scene.tsx",
+            "apps/yolo.dev/src/app/components/sections/Community.tsx",
+            "apps/yolo.dev/src/app/components/sections/Features.tsx",
+            "apps/yolo.dev/src/app/components/sections/Hero.tsx",
+            "apps/yolo.dev/src/app/components/sections/Installation.tsx",
+            "apps/yolo.dev/src/app/components/ui/Header.tsx",
+            "apps/yolo.dev/src/app/favicon.ico",
+            "apps/yolo.dev/src/app/layout.tsx",
+            "apps/yolo.dev/src/app/page.tsx",
+            "apps/yolo.dev/src/styles/globals.css",
+            "apps/yolo.dev/src/types/next.d.ts",
+            "apps/yolo.dev/src/types/react-three-fiber.d.ts",
+            "apps/yolo.dev/src/types/three-jsx.d.ts",
+            "apps/yolo.dev/tailwind.config.ts",
+            "apps/yolo.dev/tsconfig.json",
+            "eslint.config.js",
+            "package.json",
+            "pnpm-lock.yaml"
+          ],
+          "nxProjects": [
+            "@baudevs/monorepo",
+            "@baudevs/monorepo",
+            "@baudevs/bauCmsNextExample",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev"
+          ]
+        },
+        {
+          "hash": "847d7cc26c152788ec9d72a9fc2a379ec7434a49",
+          "author": "baudevs",
+          "date": "Fri Jan 10 14:06:14 2025 +0100",
+          "message": "chore(pnpm-lock): remove deprecated entries and update package configurations",
+          "branch": "remotes/origin/HEAD~1",
+          "files": [
+            "pnpm-lock.yaml"
+          ],
+          "nxProjects": []
+        },
+        {
+          "hash": "4e713e4186915369646cd13ecbaebaf8ad36f201",
+          "author": "baudevs_tech",
+          "date": "Fri Jan 10 11:53:14 2025 +0000",
+          "message": "chore(release):",
+          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.16^0",
+          "files": [
+            ".nx/version-plans/version-plan-1736509929462.md",
+            "libs/bau-gtm-tracker/CHANGELOG.md",
+            "libs/bau-gtm-tracker/package.json"
+          ],
+          "nxProjects": [
+            "@baudevs/monorepo",
+            "@baudevs/bau-gtm-tracker",
+            "@baudevs/bau-gtm-tracker"
+          ]
+        },
+        {
+          "hash": "a4de49042f7a04d83c26524f09600386544c262f",
+          "author": "baudevs",
+          "date": "Fri Jan 10 11:52:09 2025 +0000",
+          "message": "chore(@baudevs/bau-gtm-tracker): add version plan [skip ci]",
+          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.16~1",
+          "files": [
+            ".nx/version-plans/version-plan-1736509929462.md"
+          ],
+          "nxProjects": [
+            "@baudevs/monorepo"
+          ]
+        },
+        {
+          "hash": "d116b53c82c4c3206683224a43cf05721e34d2d9",
+          "author": "baudevs",
+          "date": "Fri Jan 10 12:43:25 2025 +0100",
+          "message": "chore(metadata): update repository metadata",
+          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.16~2",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "5febe5b797210bf99de2cf024f402aaac92a0a3e",
           "author": "baudevs",
           "date": "Fri Jan 10 12:43:25 2025 +0100",
           "message": "chore(workflow): update NPM OTP retrieval method in release workflow for improved security",
-          "branch": "release/@baudevs/bau-gtm-tracker@09.01.2025",
+          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.16~3",
           "files": [
             ".github/workflows/release-with-plan.yml"
           ],
           "nxProjects": [
             "@baudevs/monorepo"
-          ]
-        },
-        {
-          "hash": "6046014d03cee0e472b52627c79ec46f26dd4282",
-          "author": "baudevs",
-          "date": "Fri Jan 10 12:42:02 2025 +0100",
-          "message": "Merge branch 'release/@baudevs/bau-gtm-tracker@09.01.2025' of https://github.com/baudevs/baudevs-oss-monorepo into release/@baudevs/bau-gtm-tracker@09.01.2025",
-          "branch": "remotes/origin/release/@baudevs/bau-gtm-tracker@09.01.2025",
-          "files": [],
-          "nxProjects": []
-        },
-        {
-          "hash": "7d6bd0bbb4d7d84618ada9e40febe3fab5e288e9",
-          "author": "baudevs",
-          "date": "Fri Jan 10 12:41:24 2025 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/release/@baudevs/bau-gtm-tracker@09.01.2025~1",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "ed0d9b0c5e03148f710129a864dbc938bc2d153f",
-          "author": "baudevs",
-          "date": "Fri Jan 10 12:41:24 2025 +0100",
-          "message": "chore(workflow): add OP_SERVICE_ACCOUNT_TOKEN to release workflow for enhanced security",
-          "branch": "remotes/origin/release/@baudevs/bau-gtm-tracker@09.01.2025~2",
-          "files": [
-            ".github/workflows/release-with-plan.yml"
-          ],
-          "nxProjects": [
-            "@baudevs/monorepo"
-          ]
-        },
-        {
-          "hash": "8bc2e350caa9c8b29e55af31bb427e84b9859caa",
-          "author": "baudevs_tech",
-          "date": "Fri Jan 10 11:38:20 2025 +0000",
-          "message": "chore(release):",
-          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.15^0",
-          "files": [
-            ".nx/version-plans/version-plan-1736509035110.md",
-            "libs/bau-gtm-tracker/CHANGELOG.md",
-            "libs/bau-gtm-tracker/package.json"
-          ],
-          "nxProjects": [
-            "@baudevs/monorepo",
-            "@baudevs/bau-gtm-tracker",
-            "@baudevs/bau-gtm-tracker"
-          ]
-        },
-        {
-          "hash": "fc59d0e6df1dd7124d042604fe4546c0d6050379",
-          "author": "baudevs",
-          "date": "Fri Jan 10 11:37:15 2025 +0000",
-          "message": "chore(@baudevs/bau-gtm-tracker): add version plan [skip ci]",
-          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.15~1",
-          "files": [
-            ".nx/version-plans/version-plan-1736509035110.md"
-          ],
-          "nxProjects": [
-            "@baudevs/monorepo"
-          ]
-        },
-        {
-          "hash": "089292ec5929bdb1c997f2660281efbf9e09aab0",
-          "author": "baudevs",
-          "date": "Fri Jan 10 12:12:11 2025 +0100",
-          "message": "Merge branch 'release/@baudevs/bau-gtm-tracker@09.01.2025' of https://github.com/baudevs/baudevs-oss-monorepo into release/@baudevs/bau-gtm-tracker@09.01.2025",
-          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.15~2",
-          "files": [],
-          "nxProjects": []
-        },
-        {
-          "hash": "4be390338a0f573a96fa3ad742d0cf68e870f90f",
-          "author": "baudevs",
-          "date": "Fri Jan 10 12:11:21 2025 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.15~3",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "b60930a573709b229cac88b398e52ef3e585d247",
-          "author": "baudevs",
-          "date": "Fri Jan 10 12:11:21 2025 +0100",
-          "message": "chore(workflow): Improve NPM OTP handling in release workflow with enhanced error messages and logging",
-          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.15~4",
-          "files": [
-            ".github/workflows/release-with-plan.yml"
-          ],
-          "nxProjects": [
-            "@baudevs/monorepo"
-          ]
-        },
-        {
-          "hash": "83d4d127aec2ae52834499c512174dc3ece1fc6d",
-          "author": "baudevs_tech",
-          "date": "Fri Jan 10 11:02:37 2025 +0000",
-          "message": "chore(release):",
-          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.14^0",
-          "files": [
-            ".nx/version-plans/version-plan-1736493439401.md",
-            ".nx/version-plans/version-plan-1736495685782.md",
-            ".nx/version-plans/version-plan-1736497362539.md",
-            ".nx/version-plans/version-plan-1736506891765.md",
-            "libs/bau-gtm-tracker/CHANGELOG.md",
-            "libs/bau-gtm-tracker/package.json"
-          ],
-          "nxProjects": [
-            "@baudevs/monorepo",
-            "@baudevs/monorepo",
-            "@baudevs/monorepo",
-            "@baudevs/monorepo",
-            "@baudevs/bau-gtm-tracker",
-            "@baudevs/bau-gtm-tracker"
           ]
         }
       ],
@@ -3753,7 +4148,7 @@
       "type": "rebase",
       "lastSync": "Thu Jan 9 10:09:36 2025 +0100",
       "commonAncestor": "d71a8ec7cc3aa905318bc694d3d4f0796a2051e6",
-      "divergedCommits": 0
+      "divergedCommits": 109
     },
     {
       "from": "develop",
@@ -3761,7 +4156,7 @@
       "type": "rebase",
       "lastSync": "Thu Jan 9 10:09:36 2025 +0100",
       "commonAncestor": "d71a8ec7cc3aa905318bc694d3d4f0796a2051e6",
-      "divergedCommits": 104
+      "divergedCommits": 107
     },
     {
       "from": "develop",
@@ -3773,11 +4168,19 @@
     },
     {
       "from": "develop",
+      "to": "release/yolo/web",
+      "type": "rebase",
+      "lastSync": "Thu Jan 9 10:09:36 2025 +0100",
+      "commonAncestor": "d71a8ec7cc3aa905318bc694d3d4f0796a2051e6",
+      "divergedCommits": 113
+    },
+    {
+      "from": "develop",
       "to": "staging",
       "type": "rebase",
       "lastSync": "Thu Jan 9 10:09:36 2025 +0100",
       "commonAncestor": "d71a8ec7cc3aa905318bc694d3d4f0796a2051e6",
-      "divergedCommits": 2
+      "divergedCommits": 109
     },
     {
       "from": "feature/bau-cms-cli",
@@ -3817,7 +4220,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 384
+      "divergedCommits": 493
     },
     {
       "from": "feature/bau-cms-cli",
@@ -3825,7 +4228,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 488
+      "divergedCommits": 491
     },
     {
       "from": "feature/bau-cms-cli",
@@ -3837,11 +4240,19 @@
     },
     {
       "from": "feature/bau-cms-cli",
+      "to": "release/yolo/web",
+      "type": "merge",
+      "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
+      "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
+      "divergedCommits": 497
+    },
+    {
+      "from": "feature/bau-cms-cli",
       "to": "staging",
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 386
+      "divergedCommits": 493
     },
     {
       "from": "feature/bau-cms-core",
@@ -3881,7 +4292,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 441
+      "divergedCommits": 550
     },
     {
       "from": "feature/bau-cms-core",
@@ -3889,7 +4300,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 545
+      "divergedCommits": 548
     },
     {
       "from": "feature/bau-cms-core",
@@ -3901,11 +4312,19 @@
     },
     {
       "from": "feature/bau-cms-core",
+      "to": "release/yolo/web",
+      "type": "merge",
+      "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
+      "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
+      "divergedCommits": 554
+    },
+    {
+      "from": "feature/bau-cms-core",
       "to": "staging",
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 443
+      "divergedCommits": 550
     },
     {
       "from": "feature/bau-cms-example",
@@ -3945,7 +4364,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 452
+      "divergedCommits": 561
     },
     {
       "from": "feature/bau-cms-example",
@@ -3953,7 +4372,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 556
+      "divergedCommits": 559
     },
     {
       "from": "feature/bau-cms-example",
@@ -3965,11 +4384,19 @@
     },
     {
       "from": "feature/bau-cms-example",
+      "to": "release/yolo/web",
+      "type": "merge",
+      "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
+      "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
+      "divergedCommits": 565
+    },
+    {
+      "from": "feature/bau-cms-example",
       "to": "staging",
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 454
+      "divergedCommits": 561
     },
     {
       "from": "feature/dashboard-app",
@@ -4009,7 +4436,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 466
+      "divergedCommits": 575
     },
     {
       "from": "feature/dashboard-app",
@@ -4017,7 +4444,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 570
+      "divergedCommits": 573
     },
     {
       "from": "feature/dashboard-app",
@@ -4029,19 +4456,27 @@
     },
     {
       "from": "feature/dashboard-app",
+      "to": "release/yolo/web",
+      "type": "merge",
+      "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
+      "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
+      "divergedCommits": 579
+    },
+    {
+      "from": "feature/dashboard-app",
       "to": "staging",
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 468
+      "divergedCommits": 575
     },
     {
       "from": "main",
       "to": "develop",
-      "type": "rebase",
+      "type": "merge",
       "lastSync": "Thu Jan 9 10:09:36 2025 +0100",
       "commonAncestor": "d71a8ec7cc3aa905318bc694d3d4f0796a2051e6",
-      "divergedCommits": 0
+      "divergedCommits": 109
     },
     {
       "from": "main",
@@ -4049,7 +4484,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 384
+      "divergedCommits": 493
     },
     {
       "from": "main",
@@ -4057,7 +4492,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 441
+      "divergedCommits": 550
     },
     {
       "from": "main",
@@ -4065,7 +4500,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 452
+      "divergedCommits": 561
     },
     {
       "from": "main",
@@ -4073,15 +4508,15 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 466
+      "divergedCommits": 575
     },
     {
       "from": "main",
       "to": "release/@baudevs/bau-gtm-tracker@09.01.2025",
-      "type": "rebase",
-      "lastSync": "Thu Jan 9 10:09:36 2025 +0100",
-      "commonAncestor": "d71a8ec7cc3aa905318bc694d3d4f0796a2051e6",
-      "divergedCommits": 104
+      "type": "merge",
+      "lastSync": "Fri Jan 10 11:53:14 2025 +0000",
+      "commonAncestor": "4e713e4186915369646cd13ecbaebaf8ad36f201",
+      "divergedCommits": 2
     },
     {
       "from": "main",
@@ -4089,14 +4524,22 @@
       "type": "merge",
       "lastSync": "Thu Jan 9 08:51:43 2025 +0000",
       "commonAncestor": "8f82af5332f9a1e7c77809598b32f93ed980f3b3",
-      "divergedCommits": 2
+      "divergedCommits": 111
+    },
+    {
+      "from": "main",
+      "to": "release/yolo/web",
+      "type": "merge",
+      "lastSync": "Fri Jan 10 14:06:14 2025 +0100",
+      "commonAncestor": "847d7cc26c152788ec9d72a9fc2a379ec7434a49",
+      "divergedCommits": 6
     },
     {
       "from": "main",
       "to": "staging",
-      "type": "rebase",
-      "lastSync": "Thu Jan 9 10:09:36 2025 +0100",
-      "commonAncestor": "d71a8ec7cc3aa905318bc694d3d4f0796a2051e6",
+      "type": "merge",
+      "lastSync": "Fri Jan 10 14:06:14 2025 +0100",
+      "commonAncestor": "847d7cc26c152788ec9d72a9fc2a379ec7434a49",
       "divergedCommits": 2
     },
     {
@@ -4105,7 +4548,7 @@
       "type": "merge",
       "lastSync": "Thu Jan 9 10:09:36 2025 +0100",
       "commonAncestor": "d71a8ec7cc3aa905318bc694d3d4f0796a2051e6",
-      "divergedCommits": 104
+      "divergedCommits": 107
     },
     {
       "from": "release/@baudevs/bau-gtm-tracker@09.01.2025",
@@ -4113,7 +4556,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 488
+      "divergedCommits": 491
     },
     {
       "from": "release/@baudevs/bau-gtm-tracker@09.01.2025",
@@ -4121,7 +4564,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 545
+      "divergedCommits": 548
     },
     {
       "from": "release/@baudevs/bau-gtm-tracker@09.01.2025",
@@ -4129,7 +4572,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 556
+      "divergedCommits": 559
     },
     {
       "from": "release/@baudevs/bau-gtm-tracker@09.01.2025",
@@ -4137,15 +4580,15 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 570
+      "divergedCommits": 573
     },
     {
       "from": "release/@baudevs/bau-gtm-tracker@09.01.2025",
       "to": "main",
-      "type": "merge",
-      "lastSync": "Thu Jan 9 10:09:36 2025 +0100",
-      "commonAncestor": "d71a8ec7cc3aa905318bc694d3d4f0796a2051e6",
-      "divergedCommits": 104
+      "type": "rebase",
+      "lastSync": "Fri Jan 10 11:53:14 2025 +0000",
+      "commonAncestor": "4e713e4186915369646cd13ecbaebaf8ad36f201",
+      "divergedCommits": 2
     },
     {
       "from": "release/@baudevs/bau-gtm-tracker@09.01.2025",
@@ -4153,15 +4596,23 @@
       "type": "merge",
       "lastSync": "Thu Jan 9 08:51:43 2025 +0000",
       "commonAncestor": "8f82af5332f9a1e7c77809598b32f93ed980f3b3",
-      "divergedCommits": 106
+      "divergedCommits": 109
+    },
+    {
+      "from": "release/@baudevs/bau-gtm-tracker@09.01.2025",
+      "to": "release/yolo/web",
+      "type": "rebase",
+      "lastSync": "Fri Jan 10 11:53:14 2025 +0000",
+      "commonAncestor": "4e713e4186915369646cd13ecbaebaf8ad36f201",
+      "divergedCommits": 6
     },
     {
       "from": "release/@baudevs/bau-gtm-tracker@09.01.2025",
       "to": "staging",
-      "type": "merge",
-      "lastSync": "Thu Jan 9 12:36:41 2025 +0100",
-      "commonAncestor": "ddc9a2bbcbeee87399fcad664f82f0d21f48e398",
-      "divergedCommits": 102
+      "type": "rebase",
+      "lastSync": "Fri Jan 10 11:53:14 2025 +0000",
+      "commonAncestor": "4e713e4186915369646cd13ecbaebaf8ad36f201",
+      "divergedCommits": 2
     },
     {
       "from": "release/@baudevs/bau-log-hero@05.01.2025",
@@ -4209,7 +4660,7 @@
       "type": "rebase",
       "lastSync": "Thu Jan 9 08:51:43 2025 +0000",
       "commonAncestor": "8f82af5332f9a1e7c77809598b32f93ed980f3b3",
-      "divergedCommits": 2
+      "divergedCommits": 111
     },
     {
       "from": "release/@baudevs/bau-log-hero@05.01.2025",
@@ -4217,7 +4668,15 @@
       "type": "rebase",
       "lastSync": "Thu Jan 9 08:51:43 2025 +0000",
       "commonAncestor": "8f82af5332f9a1e7c77809598b32f93ed980f3b3",
-      "divergedCommits": 106
+      "divergedCommits": 109
+    },
+    {
+      "from": "release/@baudevs/bau-log-hero@05.01.2025",
+      "to": "release/yolo/web",
+      "type": "rebase",
+      "lastSync": "Thu Jan 9 08:51:43 2025 +0000",
+      "commonAncestor": "8f82af5332f9a1e7c77809598b32f93ed980f3b3",
+      "divergedCommits": 115
     },
     {
       "from": "release/@baudevs/bau-log-hero@05.01.2025",
@@ -4225,6 +4684,78 @@
       "type": "rebase",
       "lastSync": "Thu Jan 9 08:51:43 2025 +0000",
       "commonAncestor": "8f82af5332f9a1e7c77809598b32f93ed980f3b3",
+      "divergedCommits": 111
+    },
+    {
+      "from": "release/yolo/web",
+      "to": "develop",
+      "type": "merge",
+      "lastSync": "Thu Jan 9 10:09:36 2025 +0100",
+      "commonAncestor": "d71a8ec7cc3aa905318bc694d3d4f0796a2051e6",
+      "divergedCommits": 113
+    },
+    {
+      "from": "release/yolo/web",
+      "to": "feature/bau-cms-cli",
+      "type": "merge",
+      "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
+      "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
+      "divergedCommits": 497
+    },
+    {
+      "from": "release/yolo/web",
+      "to": "feature/bau-cms-core",
+      "type": "merge",
+      "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
+      "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
+      "divergedCommits": 554
+    },
+    {
+      "from": "release/yolo/web",
+      "to": "feature/bau-cms-example",
+      "type": "merge",
+      "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
+      "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
+      "divergedCommits": 565
+    },
+    {
+      "from": "release/yolo/web",
+      "to": "feature/dashboard-app",
+      "type": "merge",
+      "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
+      "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
+      "divergedCommits": 579
+    },
+    {
+      "from": "release/yolo/web",
+      "to": "main",
+      "type": "merge",
+      "lastSync": "Fri Jan 10 14:06:14 2025 +0100",
+      "commonAncestor": "847d7cc26c152788ec9d72a9fc2a379ec7434a49",
+      "divergedCommits": 6
+    },
+    {
+      "from": "release/yolo/web",
+      "to": "release/@baudevs/bau-gtm-tracker@09.01.2025",
+      "type": "merge",
+      "lastSync": "Fri Jan 10 11:53:14 2025 +0000",
+      "commonAncestor": "4e713e4186915369646cd13ecbaebaf8ad36f201",
+      "divergedCommits": 6
+    },
+    {
+      "from": "release/yolo/web",
+      "to": "release/@baudevs/bau-log-hero@05.01.2025",
+      "type": "merge",
+      "lastSync": "Thu Jan 9 08:51:43 2025 +0000",
+      "commonAncestor": "8f82af5332f9a1e7c77809598b32f93ed980f3b3",
+      "divergedCommits": 115
+    },
+    {
+      "from": "release/yolo/web",
+      "to": "staging",
+      "type": "merge",
+      "lastSync": "Thu Jan 16 21:13:36 2025 +0100",
+      "commonAncestor": "e47075c800c81392272b475067cd448a84118d93",
       "divergedCommits": 4
     },
     {
@@ -4233,7 +4764,7 @@
       "type": "merge",
       "lastSync": "Thu Jan 9 10:09:36 2025 +0100",
       "commonAncestor": "d71a8ec7cc3aa905318bc694d3d4f0796a2051e6",
-      "divergedCommits": 2
+      "divergedCommits": 109
     },
     {
       "from": "staging",
@@ -4241,7 +4772,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 386
+      "divergedCommits": 493
     },
     {
       "from": "staging",
@@ -4249,7 +4780,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 443
+      "divergedCommits": 550
     },
     {
       "from": "staging",
@@ -4257,7 +4788,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 454
+      "divergedCommits": 561
     },
     {
       "from": "staging",
@@ -4265,23 +4796,23 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 468
+      "divergedCommits": 575
     },
     {
       "from": "staging",
       "to": "main",
       "type": "merge",
-      "lastSync": "Thu Jan 9 10:09:36 2025 +0100",
-      "commonAncestor": "d71a8ec7cc3aa905318bc694d3d4f0796a2051e6",
+      "lastSync": "Fri Jan 10 14:06:14 2025 +0100",
+      "commonAncestor": "847d7cc26c152788ec9d72a9fc2a379ec7434a49",
       "divergedCommits": 2
     },
     {
       "from": "staging",
       "to": "release/@baudevs/bau-gtm-tracker@09.01.2025",
-      "type": "rebase",
-      "lastSync": "Thu Jan 9 12:36:41 2025 +0100",
-      "commonAncestor": "ddc9a2bbcbeee87399fcad664f82f0d21f48e398",
-      "divergedCommits": 102
+      "type": "merge",
+      "lastSync": "Fri Jan 10 11:53:14 2025 +0000",
+      "commonAncestor": "4e713e4186915369646cd13ecbaebaf8ad36f201",
+      "divergedCommits": 2
     },
     {
       "from": "staging",
@@ -4289,34 +4820,48 @@
       "type": "merge",
       "lastSync": "Thu Jan 9 08:51:43 2025 +0000",
       "commonAncestor": "8f82af5332f9a1e7c77809598b32f93ed980f3b3",
+      "divergedCommits": 111
+    },
+    {
+      "from": "staging",
+      "to": "release/yolo/web",
+      "type": "rebase",
+      "lastSync": "Thu Jan 16 21:13:36 2025 +0100",
+      "commonAncestor": "e47075c800c81392272b475067cd448a84118d93",
       "divergedCommits": 4
     }
   ],
   "recentActivity": {
     "lastPush": "Sun Dec 22 09:53:48 2024 +0100",
-    "lastPull": "2025-01-10T11:44:08.830Z",
+    "lastPull": "2025-01-16T20:38:55.787Z",
     "lastMerge": "Fri Jan 10 12:42:02 2025 +0100",
     "activeBranches": [
       {
-        "name": "release/@baudevs/bau-gtm-tracker@09.01.2025",
-        "lastCommit": "5febe5b797210bf99de2cf024f402aaac92a0a3e",
+        "name": "release/yolo/web",
+        "lastCommit": "4dad29bd16aa8dc7d1c25755320da51c594cfe5b",
         "author": "baudevs",
-        "commitCount": 585
+        "commitCount": 594
       },
       {
         "name": "staging",
-        "lastCommit": "ddc9a2bbcbeee87399fcad664f82f0d21f48e398",
+        "lastCommit": "e47075c800c81392272b475067cd448a84118d93",
         "author": "baudevs",
-        "commitCount": 483
-      },
-      {
-        "name": "develop",
-        "lastCommit": "d71a8ec7cc3aa905318bc694d3d4f0796a2051e6",
-        "author": "baudevs",
-        "commitCount": 481
+        "commitCount": 590
       },
       {
         "name": "main",
+        "lastCommit": "9b76f9971b4df3fc416b08bc10c6b430c0530a45",
+        "author": "baudevs",
+        "commitCount": 590
+      },
+      {
+        "name": "release/@baudevs/bau-gtm-tracker@09.01.2025",
+        "lastCommit": "4e713e4186915369646cd13ecbaebaf8ad36f201",
+        "author": "baudevs_tech",
+        "commitCount": 588
+      },
+      {
+        "name": "develop",
         "lastCommit": "d71a8ec7cc3aa905318bc694d3d4f0796a2051e6",
         "author": "baudevs",
         "commitCount": 481
@@ -4354,11 +4899,11 @@
     ]
   },
   "projectStats": {
-    "totalApps": 2,
+    "totalApps": 3,
     "totalLibraries": 9,
     "totalPackages": 0,
-    "totalFiles": 232,
-    "totalCommits": 585,
+    "totalFiles": 267,
+    "totalCommits": 594,
     "totalContributors": 0
   }
 }
