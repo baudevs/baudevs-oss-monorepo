@@ -50,13 +50,18 @@ jobs:
       - name: Build
         run: pnpm nx build yolo.dev --skip-nx-cache
 
-      - name: Find build output
+      - name: Debug build output
         run: |
-          echo "Looking for .next directory..."
-          find . -name ".next" -type d
-          echo "Looking for build output..."
-          ls -la apps/yolo.dev/.next || true
-          ls -la dist || true
+          echo "=== Project root structure ==="
+          ls -la
+          echo "=== Apps directory structure ==="
+          ls -la apps/
+          echo "=== Yolo.dev directory structure ==="
+          ls -la apps/yolo.dev/
+          echo "=== Looking for .next directory ==="
+          find . -name ".next" -type d -exec ls -la {} \;
+          echo "=== Looking for standalone directory ==="
+          find . -name "standalone" -type d -exec ls -la {} \;
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
@@ -77,21 +82,22 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Create dist directory
-        run: mkdir -p apps/yolo.dev
-
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
           name: yolo-build
           path: apps/yolo.dev
 
-      - name: List downloaded artifacts
+      - name: Debug downloaded artifacts
         run: |
-          echo "Build output structure:"
-          ls -la apps/yolo.dev
-          echo "Next.js output:"
+          echo "=== Yolo.dev directory structure ==="
+          ls -la apps/yolo.dev/
+          echo "=== .next directory structure ==="
           ls -la apps/yolo.dev/.next || true
+          echo "=== Standalone directory structure ==="
+          ls -la apps/yolo.dev/.next/standalone || true
+          echo "=== Static directory structure ==="
+          ls -la apps/yolo.dev/.next/static || true
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
