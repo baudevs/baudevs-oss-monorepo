@@ -50,11 +50,16 @@ jobs:
       - name: Build
         run: pnpm nx build yolo.dev --skip-nx-cache
 
+      - name: List build output
+        run: ls -la dist/apps/yolo.dev
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: build-output
-          path: dist/apps/yolo.dev
+          name: yolo-build
+          path: |
+            dist/apps/yolo.dev/public
+            dist/apps/yolo.dev/.next
           retention-days: 1
 
   docker:
@@ -67,11 +72,17 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Create dist directory
+        run: mkdir -p dist/apps/yolo.dev
+
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
-          name: build-output
+          name: yolo-build
           path: dist/apps/yolo.dev
+
+      - name: List downloaded artifacts
+        run: ls -la dist/apps/yolo.dev
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3

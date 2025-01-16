@@ -1211,6 +1211,136 @@
           "implicitDependencies": []
         }
       },
+      "yolo.dev": {
+        "name": "yolo.dev",
+        "type": "app",
+        "data": {
+          "root": "apps/yolo.dev",
+          "targets": {
+            "build": {
+              "dependsOn": [
+                "^build",
+                "lint"
+              ],
+              "cache": true,
+              "inputs": [
+                "default",
+                "production",
+                "^production"
+              ],
+              "outputs": [
+                "{workspaceRoot}/apps/yolo.dev/.next",
+                "{workspaceRoot}/apps/yolo.dev/.next/!(cache)"
+              ],
+              "executor": "nx:run-commands",
+              "options": {
+                "cwd": "apps/yolo.dev",
+                "tty": false,
+                "command": "next build",
+                "verbose": true
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "dev": {
+              "executor": "nx:run-commands",
+              "options": {
+                "cwd": "apps/yolo.dev",
+                "command": "next dev"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "start": {
+              "dependsOn": [
+                "build"
+              ],
+              "executor": "nx:run-commands",
+              "options": {
+                "cwd": "apps/yolo.dev",
+                "command": "next start"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "serve-static": {
+              "executor": "@nx/web:file-server",
+              "options": {
+                "buildTarget": "build",
+                "staticFilePath": "apps/yolo.dev/out",
+                "port": 3000,
+                "spa": false
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "lint": {
+              "cache": true,
+              "options": {
+                "cwd": "apps/yolo.dev",
+                "env": {
+                  "ESLINT_USE_FLAT_CONFIG": "true"
+                },
+                "command": "eslint ."
+              },
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/eslint.config.js",
+                "{workspaceRoot}/tools/eslint-rules/**/*",
+                {
+                  "externalDependencies": [
+                    "eslint"
+                  ]
+                }
+              ],
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "metadata": {
+                "technologies": [
+                  "eslint"
+                ],
+                "description": "Runs ESLint on project",
+                "help": {
+                  "command": "pnpm exec eslint --help",
+                  "example": {
+                    "options": {
+                      "max-warnings": 0
+                    }
+                  }
+                }
+              },
+              "executor": "nx:run-commands",
+              "configurations": {},
+              "parallelism": true
+            },
+            "nx-release-publish": {
+              "executor": "@nx/js:release-publish",
+              "dependsOn": [
+                "^nx-release-publish"
+              ],
+              "options": {},
+              "configurations": {},
+              "parallelism": true
+            }
+          },
+          "sourceRoot": "apps/yolo.dev",
+          "name": "yolo.dev",
+          "projectType": "application",
+          "tags": [
+            "npm:public"
+          ],
+          "metadata": {
+            "targetGroups": {},
+            "js": {
+              "packageName": "yolo.web"
+            }
+          },
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "implicitDependencies": []
+        }
+      },
       "@baudevs/monorepo": {
         "name": "@baudevs/monorepo",
         "type": "lib",
@@ -1287,6 +1417,7 @@
       ],
       "@baudevs/bau-cms-core": [],
       "@baudevs/bau-log-hero": [],
+      "yolo.dev": [],
       "@baudevs/monorepo": []
     }
   }
