@@ -32,19 +32,19 @@ const stats = [
 
 const testimonials = [
   {
-    quote: "YOLO has transformed how I manage my projects. It's like having a smart friend who's always there to help!",
-    author: "Sarah Chen",
-    role: "Product Manager",
+    quote: "YOLO made me believe in project management again. I mean, it hasn’t happened yet, but it *could*!",
+    author: "Future Tech Enthusiast",
+    role: "Visionary Developer",
   },
   {
-    quote: "The 3D visualization feature is mind-blowing. It makes understanding project structure so intuitive.",
-    author: "Alex Rodriguez",
-    role: "Senior Developer",
+    quote: "I finally understand my projects thanks to YOLO. Well, not yet, but soon, right?",
+    author: "Aspirational Manager",
+    role: "Dreaming of Organization",
   },
   {
-    quote: "As a student, YOLO has been invaluable in helping me organize my coding projects and learn AI concepts.",
-    author: "Jordan Taylor",
-    role: "CS Student",
+    quote: "YOLO is going to make my team’s life so much easier. Just wait, they’ll thank me... eventually.",
+    author: "Hopeful Team Lead",
+    role: "Optimistic Planner",
   },
 ];
 
@@ -114,17 +114,29 @@ export function Community() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <a
-            href="https://github.com/yolo-cli"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3 text-lg font-semibold text-black transition-colors hover:bg-zinc-200"
-          >
-            <Github className="h-5 w-5" />
-            Star on GitHub
-          </a>
+          <p className="text-lg text-zinc-400 mb-4">
+            Built with <span role='img' aria-label='explosion'>💥</span>  , caffeine, and a whole bunch of chaos by the team at BauDevs and Monoverse.
+          </p>
+          <div className="flex justify-center space-x-4">
+            <a
+              href="https://baudevs.social"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-black transition-colors hover:bg-zinc-200"
+            >
+              <Github className="h-5 w-5" /> qtagtech
+            </a>
+            <a
+              href="https://github.com/storres3rd"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-black transition-colors hover:bg-zinc-200"
+            >
+              <Github className="h-5 w-5" /> storres3rd
+            </a>
+          </div>
         </motion.div>
       </div>
     </section>
   );
-} 
+}

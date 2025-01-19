@@ -50,7 +50,7 @@ export function Header() {
 
         <div className="flex items-center gap-4">
           <a
-            href="https://github.com/yolo-cli"
+            href="https://github.com/baudevs/yolo.baudevs.com"
             target="_blank"
             rel="noopener noreferrer"
             className="flex h-10 items-center gap-2 rounded-full bg-white px-4 text-sm font-semibold text-black transition-colors hover:bg-zinc-200"
