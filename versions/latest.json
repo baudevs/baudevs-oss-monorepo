@@ -1,7 +1,7 @@
 {
   "repoPath": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
   "defaultBranch": "main",
-  "generatedAt": "2025-01-19T14:28:34.886Z",
+  "generatedAt": "2025-01-19T14:49:09.300Z",
   "gitVersion": "git version 2.39.5 (Apple Git-154)",
   "nxVersion": "",
   "nodeVersion": "v23.3.0",
@@ -10,8 +10,8 @@
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo",
       "branch": "main",
-      "commit": "be7525bc59b6bfd76dfa726349bf1b9196c2a45f",
-      "lastActivity": "Sun Jan 19 15:28:05 2025 +0100"
+      "commit": "ac4886cd25fc2733c41a31ac45ea68c381a07657",
+      "lastActivity": "Sun Jan 19 15:48:41 2025 +0100"
     },
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-monorepo.worktrees/bau-cms-cli",
@@ -388,11 +388,28 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "667e2e0f62942571b5e05b42394aa3fb22b7818d",
+          "author": "baudevs",
+          "date": "Sun Jan 19 15:28:05 2025 +0100",
+          "message": "chore(metadata): update repository metadata",
+          "branch": "remotes/origin/HEAD",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "03383828aa6a5df2425b6388b8db0b23a9b8ad91",
           "author": "baudevs",
           "date": "Sun Jan 19 15:19:04 2025 +0100",
           "message": "Merge branch 'staging'",
-          "branch": "remotes/origin/HEAD",
+          "branch": "remotes/origin/HEAD~2",
           "files": [],
           "nxProjects": []
         },
@@ -414,7 +431,7 @@
           "author": "baudevs",
           "date": "Fri Jan 10 14:06:14 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/HEAD~1",
+          "branch": "remotes/origin/HEAD~3",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -517,23 +534,6 @@
           "date": "Fri Jan 10 08:49:15 2025 +0100",
           "message": "chore(metadata): update repository metadata",
           "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.14~9",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "e7fcf15d20e6fb60fe3a5e389e5ad8a455cd675a",
-          "author": "baudevs",
-          "date": "Fri Jan 10 08:07:25 2025 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.14~12",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -3622,6 +3622,30 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "ac4886cd25fc2733c41a31ac45ea68c381a07657",
+          "author": "baudevs",
+          "date": "Sun Jan 19 15:48:41 2025 +0100",
+          "message": "chore(yolo.dev): update configuration and dependencies",
+          "branch": "main",
+          "files": [
+            "apps/yolo.dev/next.config.mjs",
+            "apps/yolo.dev/next.config.ts",
+            "apps/yolo.dev/package.json",
+            "apps/yolo.dev/postcss.config.js",
+            "apps/yolo.dev/project.json",
+            "apps/yolo.dev/tsconfig.json",
+            "pnpm-lock.yaml"
+          ],
+          "nxProjects": [
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev"
+          ]
+        },
+        {
           "hash": "31c39b98c8fa90a9fa0122fb28035c3cb0a12005",
           "author": "qtagtech",
           "date": "Sun Jan 19 14:57:52 2025 +0100",
@@ -3738,14 +3762,16 @@
             ],
             "defaultConfiguration": "production",
             "options": {
-              "outputPath": "dist/apps/yolo.dev",
+              "outputPath": "../..dist/apps/yolo.dev",
               "verbose": true
             },
             "configurations": {
               "development": {
-                "outputPath": "."
+                "outputPath": "../../dist/apps/yolo.dev"
               },
-              "production": {}
+              "production": {
+                "outputPath": "../../dist/apps/yolo.dev"
+              }
             },
             "parallelism": true,
             "dependsOn": [
@@ -3760,23 +3786,23 @@
             "cache": true
           },
           "dev": {
-            "executor": "nx:run-commands",
             "options": {
               "cwd": "apps/yolo.dev",
               "command": "next dev"
             },
+            "executor": "nx:run-commands",
             "configurations": {},
             "parallelism": true
           },
           "start": {
-            "dependsOn": [
-              "build"
-            ],
-            "executor": "nx:run-commands",
             "options": {
               "cwd": "apps/yolo.dev",
               "command": "next start"
             },
+            "dependsOn": [
+              "build"
+            ],
+            "executor": "nx:run-commands",
             "configurations": {},
             "parallelism": true
           },
@@ -3888,11 +3914,52 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "ac4886cd25fc2733c41a31ac45ea68c381a07657",
+          "author": "baudevs",
+          "date": "Sun Jan 19 15:48:41 2025 +0100",
+          "message": "chore(yolo.dev): update configuration and dependencies",
+          "branch": "main",
+          "files": [
+            "apps/yolo.dev/next.config.mjs",
+            "apps/yolo.dev/next.config.ts",
+            "apps/yolo.dev/package.json",
+            "apps/yolo.dev/postcss.config.js",
+            "apps/yolo.dev/project.json",
+            "apps/yolo.dev/tsconfig.json",
+            "pnpm-lock.yaml"
+          ],
+          "nxProjects": [
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev"
+          ]
+        },
+        {
+          "hash": "667e2e0f62942571b5e05b42394aa3fb22b7818d",
+          "author": "baudevs",
+          "date": "Sun Jan 19 15:28:05 2025 +0100",
+          "message": "chore(metadata): update repository metadata",
+          "branch": "remotes/origin/HEAD",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "be7525bc59b6bfd76dfa726349bf1b9196c2a45f",
           "author": "baudevs",
           "date": "Sun Jan 19 15:28:05 2025 +0100",
           "message": "chore(yolo.dev) install next as workpsace dependeny for deployin  in vercel",
-          "branch": "main",
+          "branch": "remotes/origin/HEAD~1",
           "files": [
             "package.json",
             "pnpm-lock.yaml"
@@ -3904,7 +3971,7 @@
           "author": "baudevs",
           "date": "Sun Jan 19 15:19:04 2025 +0100",
           "message": "Merge branch 'staging'",
-          "branch": "remotes/origin/HEAD",
+          "branch": "remotes/origin/HEAD~2",
           "files": [],
           "nxProjects": []
         },
@@ -4032,7 +4099,7 @@
           "author": "baudevs",
           "date": "Fri Jan 10 14:06:14 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/HEAD~1",
+          "branch": "remotes/origin/HEAD~3",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -4049,7 +4116,7 @@
           "author": "baudevs",
           "date": "Fri Jan 10 14:06:14 2025 +0100",
           "message": "chore(pnpm-lock): remove deprecated entries and update package configurations",
-          "branch": "remotes/origin/HEAD~2",
+          "branch": "remotes/origin/staging~3",
           "files": [
             "pnpm-lock.yaml"
           ],
@@ -4070,36 +4137,6 @@
             "@baudevs/monorepo",
             "@baudevs/bau-gtm-tracker",
             "@baudevs/bau-gtm-tracker"
-          ]
-        },
-        {
-          "hash": "a4de49042f7a04d83c26524f09600386544c262f",
-          "author": "baudevs",
-          "date": "Fri Jan 10 11:52:09 2025 +0000",
-          "message": "chore(@baudevs/bau-gtm-tracker): add version plan [skip ci]",
-          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.16~1",
-          "files": [
-            ".nx/version-plans/version-plan-1736509929462.md"
-          ],
-          "nxProjects": [
-            "@baudevs/monorepo"
-          ]
-        },
-        {
-          "hash": "d116b53c82c4c3206683224a43cf05721e34d2d9",
-          "author": "baudevs",
-          "date": "Fri Jan 10 12:43:25 2025 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.16~2",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
           ]
         }
       ],
@@ -4150,7 +4187,7 @@
       "type": "rebase",
       "lastSync": "Thu Jan 9 10:09:36 2025 +0100",
       "commonAncestor": "d71a8ec7cc3aa905318bc694d3d4f0796a2051e6",
-      "divergedCommits": 114
+      "divergedCommits": 116
     },
     {
       "from": "develop",
@@ -4222,7 +4259,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 498
+      "divergedCommits": 500
     },
     {
       "from": "feature/bau-cms-cli",
@@ -4294,7 +4331,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 555
+      "divergedCommits": 557
     },
     {
       "from": "feature/bau-cms-core",
@@ -4366,7 +4403,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 566
+      "divergedCommits": 568
     },
     {
       "from": "feature/bau-cms-example",
@@ -4438,7 +4475,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 580
+      "divergedCommits": 582
     },
     {
       "from": "feature/dashboard-app",
@@ -4478,7 +4515,7 @@
       "type": "merge",
       "lastSync": "Thu Jan 9 10:09:36 2025 +0100",
       "commonAncestor": "d71a8ec7cc3aa905318bc694d3d4f0796a2051e6",
-      "divergedCommits": 114
+      "divergedCommits": 116
     },
     {
       "from": "main",
@@ -4486,7 +4523,7 @@
       "type": "merge",
       "lastSync": "Wed Dec 25 09:16:42 2024 +0100",
       "commonAncestor": "e366436c2fcae5d82965dfe0c111668f6ec490a9",
-      "divergedCommits": 498
+      "divergedCommits": 500
     },
     {
       "from": "main",
@@ -4494,7 +4531,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 555
+      "divergedCommits": 557
     },
     {
       "from": "main",
@@ -4502,7 +4539,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 566
+      "divergedCommits": 568
     },
     {
       "from": "main",
@@ -4510,7 +4547,7 @@
       "type": "merge",
       "lastSync": "Fri Dec 20 12:57:18 2024 +0100",
       "commonAncestor": "6a4129ae5094de255f7628515ad437ee4a853a41",
-      "divergedCommits": 580
+      "divergedCommits": 582
     },
     {
       "from": "main",
@@ -4518,7 +4555,7 @@
       "type": "merge",
       "lastSync": "Fri Jan 10 11:53:14 2025 +0000",
       "commonAncestor": "4e713e4186915369646cd13ecbaebaf8ad36f201",
-      "divergedCommits": 7
+      "divergedCommits": 9
     },
     {
       "from": "main",
@@ -4526,7 +4563,7 @@
       "type": "merge",
       "lastSync": "Thu Jan 9 08:51:43 2025 +0000",
       "commonAncestor": "8f82af5332f9a1e7c77809598b32f93ed980f3b3",
-      "divergedCommits": 116
+      "divergedCommits": 118
     },
     {
       "from": "main",
@@ -4534,7 +4571,7 @@
       "type": "merge",
       "lastSync": "Thu Jan 16 21:13:36 2025 +0100",
       "commonAncestor": "e47075c800c81392272b475067cd448a84118d93",
-      "divergedCommits": 21
+      "divergedCommits": 23
     },
     {
       "from": "main",
@@ -4542,7 +4579,7 @@
       "type": "merge",
       "lastSync": "Sun Jan 19 14:58:15 2025 +0100",
       "commonAncestor": "f37140a435969ad92f375fc288e8c076e1879400",
-      "divergedCommits": 3
+      "divergedCommits": 5
     },
     {
       "from": "release/@baudevs/bau-gtm-tracker@09.01.2025",
@@ -4590,7 +4627,7 @@
       "type": "rebase",
       "lastSync": "Fri Jan 10 11:53:14 2025 +0000",
       "commonAncestor": "4e713e4186915369646cd13ecbaebaf8ad36f201",
-      "divergedCommits": 7
+      "divergedCommits": 9
     },
     {
       "from": "release/@baudevs/bau-gtm-tracker@09.01.2025",
@@ -4662,7 +4699,7 @@
       "type": "rebase",
       "lastSync": "Thu Jan 9 08:51:43 2025 +0000",
       "commonAncestor": "8f82af5332f9a1e7c77809598b32f93ed980f3b3",
-      "divergedCommits": 116
+      "divergedCommits": 118
     },
     {
       "from": "release/@baudevs/bau-log-hero@05.01.2025",
@@ -4734,7 +4771,7 @@
       "type": "merge",
       "lastSync": "Thu Jan 16 21:13:36 2025 +0100",
       "commonAncestor": "e47075c800c81392272b475067cd448a84118d93",
-      "divergedCommits": 21
+      "divergedCommits": 23
     },
     {
       "from": "release/yolo/web",
@@ -4806,7 +4843,7 @@
       "type": "rebase",
       "lastSync": "Sun Jan 19 14:58:15 2025 +0100",
       "commonAncestor": "f37140a435969ad92f375fc288e8c076e1879400",
-      "divergedCommits": 3
+      "divergedCommits": 5
     },
     {
       "from": "staging",
@@ -4835,14 +4872,14 @@
   ],
   "recentActivity": {
     "lastPush": "Sun Dec 22 09:53:48 2024 +0100",
-    "lastPull": "2025-01-19T14:28:39.342Z",
+    "lastPull": "2025-01-19T14:49:14.191Z",
     "lastMerge": "Sun Jan 19 15:19:04 2025 +0100",
     "activeBranches": [
       {
         "name": "main",
-        "lastCommit": "be7525bc59b6bfd76dfa726349bf1b9196c2a45f",
+        "lastCommit": "ac4886cd25fc2733c41a31ac45ea68c381a07657",
         "author": "baudevs",
-        "commitCount": 595
+        "commitCount": 597
       },
       {
         "name": "staging",
@@ -4904,8 +4941,8 @@
     "totalApps": 3,
     "totalLibraries": 9,
     "totalPackages": 0,
-    "totalFiles": 267,
-    "totalCommits": 595,
+    "totalFiles": 265,
+    "totalCommits": 597,
     "totalContributors": 0
   }
 }
