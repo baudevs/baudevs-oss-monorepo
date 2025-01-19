@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: process.env.NODE_ENV === 'production' ? 'standalone' : 'export',
+  output: process.env.NODE_ENV === 'production' ? 'standalone' : 'standalone',
   distDir: process.env.NODE_ENV === 'production' ? '../../dist/apps/yolo.dev' : '.next',
   images: {
     unoptimized: process.env.NODE_ENV !== 'production',

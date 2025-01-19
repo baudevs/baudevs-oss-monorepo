@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Github, MessageCircle, Book, Users } from 'lucide-react';
-
+import Link from 'next/link';
 const stats = [
   {
     icon: Github,
@@ -118,22 +118,22 @@ export function Community() {
             Built with <span role='img' aria-label='explosion'>💥</span>  , caffeine, and a whole bunch of chaos by the team at BauDevs and Monoverse.
           </p>
           <div className="flex justify-center space-x-4">
-            <a
+            <Link
               href="https://baudevs.social"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-black transition-colors hover:bg-zinc-200"
             >
               <Github className="h-5 w-5" /> qtagtech
-            </a>
-            <a
+            </Link>
+            <Link
               href="https://github.com/storres3rd"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-black transition-colors hover:bg-zinc-200"
             >
               <Github className="h-5 w-5" /> storres3rd
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>

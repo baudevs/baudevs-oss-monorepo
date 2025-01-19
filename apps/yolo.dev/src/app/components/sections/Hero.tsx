@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Scene from '@components/3d/Scene';
+import Link from 'next/link';
 
 
 export function Hero() {
@@ -36,12 +37,12 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <a
+            <Link
               href="#installation"
               className="inline-block rounded-full bg-blue-600 px-8 py-3 text-lg font-semibold text-white transition-colors hover:bg-blue-700"
             >
               YOLO, Let's Get Started! <span role='img' aria-label='rocket'>🚀</span>
-            </a>
+            </Link>
           </motion.div>
         </div>
       </div>
