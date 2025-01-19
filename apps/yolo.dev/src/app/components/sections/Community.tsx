@@ -6,26 +6,26 @@ import { Github, MessageCircle, Book, Users } from 'lucide-react';
 const stats = [
   {
     icon: Github,
-    label: 'GitHub Stars',
-    value: '1.2k+',
+    label: 'GitHub Stars (Our own)',
+    value: '1',
     color: 'text-yellow-500',
   },
   {
     icon: Users,
     label: 'Contributors',
-    value: '50+',
+    value: '2',
     color: 'text-blue-500',
   },
   {
     icon: MessageCircle,
-    label: 'Discord Members',
-    value: '500+',
+    label: 'Discord Members (want to help?)',
+    value: '0',
     color: 'text-purple-500',
   },
   {
     icon: Book,
     label: 'Documentation Pages',
-    value: '100+',
+    value: '~3',
     color: 'text-green-500',
   },
 ];

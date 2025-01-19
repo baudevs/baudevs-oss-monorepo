@@ -19,7 +19,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Make Project Management Fun
+            “Project Management, But Make It Fun.”
           </motion.h1>
 
           <motion.p
@@ -28,7 +28,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Your friendly project companion that makes managing projects easy - perfect for everyone!
+            Your new best friend for managing AI coding projects—effortless for humans, seamless for LLMs. <br />And packed with personality. Let’s turn chaos into collaboration!n
           </motion.p>
 
           <motion.div
@@ -40,7 +40,7 @@ export function Hero() {
               href="#installation"
               className="inline-block rounded-full bg-blue-600 px-8 py-3 text-lg font-semibold text-white transition-colors hover:bg-blue-700"
             >
-              Start Your Project Adventure! <span role='img' aria-label='rocket'>🚀</span>
+              YOLO, Let's Get Started! <span role='img' aria-label='rocket'>🚀</span>
             </a>
           </motion.div>
         </div>

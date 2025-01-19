@@ -9,12 +9,9 @@
       "executor": "@nx/next:build",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
-      "options": {
-        "outputPath": "../..dist/apps/yolo.dev"
-      },
       "configurations": {
         "development": {
-          "outputPath": "../../dist/apps/yolo.dev"
+          "outputPath": "."
         },
         "production": {
           "outputPath": "../../dist/apps/yolo.dev"

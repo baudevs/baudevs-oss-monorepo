@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
-  distDir: '../../dist/apps/yolo.dev',
+  output: process.env.NODE_ENV === 'production' ? 'standalone' : 'export',
+  distDir: process.env.NODE_ENV === 'production' ? '../../dist/apps/yolo.dev' : '.next',
   images: {
+    unoptimized: process.env.NODE_ENV !== 'production',
     remotePatterns: [
       {
         protocol: 'https',

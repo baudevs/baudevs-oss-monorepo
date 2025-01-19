@@ -5,20 +5,19 @@ import { useState } from 'react';
 import { Terminal } from 'lucide-react';
 
 const commands = [
-  { text: '$ brew install yolo-cli', delay: 0 },
-  { text: '🍺 Installing YOLO CLI...', delay: 1 },
-  { text: '✨ Installation complete!', delay: 2 },
-  { text: '$ yolo init my-cool-project', delay: 3 },
-  { text: '🚀 Creating a new project...', delay: 4 },
-  { text: '🎮 Setting up 3D visualization...', delay: 5 },
-  { text: '🤖 Configuring AI assistant...', delay: 6 },
-  { text: '✅ Project ready! Let\'s build something amazing!', delay: 7 },
+  { text: '$ curl -L https://github.com/baudevs/yolo.baudevs.com/releases/download/v1.0.0-beta/yolo-darwin -o yolo', delay: 0 },
+  { text: '📥 Downloading YOLO for macOS...', delay: 1 },
+  { text: '$ chmod +x yolo && mv yolo /usr/local/bin/yolo', delay: 4 },
+  { text: '🔒 Making YOLO executable and moving it to PATH...', delay: 5 },
+  { text: '$ yolo init', delay: 8 },
+  { text: '🚀 Initializing YOLO project...', delay: 10 },
+  { text: '✅ Done! Your YOLO journey begins here.', delay: 14 },
 ];
 
 export function Installation() {
   const [copied, setCopied] = useState(false);
 
-  const copyCommand = async (command: string) => {
+  const copyCommand = async (command) => {
     await navigator.clipboard.writeText(command);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -36,11 +35,19 @@ export function Installation() {
         >
           <Terminal className="mx-auto mb-6 h-12 w-12 text-blue-500" />
           <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">
-            Get Started in Seconds
+            How to YOLO Your Way to Awesomeness
           </h2>
           <p className="mb-12 text-xl text-zinc-400">
-            Just two commands to start your project adventure
+            Let&apos;s get your YOLO script running faster than your morning coffee kicks in. <span role="img" aria-label="smiley">😎</span> Just follow these ridiculously easy steps:
           </p>
+          <div className="mb-12 bg-gray-100 border border-gray-300 rounded-xl p-4 shadow-md max-w-md mx-auto mt-6">
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">
+              <span role="img" aria-label="Warning">🚨</span> Heads Up: Mac-Only Club (For Now)
+            </h3>
+            <p className="text-sm text-gray-600 leading-relaxed">
+              YOLO currently works only on macOS. Not sure what you&apos;re using? Click the <span role="img" aria-label="Apple logo">🍎</span> in the top-left corner of your screen, select <span className="font-medium text-gray-800">"About This Mac"</span>, and confirm you&apos;re on macOS. If not, sit tight—we&apos;re coming to your OS soon! <span role="img" aria-label="sparkles">✨</span>
+            </p>
+          </div>
         </motion.div>
 
         <motion.div
@@ -57,7 +64,7 @@ export function Installation() {
               <div className="h-3 w-3 rounded-full bg-green-500" />
             </div>
             <button
-              onClick={() => copyCommand('brew install yolo-cli && yolo init my-cool-project')}
+              onClick={() => copyCommand('curl -L https://github.com/baudevs/yolo.baudevs.com/releases/download/v1.0.0-beta/yolo-darwin -o yolo && chmod +x yolo && mv yolo /usr/local/bin/yolo')}
               className="rounded bg-zinc-800 px-3 py-1 text-sm text-zinc-400 transition-colors hover:bg-zinc-700"
             >
               {copied ? 'Copied!' : 'Copy'}
@@ -79,7 +86,22 @@ export function Installation() {
             ))}
           </div>
         </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="text-center mt-12"
+        >
+          <h3 className="text-2xl font-bold text-white">
+            We Know You Got This
+          </h3>
+          <p className="text-lg text-zinc-400 mt-2">
+            We just wanted to make it fun to explain. YOLO on! <span role="img" aria-label="party">🎉</span>
+          </p>
+        </motion.div>
       </div>
     </section>
   );
-} 
+}
