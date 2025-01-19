@@ -1,0 +1,39 @@
+{
+  "name": "yolo.dev",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/yolo.dev",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/yolo.dev"
+      },
+      "configurations": {
+        "development": {
+          "outputPath": "."
+        },
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "yolo.dev:build",
+        "dev": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "yolo.dev:build:development",
+          "dev": true,
+          "turbo": true
+        }
+      }
+    }
+  }
+}
+
