@@ -150,7 +150,7 @@ if [ -f "metadata-history.json" ] || [ -f "versions/latest.json" ]; then
   printf "│ 📝 Dashboard│ Added version files to dashboard public        │\n"
 
   # Create a conventional commit message for metadata update
-  COMMIT_MSG="chore(metadata): update repository metadata"
+  COMMIT_MSG="chore(metadata): update repository metadata [after $(git log -1 --pretty=%B)]"
   if [ -n "$CI" ]; then
     COMMIT_MSG="$COMMIT_MSG [skip ci]"
     printf "│ 🤖 CI Flag   │ Adding [skip ci] to commit message            │\n"

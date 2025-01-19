@@ -1224,14 +1224,16 @@
               ],
               "defaultConfiguration": "production",
               "options": {
-                "outputPath": "dist/apps/yolo.dev",
+                "outputPath": "../..dist/apps/yolo.dev",
                 "verbose": true
               },
               "configurations": {
                 "development": {
-                  "outputPath": "."
+                  "outputPath": "../../dist/apps/yolo.dev"
                 },
-                "production": {}
+                "production": {
+                  "outputPath": "../../dist/apps/yolo.dev"
+                }
               },
               "parallelism": true,
               "dependsOn": [
@@ -1246,23 +1248,23 @@
               "cache": true
             },
             "dev": {
-              "executor": "nx:run-commands",
               "options": {
                 "cwd": "apps/yolo.dev",
                 "command": "next dev"
               },
+              "executor": "nx:run-commands",
               "configurations": {},
               "parallelism": true
             },
             "start": {
-              "dependsOn": [
-                "build"
-              ],
-              "executor": "nx:run-commands",
               "options": {
                 "cwd": "apps/yolo.dev",
                 "command": "next start"
               },
+              "dependsOn": [
+                "build"
+              ],
+              "executor": "nx:run-commands",
               "configurations": {},
               "parallelism": true
             },
