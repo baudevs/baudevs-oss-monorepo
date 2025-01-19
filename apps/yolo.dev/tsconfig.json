@@ -27,9 +27,12 @@
       "@/*": [
         "./*"
       ],
-      "@public/*": [
-        "./public/*"
-      ],
+        "@public/*": [
+          "./public/*"
+        ],
+        "@assets/*": [
+          "./src/assets/*"
+        ],
       "@types/*": [
         "src/types/*"
       ],

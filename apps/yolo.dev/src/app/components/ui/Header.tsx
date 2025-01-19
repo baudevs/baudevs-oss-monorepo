@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Github } from 'lucide-react';
 import Image from 'next/image';
+import Logo from '@assets/YOLO_MAKE_AI_CODING_FUN.png';
+
 const navItems = [
   { label: 'Features', href: '#features' },
   { label: 'Installation', href: '#installation' },
@@ -33,7 +35,7 @@ export function Header() {
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
         <a href='/' className="text-2xl font-bold text-white">
-          <Image src="/YOLO_MAKE_AI_CODING_FUN.png" alt="YOLO" width={200} height={50} />
+          <Image src={Logo} alt="YOLO" width={200} height={50} />
         </a>
 
         <nav className="hidden space-x-8 md:flex">
