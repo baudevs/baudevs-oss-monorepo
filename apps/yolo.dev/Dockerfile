@@ -1,53 +1,42 @@
-FROM node:20-alpine AS base
+FROM node:23-alpine
 
-# Install dependencies only when needed
-FROM base AS deps
-RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Install pnpm
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
-# Install dependencies based on the preferred package manager
-COPY package.json pnpm-lock.yaml* ./
-RUN pnpm install --frozen-lockfile
+# Set up PNPM_HOME for global installations
+ENV PNPM_HOME=/pnpm
+ENV PATH=$PNPM_HOME/bin:$PATH
 
-# Rebuild the source code only when needed
-FROM base AS builder
-WORKDIR /app
+# Create the PNPM_HOME directory manually
+RUN mkdir -p $PNPM_HOME && corepack enable
 
-# Install pnpm in builder stage
-RUN corepack enable && corepack prepare pnpm@latest --activate
+# Set node environment to production
+ENV NODE_ENV=production
 
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
+# Copy only the necessary files for dependency installation
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-# Disable telemetry during the build
-ENV NEXT_TELEMETRY_DISABLED 1
+# Install production dependencies
+RUN pnpm install --frozen-lockfile --prod
 
-# Build the application
-RUN pnpm build
+# Install nx globally
+RUN pnpm config set global-bin-dir $PNPM_HOME/bin && pnpm add -g nx
 
-# Production image, copy all the files and run next
-FROM base AS runner
-WORKDIR /app
+# Copy the rest of the application files
+COPY nx.json ./nx.json
+COPY tsconfig.base.json ./tsconfig.base.json
+COPY workspace.json ./workspace.json
+COPY apps/yolo.dev/ ./apps/yolo.dev
 
-ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
+# Set environment variables
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV PORT=4200
+ENV HOSTNAME="0.0.0.0"
 
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nextjs -u 1001
+# Expose the desired port
+EXPOSE 4200
 
-# Copy only necessary files
-COPY --from=builder /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-USER nextjs
-
-EXPOSE 3000
-
-ENV PORT 3000
-ENV HOSTNAME "0.0.0.0"
-
-CMD ["node", "server.js"] 
+# Default command to run the app
+CMD ["pnpm", "exec", "nx", "serve", "yolo.dev", "--configuration=production"]
