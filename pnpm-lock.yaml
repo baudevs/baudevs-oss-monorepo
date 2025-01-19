@@ -346,6 +346,9 @@ importers:
       lucide-react:
         specifier: ^0.471.1
         version: 0.471.1(react@19.0.0)
+      next:
+        specifier: 15.1.4
+        version: 15.1.4(@babel/core@7.26.0)(@playwright/test@1.49.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4)
       react:
         specifier: 19.0.0
         version: 19.0.0
