@@ -10,13 +10,15 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/yolo.dev"
+        "outputPath": "../..dist/apps/yolo.dev"
       },
       "configurations": {
         "development": {
-          "outputPath": "."
+          "outputPath": "../../dist/apps/yolo.dev"
         },
-        "production": {}
+        "production": {
+          "outputPath": "../../dist/apps/yolo.dev"
+        }
       }
     },
     "serve": {

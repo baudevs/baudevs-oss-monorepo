@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
+  distDir: '../../dist/apps/yolo.dev',
   images: {
     remotePatterns: [
       {
@@ -40,4 +41,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig; 
+export default nextConfig;

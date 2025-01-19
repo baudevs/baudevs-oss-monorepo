@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "baseUrl": ".",
     "allowJs": true,
     "skipLibCheck": true,
@@ -20,19 +24,49 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@public/*": ["./public/*"],
-      "@types/*": ["src/types/*"],
-      "@styles/*": ["./src/styles/*"],
-      "@app/*": ["./src/app/*"],
-      "@lib/*": ["./src/app/lib/*"],
-      "@pages/*": ["./src/app/pages/*"],
-      "@hooks/*": ["./src/app/hooks/*"],
-      "@utils/*": ["./src/app/utils/*"],
-      "@contexts/*": ["./src/app/contexts/*"],
-      "@components/*": ["./src/app/components/*"]
+      "@/*": [
+        "./*"
+      ],
+      "@public/*": [
+        "./public/*"
+      ],
+      "@types/*": [
+        "src/types/*"
+      ],
+      "@styles/*": [
+        "./src/styles/*"
+      ],
+      "@app/*": [
+        "./src/app/*"
+      ],
+      "@lib/*": [
+        "./src/app/lib/*"
+      ],
+      "@pages/*": [
+        "./src/app/pages/*"
+      ],
+      "@hooks/*": [
+        "./src/app/hooks/*"
+      ],
+      "@utils/*": [
+        "./src/app/utils/*"
+      ],
+      "@contexts/*": [
+        "./src/app/contexts/*"
+      ],
+      "@components/*": [
+        "./src/app/components/*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "next-env.d.ts",
+    "../../dist/apps/yolo.dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
