@@ -17,7 +17,7 @@ const commands = [
 export function Installation() {
   const [copied, setCopied] = useState(false);
 
-  const copyCommand = async (command) => {
+  const copyCommand = async (command: string) => {
     await navigator.clipboard.writeText(command);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
