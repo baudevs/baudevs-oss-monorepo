@@ -1,7 +1,7 @@
 {
   "repoPath": "/Users/juandavidarroyave/Developer/baudevs-oss-monorepo",
   "defaultBranch": "main",
-  "generatedAt": "2025-01-19T16:13:55.219Z",
+  "generatedAt": "2025-01-19T16:27:22.558Z",
   "gitVersion": "git version 2.48.1",
   "nxVersion": "",
   "nodeVersion": "v23.1.0",
@@ -10,8 +10,8 @@
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-oss-monorepo",
       "branch": "main",
-      "commit": "8a2e996fedc544519257c191138338a9bd8ed8b2",
-      "lastActivity": "Sun Jan 19 17:13:36 2025 +0100"
+      "commit": "fc7daaea19069bec96fb2d8966cf067398680d58",
+      "lastActivity": "Sun Jan 19 17:27:04 2025 +0100"
     }
   ],
   "nxProjects": [
@@ -358,6 +358,40 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "fc7daaea19069bec96fb2d8966cf067398680d58",
+          "author": "qtagtech",
+          "date": "Sun Jan 19 17:27:04 2025 +0100",
+          "message": "chore(yolo.dev): update Community component and header links for improved branding and user engagement",
+          "branch": "main",
+          "files": [
+            "apps/baudevs-dashboard/public/project-graph.json",
+            "apps/yolo.dev/src/app/components/sections/Community.tsx",
+            "apps/yolo.dev/src/app/components/ui/Header.tsx"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "yolo.dev",
+            "yolo.dev"
+          ]
+        },
+        {
+          "hash": "1d381fe1ff125c64a0a9c39cc243e3c6a152ce98",
+          "author": "qtagtech",
+          "date": "Sun Jan 19 17:13:36 2025 +0100",
+          "message": "chore(metadata): update repository metadata",
+          "branch": "main~1",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "a44096758f5ad1db38c5a3117cc50a273433277b",
           "author": "baudevs",
           "date": "Sun Jan 19 15:55:39 2025 +0100",
@@ -467,40 +501,6 @@
           "date": "Fri Jan 10 12:43:25 2025 +0100",
           "message": "chore(metadata): update repository metadata",
           "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.16~2",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "7d6bd0bbb4d7d84618ada9e40febe3fab5e288e9",
-          "author": "baudevs",
-          "date": "Fri Jan 10 12:41:24 2025 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.16~5",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "4be390338a0f573a96fa3ad742d0cf68e870f90f",
-          "author": "baudevs",
-          "date": "Fri Jan 10 12:11:21 2025 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "tags/release/@baudevs/bau-gtm-tracker/1.0.15~3",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -3589,11 +3589,28 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "fc7daaea19069bec96fb2d8966cf067398680d58",
+          "author": "qtagtech",
+          "date": "Sun Jan 19 17:27:04 2025 +0100",
+          "message": "chore(yolo.dev): update Community component and header links for improved branding and user engagement",
+          "branch": "main",
+          "files": [
+            "apps/baudevs-dashboard/public/project-graph.json",
+            "apps/yolo.dev/src/app/components/sections/Community.tsx",
+            "apps/yolo.dev/src/app/components/ui/Header.tsx"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "yolo.dev",
+            "yolo.dev"
+          ]
+        },
+        {
           "hash": "8a2e996fedc544519257c191138338a9bd8ed8b2",
           "author": "qtagtech",
           "date": "Sun Jan 19 17:13:36 2025 +0100",
           "message": "chore(yolo.dev): update configuration and enhance content",
-          "branch": "main",
+          "branch": "main~2",
           "files": [
             "apps/yolo.dev/next.config.mjs",
             "apps/yolo.dev/project.json",
@@ -3920,11 +3937,45 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "fc7daaea19069bec96fb2d8966cf067398680d58",
+          "author": "qtagtech",
+          "date": "Sun Jan 19 17:27:04 2025 +0100",
+          "message": "chore(yolo.dev): update Community component and header links for improved branding and user engagement",
+          "branch": "main",
+          "files": [
+            "apps/baudevs-dashboard/public/project-graph.json",
+            "apps/yolo.dev/src/app/components/sections/Community.tsx",
+            "apps/yolo.dev/src/app/components/ui/Header.tsx"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "yolo.dev",
+            "yolo.dev"
+          ]
+        },
+        {
+          "hash": "1d381fe1ff125c64a0a9c39cc243e3c6a152ce98",
+          "author": "qtagtech",
+          "date": "Sun Jan 19 17:13:36 2025 +0100",
+          "message": "chore(metadata): update repository metadata",
+          "branch": "main~1",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "8a2e996fedc544519257c191138338a9bd8ed8b2",
           "author": "qtagtech",
           "date": "Sun Jan 19 17:13:36 2025 +0100",
           "message": "chore(yolo.dev): update configuration and enhance content",
-          "branch": "main",
+          "branch": "main~2",
           "files": [
             "apps/yolo.dev/next.config.mjs",
             "apps/yolo.dev/project.json",
@@ -4052,35 +4103,6 @@
             "yolo.dev",
             "yolo.dev"
           ]
-        },
-        {
-          "hash": "667e2e0f62942571b5e05b42394aa3fb22b7818d",
-          "author": "baudevs",
-          "date": "Sun Jan 19 15:28:05 2025 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/main~7",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "be7525bc59b6bfd76dfa726349bf1b9196c2a45f",
-          "author": "baudevs",
-          "date": "Sun Jan 19 15:28:05 2025 +0100",
-          "message": "chore(yolo.dev) install next as workpsace dependeny for deployin  in vercel",
-          "branch": "remotes/origin/main~8",
-          "files": [
-            "package.json",
-            "pnpm-lock.yaml"
-          ],
-          "nxProjects": []
         }
       ],
       "contributors": [],
@@ -4098,7 +4120,7 @@
       "type": "merge",
       "lastSync": "Sun Jan 19 16:08:20 2025 +0100",
       "commonAncestor": "edabf5fd85c271b8128150dcea4a0f3b619388a5",
-      "divergedCommits": 1
+      "divergedCommits": 3
     },
     {
       "from": "staging",
@@ -4106,19 +4128,19 @@
       "type": "rebase",
       "lastSync": "Sun Jan 19 16:08:20 2025 +0100",
       "commonAncestor": "edabf5fd85c271b8128150dcea4a0f3b619388a5",
-      "divergedCommits": 1
+      "divergedCommits": 3
     }
   ],
   "recentActivity": {
     "lastPush": "Fri Jan 10 14:07:01 2025 +0100",
-    "lastPull": "2025-01-19T16:13:55.498Z",
+    "lastPull": "2025-01-19T16:27:22.843Z",
     "lastMerge": "Sun Jan 19 15:19:04 2025 +0100",
     "activeBranches": [
       {
         "name": "main",
-        "lastCommit": "8a2e996fedc544519257c191138338a9bd8ed8b2",
+        "lastCommit": "fc7daaea19069bec96fb2d8966cf067398680d58",
         "author": "qtagtech",
-        "commitCount": 604
+        "commitCount": 606
       },
       {
         "name": "staging",
@@ -4133,7 +4155,7 @@
     "totalLibraries": 9,
     "totalPackages": 0,
     "totalFiles": 267,
-    "totalCommits": 604,
+    "totalCommits": 606,
     "totalContributors": 0
   }
 }
