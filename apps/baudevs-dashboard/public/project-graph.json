@@ -149,7 +149,7 @@
                 ],
                 "description": "Runs ESLint on project",
                 "help": {
-                  "command": "pnpm exec eslint --help",
+                  "command": "npx eslint --help",
                   "example": {
                     "options": {
                       "max-warnings": 0
