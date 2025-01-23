@@ -1355,7 +1355,7 @@
           "metadata": {
             "targetGroups": {},
             "js": {
-              "packageName": "yolo.web"
+              "packageName": "yolo.dev"
             }
           },
           "$schema": "../../node_modules/nx/schemas/project-schema.json",

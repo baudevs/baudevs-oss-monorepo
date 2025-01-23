@@ -59,8 +59,8 @@ export function Community() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">
-            Join Our Growing Community
+          <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl flex items-center justify-center">
+            Join Our <span className="text-xl text-zinc-400 mx-2 inline-flex items-center p-0 relative top-1.5">(still small, hopefully growing)</span> Community
           </h2>
           <p className="mb-12 text-xl text-zinc-400">
             Connect with fellow developers and shape the future of project management
