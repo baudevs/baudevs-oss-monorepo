@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { TutorialStep } from '@components/ui/TutorialStep';
-import { MainLayout } from '@components/layouts/MainLayout';
 import { DocsLayout } from '@layouts/DocsLayout';
 import { 
   Terminal,
@@ -14,9 +13,7 @@ import {
   Command,
   Brain,
   Rocket,
-  Download,
   Zap,
-  Check,
   GitBranch,
   PlusCircle
 } from 'lucide-react';
@@ -41,8 +38,6 @@ const fadeIn = {
 
 export default function GettingStartedPage() {
   return (
-    <MainLayout>
-      <div className="min-h-screen bg-gradient-to-b from-zinc-900 to-black">
         <DocsLayout>
           <article className="max-w-5xl mx-auto px-4">
             <motion.div
@@ -380,7 +375,6 @@ git --version`}
             </motion.div>
           </article>
         </DocsLayout>
-      </div>
-    </MainLayout>
+
   );
 }

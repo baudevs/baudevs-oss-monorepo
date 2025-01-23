@@ -1,14 +1,14 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { Book, Download, ChevronDown, FileCode, GitBranch, History, Terminal } from 'lucide-react';
+import { Book, Download, ChevronDown, FileCode, GitBranch, History, LucideIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
 interface MegaMenuItem {
   label: string;
   items: {
-    icon:  string;
+    icon: LucideIcon;
     title: string;
     description: string;
     href: string;
@@ -49,16 +49,10 @@ const menuItems: MegaMenuItem[] = [
     label: 'Download the YOLO CLI',
     items: [
       {
-        icon: Terminal,
-        title: 'CLI Installation',
-        description: 'Get started with the YOLO command line tool',
-        href: '/cli',
-      },
-      {
         icon: Download,
         title: 'Download Options',
         description: 'Choose the right package for your system',
-        href: '/download',
+        href: '/pricing',
       },
       {
         icon: Download,
@@ -70,7 +64,7 @@ const menuItems: MegaMenuItem[] = [
   },
 ];
 
-export function MegaMenu() {
+export const MegaMenu: React.FC = () => {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
   return (

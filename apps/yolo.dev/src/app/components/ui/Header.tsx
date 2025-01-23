@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { Github } from 'lucide-react';
+import { Github, WandSparkles } from 'lucide-react';
 import Image from 'next/image';
 import Logo from '@assets/YOLO_MAKE_AI_CODING_FUN.png';
 import Link from 'next/link';
@@ -14,8 +14,14 @@ const navItems = [
   { label: 'Community', href: '#community' },
 ];
 
-export function Header() {
+
+interface HeaderProps {
+  showNav?: boolean;
+}
+
+export function Header(props: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { showNav = true } = props;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,7 +48,7 @@ export function Header() {
 
         <nav className="hidden space-x-8 md:flex">
           <MegaMenu />
-          {navItems.map((item) => (
+          {showNav && navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -54,15 +60,34 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <Link
+          {!showNav && <Link
             href="https://github.com/baudevs/yolo.baudevs.com"
             target="_blank"
             rel="noopener noreferrer"
             className="flex h-10 items-center gap-2 rounded-full bg-white px-4 text-sm font-semibold text-black transition-colors hover:bg-zinc-200"
           >
+
             <Github className="h-4 w-4" />
-            <span className="hidden sm:inline">Star on GitHub</span>
-          </Link>
+            <motion.span className="hidden sm:inline"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            >Star on GitHub</motion.span>
+          </Link>}
+          {showNav && <Link
+            href="/pricing"
+            target="_blank"
+            className="flex h-10 items-center gap-2 rounded-full bg-blue-800 px-4 text-sm font-semibold text-white transition-colors hover:bg-blue-200"
+          >
+
+            <WandSparkles className="h-4 w-4" />
+            <motion.span className="hidden sm:inline"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            >Get Started with YOLO!</motion.span>
+          </Link>}
+
         </div>
       </div>
     </motion.header>

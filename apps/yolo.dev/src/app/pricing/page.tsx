@@ -77,9 +77,9 @@ export default function PricingPage() {
               whileHover={{ scale: 1.02 }}
             >
               <Download className="h-12 w-12 text-emerald-400 mb-6" />
-              <h2 className="text-2xl font-bold mb-4">Self-Hosted (Free)</h2>
+              <h2 className="text-2xl font-bold mb-4">Community Edition (Free BYOA)</h2>
               <p className="text-zinc-400 mb-6">
-                Perfect for getting started. Use your own API keys and pay providers directly.
+                Perfect for getting started. Bring your own API keys (OpenAI, Claude, Mistral) and pay providers directly.
               </p>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center gap-2">
@@ -96,7 +96,7 @@ export default function PricingPage() {
                 </li>
               </ul>
               <a 
-                href="/download" 
+                href="/install" 
                 className="inline-flex items-center gap-2 py-3 px-6 rounded-lg bg-emerald-500 hover:bg-emerald-600 transition-colors"
               >
                 <Download className="h-5 w-5" />
@@ -109,18 +109,22 @@ export default function PricingPage() {
               whileHover={{ scale: 1.02 }}
             >
               <Sparkles className="h-12 w-12 text-purple-400 mb-6" />
-              <h2 className="text-2xl font-bold mb-4">YOLO Packages</h2>
+              <h2 className="text-2xl font-bold mb-4">YOLO Pro</h2>
               <p className="text-zinc-400 mb-6">
                 Enhanced development with optimized packages and significant cost savings.
               </p>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center gap-2">
                   <Check className="h-5 w-5 text-purple-400" />
+                  <span>Switch between AI models</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Check className="h-5 w-5 text-purple-400" />
                   <span>Pre-purchased token packages</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="h-5 w-5 text-purple-400" />
-                  <span>Up to 40% cost savings</span>
+                  <span>Up to 40% cost savings compared to BYOA (Bring you  own API keys)</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="h-5 w-5 text-purple-400" />

@@ -74,7 +74,7 @@ export default function Home() {
                 <Download className="h-12 w-12 text-emerald-400 mb-6" />
                 <h3 className="text-2xl font-bold mb-4">Free CLI Tool</h3>
                 <p className="text-zinc-400 mb-6">
-                  Start with our powerful CLI tool and use your own API keys. Perfect for exploring YOLO's capabilities.
+                  Start with our powerful CLI tool and bring your own API keys. Perfect for exploring YOLO's capabilities.
                 </p>
                 <ul className="space-y-3 mb-8">
                   <li className="flex items-center gap-2">
@@ -91,7 +91,7 @@ export default function Home() {
                   </li>
                 </ul>
                 <a 
-                  href="/download" 
+                  href="/install" 
                   className="inline-flex items-center gap-2 py-3 px-6 rounded-lg bg-emerald-500 hover:bg-emerald-600 transition-colors"
                 >
                   <Download className="h-5 w-5" />
@@ -111,7 +111,11 @@ export default function Home() {
                 <ul className="space-y-3 mb-8">
                   <li className="flex items-center gap-2">
                     <Check className="h-5 w-5 text-purple-400" />
-                    <span>Up to 40% cost savings</span>
+                    <span>Choose from any AI (ChatGPT, Claude, Mistral)</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-purple-400" />
+                    <span>Up to 40% cost savings compared to BYOA - Bring your own API keys -</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <Check className="h-5 w-5 text-purple-400" />

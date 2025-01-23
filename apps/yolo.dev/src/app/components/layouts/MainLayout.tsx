@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { MegaMenu } from '@components/ui/MegaMenu';
+import { Header } from '@components/ui/Header';
 
 const fadeIn = {
   initial: { opacity: 0 },
@@ -12,9 +12,10 @@ const fadeIn = {
 interface MainLayoutProps {
   children: React.ReactNode;
   showHero?: boolean;
+  showNav?: boolean;
 }
 
-export function MainLayout({ children, showHero = false }: MainLayoutProps) {
+export function MainLayout({ children, showHero = false, showNav = false }: MainLayoutProps) {
   return (
     <motion.div
       initial="initial"
@@ -22,11 +23,7 @@ export function MainLayout({ children, showHero = false }: MainLayoutProps) {
       variants={fadeIn}
       className="min-h-screen bg-gradient-to-b from-zinc-900 to-black"
     >
-      <header className="border-b border-zinc-800">
-        <div className="max-w-7xl mx-auto">
-          <MegaMenu />
-        </div>
-      </header>
+      <Header showNav={showNav} />
       <main>
         {children}
       </main>

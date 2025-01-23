@@ -4,9 +4,11 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@lib/utils';
+import { Header } from '@components/ui/Header';
 
 interface DocsLayoutProps {
   children: React.ReactNode;
+  showNav?: boolean;
 }
 
 const sidebarItems = [
@@ -16,7 +18,7 @@ const sidebarItems = [
   },
   {
     title: 'Getting Started',
-    href: '/docs/getting-started',
+    href: '/docs/getting-started-with-ai-programming',
   },
   {
     title: 'Core Concepts',
@@ -40,11 +42,12 @@ const sidebarItems = [
   },
 ];
 
-export function DocsLayout({ children }: DocsLayoutProps) {
+export function DocsLayout({ children, showNav = false }: DocsLayoutProps) {
   const pathname = usePathname();
 
   return (
     <div className="min-h-screen bg-zinc-50 pt-20 dark:bg-zinc-900">
+      <Header showNav={showNav} />
       <div className="container mx-auto px-4">
         <div className="flex flex-col gap-8 py-8 lg:flex-row">
           <motion.aside
