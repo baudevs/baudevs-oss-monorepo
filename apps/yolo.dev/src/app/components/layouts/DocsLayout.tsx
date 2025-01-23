@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { cn } from '@/lib/utils';
+import { cn } from '@lib/utils';
 
 interface DocsLayoutProps {
   children: React.ReactNode;
@@ -13,6 +13,10 @@ const sidebarItems = [
   {
     title: 'Introduction',
     href: '/docs',
+  },
+  {
+    title: 'Getting Started',
+    href: '/docs/getting-started',
   },
   {
     title: 'Core Concepts',
@@ -29,6 +33,10 @@ const sidebarItems = [
   {
     title: 'Best Practices',
     href: '/docs/best-practices',
+  },
+  {
+    title: 'Prompt Templates',
+    href: '/docs/prompts',
   },
 ];
 

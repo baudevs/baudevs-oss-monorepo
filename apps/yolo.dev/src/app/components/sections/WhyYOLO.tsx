@@ -6,7 +6,7 @@ import { Eye, FileText, History, Lightbulb, FolderTree } from 'lucide-react';
 const sections = [
   {
     icon: Eye,
-    title: 'You Observe, Log, and Oversee',
+    title: 'YOLO: You Observe, Log, and Oversee',
     description: 'A simple but powerful approach to AI-driven software development that helps you track every step of your journey.',
     color: 'text-indigo-500',
   },

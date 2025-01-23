@@ -43,7 +43,7 @@
         "./src/app/*"
       ],
       "@lib/*": [
-        "./src/app/lib/*"
+        "./src/lib/*"
       ],
       "@pages/*": [
         "./src/app/pages/*"
@@ -59,7 +59,10 @@
       ],
       "@components/*": [
         "./src/app/components/*"
-      ]
+      ],
+      "@layouts/*": [
+        "./src/app/components/layouts/*"
+      ],
     }
   },
   "include": [

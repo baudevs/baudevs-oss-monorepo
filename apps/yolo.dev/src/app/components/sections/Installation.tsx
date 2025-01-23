@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Terminal } from 'lucide-react';
 
 const commands = [
-  { text: '$ curl -L https://github.com/baudevs/yolo.baudevs.com/releases/download/v1.0.0-beta/yolo-darwin -o yolo', delay: 0 },
+  { text: '$ curl -L https://raw.githubusercontent.com/baudevs/yolo.baudevs.com/main/install.sh | sh', delay: 0 },
   { text: '📥 Downloading YOLO for macOS...', delay: 1 },
   { text: '$ chmod +x yolo && mv yolo /usr/local/bin/yolo', delay: 4 },
   { text: '🔒 Making YOLO executable and moving it to PATH...', delay: 5 },
@@ -64,7 +64,7 @@ export function Installation() {
               <div className="h-3 w-3 rounded-full bg-green-500" />
             </div>
             <button
-              onClick={() => copyCommand('curl -L https://github.com/baudevs/yolo.baudevs.com/releases/download/v1.0.0-beta/yolo-darwin -o yolo && chmod +x yolo && mv yolo /usr/local/bin/yolo')}
+              onClick={() => copyCommand('curl -L https://raw.githubusercontent.com/baudevs/yolo.baudevs.com/main/install.sh | sh -o yolo && chmod +x yolo && mv yolo /usr/local/bin/yolo')}
               className="rounded bg-zinc-800 px-3 py-1 text-sm text-zinc-400 transition-colors hover:bg-zinc-700"
             >
               {copied ? 'Copied!' : 'Copy'}

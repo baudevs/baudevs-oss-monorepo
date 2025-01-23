@@ -8,7 +8,7 @@ import { useState } from 'react';
 interface MegaMenuItem {
   label: string;
   items: {
-    icon: any;
+    icon:  string;
     title: string;
     description: string;
     href: string;
@@ -23,7 +23,7 @@ const menuItems: MegaMenuItem[] = [
         icon: Book,
         title: 'Documentation',
         description: 'Learn about YOLO methodology and best practices',
-        href: '/docs/new', // updated href
+        href: '/docs', // updated href
       },
       {
         icon: History,
@@ -35,7 +35,7 @@ const menuItems: MegaMenuItem[] = [
         icon: FileCode,
         title: 'File Structure',
         description: 'Explore the YOLO file organization system',
-        href: '/files',
+        href: '/docs/structure',
       },
       {
         icon: GitBranch,
@@ -59,6 +59,12 @@ const menuItems: MegaMenuItem[] = [
         title: 'Download Options',
         description: 'Choose the right package for your system',
         href: '/download',
+      },
+      {
+        icon: Download,
+        title: 'Install YOLO',
+        description: 'Quick installation guide for all environments',
+        href: '/install',
       },
     ],
   },
