@@ -27,7 +27,7 @@ const staggerContainer = {
   animate: { transition: { staggerChildren: 0.1 } }
 };
 
-const PracticeCard = ({ icon: Icon, title, items }: { icon: any; title: string; items: string[] }) => (
+const PracticeCard = ({ icon: Icon, title, items }: { icon: React.ComponentType<{ className?: string }>; title: string; items: string[] }) => (
   <motion.div 
     className="rounded-lg bg-zinc-800/50 p-6"
     whileHover={{ scale: 1.02 }}

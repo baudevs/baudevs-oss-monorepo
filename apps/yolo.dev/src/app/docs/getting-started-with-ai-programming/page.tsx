@@ -255,7 +255,7 @@ git --version`}
                   <>
                     <p className="mb-4">
                       Here's where the magic really happens! We live in an amazing time where AI can help us code better and faster.
-                      Think of these tools as your coding super-powers! 🦸‍♂️
+                      Think of these tools as your coding super-powers! <span role="img" aria-label="Wizard">🦸‍♂️ </span>
                     </p>
                     <div className="grid md:grid-cols-2 gap-6 mt-4">
                       <div className="bg-purple-500/10 rounded-lg p-4">
@@ -341,14 +341,14 @@ git --version`}
                         <h4 className="font-semibold mb-2">Start with Python</h4>
                         <p className="text-sm mb-2">The friendliest way to begin!</p>
                         <pre className="bg-black/30 p-2 rounded mt-2 text-xs">
-                          print("Hello, World! 🌎")
+                          print("Hello, World! <span aria-label='earth' role='img'>🌎</span>")
                         </pre>
                       </div>
                       <div className="bg-gradient-to-br from-pink-500/10 to-red-500/10 rounded-lg p-4">
                         <h4 className="font-semibold mb-2">Build a Website</h4>
                         <p className="text-sm mb-2">Create something you can share!</p>
                         <pre className="bg-black/30 p-2 rounded mt-2 text-xs">
-                          {"<h1>My First Website 🚀</h1>"}
+                          {"<h1>My First Website <span aria-label='rocket' role='img'>🚀</span></h1>"}
                         </pre>
                       </div>
                       <div className="bg-gradient-to-br from-emerald-500/10 to-teal-500/10 rounded-lg p-4">

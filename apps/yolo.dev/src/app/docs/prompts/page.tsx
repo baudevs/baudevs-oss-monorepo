@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { DocsLayout } from '@layouts/DocsLayout';
+import { LucideIcon } from 'lucide-react';
 import { 
   MessageSquare,
   FileText,
@@ -9,12 +10,9 @@ import {
   History,
   Brain,
   Sparkles,
-  FileJson,
-  BookOpen,
   Star,
   Lightbulb,
   Workflow,
-  Wand2
 } from 'lucide-react';
 
 const fadeIn = {
@@ -34,7 +32,7 @@ const PromptCard = ({
   prompt, 
   output 
 }: { 
-  icon: any; 
+  icon: LucideIcon; 
   title: string; 
   description: string;
   prompt: string;

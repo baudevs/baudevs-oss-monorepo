@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { PricingCard } from '@components/ui/PricingCard';
 import { MainLayout } from '@components/layouts/MainLayout';
+import { LucideIcon } from 'lucide-react';
 import { 
   Zap, 
   Check,
@@ -34,7 +35,7 @@ const fadeIn = {
 };
 
 interface ComparisonFeatureProps {
-  icon: any;
+  icon: LucideIcon;
   title: string;
   description: string;
 }

@@ -262,7 +262,6 @@ export default function DocsPage() {
                 className="mt-4 px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold flex items-center gap-2 mx-auto hover:bg-blue-700 transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                href="/pricing"
               >
                 <Sparkles className="h-5 w-5" />
                 Get Started

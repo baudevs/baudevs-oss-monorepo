@@ -9,7 +9,6 @@ import {
   Settings,
   Terminal,
   Key,
-  User,
   MessageSquare,
   Smile,
   Frown,
@@ -84,7 +83,7 @@ export default function CoreConceptsPage() {
                 <h3 className="text-xl font-semibold mb-3">Smart Commit Messages</h3>
                 <pre className="bg-black/30 p-4 rounded-lg text-sm text-green-400 mb-4">
                   $ yolo commit -a
-                  ✨ feat(auth): implement JWT authentication
+                  <span role="img" aria-label="sparkles">✨</span> feat(auth): implement JWT authentication
                   - Add token generation
                   - Implement refresh logic
                   - Add security middleware

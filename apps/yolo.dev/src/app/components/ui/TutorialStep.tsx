@@ -39,7 +39,7 @@ export function TutorialStep({
       )}
       {note && (
         <div className="bg-purple-500/10 border border-purple-500/20 rounded-lg p-4">
-          <p className="text-sm text-purple-200">💡 {note}</p>
+          <p className="text-sm text-purple-200"><span role="img" aria-label="Lightbulb">💡</span> {note}</p>
         </div>
       )}
     </motion.div>

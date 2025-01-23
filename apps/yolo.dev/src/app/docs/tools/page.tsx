@@ -5,7 +5,6 @@ import { DocsLayout } from '@layouts/DocsLayout';
 import { 
   Terminal,
   GitCommit,
-  History,
   Workflow,
   Settings,
   MessageCircle,
