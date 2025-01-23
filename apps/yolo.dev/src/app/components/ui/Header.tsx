@@ -2,17 +2,20 @@
 
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { Github, WandSparkles } from 'lucide-react';
+import { Github } from 'lucide-react';
 import Image from 'next/image';
 import Logo from '@assets/YOLO_MAKE_AI_CODING_FUN.png';
 import Link from 'next/link';
 import { MegaMenu } from './MegaMenu';
+import SparklesIcon from '@icons/Sparkles';
 
 const navItems = [
   { label: 'Features', href: '#features' },
   { label: 'Installation', href: '#installation' },
   { label: 'Community', href: '#community' },
 ];
+
+
 
 
 interface HeaderProps {
@@ -80,7 +83,7 @@ export function Header(props: HeaderProps) {
             className="flex h-10 items-center gap-2 rounded-full bg-blue-800 px-4 text-sm font-semibold text-white transition-colors hover:bg-blue-200"
           >
 
-            <WandSparkles className="h-4 w-4" />
+            <SparklesIcon />
             <motion.span className="hidden sm:inline"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

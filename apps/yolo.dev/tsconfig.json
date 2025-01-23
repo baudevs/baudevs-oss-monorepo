@@ -63,6 +63,9 @@
       "@layouts/*": [
         "./src/app/components/layouts/*"
       ],
+      "@icons/*": [
+        "./src/app/components/icons/*"
+      ]
     }
   },
   "include": [

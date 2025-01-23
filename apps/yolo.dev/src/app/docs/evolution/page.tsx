@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { DocsLayout } from '@layouts/DocsLayout';
-import { Bot, Sparkles, Brain, History, Cake, Omega} from 'lucide-react';
+import { Bot, Sparkles, Brain, History, Cake} from 'lucide-react';
 
 export default function Evolution() {
   return (
@@ -204,7 +204,6 @@ changes:
             transition={{ duration: 0.5, delay: 1.6 }}
           >
             <motion.span whileHover={{ rotate: 360 }} transition={{ duration: 0.6 }}>
-              <Omega className="h-6 w-6" />
             </motion.span>
             <span className="text-xl text-zinc-400 mx-1 inline-flex items-center p-0 relative top-0.5">The YOLO Philosophy</span>
           </motion.h2>
