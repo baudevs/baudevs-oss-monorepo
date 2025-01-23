@@ -114,7 +114,7 @@ export default function GettingStartedPage() {
                   <>
                     <p className="mb-4">
                       iTerm2 is like a super-powered version of your Mac's Terminal. Think of it as your computer's control room, 
-                      where you can type commands to make magic happen! ✨
+                      where you can type commands to make magic happen! <span role="img" aria-label="sparkles">✨</span>
                     </p>
                     <p className="mb-4">
                       Even if you've never used a terminal before, don't worry! We'll guide you through each step, 

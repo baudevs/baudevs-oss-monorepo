@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { DocsLayout } from '@layouts/DocsLayout';
-import { Bot, Sparkles, Brain, History, Omega, Cake} from 'lucide-react';
+import { Bot, Sparkles, Brain, History, Cake, Omega} from 'lucide-react';
 
 export default function EvolutionPage() {
   return (
