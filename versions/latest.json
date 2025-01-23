@@ -1,7 +1,7 @@
 {
   "repoPath": "/Users/juandavidarroyave/Developer/baudevs-oss-monorepo",
   "defaultBranch": "main",
-  "generatedAt": "2025-01-23T19:03:39.716Z",
+  "generatedAt": "2025-01-23T19:10:55.805Z",
   "gitVersion": "git version 2.48.1",
   "nxVersion": "",
   "nodeVersion": "v23.1.0",
@@ -10,8 +10,8 @@
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-oss-monorepo",
       "branch": "main",
-      "commit": "217bafb2d3e06944a7184b71d5e3815d0c6bcdb7",
-      "lastActivity": "Thu Jan 23 20:03:20 2025 +0100"
+      "commit": "a343d69e5063f593f7459ec878e61616ba6000cb",
+      "lastActivity": "Thu Jan 23 20:10:32 2025 +0100"
     }
   ],
   "nxProjects": [
@@ -358,11 +358,30 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "a343d69e5063f593f7459ec878e61616ba6000cb",
+          "author": "qtagtech",
+          "date": "Thu Jan 23 20:03:20 2025 +0100",
+          "message": "chore(metadata): update repository metadata [after graph]",
+          "branch": "main",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "apps/baudevs-dashboard/public/project-graph.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "217bafb2d3e06944a7184b71d5e3815d0c6bcdb7",
           "author": "qtagtech",
           "date": "Thu Jan 23 20:03:20 2025 +0100",
           "message": "graph",
-          "branch": "main",
+          "branch": "main~1",
           "files": [
             "apps/baudevs-dashboard/public/project-graph.json"
           ],
@@ -375,7 +394,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 20:02:11 2025 +0100",
           "message": "chore(metadata): update repository metadata [after Updated dependencies and made minor modifications to the content in 'evolution' and 'getting-started-with-ai-programming' pages of yolo.dev app.]",
-          "branch": "main~1",
+          "branch": "main~2",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -502,23 +521,6 @@
           "nxProjects": [
             "baudevs-dashboard",
             "yolo.dev"
-          ]
-        },
-        {
-          "hash": "b7fb109ab1deb6d293b4e0ed195312c876d7e784",
-          "author": "qtagtech",
-          "date": "Thu Jan 23 14:23:12 2025 +0100",
-          "message": "chore(metadata): update repository metadata [after \"Added new sections and made updates to YOLO app, including layout changes, UI improvements, updated package.json, plus extensive content addition to WhyYOLO.md and other docs\"]",
-          "branch": "remotes/origin/main~12",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
           ]
         }
       ],
@@ -3602,7 +3604,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 20:02:11 2025 +0100",
           "message": "Updated dependencies and made minor modifications to the content in 'evolution' and 'getting-started-with-ai-programming' pages of yolo.dev app.",
-          "branch": "main~2",
+          "branch": "main~3",
           "files": [
             "apps/yolo.dev/package.json",
             "apps/yolo.dev/src/app/docs/evolution/page.tsx",
@@ -4038,11 +4040,30 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "a343d69e5063f593f7459ec878e61616ba6000cb",
+          "author": "qtagtech",
+          "date": "Thu Jan 23 20:03:20 2025 +0100",
+          "message": "chore(metadata): update repository metadata [after graph]",
+          "branch": "main",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "apps/baudevs-dashboard/public/project-graph.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "217bafb2d3e06944a7184b71d5e3815d0c6bcdb7",
           "author": "qtagtech",
           "date": "Thu Jan 23 20:03:20 2025 +0100",
           "message": "graph",
-          "branch": "main",
+          "branch": "main~1",
           "files": [
             "apps/baudevs-dashboard/public/project-graph.json"
           ],
@@ -4055,7 +4076,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 20:02:11 2025 +0100",
           "message": "chore(metadata): update repository metadata [after Updated dependencies and made minor modifications to the content in 'evolution' and 'getting-started-with-ai-programming' pages of yolo.dev app.]",
-          "branch": "main~1",
+          "branch": "main~2",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -4072,7 +4093,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 20:02:11 2025 +0100",
           "message": "Updated dependencies and made minor modifications to the content in 'evolution' and 'getting-started-with-ai-programming' pages of yolo.dev app.",
-          "branch": "main~2",
+          "branch": "main~3",
           "files": [
             "apps/yolo.dev/package.json",
             "apps/yolo.dev/src/app/docs/evolution/page.tsx",
@@ -4191,23 +4212,6 @@
             "yolo.dev",
             "yolo.dev"
           ]
-        },
-        {
-          "hash": "48eb1674147c57f8b084bc80fef182b6614cd51e",
-          "author": "qtagtech",
-          "date": "Thu Jan 23 18:35:35 2025 +0100",
-          "message": "chore(metadata): update repository metadata [after Refactored and updated UI components, layouts in yolo.dev and enhanced documentation pages]",
-          "branch": "remotes/origin/main~6",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
         }
       ],
       "contributors": [],
@@ -4225,7 +4229,7 @@
       "type": "merge",
       "lastSync": "Sun Jan 19 16:08:20 2025 +0100",
       "commonAncestor": "edabf5fd85c271b8128150dcea4a0f3b619388a5",
-      "divergedCommits": 27
+      "divergedCommits": 28
     },
     {
       "from": "staging",
@@ -4233,19 +4237,19 @@
       "type": "rebase",
       "lastSync": "Sun Jan 19 16:08:20 2025 +0100",
       "commonAncestor": "edabf5fd85c271b8128150dcea4a0f3b619388a5",
-      "divergedCommits": 27
+      "divergedCommits": 28
     }
   ],
   "recentActivity": {
     "lastPush": "Fri Jan 10 14:07:01 2025 +0100",
-    "lastPull": "2025-01-23T19:03:40.014Z",
+    "lastPull": "2025-01-23T19:10:56.100Z",
     "lastMerge": "Sun Jan 19 15:19:04 2025 +0100",
     "activeBranches": [
       {
         "name": "main",
-        "lastCommit": "217bafb2d3e06944a7184b71d5e3815d0c6bcdb7",
+        "lastCommit": "a343d69e5063f593f7459ec878e61616ba6000cb",
         "author": "qtagtech",
-        "commitCount": 630
+        "commitCount": 631
       },
       {
         "name": "staging",
@@ -4260,7 +4264,7 @@
     "totalLibraries": 9,
     "totalPackages": 0,
     "totalFiles": 302,
-    "totalCommits": 630,
+    "totalCommits": 631,
     "totalContributors": 0
   }
 }
