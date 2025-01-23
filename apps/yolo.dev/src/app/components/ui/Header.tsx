@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { Github, WandSparkles } from '../../../../node_modules/lucide-react/dist/lucide-react';
+import { Github, WandSparkles } from 'lucide-react';
 import Image from 'next/image';
 import Logo from '@assets/YOLO_MAKE_AI_CODING_FUN.png';
 import Link from 'next/link';
