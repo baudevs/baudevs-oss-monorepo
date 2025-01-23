@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import Scene from '@components/3d/Scene';
 import Link from 'next/link';
 
-
 export function Hero() {
   return (
     <section className="relative h-screen w-full bg-gradient-to-b from-black to-zinc-900 text-white">
@@ -20,7 +19,9 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            “Project Management, But Make It Fun.”
+            YOLO: Framework & Tools
+            <br />
+            for the AI Era
           </motion.h1>
 
           <motion.p
@@ -29,19 +30,28 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Your new best friend for managing AI coding projects—effortless for humans, seamless for LLMs. <br />And packed with personality. Let’s turn chaos into collaboration!n
+            A revolutionary methodology and toolset that makes AI-driven development 
+            <br />
+            as fun as it should be. From concept to code, we've got you covered.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex flex-col items-center justify-center gap-4 sm:flex-row"
           >
             <Link
-              href="#installation"
-              className="inline-block rounded-full bg-blue-600 px-8 py-3 text-lg font-semibold text-white transition-colors hover:bg-blue-700"
+              href="#framework"
+              className="inline-block rounded-full bg-white px-8 py-3 text-lg font-semibold text-black transition-colors hover:bg-zinc-200"
             >
-              YOLO, Let's Get Started! <span role='img' aria-label='rocket'>🚀</span>
+              Explore the Framework
+            </Link>
+            <Link
+              href="#installation"
+              className="inline-block rounded-full bg-zinc-800 px-8 py-3 text-lg font-semibold text-white transition-colors hover:bg-zinc-700"
+            >
+              Get the Tools
             </Link>
           </motion.div>
         </div>

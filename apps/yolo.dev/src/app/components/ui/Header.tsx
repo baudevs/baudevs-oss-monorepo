@@ -6,6 +6,8 @@ import { Github } from 'lucide-react';
 import Image from 'next/image';
 import Logo from '@assets/YOLO_MAKE_AI_CODING_FUN.png';
 import Link from 'next/link';
+import { MegaMenu } from './MegaMenu';
+
 const navItems = [
   { label: 'Features', href: '#features' },
   { label: 'Installation', href: '#installation' },
@@ -39,6 +41,7 @@ export function Header() {
         </Link>
 
         <nav className="hidden space-x-8 md:flex">
+          <MegaMenu />
           {navItems.map((item) => (
             <Link
               key={item.href}
