@@ -1,7 +1,7 @@
 {
   "repoPath": "/Users/juandavidarroyave/Developer/baudevs-oss-monorepo",
   "defaultBranch": "main",
-  "generatedAt": "2025-01-23T19:10:55.805Z",
+  "generatedAt": "2025-01-23T19:35:57.425Z",
   "gitVersion": "git version 2.48.1",
   "nxVersion": "",
   "nodeVersion": "v23.1.0",
@@ -10,8 +10,8 @@
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-oss-monorepo",
       "branch": "main",
-      "commit": "a343d69e5063f593f7459ec878e61616ba6000cb",
-      "lastActivity": "Thu Jan 23 20:10:32 2025 +0100"
+      "commit": "20396123207e5e1b3f334e24b6a74cee8f9bde80",
+      "lastActivity": "Thu Jan 23 20:35:38 2025 +0100"
     }
   ],
   "nxProjects": [
@@ -358,11 +358,28 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "427979f92800964392dd6ef212c52ad21692cf65",
+          "author": "qtagtech",
+          "date": "Thu Jan 23 20:03:20 2025 +0100",
+          "message": "chore(metadata): update repository metadata [after chore(metadata): update repository metadata [after graph]]",
+          "branch": "remotes/origin/main",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "a343d69e5063f593f7459ec878e61616ba6000cb",
           "author": "qtagtech",
           "date": "Thu Jan 23 20:03:20 2025 +0100",
           "message": "chore(metadata): update repository metadata [after graph]",
-          "branch": "main",
+          "branch": "remotes/origin/main~1",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -381,7 +398,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 20:03:20 2025 +0100",
           "message": "graph",
-          "branch": "main~1",
+          "branch": "remotes/origin/main~2",
           "files": [
             "apps/baudevs-dashboard/public/project-graph.json"
           ],
@@ -394,7 +411,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 20:02:11 2025 +0100",
           "message": "chore(metadata): update repository metadata [after Updated dependencies and made minor modifications to the content in 'evolution' and 'getting-started-with-ai-programming' pages of yolo.dev app.]",
-          "branch": "main~2",
+          "branch": "remotes/origin/main~3",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -411,7 +428,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 19:38:46 2025 +0100",
           "message": "chore(metadata): update repository metadata [after Update import path for Github and WandSparkles from lucide-react in Header.tsx]",
-          "branch": "remotes/origin/main",
+          "branch": "remotes/origin/main~5",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -428,7 +445,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 18:49:04 2025 +0100",
           "message": "chore(metadata): update repository metadata [after Updated Header component, modified package.json dependencies, and synchronized pnpm-lock.yaml]",
-          "branch": "remotes/origin/main~2",
+          "branch": "remotes/origin/main~7",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -445,7 +462,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 18:41:08 2025 +0100",
           "message": "chore(metadata): update repository metadata [after Improved accessibility by adding aria-labels to emoji, refined prop types for PracticeCard and PromptCard, and removed unused imports and href attributes.]",
-          "branch": "remotes/origin/main~4",
+          "branch": "remotes/origin/main~9",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -462,7 +479,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 18:35:35 2025 +0100",
           "message": "chore(metadata): update repository metadata [after Refactored and updated UI components, layouts in yolo.dev and enhanced documentation pages]",
-          "branch": "remotes/origin/main~6",
+          "branch": "remotes/origin/main~11",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -479,7 +496,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 17:25:24 2025 +0100",
           "message": "chore(metadata): update repository metadata [after Added new content and components to YOLO app",
-          "branch": "remotes/origin/main~8",
+          "branch": "remotes/origin/main~13",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -496,7 +513,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 14:31:59 2025 +0100",
           "message": "chore(metadata): update repository metadata [after Updated project-graph.json in baudevs-dashboard and modified Community.tsx in yolo.dev for refinements]",
-          "branch": "remotes/origin/main~10",
+          "branch": "remotes/origin/main~15",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -506,21 +523,6 @@
           "nxProjects": [
             "baudevs-dashboard",
             "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "01847e94802016859d21befd640b5932679a7547",
-          "author": "qtagtech",
-          "date": "Thu Jan 23 14:31:59 2025 +0100",
-          "message": "Updated project-graph.json in baudevs-dashboard and modified Community.tsx in yolo.dev for refinements",
-          "branch": "remotes/origin/main~11",
-          "files": [
-            "apps/baudevs-dashboard/public/project-graph.json",
-            "apps/yolo.dev/src/app/components/sections/Community.tsx"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "yolo.dev"
           ]
         }
       ],
@@ -3600,11 +3602,24 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "20396123207e5e1b3f334e24b6a74cee8f9bde80",
+          "author": "qtagtech",
+          "date": "Thu Jan 23 20:35:38 2025 +0100",
+          "message": "change name",
+          "branch": "main",
+          "files": [
+            "apps/yolo.dev/src/app/docs/evolution/page.tsx"
+          ],
+          "nxProjects": [
+            "yolo.dev"
+          ]
+        },
+        {
           "hash": "b0e262f5e43cc7add625d343c9d136e7cb73c186",
           "author": "qtagtech",
           "date": "Thu Jan 23 20:02:11 2025 +0100",
           "message": "Updated dependencies and made minor modifications to the content in 'evolution' and 'getting-started-with-ai-programming' pages of yolo.dev app.",
-          "branch": "main~3",
+          "branch": "remotes/origin/main~4",
           "files": [
             "apps/yolo.dev/package.json",
             "apps/yolo.dev/src/app/docs/evolution/page.tsx",
@@ -3623,7 +3638,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 19:38:46 2025 +0100",
           "message": "Update import path for Github and WandSparkles from lucide-react in Header.tsx",
-          "branch": "remotes/origin/main~1",
+          "branch": "remotes/origin/main~6",
           "files": [
             "apps/yolo.dev/src/app/components/ui/Header.tsx"
           ],
@@ -3636,7 +3651,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 18:49:04 2025 +0100",
           "message": "Updated Header component, modified package.json dependencies, and synchronized pnpm-lock.yaml",
-          "branch": "remotes/origin/main~3",
+          "branch": "remotes/origin/main~8",
           "files": [
             "apps/yolo.dev/src/app/components/ui/Header.tsx",
             "package.json",
@@ -3651,7 +3666,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 18:41:08 2025 +0100",
           "message": "Improved accessibility by adding aria-labels to emoji, refined prop types for PracticeCard and PromptCard, and removed unused imports and href attributes.",
-          "branch": "remotes/origin/main~5",
+          "branch": "remotes/origin/main~10",
           "files": [
             "apps/yolo.dev/src/app/components/ui/TutorialStep.tsx",
             "apps/yolo.dev/src/app/docs/best-practices/page.tsx",
@@ -3678,7 +3693,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 18:35:35 2025 +0100",
           "message": "Refactored and updated UI components, layouts in yolo.dev and enhanced documentation pages",
-          "branch": "remotes/origin/main~7",
+          "branch": "remotes/origin/main~12",
           "files": [
             "apps/yolo.dev/src/app/components/layouts/DocsLayout.tsx",
             "apps/yolo.dev/src/app/components/layouts/MainLayout.tsx",
@@ -3705,7 +3720,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 17:25:24 2025 +0100",
           "message": "Added new content and components to YOLO app",
-          "branch": "remotes/origin/main~9",
+          "branch": "remotes/origin/main~14",
           "files": [
             "apps/yolo.dev/markdown-content/WhyYOLO.md",
             "apps/yolo.dev/markdown-content/installing-yolo.md",
@@ -3770,7 +3785,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 14:31:59 2025 +0100",
           "message": "Updated project-graph.json in baudevs-dashboard and modified Community.tsx in yolo.dev for refinements",
-          "branch": "remotes/origin/main~11",
+          "branch": "remotes/origin/main~16",
           "files": [
             "apps/baudevs-dashboard/public/project-graph.json",
             "apps/yolo.dev/src/app/components/sections/Community.tsx"
@@ -3785,7 +3800,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 14:23:12 2025 +0100",
           "message": "\"Added new sections and made updates to YOLO app, including layout changes, UI improvements, updated package.json, plus extensive content addition to WhyYOLO.md and other docs\"",
-          "branch": "remotes/origin/main~13",
+          "branch": "remotes/origin/main~18",
           "files": [
             "apps/yolo.dev/WhyYOLO.md",
             "apps/yolo.dev/package.json",
@@ -3823,7 +3838,7 @@
           "author": "qtagtech",
           "date": "Sun Jan 19 18:59:37 2025 +0100",
           "message": "feat(yolo.dev): enhance favicon handling and update layout",
-          "branch": "remotes/origin/main~15",
+          "branch": "remotes/origin/main~20",
           "files": [
             "apps/yolo.dev/next.config.mjs",
             "apps/yolo.dev/public/.gitkeep",
@@ -3856,23 +3871,6 @@
             "yolo.dev",
             "yolo.dev",
             "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev"
-          ]
-        },
-        {
-          "hash": "8a542b8b986591ae578d09fceeacb865dde4d355",
-          "author": "qtagtech",
-          "date": "Sun Jan 19 17:50:38 2025 +0100",
-          "message": "feat(Header): update logo import and add new asset",
-          "branch": "remotes/origin/main~17",
-          "files": [
-            "apps/yolo.dev/src/app/components/ui/Header.tsx",
-            "apps/yolo.dev/src/assets/YOLO_MAKE_AI_CODING_FUN.png",
-            "apps/yolo.dev/tsconfig.json"
-          ],
-          "nxProjects": [
             "yolo.dev",
             "yolo.dev",
             "yolo.dev"
@@ -4040,11 +4038,41 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "20396123207e5e1b3f334e24b6a74cee8f9bde80",
+          "author": "qtagtech",
+          "date": "Thu Jan 23 20:35:38 2025 +0100",
+          "message": "change name",
+          "branch": "main",
+          "files": [
+            "apps/yolo.dev/src/app/docs/evolution/page.tsx"
+          ],
+          "nxProjects": [
+            "yolo.dev"
+          ]
+        },
+        {
+          "hash": "427979f92800964392dd6ef212c52ad21692cf65",
+          "author": "qtagtech",
+          "date": "Thu Jan 23 20:03:20 2025 +0100",
+          "message": "chore(metadata): update repository metadata [after chore(metadata): update repository metadata [after graph]]",
+          "branch": "remotes/origin/main",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "a343d69e5063f593f7459ec878e61616ba6000cb",
           "author": "qtagtech",
           "date": "Thu Jan 23 20:03:20 2025 +0100",
           "message": "chore(metadata): update repository metadata [after graph]",
-          "branch": "main",
+          "branch": "remotes/origin/main~1",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -4063,7 +4091,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 20:03:20 2025 +0100",
           "message": "graph",
-          "branch": "main~1",
+          "branch": "remotes/origin/main~2",
           "files": [
             "apps/baudevs-dashboard/public/project-graph.json"
           ],
@@ -4076,7 +4104,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 20:02:11 2025 +0100",
           "message": "chore(metadata): update repository metadata [after Updated dependencies and made minor modifications to the content in 'evolution' and 'getting-started-with-ai-programming' pages of yolo.dev app.]",
-          "branch": "main~2",
+          "branch": "remotes/origin/main~3",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -4093,7 +4121,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 20:02:11 2025 +0100",
           "message": "Updated dependencies and made minor modifications to the content in 'evolution' and 'getting-started-with-ai-programming' pages of yolo.dev app.",
-          "branch": "main~3",
+          "branch": "remotes/origin/main~4",
           "files": [
             "apps/yolo.dev/package.json",
             "apps/yolo.dev/src/app/docs/evolution/page.tsx",
@@ -4112,7 +4140,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 19:38:46 2025 +0100",
           "message": "chore(metadata): update repository metadata [after Update import path for Github and WandSparkles from lucide-react in Header.tsx]",
-          "branch": "remotes/origin/main",
+          "branch": "remotes/origin/main~5",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -4129,7 +4157,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 19:38:46 2025 +0100",
           "message": "Update import path for Github and WandSparkles from lucide-react in Header.tsx",
-          "branch": "remotes/origin/main~1",
+          "branch": "remotes/origin/main~6",
           "files": [
             "apps/yolo.dev/src/app/components/ui/Header.tsx"
           ],
@@ -4142,7 +4170,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 18:49:04 2025 +0100",
           "message": "chore(metadata): update repository metadata [after Updated Header component, modified package.json dependencies, and synchronized pnpm-lock.yaml]",
-          "branch": "remotes/origin/main~2",
+          "branch": "remotes/origin/main~7",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -4159,57 +4187,13 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 18:49:04 2025 +0100",
           "message": "Updated Header component, modified package.json dependencies, and synchronized pnpm-lock.yaml",
-          "branch": "remotes/origin/main~3",
+          "branch": "remotes/origin/main~8",
           "files": [
             "apps/yolo.dev/src/app/components/ui/Header.tsx",
             "package.json",
             "pnpm-lock.yaml"
           ],
           "nxProjects": [
-            "yolo.dev"
-          ]
-        },
-        {
-          "hash": "8a3d7d3a4b7b79fba2b2bb8c0f1b4f4c7c0e9df8",
-          "author": "qtagtech",
-          "date": "Thu Jan 23 18:41:08 2025 +0100",
-          "message": "chore(metadata): update repository metadata [after Improved accessibility by adding aria-labels to emoji, refined prop types for PracticeCard and PromptCard, and removed unused imports and href attributes.]",
-          "branch": "remotes/origin/main~4",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "2c7c786a4fbb5c96482240d7a8c3ac83d20d0f80",
-          "author": "qtagtech",
-          "date": "Thu Jan 23 18:41:08 2025 +0100",
-          "message": "Improved accessibility by adding aria-labels to emoji, refined prop types for PracticeCard and PromptCard, and removed unused imports and href attributes.",
-          "branch": "remotes/origin/main~5",
-          "files": [
-            "apps/yolo.dev/src/app/components/ui/TutorialStep.tsx",
-            "apps/yolo.dev/src/app/docs/best-practices/page.tsx",
-            "apps/yolo.dev/src/app/docs/concepts/page.tsx",
-            "apps/yolo.dev/src/app/docs/getting-started-with-ai-programming/page.tsx",
-            "apps/yolo.dev/src/app/docs/page.tsx",
-            "apps/yolo.dev/src/app/docs/prompts/page.tsx",
-            "apps/yolo.dev/src/app/docs/tools/page.tsx",
-            "apps/yolo.dev/src/app/pricing/page.tsx"
-          ],
-          "nxProjects": [
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
             "yolo.dev"
           ]
         }
@@ -4229,7 +4213,7 @@
       "type": "merge",
       "lastSync": "Sun Jan 19 16:08:20 2025 +0100",
       "commonAncestor": "edabf5fd85c271b8128150dcea4a0f3b619388a5",
-      "divergedCommits": 28
+      "divergedCommits": 30
     },
     {
       "from": "staging",
@@ -4237,19 +4221,19 @@
       "type": "rebase",
       "lastSync": "Sun Jan 19 16:08:20 2025 +0100",
       "commonAncestor": "edabf5fd85c271b8128150dcea4a0f3b619388a5",
-      "divergedCommits": 28
+      "divergedCommits": 30
     }
   ],
   "recentActivity": {
     "lastPush": "Fri Jan 10 14:07:01 2025 +0100",
-    "lastPull": "2025-01-23T19:10:56.100Z",
+    "lastPull": "2025-01-23T19:35:57.719Z",
     "lastMerge": "Sun Jan 19 15:19:04 2025 +0100",
     "activeBranches": [
       {
         "name": "main",
-        "lastCommit": "a343d69e5063f593f7459ec878e61616ba6000cb",
+        "lastCommit": "20396123207e5e1b3f334e24b6a74cee8f9bde80",
         "author": "qtagtech",
-        "commitCount": 631
+        "commitCount": 633
       },
       {
         "name": "staging",
@@ -4264,7 +4248,7 @@
     "totalLibraries": 9,
     "totalPackages": 0,
     "totalFiles": 302,
-    "totalCommits": 631,
+    "totalCommits": 633,
     "totalContributors": 0
   }
 }
