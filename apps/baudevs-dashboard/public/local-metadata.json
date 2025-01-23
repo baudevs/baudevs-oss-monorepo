@@ -1,7 +1,7 @@
 {
   "repoPath": "/Users/juandavidarroyave/Developer/baudevs-oss-monorepo",
   "defaultBranch": "main",
-  "generatedAt": "2025-01-23T19:35:57.425Z",
+  "generatedAt": "2025-01-23T20:08:58.940Z",
   "gitVersion": "git version 2.48.1",
   "nxVersion": "",
   "nodeVersion": "v23.1.0",
@@ -10,8 +10,8 @@
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-oss-monorepo",
       "branch": "main",
-      "commit": "20396123207e5e1b3f334e24b6a74cee8f9bde80",
-      "lastActivity": "Thu Jan 23 20:35:38 2025 +0100"
+      "commit": "d8e56628ecc672b8f43fc25e275e781f51fed1e1",
+      "lastActivity": "Thu Jan 23 21:08:40 2025 +0100"
     }
   ],
   "nxProjects": [
@@ -358,6 +358,23 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "3246e735b92a5b1fcb0dbe375c2385eb39dd43ee",
+          "author": "qtagtech",
+          "date": "Thu Jan 23 20:35:38 2025 +0100",
+          "message": "chore(metadata): update repository metadata [after change name]",
+          "branch": "main~1",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "427979f92800964392dd6ef212c52ad21692cf65",
           "author": "qtagtech",
           "date": "Thu Jan 23 20:03:20 2025 +0100",
@@ -497,23 +514,6 @@
           "date": "Thu Jan 23 17:25:24 2025 +0100",
           "message": "chore(metadata): update repository metadata [after Added new content and components to YOLO app",
           "branch": "remotes/origin/main~13",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "0d6b754119092d574465dbb0cc5b3ecc14f48b8d",
-          "author": "qtagtech",
-          "date": "Thu Jan 23 14:31:59 2025 +0100",
-          "message": "chore(metadata): update repository metadata [after Updated project-graph.json in baudevs-dashboard and modified Community.tsx in yolo.dev for refinements]",
-          "branch": "remotes/origin/main~15",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -3602,11 +3602,32 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "d8e56628ecc672b8f43fc25e275e781f51fed1e1",
+          "author": "qtagtech",
+          "date": "Thu Jan 23 21:08:40 2025 +0100",
+          "message": "Added new code to Omega and Sparkles icons, updated Header UI and tsconfig.json, and made minor changes in evolution/page documentation.",
+          "branch": "main",
+          "files": [
+            "apps/yolo.dev/src/app/components/icons/Omega.tsx",
+            "apps/yolo.dev/src/app/components/icons/Sparkles.tsx",
+            "apps/yolo.dev/src/app/components/ui/Header.tsx",
+            "apps/yolo.dev/src/app/docs/evolution/page.tsx",
+            "apps/yolo.dev/tsconfig.json"
+          ],
+          "nxProjects": [
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev"
+          ]
+        },
+        {
           "hash": "20396123207e5e1b3f334e24b6a74cee8f9bde80",
           "author": "qtagtech",
           "date": "Thu Jan 23 20:35:38 2025 +0100",
           "message": "change name",
-          "branch": "main",
+          "branch": "main~2",
           "files": [
             "apps/yolo.dev/src/app/docs/evolution/page.tsx"
           ],
@@ -3832,49 +3853,6 @@
             "yolo.dev",
             "yolo.dev"
           ]
-        },
-        {
-          "hash": "25b0ab3e3ac3000da12293a64add625a2da2fcd7",
-          "author": "qtagtech",
-          "date": "Sun Jan 19 18:59:37 2025 +0100",
-          "message": "feat(yolo.dev): enhance favicon handling and update layout",
-          "branch": "remotes/origin/main~20",
-          "files": [
-            "apps/yolo.dev/next.config.mjs",
-            "apps/yolo.dev/public/.gitkeep",
-            "apps/yolo.dev/public/favicon copy.ico",
-            "apps/yolo.dev/src/app/api/favicon/route.ts",
-            "apps/yolo.dev/src/app/api/icon/route.ts",
-            "apps/yolo.dev/src/app/components/sections/Community.tsx",
-            "apps/yolo.dev/src/app/components/sections/Hero.tsx",
-            "apps/yolo.dev/src/app/components/ui/Header.tsx",
-            "apps/yolo.dev/src/app/favicon.ico",
-            "apps/yolo.dev/src/app/layout.tsx",
-            "apps/yolo.dev/src/app/manifest.json",
-            "apps/yolo.dev/src/assets/apple-icon.png",
-            "apps/yolo.dev/src/assets/favicon.ico",
-            "apps/yolo.dev/src/assets/icon.png",
-            "apps/yolo.dev/src/assets/icon.svg",
-            "apps/yolo.dev/src/assets/manifest.json"
-          ],
-          "nxProjects": [
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev",
-            "yolo.dev"
-          ]
         }
       ],
       "contributors": [],
@@ -4038,11 +4016,49 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "d8e56628ecc672b8f43fc25e275e781f51fed1e1",
+          "author": "qtagtech",
+          "date": "Thu Jan 23 21:08:40 2025 +0100",
+          "message": "Added new code to Omega and Sparkles icons, updated Header UI and tsconfig.json, and made minor changes in evolution/page documentation.",
+          "branch": "main",
+          "files": [
+            "apps/yolo.dev/src/app/components/icons/Omega.tsx",
+            "apps/yolo.dev/src/app/components/icons/Sparkles.tsx",
+            "apps/yolo.dev/src/app/components/ui/Header.tsx",
+            "apps/yolo.dev/src/app/docs/evolution/page.tsx",
+            "apps/yolo.dev/tsconfig.json"
+          ],
+          "nxProjects": [
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev"
+          ]
+        },
+        {
+          "hash": "3246e735b92a5b1fcb0dbe375c2385eb39dd43ee",
+          "author": "qtagtech",
+          "date": "Thu Jan 23 20:35:38 2025 +0100",
+          "message": "chore(metadata): update repository metadata [after change name]",
+          "branch": "main~1",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "20396123207e5e1b3f334e24b6a74cee8f9bde80",
           "author": "qtagtech",
           "date": "Thu Jan 23 20:35:38 2025 +0100",
           "message": "change name",
-          "branch": "main",
+          "branch": "main~2",
           "files": [
             "apps/yolo.dev/src/app/docs/evolution/page.tsx"
           ],
@@ -4164,38 +4180,6 @@
           "nxProjects": [
             "yolo.dev"
           ]
-        },
-        {
-          "hash": "78f805b5c84e254fc4cfe5b0dbf70c4c150bee81",
-          "author": "qtagtech",
-          "date": "Thu Jan 23 18:49:04 2025 +0100",
-          "message": "chore(metadata): update repository metadata [after Updated Header component, modified package.json dependencies, and synchronized pnpm-lock.yaml]",
-          "branch": "remotes/origin/main~7",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "175fdcc45028b8f64ab2eb11fafaf56f44cd6780",
-          "author": "qtagtech",
-          "date": "Thu Jan 23 18:49:04 2025 +0100",
-          "message": "Updated Header component, modified package.json dependencies, and synchronized pnpm-lock.yaml",
-          "branch": "remotes/origin/main~8",
-          "files": [
-            "apps/yolo.dev/src/app/components/ui/Header.tsx",
-            "package.json",
-            "pnpm-lock.yaml"
-          ],
-          "nxProjects": [
-            "yolo.dev"
-          ]
         }
       ],
       "contributors": [],
@@ -4213,7 +4197,7 @@
       "type": "merge",
       "lastSync": "Sun Jan 19 16:08:20 2025 +0100",
       "commonAncestor": "edabf5fd85c271b8128150dcea4a0f3b619388a5",
-      "divergedCommits": 30
+      "divergedCommits": 32
     },
     {
       "from": "staging",
@@ -4221,19 +4205,19 @@
       "type": "rebase",
       "lastSync": "Sun Jan 19 16:08:20 2025 +0100",
       "commonAncestor": "edabf5fd85c271b8128150dcea4a0f3b619388a5",
-      "divergedCommits": 30
+      "divergedCommits": 32
     }
   ],
   "recentActivity": {
     "lastPush": "Fri Jan 10 14:07:01 2025 +0100",
-    "lastPull": "2025-01-23T19:35:57.719Z",
+    "lastPull": "2025-01-23T20:08:59.236Z",
     "lastMerge": "Sun Jan 19 15:19:04 2025 +0100",
     "activeBranches": [
       {
         "name": "main",
-        "lastCommit": "20396123207e5e1b3f334e24b6a74cee8f9bde80",
+        "lastCommit": "d8e56628ecc672b8f43fc25e275e781f51fed1e1",
         "author": "qtagtech",
-        "commitCount": 633
+        "commitCount": 635
       },
       {
         "name": "staging",
@@ -4247,8 +4231,8 @@
     "totalApps": 3,
     "totalLibraries": 9,
     "totalPackages": 0,
-    "totalFiles": 302,
-    "totalCommits": 633,
+    "totalFiles": 304,
+    "totalCommits": 635,
     "totalContributors": 0
   }
 }
