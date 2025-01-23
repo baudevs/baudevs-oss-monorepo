@@ -1,7 +1,7 @@
 {
   "repoPath": "/Users/juandavidarroyave/Developer/baudevs-oss-monorepo",
   "defaultBranch": "main",
-  "generatedAt": "2025-01-23T13:32:18.866Z",
+  "generatedAt": "2025-01-23T16:25:45.825Z",
   "gitVersion": "git version 2.48.1",
   "nxVersion": "",
   "nodeVersion": "v23.1.0",
@@ -10,8 +10,8 @@
     {
       "path": "/Users/juandavidarroyave/Developer/baudevs-oss-monorepo",
       "branch": "main",
-      "commit": "01847e94802016859d21befd640b5932679a7547",
-      "lastActivity": "Thu Jan 23 14:31:59 2025 +0100"
+      "commit": "2563780492193ba1a2a456e617f4c8274d6f8897",
+      "lastActivity": "Thu Jan 23 17:25:24 2025 +0100"
     }
   ],
   "nxProjects": [
@@ -358,11 +358,28 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "0d6b754119092d574465dbb0cc5b3ecc14f48b8d",
+          "author": "qtagtech",
+          "date": "Thu Jan 23 14:31:59 2025 +0100",
+          "message": "chore(metadata): update repository metadata [after Updated project-graph.json in baudevs-dashboard and modified Community.tsx in yolo.dev for refinements]",
+          "branch": "remotes/origin/main",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "01847e94802016859d21befd640b5932679a7547",
           "author": "qtagtech",
           "date": "Thu Jan 23 14:31:59 2025 +0100",
           "message": "Updated project-graph.json in baudevs-dashboard and modified Community.tsx in yolo.dev for refinements",
-          "branch": "main",
+          "branch": "remotes/origin/main~1",
           "files": [
             "apps/baudevs-dashboard/public/project-graph.json",
             "apps/yolo.dev/src/app/components/sections/Community.tsx"
@@ -377,7 +394,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 14:23:12 2025 +0100",
           "message": "chore(metadata): update repository metadata [after \"Added new sections and made updates to YOLO app, including layout changes, UI improvements, updated package.json, plus extensive content addition to WhyYOLO.md and other docs\"]",
-          "branch": "main~1",
+          "branch": "remotes/origin/main~2",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -394,7 +411,7 @@
           "author": "qtagtech",
           "date": "Sun Jan 19 18:59:37 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/main",
+          "branch": "remotes/origin/main~4",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -411,7 +428,7 @@
           "author": "qtagtech",
           "date": "Sun Jan 19 17:50:38 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/main~2",
+          "branch": "remotes/origin/main~6",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -428,7 +445,7 @@
           "author": "qtagtech",
           "date": "Sun Jan 19 17:36:11 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/main~4",
+          "branch": "remotes/origin/main~8",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -445,7 +462,7 @@
           "author": "qtagtech",
           "date": "Sun Jan 19 17:27:04 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/main~6",
+          "branch": "remotes/origin/main~10",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -462,7 +479,7 @@
           "author": "qtagtech",
           "date": "Sun Jan 19 17:27:04 2025 +0100",
           "message": "chore(yolo.dev): update Community component and header links for improved branding and user engagement",
-          "branch": "remotes/origin/main~7",
+          "branch": "remotes/origin/main~11",
           "files": [
             "apps/baudevs-dashboard/public/project-graph.json",
             "apps/yolo.dev/src/app/components/sections/Community.tsx",
@@ -479,7 +496,7 @@
           "author": "qtagtech",
           "date": "Sun Jan 19 17:13:36 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/main~8",
+          "branch": "remotes/origin/main~12",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -505,20 +522,6 @@
           ],
           "nxProjects": [
             "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "638ce68fe9691a87c76c9125ea4b543bcb67e0aa",
-          "author": "baudevs",
-          "date": "Sun Jan 19 15:55:39 2025 +0100",
-          "message": "chore(yolo.dev): update project-graph.json for consistent output paths and enhance command execution",
-          "branch": "remotes/origin/staging~4",
-          "files": [
-            "apps/baudevs-dashboard/public/project-graph.json",
-            "scripts/hooks/post-commit"
-          ],
-          "nxProjects": [
             "baudevs-dashboard"
           ]
         }
@@ -3599,11 +3602,76 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "2563780492193ba1a2a456e617f4c8274d6f8897",
+          "author": "qtagtech",
+          "date": "Thu Jan 23 17:25:24 2025 +0100",
+          "message": "Added new content and components to YOLO app",
+          "branch": "main",
+          "files": [
+            "apps/yolo.dev/markdown-content/WhyYOLO.md",
+            "apps/yolo.dev/markdown-content/installing-yolo.md",
+            "apps/yolo.dev/markdown-content/iterm-script-tutorial.sh",
+            "apps/yolo.dev/markdown-content/prices.md",
+            "apps/yolo.dev/markdown-content/yolo.docs.md",
+            "apps/yolo.dev/src/app/components/layouts/DocsLayout.tsx",
+            "apps/yolo.dev/src/app/components/layouts/Layout.tsx",
+            "apps/yolo.dev/src/app/components/layouts/MainLayout.tsx",
+            "apps/yolo.dev/src/app/components/sections/Installation.tsx",
+            "apps/yolo.dev/src/app/components/sections/WhyYOLO.tsx",
+            "apps/yolo.dev/src/app/components/ui/CommandBlock.tsx",
+            "apps/yolo.dev/src/app/components/ui/InstallStep.tsx",
+            "apps/yolo.dev/src/app/components/ui/MegaMenu.tsx",
+            "apps/yolo.dev/src/app/components/ui/PricingCard.tsx",
+            "apps/yolo.dev/src/app/components/ui/TutorialStep.tsx",
+            "apps/yolo.dev/src/app/docs/best-practices/page.tsx",
+            "apps/yolo.dev/src/app/docs/concepts/page.tsx",
+            "apps/yolo.dev/src/app/docs/evolution/page.tsx",
+            "apps/yolo.dev/src/app/docs/getting-started/page.tsx",
+            "apps/yolo.dev/src/app/docs/page.tsx",
+            "apps/yolo.dev/src/app/docs/prompts/page.tsx",
+            "apps/yolo.dev/src/app/docs/structure/page.tsx",
+            "apps/yolo.dev/src/app/docs/tools/page.tsx",
+            "apps/yolo.dev/src/app/install/page.tsx",
+            "apps/yolo.dev/src/app/page.tsx",
+            "apps/yolo.dev/src/app/pricing/page.tsx",
+            "apps/yolo.dev/tsconfig.json"
+          ],
+          "nxProjects": [
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev"
+          ]
+        },
+        {
           "hash": "01847e94802016859d21befd640b5932679a7547",
           "author": "qtagtech",
           "date": "Thu Jan 23 14:31:59 2025 +0100",
           "message": "Updated project-graph.json in baudevs-dashboard and modified Community.tsx in yolo.dev for refinements",
-          "branch": "main",
+          "branch": "remotes/origin/main~1",
           "files": [
             "apps/baudevs-dashboard/public/project-graph.json",
             "apps/yolo.dev/src/app/components/sections/Community.tsx"
@@ -3618,7 +3686,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 14:23:12 2025 +0100",
           "message": "\"Added new sections and made updates to YOLO app, including layout changes, UI improvements, updated package.json, plus extensive content addition to WhyYOLO.md and other docs\"",
-          "branch": "main~2",
+          "branch": "remotes/origin/main~3",
           "files": [
             "apps/yolo.dev/WhyYOLO.md",
             "apps/yolo.dev/package.json",
@@ -3656,7 +3724,7 @@
           "author": "qtagtech",
           "date": "Sun Jan 19 18:59:37 2025 +0100",
           "message": "feat(yolo.dev): enhance favicon handling and update layout",
-          "branch": "remotes/origin/main~1",
+          "branch": "remotes/origin/main~5",
           "files": [
             "apps/yolo.dev/next.config.mjs",
             "apps/yolo.dev/public/.gitkeep",
@@ -3699,7 +3767,7 @@
           "author": "qtagtech",
           "date": "Sun Jan 19 17:50:38 2025 +0100",
           "message": "feat(Header): update logo import and add new asset",
-          "branch": "remotes/origin/main~3",
+          "branch": "remotes/origin/main~7",
           "files": [
             "apps/yolo.dev/src/app/components/ui/Header.tsx",
             "apps/yolo.dev/src/assets/YOLO_MAKE_AI_CODING_FUN.png",
@@ -3716,7 +3784,7 @@
           "author": "qtagtech",
           "date": "Sun Jan 19 17:36:11 2025 +0100",
           "message": "fix(Installation): add type annotation to copyCommand function",
-          "branch": "remotes/origin/main~5",
+          "branch": "remotes/origin/main~9",
           "files": [
             "apps/yolo.dev/src/app/components/sections/Installation.tsx"
           ],
@@ -3729,7 +3797,7 @@
           "author": "qtagtech",
           "date": "Sun Jan 19 17:27:04 2025 +0100",
           "message": "chore(yolo.dev): update Community component and header links for improved branding and user engagement",
-          "branch": "remotes/origin/main~7",
+          "branch": "remotes/origin/main~11",
           "files": [
             "apps/baudevs-dashboard/public/project-graph.json",
             "apps/yolo.dev/src/app/components/sections/Community.tsx",
@@ -3746,7 +3814,7 @@
           "author": "qtagtech",
           "date": "Sun Jan 19 17:13:36 2025 +0100",
           "message": "chore(yolo.dev): update configuration and enhance content",
-          "branch": "remotes/origin/main~9",
+          "branch": "remotes/origin/main~13",
           "files": [
             "apps/yolo.dev/next.config.mjs",
             "apps/yolo.dev/project.json",
@@ -3801,26 +3869,6 @@
             "yolo.dev",
             "yolo.dev",
             "yolo.dev",
-            "yolo.dev",
-            "yolo.dev"
-          ]
-        },
-        {
-          "hash": "31c39b98c8fa90a9fa0122fb28035c3cb0a12005",
-          "author": "qtagtech",
-          "date": "Sun Jan 19 14:57:52 2025 +0100",
-          "message": "feat: add package_production.json and update Dockerfile for yolo.dev",
-          "branch": "remotes/origin/staging~9^2~1",
-          "files": [
-            ".vscode/settings.json",
-            "apps/yolo.dev/Dockerfile",
-            "apps/yolo.dev/project.json",
-            "package.json",
-            "package_production.json",
-            "pnpm-lock.yaml"
-          ],
-          "nxProjects": [
-            "@baudevs/monorepo",
             "yolo.dev",
             "yolo.dev"
           ]
@@ -3987,11 +4035,93 @@
       "dependencies": [],
       "lastCommits": [
         {
+          "hash": "2563780492193ba1a2a456e617f4c8274d6f8897",
+          "author": "qtagtech",
+          "date": "Thu Jan 23 17:25:24 2025 +0100",
+          "message": "Added new content and components to YOLO app",
+          "branch": "main",
+          "files": [
+            "apps/yolo.dev/markdown-content/WhyYOLO.md",
+            "apps/yolo.dev/markdown-content/installing-yolo.md",
+            "apps/yolo.dev/markdown-content/iterm-script-tutorial.sh",
+            "apps/yolo.dev/markdown-content/prices.md",
+            "apps/yolo.dev/markdown-content/yolo.docs.md",
+            "apps/yolo.dev/src/app/components/layouts/DocsLayout.tsx",
+            "apps/yolo.dev/src/app/components/layouts/Layout.tsx",
+            "apps/yolo.dev/src/app/components/layouts/MainLayout.tsx",
+            "apps/yolo.dev/src/app/components/sections/Installation.tsx",
+            "apps/yolo.dev/src/app/components/sections/WhyYOLO.tsx",
+            "apps/yolo.dev/src/app/components/ui/CommandBlock.tsx",
+            "apps/yolo.dev/src/app/components/ui/InstallStep.tsx",
+            "apps/yolo.dev/src/app/components/ui/MegaMenu.tsx",
+            "apps/yolo.dev/src/app/components/ui/PricingCard.tsx",
+            "apps/yolo.dev/src/app/components/ui/TutorialStep.tsx",
+            "apps/yolo.dev/src/app/docs/best-practices/page.tsx",
+            "apps/yolo.dev/src/app/docs/concepts/page.tsx",
+            "apps/yolo.dev/src/app/docs/evolution/page.tsx",
+            "apps/yolo.dev/src/app/docs/getting-started/page.tsx",
+            "apps/yolo.dev/src/app/docs/page.tsx",
+            "apps/yolo.dev/src/app/docs/prompts/page.tsx",
+            "apps/yolo.dev/src/app/docs/structure/page.tsx",
+            "apps/yolo.dev/src/app/docs/tools/page.tsx",
+            "apps/yolo.dev/src/app/install/page.tsx",
+            "apps/yolo.dev/src/app/page.tsx",
+            "apps/yolo.dev/src/app/pricing/page.tsx",
+            "apps/yolo.dev/tsconfig.json"
+          ],
+          "nxProjects": [
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev",
+            "yolo.dev"
+          ]
+        },
+        {
+          "hash": "0d6b754119092d574465dbb0cc5b3ecc14f48b8d",
+          "author": "qtagtech",
+          "date": "Thu Jan 23 14:31:59 2025 +0100",
+          "message": "chore(metadata): update repository metadata [after Updated project-graph.json in baudevs-dashboard and modified Community.tsx in yolo.dev for refinements]",
+          "branch": "remotes/origin/main",
+          "files": [
+            "apps/baudevs-dashboard/public/local-metadata.json",
+            "apps/baudevs-dashboard/public/metadata-history.json",
+            "metadata-history.json",
+            "versions/latest.json"
+          ],
+          "nxProjects": [
+            "baudevs-dashboard",
+            "baudevs-dashboard"
+          ]
+        },
+        {
           "hash": "01847e94802016859d21befd640b5932679a7547",
           "author": "qtagtech",
           "date": "Thu Jan 23 14:31:59 2025 +0100",
           "message": "Updated project-graph.json in baudevs-dashboard and modified Community.tsx in yolo.dev for refinements",
-          "branch": "main",
+          "branch": "remotes/origin/main~1",
           "files": [
             "apps/baudevs-dashboard/public/project-graph.json",
             "apps/yolo.dev/src/app/components/sections/Community.tsx"
@@ -4006,7 +4136,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 14:23:12 2025 +0100",
           "message": "chore(metadata): update repository metadata [after \"Added new sections and made updates to YOLO app, including layout changes, UI improvements, updated package.json, plus extensive content addition to WhyYOLO.md and other docs\"]",
-          "branch": "main~1",
+          "branch": "remotes/origin/main~2",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -4023,7 +4153,7 @@
           "author": "qtagtech",
           "date": "Thu Jan 23 14:23:12 2025 +0100",
           "message": "\"Added new sections and made updates to YOLO app, including layout changes, UI improvements, updated package.json, plus extensive content addition to WhyYOLO.md and other docs\"",
-          "branch": "main~2",
+          "branch": "remotes/origin/main~3",
           "files": [
             "apps/yolo.dev/WhyYOLO.md",
             "apps/yolo.dev/package.json",
@@ -4061,7 +4191,7 @@
           "author": "qtagtech",
           "date": "Sun Jan 19 18:59:37 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/main",
+          "branch": "remotes/origin/main~4",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -4078,7 +4208,7 @@
           "author": "qtagtech",
           "date": "Sun Jan 19 18:59:37 2025 +0100",
           "message": "feat(yolo.dev): enhance favicon handling and update layout",
-          "branch": "remotes/origin/main~1",
+          "branch": "remotes/origin/main~5",
           "files": [
             "apps/yolo.dev/next.config.mjs",
             "apps/yolo.dev/public/.gitkeep",
@@ -4121,7 +4251,7 @@
           "author": "qtagtech",
           "date": "Sun Jan 19 17:50:38 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/main~2",
+          "branch": "remotes/origin/main~6",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -4138,7 +4268,7 @@
           "author": "qtagtech",
           "date": "Sun Jan 19 17:50:38 2025 +0100",
           "message": "feat(Header): update logo import and add new asset",
-          "branch": "remotes/origin/main~3",
+          "branch": "remotes/origin/main~7",
           "files": [
             "apps/yolo.dev/src/app/components/ui/Header.tsx",
             "apps/yolo.dev/src/assets/YOLO_MAKE_AI_CODING_FUN.png",
@@ -4155,37 +4285,7 @@
           "author": "qtagtech",
           "date": "Sun Jan 19 17:36:11 2025 +0100",
           "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/main~4",
-          "files": [
-            "apps/baudevs-dashboard/public/local-metadata.json",
-            "apps/baudevs-dashboard/public/metadata-history.json",
-            "metadata-history.json",
-            "versions/latest.json"
-          ],
-          "nxProjects": [
-            "baudevs-dashboard",
-            "baudevs-dashboard"
-          ]
-        },
-        {
-          "hash": "8e15fcc90f96407f1e830a4a38b7a66f56e72632",
-          "author": "qtagtech",
-          "date": "Sun Jan 19 17:36:11 2025 +0100",
-          "message": "fix(Installation): add type annotation to copyCommand function",
-          "branch": "remotes/origin/main~5",
-          "files": [
-            "apps/yolo.dev/src/app/components/sections/Installation.tsx"
-          ],
-          "nxProjects": [
-            "yolo.dev"
-          ]
-        },
-        {
-          "hash": "7b19f2db8f852296d622f69f3c5a9d09f79216fc",
-          "author": "qtagtech",
-          "date": "Sun Jan 19 17:27:04 2025 +0100",
-          "message": "chore(metadata): update repository metadata",
-          "branch": "remotes/origin/main~6",
+          "branch": "remotes/origin/main~8",
           "files": [
             "apps/baudevs-dashboard/public/local-metadata.json",
             "apps/baudevs-dashboard/public/metadata-history.json",
@@ -4213,7 +4313,7 @@
       "type": "merge",
       "lastSync": "Sun Jan 19 16:08:20 2025 +0100",
       "commonAncestor": "edabf5fd85c271b8128150dcea4a0f3b619388a5",
-      "divergedCommits": 13
+      "divergedCommits": 15
     },
     {
       "from": "staging",
@@ -4221,19 +4321,19 @@
       "type": "rebase",
       "lastSync": "Sun Jan 19 16:08:20 2025 +0100",
       "commonAncestor": "edabf5fd85c271b8128150dcea4a0f3b619388a5",
-      "divergedCommits": 13
+      "divergedCommits": 15
     }
   ],
   "recentActivity": {
     "lastPush": "Fri Jan 10 14:07:01 2025 +0100",
-    "lastPull": "2025-01-23T13:32:19.176Z",
+    "lastPull": "2025-01-23T16:25:46.178Z",
     "lastMerge": "Sun Jan 19 15:19:04 2025 +0100",
     "activeBranches": [
       {
         "name": "main",
-        "lastCommit": "01847e94802016859d21befd640b5932679a7547",
+        "lastCommit": "2563780492193ba1a2a456e617f4c8274d6f8897",
         "author": "qtagtech",
-        "commitCount": 616
+        "commitCount": 618
       },
       {
         "name": "staging",
@@ -4247,8 +4347,8 @@
     "totalApps": 3,
     "totalLibraries": 9,
     "totalPackages": 0,
-    "totalFiles": 284,
-    "totalCommits": 616,
+    "totalFiles": 302,
+    "totalCommits": 618,
     "totalContributors": 0
   }
 }
